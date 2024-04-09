@@ -9,33 +9,10 @@
 #import "indexdocument.h"
 #import "export.h"
 
-typedef struct {
-	NSString * __unsafe_unretained identifier;
-	int tag;
-	NSString * __unsafe_unretained label;
-	NSString * __unsafe_unretained tooltip;
-	id __unsafe_unretained target;
-	NSString * __unsafe_unretained action;
-	NSString * __unsafe_unretained image;
-}TOOLBARITEM;
-
 #define CIN_REF 	'CNDX'	/* creator */
 #define CIN_NDX		'CDXU'	/* index file */
-#define CIN_V2NDX	'CDXF'	/* v2 index file */
-#define CIN_V1NDX	'NDXF'	/* v1 index file */
-#define CIN_ABR		'ABRF'	/* abbrev file file */
 #define CIN_FORM	'CFRU'	/* format (style) file */
-#define CIN_V2FORM	'CFR2'	/* V2 format (style) file */
-#define CIN_V1FORM	'CFRM'	/* V1 format (style) file */
 #define CIN_STAT	'tDXU'	/* index stationery */
-#define CIN_V2STAT	'tDXF'	/* v2 index stationery */
-#define CIN_V1STAT	'sDXF'	/* v1 index stationery */
-#define CIN_MDAT	'CDAM'	/* archive */
-#define CIN_XMLDAT	'CXML'	// xml records
-#define CIN_DBSPELL 'CDSP'	/* main spelling database */
-#define CIN_DBUSER 	'CDSD'	/* user dictionary */
-#define CIN_WILD	'????'	/* any type */
-#define CIN_TEXT	'TEXT'	/* text */
 
 extern NSString * IRDocumentException;
 extern NSString * IRRecordException;	// damaged record
@@ -53,7 +30,6 @@ extern NSString * CINAbbrevType;
 extern NSString * CINStyleSheetType;
 extern NSString * CINV2StyleSheetType;
 extern NSString * CINV1StyleSheetType;
-extern NSString * CINDataType;
 extern NSString * DOSDataType;
 extern NSString * CINDelimitedRecords;
 extern NSString * SkyType;
@@ -67,17 +43,11 @@ extern NSString * CINTaggedText;
 extern NSString * CINIMType;
 
 extern NSString * CINIndexExtension;
-extern NSString * CINIndexV2Extension;
-extern NSString * CINIndexV1Extension;
 extern NSString * CINStationeryExtension;
-extern NSString * CINArchiveExtension;
-extern NSString * CINAbbrevExtension;
 extern NSString * CINStyleSheetExtension;
-extern NSString * CINV2StyleSheetExtension;
-extern NSString * CINV1StyleSheetExtension;
+
 extern NSString * CINTagExtension;
 extern NSString * CINXMLTagExtension;
-extern NSString * CINMainDicExtension;
 extern NSString * CINPDicExtension;
 
 extern NSString * NOTE_HEADERFOOTERCHANGED;
@@ -128,7 +98,6 @@ enum 	{		/* view display flags */
 	IRIndexDocWController * _mainWindowController;
 	IRIndexTextWController * _textWindowController;
 	IRIndexRecordWController * _recordWindowController;
-	INDEX _index;
 	NSMenu * _groupmenu;
 	NSMenu * _fieldmenu;
 	EXPORTPARAMS _eparams;
@@ -136,9 +105,6 @@ enum 	{		/* view display flags */
 	NSString * _backupPath;
 	int _saveOp;
 	BOOL _hasBackup;
-	NSPopUpButton * _typeSelector;
-	NSString * _selectedTypeForSaveToOperation;
-	NSDictionary<NSString *, NSString *> * _exportTypeLabels;
 }
 @property (strong) NSWindowController * currentSheet;
 @property (strong) NSString * lastSavedName;
@@ -146,6 +112,8 @@ enum 	{		/* view display flags */
 @property (strong) NSDate * modtime;
 @property (strong) NSArray * gotoitems;
 @property (strong) SearchController * currentSearchController;
+@property (readonly) INDEX * iIndex;
+@property (strong) NSString * importSource;
 
 //+ (id)newDocumentWithMessage:(NSString *)message error:(NSError **)err;		// creates new index file
 + (id)newDocumentFromURL:(NSURL *)url error:(NSError **)err;		// creates new index file
@@ -154,7 +122,6 @@ enum 	{		/* view display flags */
 - (IBAction)saveGroup:(id)sender;
 - (IBAction)goTo:(id)sender;
 - (IBAction)hideByAttribute:(id)sender;
-//- (IBAction)verifyRefs:(id)sender;
 - (IBAction)reconcile:(id)sender;
 - (IBAction)generateRefs:(id)sender;
 - (IBAction)alterRefs:(id)sender;
@@ -218,5 +185,4 @@ enum 	{		/* view display flags */
 - (void)closeSummary;
 - (void)hideWindows;		// hides all doc windows
 - (void)showSheet:(NSWindowController *)sheet;
-- (NSString *)fileNameExtensionForType:(NSString *)typeName saveOperation:(NSSaveOperationType)saveOperation;
 @end

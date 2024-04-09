@@ -444,25 +444,6 @@ static void endElement(void *userData, const XML_Char *name)		// ends element
 		*pd->destination = '\0';
 	}
 }
-#if 0
-/***************************************************************************/
-static void characterData(void *userData, const XML_Char *s ,int len)		// collects character data
-
-{
-	IMPORTPARAMS * imp = (IMPORTPARAMS *)userData;
-	PARSERDATA * pd = &imp->pdata;
-	
-	if (pd->collect)	{
-		if (pd->destination && pd->destination+len < pd->limit)	{
-			strncpy(pd->destination, s, len);
-			pd->destination += len;
-			*pd->destination = '\0';
-		}
-		else
-			pd->overflow = TRUE;
-	}
-}
-#else
 /***************************************************************************/
 static void characterData(void *userData, const XML_Char *s ,int len)		// collects character data
 
@@ -495,7 +476,6 @@ static void characterData(void *userData, const XML_Char *s ,int len)		// collec
 			pd->overflow = TRUE;
 	}
 }
-#endif
 /***************************************************************************/
 static void sendparsererror(PARSERDATA * pd, int error)	// aborts parser with error
 

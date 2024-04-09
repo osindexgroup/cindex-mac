@@ -24,7 +24,7 @@
 	
 	if (trange.length) {	// if not empty selection
 		NSRange prange = NSMakeRange(trange.location,0);
-		unsigned int length = NSMaxRange(trange);
+		NSUInteger length = NSMaxRange(trange);
 		
 		for (count = 0; prange.location < length; count++) {
 			prange = [self paragraphRangeForRange:prange];
@@ -40,7 +40,7 @@
 }
 - (NSArray *)paragraphRanges {
     NSMutableArray	*result = [NSMutableArray array];
-	unsigned int length = [self length];
+	NSUInteger length = [self length];
 	
 	if (length)	{
 		NSRange prange = NSMakeRange(0,0);

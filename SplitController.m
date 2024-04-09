@@ -44,7 +44,7 @@ static int tabset[] = {-40,48,125,160,0};
 	userPattern.stringValue = [NSString stringWithUTF8String:params.userpattern];
 }
 - (IBAction)showHelp:(id)sender {
-	[[NSHelpManager sharedHelpManager] openHelpAnchor:@"split0_Anchor-14210" inBook:@"Cindex 4.2.5 Help"];
+	[[NSHelpManager sharedHelpManager] openHelpAnchor:@"split0_Anchor-14210" inBook:@"Cindex 4 Help"];
 }
 - (void)windowDidUpdate:(NSNotification *)aNotification {
 	if (pattern.selectedTag < 0) {

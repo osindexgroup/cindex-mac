@@ -33,7 +33,7 @@ static char *fname[] = {"All","All Text","Last Text"};
 		[[action cellWithTag:2] setEnabled:NO];		// no linking
 }
 - (IBAction)showHelp:(id)sender {
-	[[NSHelpManager sharedHelpManager] openHelpAnchor:@"group2_Anchor-14210" inBook:@"Cindex 4.2.5 Help"];
+	[[NSHelpManager sharedHelpManager] openHelpAnchor:@"group2_Anchor-14210" inBook:@"Cindex 4 Help"];
 }
 - (IBAction)showInformation:(id)sender {
 	NSString * gname = [group titleOfSelectedItem];

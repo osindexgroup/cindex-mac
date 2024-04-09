@@ -129,7 +129,7 @@ NSData * export_writerecords(INDEX * FF, EXPORTPARAMS * exp)	/* forms export dat
 	short farray[FONTLIMIT];
 	NSMutableData * edata;
 	char * wfbase;
-	int wfbaselength;
+	NSUInteger wfbaselength;
 
 	if (exp->appendflag)	{	// if appending to existing file
 		edata = [NSMutableData dataWithContentsOfFile:FF->owner.lastSavedName];	// start with existing contents

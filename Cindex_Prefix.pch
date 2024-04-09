@@ -39,7 +39,6 @@
 #import "StringCategories.h"
 #import "TextViewCategories.h"
 #import "StorageCategories.h"
-#import "NSDocument+NSDocument.h"
 #import "NSArray+NSArray.h"
 #import "NSColor+NSColor.h"
 

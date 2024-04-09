@@ -646,7 +646,7 @@ short search_verify(INDEX * FF, char * rtext, VERIFYGROUP * vp) /* checks validi
 		vp->eoffset = tptr-vp->t1;		/* length of main text of rec making ref (for summary view) */
 		*tptr++ = '\0';
 		*tptr = EOCS;
-		crosslevel = str_xcount(vp->t1);
+		crosslevel = str_xindexcontaining(rtext,str1);	// find field containing xref
 		ftot = str_xparse(rtext,flist);		/* parse record */
 		if (crosslevel == ftot-1 || !vp->locatoronly)	{	// if in page field or don't care
 			for (dupcount = matchcount = 0, recptr = search_findbylead(FF, vp->t1); recptr; recptr = sort_skip(FF, recptr,1))	{	// while records match source spec
@@ -696,23 +696,6 @@ short search_verify(INDEX * FF, char * rtext, VERIFYGROUP * vp) /* checks validi
 					vp->cr[refcount].matchlevel = 1;	/* match (if any) must be at subhead of target */
 				}
 				for (crosscount = matchcount = casecount = 0; recptr; recptr = sort_skip(FF, recptr,1))		{		/* if have a candidate */
-#if 0
-					if (!col_match(FF, &FF->head.sortpars, vp->t1, recptr->rtext, vp->fullflag ? MATCH_IGNOREACCENTS|MATCH_IGNORECODES : MATCH_LOOKUP|MATCH_IGNOREACCENTS|MATCH_IGNORECODES))	{	/* if a match */
-						rftot = str_xparse(recptr->rtext, rlist);
-						if (vp->cr[refcount].matchlevel && col_match(FF, &FF->head.sortpars, mptr, rlist[1].str, MATCH_LOOKUP|MATCH_IGNOREACCENTS|MATCH_IGNORECODES))	/* if need sub and bad match */
-							break;
-						if (*rlist[rftot-1].str)	{		/* if not empty page field */
-							if (str_crosscheck(FF, rlist[rftot-1].str))
-								crosscount++;
-							else {
-								if (++matchcount == 1)		/* if first match */
-									vp->cr[refcount].num = recptr->num;		/* save # of target */
-								if (matchcount == vp->lowlim)
-									break;
-							}
-						}
-					}
-#else
 					if (!col_match(FF, &FF->head.sortpars, vp->t1, recptr->rtext, vp->fullflag ? MATCH_IGNOREACCENTS|MATCH_IGNORECODES : MATCH_LOOKUP|MATCH_IGNOREACCENTS|MATCH_IGNORECODES))	{	/* if a match */
 						if (!vp->fullflag || !col_match(FF, &FF->head.sortpars, vp->t1, recptr->rtext, MATCH_IGNORECODES))	{	// if strict, then test again for case/accent
 							rftot = str_xparse(recptr->rtext, rlist);
@@ -734,7 +717,6 @@ short search_verify(INDEX * FF, char * rtext, VERIFYGROUP * vp) /* checks validi
 							break;
 						}
 					}
-#endif
 					else
 						break;
 				}

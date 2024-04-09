@@ -41,48 +41,40 @@
 #import "utime.h"
 #import "IRPrintAccessoryController.h"
 
-NSString * CINIndexType 		= @"com.example.cindex";
-NSString * CINStationeryType 	= @"com.example.cindex.template";
-NSString * CINXMLRecordType 	= @"com.example.cindex.ixml";
-NSString * CINArchiveType 		= @"com.example.cindex.archive";
-NSString * CINDelimitedRecords 	= @"com.example.delimited";
-NSString * CINPlainTextType 	= @"public.plain-text";
-NSString * CINRTFType 			= @"public.rtf";
-NSString * CINQuarkType 		= @"com.quark.xpress";
-NSString * CINInDesignType 		= @"com.adobe.indesign";
-NSString * CINIMType 			= @"com.index.manager";
-NSString * CINXMLType 			= @"public.xml";
-NSString * CINTaggedText 		= @"com.example.cindex.sgml";
-NSString * CINStyleSheetType 	= @"com.example.cindex.stylesheet";
-NSString * CINV1IndexType 		= @"com.example.cindex-v1";
-NSString * CINV2IndexType 		= @"com.example.cindex-v2";
-NSString * CINV2StationeryType 	= @"com.example.cindex-v2.template";
-NSString * CINV1StationeryType 	= @"com.example.cindex-v1.template";
-NSString * CINAbbrevType 		= @"com.example.cindex.abbreviations";
-NSString * CINV2StyleSheetType 	= @"com.example.cindex.stylesheet-v2";
-NSString * CINV1StyleSheetType 	= @"com.example.cindex.stylesheet-v1";
-NSString * DOSDataType 			= @"com.example.cindex.dos-data";
-NSString * SkyType 				= @"com.sky.text";
-NSString * MBackupType 			= @"com.macrex.backup";
-
-NSString * CINDataType = @"Delimited Data";
-
 NSString * IRDocumentException = @"IRDocumentException";
 NSString * IRRecordException = @"IRRecordException";
 NSString * IRMappingException = @"IRMappingException";
 
+NSString * CINIndexType 		= @"com.ir.cindex";
+NSString * CINStationeryType 	= @"com.ir.cindex.template";
+NSString * CINXMLRecordType 	= @"com.ir.cindex.ixml";
+NSString * CINArchiveType 		= @"com.ir.cindex.archive";
+NSString * CINDelimitedRecords 	= @"com.ir.cindex.delimited";
+NSString * CINPlainTextType 	= @"public.utf8-plain-text";
+NSString * CINRTFType 			= @"public.rtf";
+NSString * CINQuarkType 		= @"com.quark.xpress";
+NSString * CINInDesignType 		= @"com.adobe.indesign";
+NSString * CINIMType 			= @"com.index.manager";
+NSString * CINXMLType 			= @"com.ir.cindex.xml";
+NSString * CINTaggedText 		= @"com.ir.cindex.sgml";
+NSString * CINStyleSheetType 	= @"com.ir.cindex.stylesheet";
+NSString * CINV1IndexType 		= @"com.ir.cindex-v1";
+NSString * CINV2IndexType 		= @"com.ir.cindex-v2";
+NSString * CINV2StationeryType 	= @"com.ir.cindex-v2.template";
+NSString * CINV1StationeryType 	= @"com.ir.cindex-v1.template";
+NSString * CINAbbrevType 		= @"com.ir.cindex.abbreviations";
+NSString * CINV2StyleSheetType 	= @"com.ir.cindex.stylesheet-v2";
+NSString * CINV1StyleSheetType 	= @"com.ir.cindex.stylesheet-v1";
+NSString * DOSDataType 			= @"com.ir.cindex.dos-data";
+NSString * SkyType 				= @"com.sky.text";
+NSString * MBackupType 			= @"com.macrex.backup";
+
 NSString * CINIndexExtension = @"ucdx";
-NSString * CINIndexV2Extension = @"cdxf";
-NSString * CINIndexV1Extension = @"ndxf";
 NSString * CINStationeryExtension = @"utpl";
-NSString * CINArchiveExtension = @"xaf";
-NSString * CINAbbrevExtension = @"abrf";
 NSString * CINStyleSheetExtension = @"ustl";
-NSString * CINV2StyleSheetExtension = @"cfr2";
-NSString * CINV1StyleSheetExtension = @"cfrm";
+
 NSString * CINTagExtension = @"cstg";
 NSString * CINXMLTagExtension = @"cxtg";
-NSString * CINMainDicExtension = @"dic";
 NSString * CINPDicExtension = @"pdic";
 
 NSString * NOTE_HEADERFOOTERCHANGED = @"headerFooterChanged";
@@ -112,12 +104,13 @@ NSString * RecordAttributesKey = @"recordAttributes";
 /********************************************/
 
 @interface IRIndexDocument () {
-//	NSTimer * saveTimer;
+	INDEX _index;
 }
 @property (weak) NSTimer * saveTimer;
+@property (weak) NSSavePanel * currentSavePanel;
+@property (weak) NSString * saveToType;
 
 - (IRIndexDocument *)_buildSummary;
-//- (void)_setLastSavedName:(NSString *)name;
 - (BOOL)_installIndex;
 - (void)_checkFixes;	// does minor version fixups
 - (BOOL)_savePrivateBackup;		// saves private backup of active in
@@ -128,26 +121,6 @@ NSString * RecordAttributesKey = @"recordAttributes";
 
 @implementation IRIndexDocument
 
-#if 0
-+ (id)newDocumentWithMessage:(NSString *)message error:(NSError **)err {		// creates new index file
-	NSSavePanel * savepanel = [NSSavePanel savePanel];
-	NSString * defaultFolder = [[NSUserDefaults standardUserDefaults] stringForKey:CIOpenFolder];
-	
-	if (defaultFolder)
-		[savepanel setDirectoryURL:[NSURL fileURLWithPath:defaultFolder isDirectory:YES]];
-	[savepanel setTitle:@"New Index"];
-	[savepanel setMessage:message];
-	[savepanel setNameFieldLabel:@"Create as"];
-	[savepanel setAllowedFileTypes:[NSArray arrayWithObject:CINIndexExtension]];
-	[savepanel setCanSelectHiddenExtension:YES];
-	if ([savepanel runModal] == NSFileHandlingPanelOKButton)
-//		return [[IRIndexDocument alloc] initWithName:[[savepanel URL] path] hideExtension:[savepanel isExtensionHidden] error:err];
-		return [[IRIndexDocument alloc] initWithName:[[savepanel URL] path] template:nil hideExtension:[savepanel isExtensionHidden] error:err];
-	if (err)
-		*err = [NSError errorWithDomain:NSCocoaErrorDomain code:NSUserCancelledError userInfo:nil];	// canceled; suppress any error
-	return nil;
-}
-#endif
 + (id)newDocumentFromURL:(NSURL *)url error:(NSError **)err {		// creates new index (from template or archive as relevant)
 	NSSavePanel * savepanel = [NSSavePanel savePanel];
 	NSString * defaultFolder = [[NSUserDefaults standardUserDefaults] stringForKey:CIOpenFolder];
@@ -156,9 +129,9 @@ NSString * RecordAttributesKey = @"recordAttributes";
 	if (url) {	// if from template or archive
 		NSString * ext = [[url path] pathExtension];
 		if ([ext caseInsensitiveCompare:@"utpl"] == NSOrderedSame)
-			message = [NSString stringWithFormat:@"Create a new index from the template \"%@\"",[[url path] lastPathComponent]];
+			message = [NSString stringWithFormat:@"Create a new index from the template \"%@\"",url.path.lastPathComponent];
 		else	{
-			message = [NSString stringWithFormat:@"Create a new index from the archive \"%@\"",[[url path] lastPathComponent]];
+			message = [NSString stringWithFormat:@"Create a new index from the archive \"%@\"",url.path.lastPathComponent];
 			url = nil;		// make sure we don't mistake archive for template
 		}
 	}
@@ -169,9 +142,9 @@ NSString * RecordAttributesKey = @"recordAttributes";
 	[savepanel setTitle:@"New Index"];
 	[savepanel setMessage:message];
 	[savepanel setNameFieldLabel:@"Create as:"];
-	[savepanel setAllowedFileTypes:[NSArray arrayWithObject:CINIndexExtension]];
+	savepanel.allowedFileTypes = @[CINIndexType];
 	[savepanel setCanSelectHiddenExtension:YES];
-	if ([savepanel runModal] == NSFileHandlingPanelOKButton)
+	if ([savepanel runModal] == NSModalResponseOK)
 		return [[IRIndexDocument alloc] initWithName:[[savepanel URL] path] template:url hideExtension:[savepanel isExtensionHidden] error:err];
 	if (err)
 		*err = [NSError errorWithDomain:NSCocoaErrorDomain code:NSUserCancelledError userInfo:nil];	// canceled; suppress any error
@@ -199,19 +172,12 @@ NSString * RecordAttributesKey = @"recordAttributes";
 		_index.formBuffer = malloc(EBUFSIZE+2)+2;	// buffer is prefixed by 2 empty chars for addressing underflow (e.g., transposepunct)
 		[self setHasUndoManager:NO];
 //		[self setPrintInfo:[NSPrintInfo sharedPrintInfo]];
-		
-		// initializing export type labels
-		[self initializeExportTypes];
     }
     return self;
 }
 - (id)initWithName:(NSString *)name template:(NSURL *)template hideExtension:(BOOL)hide error:(NSError **)err {	// creates new index with name
 	NSError * dError;
 	if ([self initWithTemplateURL:template error:err]) {
-		
-		// initializing export type labels
-		[self initializeExportTypes];
-		
 		if ([[NSData data] writeToFile:name options:NSDataWritingWithoutOverwriting error:&dError])	{
 			NSMutableDictionary * adic = [NSMutableDictionary dictionaryWithCapacity:3];
 			
@@ -234,62 +200,6 @@ NSString * RecordAttributesKey = @"recordAttributes";
 	}
 	return nil;	// no file
 }
-
-- (void) initializeExportTypes {
-	// initializing export type labels
-	   NSArray<NSString *> * labels = @[
-		   @"Cindex Index",
-		   @"Cindex Template",
-		   @"XML Records",
-		   @"Cindex Archive",
-		   @"Delimited Records",
-		   @"Plain Text",
-		   @"Rich Text Format",
-		   @"QuarkXPress",
-		   @"InDesign",
-		   @"Index-Manager",
-		   @"XML Tagged Text",
-		   @"SGML Tagged Text",
-	   ];
-	   NSArray<NSString *> * types = @[
-		   CINIndexType,
-		   CINStationeryType,
-		   CINXMLRecordType,
-		   CINArchiveType,
-		   CINDelimitedRecords,
-		   CINPlainTextType,
-		   CINRTFType,
-		   CINQuarkType,
-		   CINInDesignType,
-		   CINIMType,
-		   CINXMLType,
-		   CINTaggedText
-	   ];
-
-	   _exportTypeLabels = [NSDictionary dictionaryWithObjects:labels forKeys:types];
-}
-
-#if 0
-- (id)initWithTemplateURL:(NSURL *)url error:(NSError **)outError	{
-	HEAD * header = (HEAD *)[[NSData dataWithContentsOfFile:[url path]] bytes];
-	if (header)	{
-		swap_Header(header);	// swap bytes as necessary
-		_index.head.indexpars = header->indexpars;
-		_index.head.sortpars = header->sortpars;
-		_index.head.refpars = header->refpars;
-		_index.head.privpars = header->privpars;
-		_index.head.formpars = header->formpars;
-		str_xcpy(_index.head.stylestrings,g_prefs.stylestrings);	// copy style strings
-		strcpy(_index.head.flipwords,g_prefs.flipwords);	// copy flip words
-		memcpy(_index.head.fm,header->fm,sizeof(header->fm));	/* copy local font set */
-		if ([self _installIndex])
-			return self;
-	}
-	if (outError)
-		*outError = makeNSError(FILEOPENERR, @"The template cannot be read.");
-	return nil;
-}
-#else
 - (id)initWithTemplateURL:(NSURL *)url error:(NSError **)outError	{
 	if (self = [super init]) {
 		if (url) {		// if want from template
@@ -335,7 +245,6 @@ NSString * RecordAttributesKey = @"recordAttributes";
 	}
 	return self;
 }
-#endif
 - (void)dealloc {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	free(_index.formBuffer-2);	// allowing for the prefix chars
@@ -380,37 +289,9 @@ NSString * RecordAttributesKey = @"recordAttributes";
 		senderr(FILEOPENERR,WARN,"There was an error while saving the index.");
 	}
 }
-#if 0
-- (BOOL)saveToURL:(NSURL *)absoluteURL ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation error:(NSError **)outError	{
-	NSString * file = [absoluteURL path];
-	
-	if ([typeName isEqualToString:CINIndexType])	{	// saving native index
-		if ([IRdc documentForURL:absoluteURL])		{	// if trying to overwrite an open index
-			if (outError)
-				*outError = makeNSError(FILEOPENERR,"You cannot replace an index that is in use.");
-			return NO;
-		}
-	}
-	if ([typeName isEqualToString:CINTaggedText]) {	// if might want to change extension on tagged text
-		char * extn = ts_gettagsetextension(ts_getactivetagsetpath(SGMLTAGS));
-		if (*extn) {		// if want to supply extension for the file
-			file = [[file stringByDeletingPathExtension] stringByAppendingPathExtension:[NSString stringWithUTF8String:extn]];
-			absoluteURL = [NSURL fileURLWithPath:file];
-		}
-	}
-//	[self _setLastSavedName:[file lastPathComponent]];	// reset reported filename
-	self.lastSavedName = [file lastPathComponent];
-	return [super saveToURL:absoluteURL ofType:typeName forSaveOperation:saveOperation error:outError];
-}
-#else
 - (void)saveToURL:(NSURL *)absoluteURL ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation completionHandler:(void (^)(NSError *errorOrNil))completionHandler {
 	NSString * file = [absoluteURL path];
 	NSError * outError = nil;
-	
-	// override typeName to our stored type
-	if ( _selectedTypeForSaveToOperation != nil && ![typeName isEqual:_selectedTypeForSaveToOperation] ) {
-		typeName = _selectedTypeForSaveToOperation;
-	}
 	
 	if ([typeName isEqualToString:CINIndexType])	{	// saving native index
 		if ([IRdc documentForURL:absoluteURL])	{	// if trying to overwrite an open index
@@ -426,158 +307,74 @@ NSString * RecordAttributesKey = @"recordAttributes";
 			absoluteURL = [NSURL fileURLWithPath:file];
 		}
 	}
-	//	[self _setLastSavedName:[file lastPathComponent]];	// reset reported filename
 	self.lastSavedName = [file lastPathComponent];
 	[super saveToURL:absoluteURL ofType:typeName forSaveOperation:saveOperation completionHandler:completionHandler];
 }
-#endif
 - (NSDictionary *)fileAttributesToWriteToURL:(NSURL *)nURL ofType:(NSString *)type forSaveOperation:(NSSaveOperationType)op originalContentsURL:(NSURL *)oURL error:(NSError **)error {
     NSMutableDictionary * dic = [NSMutableDictionary dictionaryWithDictionary:[super fileAttributesToWriteToURL:nURL ofType:type forSaveOperation:op originalContentsURL:oURL error:error]];
-    
-    [dic setObject:[NSNumber numberWithBool:[self fileNameExtensionWasHiddenInLastRunSavePanel]] forKey:NSFileExtensionHidden];
-	if ([type isEqualToString:CINIndexType]) {
-		[dic setObject:[NSNumber numberWithUnsignedLong:CIN_REF] forKey:NSFileHFSCreatorCode];
-        [dic setObject:[NSNumber numberWithUnsignedLong:CIN_NDX] forKey:NSFileHFSTypeCode];
+	NSDictionary * td = [self typeDictionaryForType:type];
+	NSString * typeString = td[@"UTTypeTagSpecification"][@"com.apple.ostype"][0];
+	
+	if (typeString) {
+		OSType typeCode = UTGetOSTypeFromString((__bridge CFStringRef _Nonnull)(typeString));
+		OSType creator = UTGetOSTypeFromString((__bridge CFStringRef _Nonnull)([NSBundle.mainBundle objectForInfoDictionaryKey:@"CFBundleSignature"]));
+		
+		dic[NSFileHFSCreatorCode] = [NSNumber numberWithUnsignedLong:creator];
+		dic[NSFileHFSTypeCode] = [NSNumber numberWithUnsignedLong:typeCode];
 	}
-	else if ([type isEqualToString:CINArchiveType]) {
-		[dic setObject:[NSNumber numberWithUnsignedLong:CIN_REF] forKey:NSFileHFSCreatorCode];
-        [dic setObject:[NSNumber numberWithUnsignedLong:CIN_MDAT] forKey:NSFileHFSTypeCode];
-	}
-	else if ([type isEqualToString:CINXMLRecordType]) {
-		[dic setObject:[NSNumber numberWithUnsignedLong:CIN_REF] forKey:NSFileHFSCreatorCode];
-        [dic setObject:[NSNumber numberWithUnsignedLong:CIN_XMLDAT] forKey:NSFileHFSTypeCode];
-	}
-	else if ([type isEqualToString:CINStationeryType]) {
-		[dic setObject:[NSNumber numberWithUnsignedLong:CIN_REF] forKey:NSFileHFSCreatorCode];
-        [dic setObject:[NSNumber numberWithUnsignedLong:CIN_STAT] forKey:NSFileHFSTypeCode];
-	}
-	else if ([type isEqualToString:CINDelimitedRecords]) {
-		[dic setObject:[NSNumber numberWithUnsignedLong:CIN_REF] forKey:NSFileHFSCreatorCode];
-        [dic setObject:[NSNumber numberWithUnsignedLong:CIN_TEXT] forKey:NSFileHFSTypeCode];
-	}
-	else if ([type isEqualToString:DOSDataType]) {
-		[dic setObject:[NSNumber numberWithUnsignedLong:CIN_REF] forKey:NSFileHFSCreatorCode];
-        [dic setObject:[NSNumber numberWithUnsignedLong:CIN_TEXT] forKey:NSFileHFSTypeCode];
-	}
-	else if ([type isEqualToString:CINRTFType]) {
-		[dic setObject:[NSNumber numberWithUnsignedLong:'MSWD'] forKey:NSFileHFSCreatorCode];
-        [dic setObject:[NSNumber numberWithUnsignedLong:'RTF '] forKey:NSFileHFSTypeCode];
-	}
-	else if ([type isEqualToString:CINQuarkType]) {
-		[dic setObject:[NSNumber numberWithUnsignedLong:'XPR3'] forKey:NSFileHFSCreatorCode];
-        [dic setObject:[NSNumber numberWithUnsignedLong:CIN_TEXT] forKey:NSFileHFSTypeCode];
-	}
-	else if ([type isEqualToString:CINPlainTextType]) {
-		[dic setObject:[NSNumber numberWithUnsignedLong:CIN_WILD] forKey:NSFileHFSCreatorCode];
-        [dic setObject:[NSNumber numberWithUnsignedLong:CIN_TEXT] forKey:NSFileHFSTypeCode];
-	}
-	else if ([type isEqualToString:CINIMType]) {
-		[dic setObject:[NSNumber numberWithUnsignedLong:CIN_WILD] forKey:NSFileHFSCreatorCode];
-        [dic setObject:[NSNumber numberWithUnsignedLong:CIN_TEXT] forKey:NSFileHFSTypeCode];
-	}
+	dic[NSFileExtensionHidden] = [NSNumber numberWithBool:[self fileNameExtensionWasHiddenInLastRunSavePanel]];
     return dic;
 }
-
-// Method to handle extension change for the custom `accessoryView` for `Save To` NSSavePanel
-- (IBAction) typeSelectorChange:(id)sender {
-	
-	// only continue for `Save To` operation
-	if ( _saveOp != NSSaveToOperation )
-		return;
-	
-	// get selected label
-	NSString * selectedOption = [(NSPopUpButton *) sender titleOfSelectedItem];
-	
-	// identify tagged formats for their changed names
-	if ( [selectedOption containsString:[_exportTypeLabels objectForKey:CINXMLType]] || [selectedOption containsString:[_exportTypeLabels objectForKey:CINTaggedText]] ) {
-		selectedOption = ( [selectedOption containsString:[_exportTypeLabels objectForKey:CINXMLType]] ) ? [_exportTypeLabels objectForKey:CINXMLType] : [_exportTypeLabels objectForKey:CINTaggedText];
-	}
-	
-	// parse the type from selected label
-	NSString * selectedType = [_exportTypeLabels allKeysForObject:selectedOption][0];
-	// Parse the extension from the selected type
-	NSString * selectedExtension = [self fileNameExtensionForType:selectedType saveOperation:NSSaveToOperation];
-	
-	if ( selectedExtension == nil ) {
-		NSLog(@"Invalid extension; exiting...");
-		// unset stored extension
-		_selectedTypeForSaveToOperation = nil;
-		return;
-	}
-	
-	// fetch the parent NSSavePanel
-	NSSavePanel * savePanel = (NSSavePanel *)[sender window];
-	
-	// set the correct extension for the file type
-	[savePanel setAllowedFileTypes:@[selectedExtension]];
-	
-	// save selected type in our variable for use in `saveToURL` method
-	_selectedTypeForSaveToOperation = selectedType;
-	
-	// set export params and `Options` button state
-	[self setExportParams:selectedType];
-
-}
-
-- (NSArray<NSString *> *)writableTypesForSaveOperation:(NSSaveOperationType)saveOperation {
-	
-	// checking if _exportTypeLabels is initialized
-	if ( _exportTypeLabels == NULL )
-		[self initializeExportTypes];
-	
-	if ( saveOperation == NSSaveToOperation ) {
-		// get allowed file types
-		NSArray * types = [super writableTypesForSaveOperation:saveOperation];
-		
-		// initialize type selector NSPopUpButton
-		_typeSelector = [[NSPopUpButton alloc] initWithFrame:NSMakeRect(10, 0, 50, 50)];
-		
-		// iterate through the types array and add them to the NSPopUpButton
-		for ( NSString * docType in types ) {
-			// get the label from the label dictionary
-			NSString * typeLabel = [_exportTypeLabels objectForKey:docType];
-			
-			// process tagged labels (XML Tagged Text, SGML Tagged Text)
-			if ( [docType isEqual:CINXMLType] || [docType isEqual:CINTaggedText] ) {
-				typeLabel = [NSString stringWithFormat:@"%@ [%@]", typeLabel,ts_getactivetagsetname(( [docType isEqual:CINXMLType] ) ? XMLTAGS : SGMLTAGS)];
-			}
-			
-			NSMenuItem * menuItem = [[NSMenuItem alloc] initWithTitle:typeLabel action:NULL keyEquivalent:@""];
-			[[_typeSelector menu] addItem:menuItem];
-		}
-		[_typeSelector setAction:@selector(typeSelectorChange:)];
-	}
-	
-	return [super writableTypesForSaveOperation:saveOperation];
-}
-
-- (BOOL)prepareSavePanel:(NSSavePanel *)savePanel {	// to customize save panel for saving
+- (BOOL)prepareSavePanel:(NSSavePanel *)savePanel {
 	if (_saveOp == NSSaveToOperation)	{		// if need to deal with accessory views
-		NSStackView * stack = [[NSStackView alloc] init];
+		NSArray <NSString *> * types = [self writableTypesForSaveOperation:NSSaveToOperation];
 		
-		// initialize `Options` button and disable it by default
 		_optionsButton = [[NSButton alloc] initWithFrame:NSMakeRect(0,0,103,32)];
 		[_optionsButton setBezelStyle:NSRoundedBezelStyle];
 		[_optionsButton setTitle:@"Options…"];
 		[_optionsButton sizeToFit];
 		[_optionsButton setAction:@selector(getExportOptions:)];
 		[_optionsButton setEnabled:NO];
+		NSPopUpButton * pview = [[NSPopUpButton alloc] initWithFrame:NSMakeRect(0,0,103,32) pullsDown:NO];
+		NSTextField * tview = [NSTextField labelWithString:@"File Format:"];
+		pview.action = @selector(changeDocumentType:);
+		pview.target = self;
 		
-		// Text field label for the type selector
-		NSTextField * typeSelectorLabel = [NSTextField labelWithString:@"File Format: "];
-		[typeSelectorLabel setFont:[NSFont fontWithName:[[typeSelectorLabel font] fontName] size:11]];
-	
-		// Append all elements to the NSStackView
-		[stack setViews:@[typeSelectorLabel, _typeSelector, _optionsButton] inGravity:NSStackViewGravityCenter];
+		for (NSString * type in types) {
+			NSDictionary * utiDic = [self typeDictionaryForType:type];
+			if ([type isEqualToString:CINXMLType])
+				[pview addItemWithTitle:[NSString stringWithFormat:@"%@ [%@]",utiDic[@"UTTypeDescription"],ts_getactivetagsetname(XMLTAGS)]];
+			else if ([type isEqualToString:CINTaggedText])
+				[pview addItemWithTitle:[NSString stringWithFormat:@"%@ [%@]",utiDic[@"UTTypeDescription"],ts_getactivetagsetname(SGMLTAGS)]];
+			else {
+				if ([utiDic[@"UTTypeIdentifier"] isEqualToString:CINPlainTextType])
+					[pview.menu addItem:NSMenuItem.separatorItem];
+				[pview addItemWithTitle:utiDic[@"UTTypeDescription"]];
+			}
+			pview.lastItem.representedObject = utiDic;
+		}
+		NSStackView * stack = [[NSStackView alloc] init];
+		[stack setViews:@[tview, pview, _optionsButton] inGravity:NSStackViewGravityCenter];
 		stack.edgeInsets = NSEdgeInsetsMake(20, 10, 20, 20);
-		
-		// set the accessoryView for the "Save To" NSSavePanel
-		[savePanel setAccessoryView:stack];
-		
-		export_setdefaultparams(&_index,E_NATIVE);
-		[savePanel setDelegate:self];
+		savePanel.accessoryView = stack;
+		savePanel.delegate = self;
+		savePanel.extensionHidden = NO;
+		self.currentSavePanel = savePanel;
+		[self changeDocumentType:pview];	// configure index doc as default
 	}
 	return YES;
+}
+- (NSDictionary *)typeDictionaryForType:(NSString *)type {
+	NSDictionary * plist = NSBundle.mainBundle.infoDictionary;
+	for (NSDictionary * tDic in plist[@"UTExportedTypeDeclarations"]) {
+		if ([tDic[@"UTTypeIdentifier"] isEqualToString:type])
+			return tDic;
+	}
+	for (NSDictionary * tDic in plist[@"UTImportedTypeDeclarations"]) {
+		if ([tDic[@"UTTypeIdentifier"] isEqualToString:type])
+			return tDic;
+	}
+	return nil;
 }
 - (IBAction)getExportOptions:(id)sender {
 	NSWindowController * panel = [[ExportOptionsController alloc] init];
@@ -587,76 +384,85 @@ NSString * RecordAttributesKey = @"recordAttributes";
 - (void)panelSelectionDidChange:(id)sender	{
 //	NSLog(@"selection changed");
 }
-
-// Modifying the existing method to accommodate the param change
-- (void)setExportParams:(NSString *) dataType {
+- (void)changeDocumentType:(id)sender {
+	NSDictionary * uti = [[sender selectedItem] representedObject];
+	NSString * ftype = uti[@"UTTypeIdentifier"];
+	NSString * fExtension = uti[@"UTTypeTagSpecification"][@"public.filename-extension"][0];
 	
-	if ([dataType isEqualToString:CINIndexType]) {
+	if ([ftype isEqualToString:CINIndexType]) {
 		[_optionsButton setEnabled:NO];
 		export_setdefaultparams(&_index,E_NATIVE);
 	}
-	else if ([dataType isEqualToString:CINStationeryType]) {
+	else if ([ftype isEqualToString:CINStationeryType]) {
 		[_optionsButton setEnabled:NO];
 		export_setdefaultparams(&_index,E_STATIONERY);
 	}
-	else if ([dataType isEqualToString:CINArchiveType]) {
+	else if ([ftype isEqualToString:CINArchiveType]) {
 		[_optionsButton setEnabled:YES];
 		export_setdefaultparams(&_index,E_ARCHIVE);
 	}
-	else if ([dataType isEqualToString:CINXMLRecordType]) {
+	else if ([ftype isEqualToString:CINXMLRecordType]) {
 		[_optionsButton setEnabled:YES];
 		export_setdefaultparams(&_index,E_XMLRECORDS);
 	}
-	else if ([dataType isEqualToString:CINDelimitedRecords]) {
+	else if ([ftype isEqualToString:CINDelimitedRecords]) {
 		[_optionsButton setEnabled:YES];
 		export_setdefaultparams(&_index,E_TAB);
 	}
-	else if ([dataType isEqualToString:CINPlainTextType]) {
+	else if ([ftype isEqualToString:CINPlainTextType]) {
 		[_optionsButton setEnabled:YES];
 		export_setdefaultparams(&_index,E_TEXTNOBREAK);
 	}
-	else if ([dataType isEqualToString:DOSDataType]) {
+	else if ([ftype isEqualToString:DOSDataType]) {
 		[_optionsButton setEnabled:YES];
 		export_setdefaultparams(&_index,E_DOS);
 	}
-	else if ([dataType isEqualToString:CINRTFType]) {
+	else if ([ftype isEqualToString:CINRTFType]) {
 		[_optionsButton setEnabled:YES];
 		export_setdefaultparams(&_index,E_RTF);
 	}
-	else if ([dataType isEqualToString:CINQuarkType]) {
+	else if ([ftype isEqualToString:CINQuarkType]) {
 		[_optionsButton setEnabled:YES];
 		export_setdefaultparams(&_index,E_XPRESS);
 	}
-	else if ([dataType isEqualToString:CINInDesignType]) {
+	else if ([ftype isEqualToString:CINInDesignType]) {
 		[_optionsButton setEnabled:YES];
 		export_setdefaultparams(&_index,E_INDESIGN);
 	}
-	else if ([dataType isEqualToString:CINXMLType]) {
+	else if ([ftype isEqualToString:CINXMLType]) {
 		[_optionsButton setEnabled:YES];
 		export_setdefaultparams(&_index,E_XMLTAGGED);
 	}
-	else if ([dataType isEqualToString:CINTaggedText]) {
+	else if ([ftype isEqualToString:CINTaggedText]) {
 		[_optionsButton setEnabled:YES];
 		export_setdefaultparams(&_index,E_TAGGED);
 	}
-	else if ([dataType isEqualToString:CINIMType]) {
+	else if ([ftype isEqualToString:CINIMType]) {
 		[_optionsButton setEnabled:YES];
 		export_setdefaultparams(&_index,E_INDEXMANAGER);
 	}
 	else
 		[_optionsButton setEnabled:NO];
+	self.currentSavePanel.allowedFileTypes = @[fExtension];
+	self.saveToType = ftype;
 }
-//- (void)_setLastSavedName:(NSString *)name {
-//	_eparams.lastSavedName = name;
-//}
 - (void)runModalSavePanelForSaveOperation:(NSSaveOperationType)op delegate:(id)delegate didSaveSelector:(SEL)sel contextInfo:(void *)contextInfo {
 	_saveOp = NSSaveToOperation;		// control display of accessory view
 	[super runModalSavePanelForSaveOperation:op delegate:self didSaveSelector:@selector(document:didSave:contextInfo:) contextInfo:&_eparams];
+}
+- (BOOL)shouldRunSavePanelWithAccessoryView {
+	return _saveOp != NSSaveToOperation;	// never for Save To
+}
+- (NSString *)fileTypeFromLastRunSavePanel {
+	if (_saveOp == NSSaveToOperation)
+		return self.saveToType;
+	return super.fileTypeFromLastRunSavePanel;
 }
 - (NSString *)displayName {
 	return [[super displayName] stringByDeletingPathExtension];
 }
 - (void)document:(NSDocument *)doc didSave:(BOOL)didSave contextInfo:(void *)contextInfo {
+	self.currentSavePanel = nil;
 	if (didSave && contextInfo) {
 		EXPORTPARAMS * ep = contextInfo;
 		
@@ -774,10 +580,8 @@ NSString * RecordAttributesKey = @"recordAttributes";
 			if (_index.head.rtot <= nomrtot || sendwarning(MISSINGRECORDS, nomrtot, _index.head.rtot)
 				&& (_index.head.rtot = nomrtot) && index_writehead(&_index))	{	// if # records matches, or repaired OK
 					if (tdirty)		{	/* if badly closed */
-						if (sendwarning(CORRUPTINDEX))	{	/* if want resort */
+						if (sendwarning(CORRUPTINDEX))	/* if want resort */
 							_index.needsresort = TRUE;
-//							[self flush];		// 7/25/18; redundant
-						}
 						else
 							_index.readonly = TRUE;
 					}
@@ -855,36 +659,13 @@ NSString * RecordAttributesKey = @"recordAttributes";
 	}
 	return NO;
 }
-#if 0
-#if 0	// April 5 2018
 - (void)canCloseDocumentWithDelegate:(id)delegate shouldCloseSelector:(SEL)shouldCloseSelector contextInfo:(void *)contextInfo {
-	if ([self closeIndex])	{	// if no error closing
-		[super canCloseDocumentWithDelegate:delegate shouldCloseSelector:shouldCloseSelector contextInfo:contextInfo];
-		[self close];	// Dec 3 2017
-	}
-}
-#endif
-// following method from April 5 2018
-- (void)shouldCloseWindowController:(NSWindowController *)windowController delegate:(id)delegate shouldCloseSelector:(SEL)shouldCloseSelector contextInfo:(void *)contextInfo {
-	if (windowController == _mainWindowController) {
-		if ([self closeIndex])	// if no error closing
-			[self close];
-	}
-	else
-		[super shouldCloseWindowController:windowController delegate:delegate shouldCloseSelector:shouldCloseSelector contextInfo:contextInfo];
-}
-#else
-- (void)canCloseDocumentWithDelegate:(id)delegate shouldCloseSelector:(SEL)shouldCloseSelector contextInfo:(void *)contextInfo {
-//	NSTimer * xx = self.saveTimer;
-//	NSLog(@"Pre:%d",xx.isValid);
 	[self document:self shouldClose:[self closeIndex] contextInfo:contextInfo];
-//	NSLog(@"Post:%d",xx.isValid);
 }
 - (void)document:(NSDocument *)document shouldClose:(BOOL)shouldClose contextInfo:(void  *)contextInfo {
 	if (shouldClose)
 		[self close];
 }
-#endif
 - (BOOL)_savePrivateBackup {		// saves private backup of active index
 	if (!_backupPath)	{		// if have no backup name
 		NSString * name = @".";		// as prefix to file name makes it hidden
@@ -897,7 +678,6 @@ NSString * RecordAttributesKey = @"recordAttributes";
 	[self setAutosave:g_prefs.gen.saveinterval];	// reset save timer
 	return _hasBackup;
 }
-#if 1
 - (IBAction)revertToSaved:(id)sender {	// reverts to private backup
 	if (sendwarning(REVERTWARNING))	{
 		NSURL * burl = [NSURL fileURLWithPath:_backupPath];
@@ -919,30 +699,6 @@ NSString * RecordAttributesKey = @"recordAttributes";
 		}];
 	}
 }
-#else
-- (IBAction)revertToSaved:(id)sender {	// reverts to private backup
-	if (sendwarning(REVERTWARNING))	{
-		if (_backupPath)	{
-			NSURL * burl = [NSURL fileURLWithPath:_backupPath];
-			NSURL * furl = [self fileURL];
-			IRIndexDocument * ndoc;
-			NSError * error;
-			
-			IRrevertsource = self;
-			if (ndoc = [IRdc openDocumentWithContentsOfURL:burl display:YES error:&error])	{	// open and display backup
-				//	by now, the reverted doc has retrieved and displayed the right internal name
-				[[[self mainWindowController] window] performClose:self];		// close us
-				[[NSFileManager defaultManager] removeItemAtURL:furl error:NULL];		// remove file underlying self
-				[[NSFileManager defaultManager] moveItemAtURL:burl toURL:furl error:nil];	// rename what was the backup file
-				[ndoc _savePrivateBackup];		// make new private backup
-				return;
-			}
-			IRrevertsource = nil;
-		}
-		senderr(INTERNALERR, WARN, "Cannot revert to saved document");
-	}
-}
-#endif
 - (BOOL)readForbidden:(NSInteger)itemID {
 	static int fcommand[] = {
 		MI_SAVE,MI_REVERT,MI_IMPORT,MI_SAVEGROUP,
@@ -1094,18 +850,18 @@ NSString * RecordAttributesKey = @"recordAttributes";
 	if (defaultDirectory)
 		[savepanel setDirectoryURL:[NSURL fileURLWithPath:defaultDirectory isDirectory:YES]];
 	[savepanel setCanSelectHiddenExtension:YES];
-    [savepanel setAllowedFileTypes:[NSArray arrayWithObject:CINIndexExtension]];
+    savepanel.allowedFileTypes = @[CINIndexType];
 	[savepanel setNameFieldStringValue:[[self displayName] stringByAppendingString:@" copy"]];
 	[savepanel beginSheetModalForWindow:[NSApp mainWindow] completionHandler:^(NSInteger result) {
-		if (result == NSFileHandlingPanelOKButton)	{
+		if (result == NSModalResponseOK)	{
 			[self saveToURL:[savepanel URL] ofType:CINIndexType forSaveOperation:NSSaveToOperation delegate:self didSaveSelector:@selector(document:didSave:contextInfo:) contextInfo:nil];
 		}
 		[[NSUserDefaults standardUserDefaults] setObject:[[savepanel directoryURL] path] forKey:CIBackupFolder];
 	}];
 }
 - (IBAction)importRecords:(id)sender {
-	NSArray * types = [NSArray arrayWithObjects:@"text",@"txt",NSFileTypeForHFSTypeCode(CIN_TEXT),@"xaf",@"ixml",@"arc",NSFileTypeForHFSTypeCode(CIN_MDAT),
-					   @"mbk",@"dat",@"sky7",@"txtsky7", @"txtsky8",nil];
+	// need text and txt; apparently not covered by CINDelimitedRecords
+	NSArray * types = @[CINDelimitedRecords,CINArchiveType,CINXMLRecordType,MBackupType,DOSDataType,SkyType,@"txt",@"text"];
 	NSOpenPanel * openpanel = [NSOpenPanel openPanel];
 	NSString * defaultDirectory = [[NSUserDefaults standardUserDefaults] stringForKey:CIOpenFolder];
 	
@@ -1114,19 +870,16 @@ NSString * RecordAttributesKey = @"recordAttributes";
     [openpanel setAllowsMultipleSelection:NO];
 	[openpanel setTitle:@"Import Records"];
 	[openpanel setPrompt:@"Import"];
-    [openpanel setAllowedFileTypes:types];
+    openpanel.allowedFileTypes = types;
 	[openpanel beginSheetModalForWindow:[_mainWindowController window] completionHandler:^(NSInteger result) {
-		if (result == NSFileHandlingPanelOKButton)	{
+		if (result == NSModalResponseOK)	{
 			NSURL * url = [[openpanel URLs] objectAtIndex:0];
 			NSString * path = [url path];
-			NSString * typestring;
+			NSString * typestring = [IRdc typeForContentsOfURL:url error:nil];
 			IRIndexArchive * doc;
 			
-			if ([[path pathExtension] isEqualToString:@"text"] || [[path pathExtension] isEqualToString:@"txt"]
-				|| [[path pathExtension] isEqualToString:NSFileTypeForHFSTypeCode(CIN_TEXT)])	// to cope with InDesign return from 10.4 implementation
+			if ([[path pathExtension] isEqualToString:@"text"] || [[path pathExtension] isEqualToString:@"txt"])	// override for any text file
 				typestring = CINDelimitedRecords;
-			else
-				typestring = [IRdc typeForContentsOfURL:url error:nil];
 			doc = [[IRIndexArchive alloc] initWithContentsOfURL:url ofType:typestring forIndex:[self iIndex]];	// open, read contents
 			if (doc)	// if successful import
 				[self setViewType:VIEW_ALL name:nil];

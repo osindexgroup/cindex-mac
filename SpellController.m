@@ -206,7 +206,7 @@ static char * visibletarget(INDEX * FF, RECORD * recptr, char *sptr);	/* returns
 		anchor = @"spell1_Anchor-14210";
 	else
 		anchor = @"spell0_Anchor-14210";
-	[[NSHelpManager sharedHelpManager] openHelpAnchor:anchor inBook:@"Cindex 4.2.5 Help"];
+	[[NSHelpManager sharedHelpManager] openHelpAnchor:anchor inBook:@"Cindex 4 Help"];
 }
 - (void)_setNewSpell {
 	[startbutton setTitle:@"Start"];

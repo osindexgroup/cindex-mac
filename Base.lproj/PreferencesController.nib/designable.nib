@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22689"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -16,7 +16,6 @@
                 <outlet property="badcrossrefaction" destination="567" id="572"/>
                 <outlet property="badlocatoraction" destination="56" id="158"/>
                 <outlet property="carrylocators" destination="43" id="151"/>
-                <outlet property="checkforupdates" destination="392" id="394"/>
                 <outlet property="closeaction" destination="49" id="157"/>
                 <outlet property="defaultfont" destination="85" id="160"/>
                 <outlet property="defaultsize" destination="90" id="161"/>
@@ -57,7 +56,7 @@
             <windowStyleMask key="styleMask" titled="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="412" y="166" width="465" height="418"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="3440" height="1415"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1415"/>
             <value key="minSize" type="size" width="213" height="107"/>
             <view key="contentView" id="6">
                 <rect key="frame" x="0.0" y="0.0" width="465" height="418"/>
@@ -175,7 +174,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <textField toolTip="User identifier (4 characters maximum)" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="169">
-                                            <rect key="frame" x="234" y="264" width="46" height="19"/>
+                                            <rect key="frame" x="241" y="264" width="46" height="19"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="505">
                                                 <font key="font" metaFont="smallSystem"/>
@@ -187,7 +186,7 @@
                                             </connections>
                                         </textField>
                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="170">
-                                            <rect key="frame" x="183" y="266" width="46" height="14"/>
+                                            <rect key="frame" x="183" y="266" width="52" height="14"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="User ID:" id="506">
                                                 <font key="font" metaFont="smallSystem"/>
@@ -195,25 +194,18 @@
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <button toolTip="Check routinely whether an update to Cindex is available from CINDEX." fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="392">
+                                        <button hidden="YES" toolTip="Check routinely whether an update to Cindex is available from CINDEX." fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="392">
                                             <rect key="frame" x="182" y="215" width="194" height="18"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <buttonCell key="cell" type="check" title="Automatically check for updates" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" inset="2" id="507">
+                                            <buttonCell key="cell" type="check" title="Automatically check for updates" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" enabled="NO" inset="2" id="507">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="smallSystem"/>
-                                                <connections>
-                                                    <binding destination="536" name="value" keyPath="automaticallyChecksForUpdates" id="541"/>
-                                                </connections>
                                             </buttonCell>
-                                            <connections>
-                                                <action selector="checkForUpdates:" target="536" id="537"/>
-                                                <binding destination="536" name="value" keyPath="automaticallyChecksForUpdates" id="VPT-bC-bBj"/>
-                                            </connections>
                                         </button>
-                                        <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="542">
+                                        <popUpButton hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="542">
                                             <rect key="frame" x="201" y="194" width="100" height="22"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <popUpButtonCell key="cell" type="push" title="Daily" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="86400" imageScaling="proportionallyDown" inset="2" selectedItem="545" id="543">
+                                            <popUpButtonCell key="cell" type="push" title="Daily" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" enabled="NO" state="on" borderStyle="borderAndBezel" tag="86400" imageScaling="proportionallyDown" inset="2" selectedItem="545" id="543">
                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <menu key="menu" title="OtherViews" id="544">
@@ -225,8 +217,6 @@
                                                 </menu>
                                             </popUpButtonCell>
                                             <connections>
-                                                <binding destination="536" name="enabled" keyPath="automaticallyChecksForUpdates" id="552"/>
-                                                <binding destination="536" name="selectedTag" keyPath="updateCheckInterval" id="550"/>
                                                 <outlet property="nextKeyView" destination="18" id="gat-65-aWk"/>
                                             </connections>
                                         </popUpButton>
@@ -960,7 +950,7 @@
                             <outlet property="delegate" destination="-2" id="166"/>
                         </connections>
                     </tabView>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" tag="-1" translatesAutoresizingMaskIntoConstraints="NO" id="16">
+                    <button tag="-1" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="16">
                         <rect key="frame" x="363" y="15" width="76" height="28"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" tag="-1" inset="2" id="527">
@@ -1005,7 +995,7 @@ Gw
             <connections>
                 <outlet property="delegate" destination="-2" id="20"/>
             </connections>
-            <point key="canvasLocation" x="-135" y="142"/>
+            <point key="canvasLocation" x="-194.5" y="-229"/>
         </window>
         <customObject id="536" customClass="SUUpdater"/>
         <userDefaultsController representsSharedInstance="YES" id="538"/>

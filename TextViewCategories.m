@@ -14,7 +14,7 @@
 - (unsigned int) numberOfLines {
     unsigned int	result;
     NSLayoutManager	*lm;
-    unsigned int				glyphIndex;
+	NSUInteger		glyphIndex;
     NSRange			allCharactersRange, allGlyphsRange;
     NSRange			lineFragmentGlyphRange;
 
@@ -51,7 +51,7 @@
     NSString	*s;
     NSMutableArray	*result;
     NSLayoutManager	*lm;
-    unsigned int	glyphIndex;
+	NSUInteger	glyphIndex;
     NSRange		allCharactersRange, allGlyphsRange;
     NSRange		lineFragmentGlyphRange, lineFragmentCharacterRange;
 

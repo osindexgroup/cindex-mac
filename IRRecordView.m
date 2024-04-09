@@ -174,7 +174,7 @@ static NSInteger pbChangeCount;
 	unichar uchar = [kchars characterAtIndex:0];
 	mflags = [theEvent modifierFlags];
 
-	if (mflags&NSCommandKeyMask) {	// if cmnd-key (function keys don't necess need it to have Key Equivs)
+	if (mflags&NSEventModifierFlagCommand) {	// if cmnd-key (function keys don't necess need it to have Key Equivs)
 		switch (uchar)		{
 			case '\r':	// enter and close
 				if ([(IRIndexRecordWController *)[self delegate] windowShouldClose:nil])
@@ -188,7 +188,7 @@ static NSInteger pbChangeCount;
 				[self keyDown:theEvent];	// pass to our key handler
 				return YES;
 			default:
-				if (uchar >= NSF1FunctionKey && uchar <= NSF16FunctionKey && mflags&NSAlternateKeyMask) {	// if a function key with option
+				if (uchar >= NSF1FunctionKey && uchar <= NSF16FunctionKey && mflags&NSEventModifierFlagOption) {	// if a function key with option
 					if ([self selectedRange].length)	{	// if want to set one
 						NSData * ddata = [[NSUserDefaults standardUserDefaults] objectForKey:CIFunctionKeys];
 						NSMutableDictionary * kdic = [NSKeyedUnarchiver unarchiveObjectWithData:ddata];
@@ -227,7 +227,7 @@ static NSInteger pbChangeCount;
 		NSRange selfields;
 		unichar leftchar, rightchar;
 
-		if (flags&NSControlKeyMask) {	// !! but for 10.4 bug would do this in performKeyEquivalent
+		if (flags&NSEventModifierFlagControl) {	// !! but for 10.4 bug would do this in performKeyEquivalent
 			uchar = [[theEvent charactersIgnoringModifiers] characterAtIndex:0];	// get ignoring modifiers
 			switch (uchar) {
 				case 'f':
@@ -270,7 +270,7 @@ static NSInteger pbChangeCount;
 		rightchar = [self rightCharacter];
 		switch (uchar) {
 			case NSEnterCharacter:	// enter key
-				if (!(flags&NSAlternateKeyMask) && [(IRIndexRecordWController *)[self delegate] windowShouldClose:nil])	// (option-enter is close doc?)
+				if (!(flags&NSEventModifierFlagOption) && [(IRIndexRecordWController *)[self delegate] windowShouldClose:nil])	// (option-enter is close doc?)
 					[[self window] close];
 				return;
 			case 0x1b:	// escape key
@@ -319,7 +319,7 @@ static NSInteger pbChangeCount;
 				[self setSelectedRange:selrange];
 				break;
 			default:
-				if (uchar >= NSF1FunctionKey && uchar <= NSF16FunctionKey && flags&NSAlternateKeyMask) {	// if a function key
+				if (uchar >= NSF1FunctionKey && uchar <= NSF16FunctionKey && flags&NSEventModifierFlagOption) {	// if a function key
 					[self _checkFunctionKey:uchar-NSF1FunctionKey];
 					return;
 				}
@@ -353,14 +353,14 @@ static NSInteger pbChangeCount;
 	}
 	if ([self _fixBreaks])	// if handled field deletions
 		return;
-	if ([theEvent modifierFlags]&NSCommandKeyMask) {		// if command del forward or backward
+	if ([theEvent modifierFlags]&NSEventModifierFlagCommand) {		// if command del forward or backward
 		if (direction)
 			[self deleteToEndOfParagraph:self];
 		else
 			[self deleteToBeginningOfParagraph:self];
 		return;
 	}
-	if ([theEvent modifierFlags]&NSAlternateKeyMask) {		// if word del forward or backward
+	if ([theEvent modifierFlags]&NSEventModifierFlagOption) {		// if word del forward or backward
 		if (direction) {
 			[self moveWordForwardAndModifySelection:self];
 			if ([[self string] paragraphBreaksForRange:[self selectedRange]])	{	// if spanned para break
@@ -428,16 +428,6 @@ static NSInteger pbChangeCount;
 	[self _setFieldRanges];
 	[super didChangeText];
 }
-#if 0
-- (IBAction)insertUnicode:(id)sender {
-	NSRange selrange = [self selectedRange];
-	NSString * insert = @"\u200E";
-	if ([self shouldChangeTextInRange:selrange replacementString:insert])	{
-		[[self textStorage] replaceCharactersInRange:selrange withString:insert];
-		[self didChangeText];
-	}
-}
-#endif
 - (IBAction)encloseText:(id)sender {
 	[self _encloseBracketsOfType:[sender tag]];
 }
@@ -738,7 +728,7 @@ static NSInteger pbChangeCount;
 		NSRange f2range = [[_fieldRanges objectAtIndex:sfields.location+1] rangeValue];
 		NSRange f1f2range = NSUnionRange(f1range,f2range);
 		char * list = sfields.location < _fieldCount-2 ? FF->head.flipwords : FF->head.refpars.crosstart;
-		int shiftstate = [[NSApp currentEvent] modifierFlags]&NSShiftKeyMask;
+		int shiftstate = [[NSApp currentEvent] modifierFlags]&NSEventModifierFlagShift;
 		BOOL smartstate = g_prefs.gen.smartflip && !shiftstate || !g_prefs.gen.smartflip && shiftstate;
 		char xbuff[MAXREC];
 		NSAttributedString * reptext;
@@ -1123,9 +1113,9 @@ static NSInteger pbChangeCount;
 - (NSString *)preferredPasteboardTypeFromArray:(NSArray *)availableTypes restrictedToTypesFromArray:(NSArray *)allowedTypes {
 	BOOL wantplain;
 	if ([NSPasteboard generalPasteboard].changeCount == pbChangeCount)	// if we pasted data
-		wantplain = !(mflags&NSControlKeyMask) && (mflags&NSShiftKeyMask);
+		wantplain = !(mflags&NSEventModifierFlagControl) && (mflags&NSEventModifierFlagShift);
 	else		// toggle as relevant by prefs
-		wantplain = !(mflags&NSControlKeyMask) && ((mflags&NSShiftKeyMask) && g_prefs.gen.pastemode != PASTEMODE_PLAIN || !(mflags&NSShiftKeyMask) && g_prefs.gen.pastemode == PASTEMODE_PLAIN);
+		wantplain = !(mflags&NSEventModifierFlagControl) && ((mflags&NSEventModifierFlagShift) && g_prefs.gen.pastemode != PASTEMODE_PLAIN || !(mflags&NSEventModifierFlagShift) && g_prefs.gen.pastemode == PASTEMODE_PLAIN);
 	if (wantplain && [availableTypes indexOfObject:NSStringPboardType])
 		return NSStringPboardType;	// paste plain text
 	else
@@ -1156,9 +1146,9 @@ static NSInteger pbChangeCount;
 	BOOL wantstyle;
 	
 	if ([NSPasteboard generalPasteboard].changeCount == pbChangeCount)	// if we pasted data
-		wantstyle = mflags&NSControlKeyMask;
+		wantstyle = mflags&NSEventModifierFlagControl;
 	else	// toggle as relevant by prefs
-		wantstyle = (mflags&NSControlKeyMask) && g_prefs.gen.pastemode != PASTEMODE_STYLEONLY || !(mflags&NSControlKeyMask) && g_prefs.gen.pastemode == PASTEMODE_STYLEONLY;
+		wantstyle = (mflags&NSEventModifierFlagControl) && g_prefs.gen.pastemode != PASTEMODE_STYLEONLY || !(mflags&NSEventModifierFlagControl) && g_prefs.gen.pastemode == PASTEMODE_STYLEONLY;
 	if (wantstyle)
 		ts = [as normalizeToBaseFont:FF->head.fm size:_fontsize];
 	else

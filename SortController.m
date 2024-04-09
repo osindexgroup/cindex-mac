@@ -145,7 +145,7 @@ static BOOL getitemstate(char *string, short *list, NSInteger row);
 		else
 			anchor = @"sort4_Anchor-14210";
 	}
-	[[NSHelpManager sharedHelpManager] openHelpAnchor:anchor inBook:@"Cindex 4.2.5 Help"];
+	[[NSHelpManager sharedHelpManager] openHelpAnchor:anchor inBook:@"Cindex 4 Help"];
 }
 - (IBAction)setAlphaRule:(id)sender {
 	[self _setAlphaRule:[[sender selectedCell] tag]];

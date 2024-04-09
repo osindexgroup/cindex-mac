@@ -42,7 +42,7 @@ enum {
 	[pagecount display];
 }
 - (IBAction)showHelp:(id)sender {
-	[[NSHelpManager sharedHelpManager] openHelpAnchor:@"statistics0_Anchor-14210" inBook:@"Cindex 4.2.5 Help"];
+	[[NSHelpManager sharedHelpManager] openHelpAnchor:@"statistics0_Anchor-14210" inBook:@"Cindex 4 Help"];
 }
 - (void)_displayBase {
 	char *bptr;

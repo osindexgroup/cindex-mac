@@ -185,7 +185,6 @@ void type_tagfonts(char * text, short * farray)	  /* tags index of fonts used in
 		}
 	}
 }
-#if 1
 /**********************************************************************/
 short type_findcodestate(char * start, char * end, char *attr, char * font)	/*finds active codes/fonts at end of span */
 
@@ -213,35 +212,6 @@ short type_findcodestate(char * start, char * end, char *attr, char * font)	/*fi
 		ret++;
 	return (ret);	/* return number of code bytes needed */
 }
-#else
-/**********************************************************************/
-short type_findcodestate(char * start, char * end, char *attr, char * font)	/*finds active codes/fonts at end of span */
-
-{
-	short ret;
-	
-	ret = *attr = *font = '\0';
-	while (start < end)	{
-		char c = *start++;
-		if (c == CODECHR && *start)	{
-			if (*start&FX_FONT)
-				*font = *start & ~FX_FONT;
-			else	
-				*attr |= *start;
-			start++;
-		}
-		else if (c == CODEOCHR && *start)	{
-			*attr &= ~*start;	/* clear code */
-			start++;
-		}
-	}
-	if (*attr)
-		ret++;
-	if (*font)
-		ret++;
-	return (ret);	/* return number of code bytes needed */
-}
-#endif
 /**********************************************************************/
 void type_adjustfonts(INDEX * FF, short * farray)	/* adjusts font ids used in index */
 

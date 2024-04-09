@@ -701,103 +701,6 @@ RECORD * sort_recordforviewindex(INDEX * FF, RECN rindex)	// gets record for rec
 	}
 	return NULL;
 }
-#if 0
-/*****************************************************************************/
-RECORD * sort_jump(INDEX * FF, RECN target)		/* moves to record at ordinal posn target */
-
-{
-	register RECORD * curptr;
-	
-	if (FF->curfile) {	/* if working from a file list */
-		if (target < FF->curfile->rectot)	{
-			RECN newrec = FF->curfile->recbase[target];
-			FF->curfilepos = target;
-			curptr = rec_getrec(FF, newrec);
-		}
-		else
-			return (NULL);		/* asking for record that isn't in group */
-	}
-	else if (FF->head.sortpars.ison)	{		/* if sorted */
-		register RECN cpos, basepos;
-		register RECORD * nextptr;
-		
-		curptr = rec_getrec(FF, FF->head.root); 
-		basepos = FF->head.rtot >> 1;		/* position starts at root (assumed half way through) */
-		for (cpos = basepos; curptr && cpos != target; curptr = nextptr)	{	/* starting at root */
-			basepos >>= 1;
-			if (cpos > target)	{		/* if present posn too high */
-				if (!(nextptr = rec_getrec(FF, curptr->lchild)))		/* if can't go lower */
-					break;
-				cpos -= basepos;
-			}
-			else	{	/*  present too low */
-				if (!(nextptr = rec_getrec(FF, curptr->rchild)))
-					break;
-				cpos += basepos;
-			}
-		}
-	}
-	else
-		curptr = rec_getrec(FF, target);	// direct addressing
-//	if (FF->head.privpars.hidedelete && curptr && curptr->isdel)	// if deleted and hiding
-	if (curptr && sort_isignored(FF,curptr))	// if deleted and hiding
-		curptr = sort_skip(FF, curptr,1);		// skip to visible one
-	return curptr; 	/* get record */
-}	
-/*****************************************************************************/
-RECN sort_findpos(INDEX * FF, RECN target)	/* finds ordinal position of target in index */
-
-{
-	RECN curpos, basepos, basesize;
-	register short m;
-	RECORD *curptr, *tptr;
-	RECN mask;
-
-	if (FF->curfile) {	/* if working from a file list */
-		for (curpos = 0; curpos < FF->curfile->rectot; curpos++)	{
-			if (target == FF->curfile->recbase[curpos])	{	/* if found it */
-				FF->curfilepos = curpos;
-				return (curpos);
-			}
-		}
-		return (0);
-	}
-	if (FF->head.sortpars.ison && FF->viewtype != VIEW_NEW)	{
-		if (tptr = rec_getrec(FF,target))	{
-			basepos = FF->head.rtot;
-#if 1
-			for (mask = (unsigned long)~0; basepos & mask; mask <<= 1)		/* mask to largest power of 2 */
-				basepos &= mask;
-#else
-			basepos >>=1;
-#endif
-			for (curpos = basesize = basepos, curptr = rec_getrec(FF, FF->head.root); curptr;) {       /* while more records to check */
-				if (!(m = match(FF,&FF->head.sortpars,tptr->rtext, curptr->rtext)))		{	/* if new string == old */
-					if (curptr->num == target)		/* if found the one we want */
-						break;	/* out */
-				}
-				basepos >>= 1;
-				if (m < 0 || m == 0 && curptr->num > tptr->num)	{	/* need to go to left of parent */
-					curpos -= basepos;
-					curptr = rec_getrec(FF,curptr->lchild);
-				}
-				else if (m > 0 || m == 0 && curptr->num < tptr->num) {		/* to right */
-					curpos += basepos;
-					curptr = rec_getrec(FF,curptr->rchild);
-				}
-			}
-#if 1
-			return (RECN)(((float)curpos*FF->head.rtot)/(basesize<<1));
-#else
-			return (curpos);
-#endif
-		}
-		return (0);		/* can't get record */
-	}
-	else		/* no sort (or new displaying new) */
-		return (FF->viewtype == VIEW_NEW ? target- FF->startnum : target);
-}
-#else
 /*****************************************************************************/
 RECORD * sort_jump(INDEX * FF, float position)		/* moves to record at relative posn position */
 
@@ -900,7 +803,6 @@ float sort_findpos(INDEX * FF, RECN target)	/* finds ordinal position of target 
 	// unsorted
 	return ((float)target/FF->head.rtot);
 }
-#endif
 /*****************************************************************************/
 short sort_relpos(INDEX * FF, RECN t1, RECN t2)		/* finds relative positions of recs in index */
 

@@ -33,13 +33,8 @@ static char f_newlevel[] = {FO_NEWLEVEL,0};
 static char f_pgc[] = {FO_EPAGE,0};
 static char *f_titleskiplist;
 
-#if 0
-static char *f_openset = "\'\"рт";
-static char *f_closeset = "\'\"су";
-#else
 static unichar f_openset[] = {34,39,8220,8216/*,8249*/,0}; // last char is angle quote
 static unichar f_closeset[] = {34,39,8221,8217/*,8250*/,0};
-#endif
 
 static char _cbuff[CBUFFLEN];
 static char bbuff[PBUFFLEN+PARRAYSIZ+1], * _pbuff = bbuff+1;	// NB: _pbuff needs extra when copying back; accommodates conflate() reading 1 byte before start of buffer
@@ -520,23 +515,6 @@ static void clearcolor(char ** pos, unsigned char color)	// inserts color if nee
 		*pos += 2;
 	}
 }
-#if 0
-/******************************************************************************/
-static void setcaps(char * base, short type)	/* fixes capitalization */
-
-{	
-	if (type == FC_INITIAL)	{
-		unichar uc;
-		
-		while ((uc = u8_toU(base)) && (uc == '(' || u_strchr(f_openset,uc) || iscodechar(*base) && *++base))	// while skippable opening chars
-			base = u8_forward1(base);
-		if (u_islower(uc))	// if first testable char is lc
-			u8_appendU(base, u_toupper(uc));	// assumes uc has same number of bytes as lc
-	}
-	else if (type == FC_UPPER)
-		str_upr(base);
-}
-#else
 /******************************************************************************/
 static void setcaps(char * base, short type)	/* fixes capitalization */
 
@@ -554,7 +532,6 @@ static void setcaps(char * base, short type)	/* fixes capitalization */
 	else if (type == FC_TITLE)	// title case
 		str_title(base,f_titleskiplist);
 }
-#endif
 /******************************************************************************/
 static short switchfont(char * pos, short localid, short mode)	/* inserts font/style code */
 
@@ -1183,26 +1160,6 @@ static char * copystep(char * str1, char *str2)		/* adds string (with protection
 	*str1 = '\0';
 	return (str1);
 }
-#if 0
-/******************************************************************************/
-static unichar leadchar(INDEX * FF, char *string)		/* finds lead char */
-
-{
-	unichar cc = col_findlead(FF, string);
-	char symset = (char)FF->head.formpars.ef.eg.method;
-	
-	if (cc)	{
-		if (!u_isalnum(cc) && symset&SYMBIT)		/* if symbol & want grouped */
-			return (symset);
-		if (u_isdigit(cc) && symset&NUMBIT)			/* if digit & want grouped */
-			return (symset);
-		if (!u_isalpha(cc) && symset == BOTHBIT)		/* if separate groups for symbols && numbers */
-			return (u_isdigit(cc) ? NUMBIT : SYMBIT);
-	}
-//	return u_islower(cc) ? u_toupper(cc) : cc;	/* return upper case alphanum */
-	return u_toupper(cc);	// return upper case alpha (no effect on non alpha)
-}
-#endif
 /******************************************************************************/
 static char *suppressmatch(char *s1, char *s2, char * suppress)	/* finds if refs match through suppression string */
 

@@ -20,6 +20,21 @@ static void striptext(char * s1, int count);	// strips text out of string, prese
 static char *skiplist(char *base, char *list, short * tokens, int xflags);		/* points to first word in base that isn't in list */
 
 /*******************************************************************************/
+char * memstr(char * string, char * substring, long length)
+
+{
+	unsigned long sublen = strlen(substring);
+	if (*substring == 0)
+		return string;
+	for (char * eptr = string+length-sublen; string < eptr; string += 1) {
+		if (*string == *substring) {
+			if (!strncmp(string,substring,sublen))
+				return string;
+		}
+	}
+	return NULL;
+}
+/*******************************************************************************/
 void str_upr(char * str)		// converts UTF_8 to upper case
 
 {
@@ -287,181 +302,7 @@ CSTATE str_codesatposition(char * string, int offset, int * span, char stylemask
 	}
 	return (cs);
 }
-#if 0
-/*******************************************************************************/
-char * str_spanforcodes(char * base, char style, char font, char forbiddenstyle, char forbiddenfont, short * span)	// returns position and span of specified style/font
 
-{
-	// finds span of wanted codes, vetoed by forbidden codes
-	char * tptr, *fptr = NULL, *stptr = NULL, *xsptr = NULL;
-	short curstyle = 0;
-	int charcount = 0;
-	
-	if (font && font == FX_FONT || forbiddenfont && forbiddenfont != FX_FONT)	// if want default font or not forbidding it; assume from start
-		fptr = base;
-	for (tptr = base; *tptr; tptr++)		{	// while there's a code
-		if (*tptr == FONTCHR)	{	/* if a font code */
-			tptr++;
-			if (font || forbiddenfont)	{
-				if (font && *tptr == font)	// start run of required font
-					fptr = tptr+1;
-				else if (forbiddenfont && *tptr == forbiddenfont) {	// entering forbidden font
-					if (charcount && fptr)	{	// if previously in wanted font
-						tptr++;
-						break;
-					}
-					fptr = NULL;
-				}
-				else {		// starting neither forbidden nor wanted
-					if (font) {
-						if (fptr && charcount) {	// if leaving wanted font, end segment
-							tptr++;
-							break;
-						}
-					}
-					else if (!fptr) 	// if not already in an allowed font
-						fptr = tptr+1;	// allow it
-				}
-			}
-		}
-		else if (*tptr == CODECHR)	{	/* a style code */
-			tptr++;
-			if (style || forbiddenstyle)	{
-				if (*tptr&FX_OFF)	{	/* if off style */
-					curstyle &= ~*tptr;	/* remove the relevant codes */
-					if (xsptr && !(curstyle&forbiddenstyle)) {	// forbidden ends
-						xsptr = NULL;
-						if ((curstyle&style) == style)	// if we're left with wanted style
-							stptr = tptr+1;			// mark start
-					}
-					else if (stptr && (curstyle&style) != style) {		/* if this ends a match */
-						tptr++;		// ensure we end on char beyond code
-						break;
-					}
-				}
-				else	{
-					curstyle |= *tptr;	/* add the relevant codes */
-					if (!xsptr && (curstyle&forbiddenstyle)) {
-						xsptr = tptr+1;
-						if (stptr) {
-							tptr++;
-							break;
-						}
-					}
-					else if (!stptr && (curstyle&style) == style && !xsptr)	// if starting match and not vetoed
-						stptr = tptr+1;			/* mark start */
-				}
-			}
-		}
-		else {
-			charcount++;
-			if (!stptr && !xsptr && !style && forbiddenstyle)	// must want runs with no style
-				stptr = tptr;
-		}
-	}
-	if ((fptr || (!font && !forbiddenfont)) && (stptr || (!style && !forbiddenstyle))) {	// if got required hits
-		char * sptr = fptr > stptr ? fptr : stptr;	// find the right start
-		if (sptr && *sptr)	{	// if found a match
-			while (iscodechar(*sptr))	// back up over any codes
-				sptr += 2;
-			while (iscodechar(*(tptr-2)) && tptr > sptr)	// back up over any codes
-				tptr -= 2;
-			*span = tptr - sptr;	// length is to char before code/font point, or end of field
-			if (*span > 0)		// if ended up with 0 length span
-				return sptr;	// fail the search
-		}
-	}
-	return NULL;
-}
-/*******************************************************************************/
-char * str_spanforcodes(char * base, char style, char font, char forbiddenstyle, char forbiddenfont, short * span)	// returns position and span of specified style/font
-
-{
-	// finds span of wanted codes, vetoed by forbidden codes
-	char * tptr, *fptr = NULL, *stptr = NULL, *xsptr = NULL;
-	BOOL wantfont = font || forbiddenfont, wantstyle = style || forbiddenstyle;
-	short curstyle = 0;
-	int charcount = 0;
-	
-	if (font && font == FX_FONT || forbiddenfont && forbiddenfont != FX_FONT)	// if want default font or not forbidding it; assume it from start
-		fptr = base;
-	for (tptr = base; *tptr; tptr++)		{	// while there's a code
-		if (*tptr == FONTCHR)	{	/* if a font code */
-			tptr++;
-			if (wantfont)	{
-				if (font && *tptr == font)	// start run of required font
-					fptr = tptr+1;
-				else if (forbiddenfont && *tptr == forbiddenfont) {	// entering forbidden font
-					if (charcount && fptr && (stptr || !wantstyle))	{	// if previously in wanted font, and got any wanted style
-						tptr++;
-						break;
-					}
-					fptr = NULL;
-				}
-				else {		// starting neither forbidden nor wanted
-					if (font) {
-						if (fptr && charcount && (stptr || !wantstyle)) {	// if leaving wanted font and got any wanted style
-							tptr++;
-							break;
-						}
-					}
-					else if (!fptr) 	// if not already in an allowed font
-						fptr = tptr+1;	// allow it
-				}
-			}
-		}
-		else if (*tptr == CODECHR)	{	/* a style code */
-			tptr++;
-			if (wantstyle)	{
-				if (*tptr&FX_OFF)	{	/* if off style */
-					curstyle &= ~*tptr;	/* remove the relevant codes */
-					if (stptr && (curstyle&style) != style && (fptr || !wantfont)) {	// if ending wanted style and got any wanted font
-						tptr++;		// ensure we end on char beyond code
-						break;
-					}
-					else if (xsptr && !(curstyle&forbiddenstyle)) {	// if forbidden ends
-						xsptr = NULL;
-						if ((curstyle&style) == style)	// if we're left with wanted style
-							stptr = tptr+1;			// mark start
-					}
-				}
-				else	{	// turning on style
-					curstyle |= *tptr;	/* add the relevant codes */
-					if (!xsptr && (curstyle&forbiddenstyle)) {	// if starting forbidden style
-						xsptr = tptr+1;
-						if (stptr && (fptr || !wantfont)) {		// if were in wanted style and have any wanted font
-							tptr++;
-							break;
-						}
-						else		// kill any wanted style
-							stptr = NULL;
-					}
-					else if (!stptr && (curstyle&style) == style && !xsptr)	// if starting wanted and not vetoed
-						stptr = tptr+1;			/* mark start */
-				}
-			}
-		}
-		else {
-			charcount++;
-			if (!stptr && !xsptr && !style && forbiddenstyle)	// must want runs with no style
-				stptr = tptr;
-		}
-	}
-	if ((fptr || !wantfont) && (stptr || !wantstyle)) {	// if got required hits
-		char * sptr = fptr > stptr ? fptr : stptr;	// find the right start
-		if (sptr && *sptr)	{	// if found a match
-			while (iscodechar(*sptr))	// forward over any codes
-				sptr += 2;
-			while (iscodechar(*(tptr-2)) && tptr > sptr)	// back up over any codes
-				tptr -= 2;
-			*span = tptr - sptr;	// length is to char before code/font point, or end of field
-			if (*span > 0)		// if ended up with good span
-				return sptr;	// return
-		}
-	}
-	return NULL;
-}
-#else
 /*******************************************************************************/
 char * str_spanforcodes(char * base, char style, char font, char forbiddenstyle, char forbiddenfont, short * span)	// returns position and span of specified style/font
 
@@ -561,7 +402,6 @@ char * str_spanforcodes(char * base, char style, char font, char forbiddenstyle,
 	} while (sptr && *tptr);	// can get here only after finding zero length span
 	return NULL;
 }
-#endif
 /*******************************************************************************/
 BOOL str_containscodes(char * base, char style, char  font, short span)	// returns position and span of specified style/font
 
@@ -716,6 +556,18 @@ int str_xindex(char * list, char * string)	/* finds index of string in array */
 	
 	for (index = 0; list && *list != EOCS; index++, list += strlen(list)+1) {
 		if (!strcmp(list, string))		/* if match */
+			return (index);
+	}
+	return (-1);
+}
+/*******************************************************************************/
+int str_xindexcontaining(char * list, char * substring)	/* finds index of string that contains substring */
+
+{
+	int index;
+	
+	for (index = 0; list && *list != EOCS; index++, list += strlen(list)+1) {
+		if (strstr(list, substring))		/* if match */
 			return (index);
 	}
 	return (-1);
@@ -879,146 +731,7 @@ int str_xstrip(char *pos, short min)	  /* strips empty strings from extended (to
 	}
 	return (count);		/* # strings left */
 }
-#if 0
-/******************************************************************************/
-int str_adjustcodes(char * dest, int flags)	/* cleans up codes, removes surplus spaces (if trimming) */
 
-{
-	struct codeseq ca, cp, ct;
-	char * sptr, *dptr, tbuff[MAXREC*2], tchar;
-	int spcount,fcount, pending;
-	
-	/* Limitation (feature?):
-		will always ignore style/font change for a range consisting solely of spaces */
-	
-	cp.style = cp.font = cp.color = '\0';
-	ca = cp;
-	pending = spcount = fcount = 0;
-	if (flags&CC_INPLACE)
-		sptr = dptr = dest;		// in place cleanup
-	else {
-		str_xcpy(tbuff,dest);	/* copy becomes source; write back to original */
-		sptr = tbuff;
-		dptr = dest;
-	}
-	do {	/* until end of string */
-		if (*sptr == FONTCHR)	{
-			pending = TRUE;		/* mark pending code sequence */
-			if (*++sptr&FX_COLOR)
-				cp.color = *sptr&FX_COLORMASK;	// get color id
-			else
-				cp.font = *sptr&FX_FONTMASK;	/* get font ID without font flag */
-		}
-		else if (*sptr == CODECHR)	{	/* accumulate any codes */
-			pending = TRUE;		/* mark pending code sequence */
-			if (*++sptr&FX_OFF)		/* if off style code */
-				cp.style &= ~(*sptr&FX_STYLEMASK);	/* remove from set */
-			else						/* on code */
-				cp.style |= *sptr;		/* add to set */
-		}
-		else if (*sptr == SPACE)	{
-			if (!spcount || !(flags&CC_ONESPACE))	/* if space and want it */
-				spcount++;		/* accumulate it */
-		}
-		else if (!*sptr)	/* new field */
-			fcount++;		/* accumulate it */	
-		else {		/* normal character */
-			if ((fcount || dptr == dest) && flags&CC_TRIM)	/* if at trim point && want field trimmed */
-				spcount = 0;
-			if (fcount)		{		/* if any fields to close */
-				ct = cp;				/* hold pending temporarily */
-				if (ca.style || ca.font || ca.color)	{	/* if anything active */
-					cp.style = cp.font = cp.color = '\0';	/* set clear style as pending */
-					pending = TRUE;		/* force close codes at end of field */
-				}
-				else		/* no codes active; will hold any pending codes */
-					pending = FALSE;
-			}
-			if (pending)	{	/* if have code sequence pending */
-				if ((ca.style&cp.style) != ca.style)	{	/* if removing style */
-					*dptr++ = CODECHR;
-					*dptr++ = (ca.style^cp.style)&ca.style|FX_OFF;	/* turn off what is changed in old style */
-					ca.style &= cp.style;		/* current is any residual style */
-				}
-				if (cp.style&~ca.style || cp.font != ca.font || cp.color != ca.color){	/* if adding style, or font change: any fonts come first */
-					if (cp.font != ca.font)	{	/* if changing font */
-						if (cp.font) {			/* if to non-default font */
-							while (spcount)	{	/* emit any spaces we have pending */
-								*dptr++ = SPACE;
-								spcount--;
-							}
-						}
-						*dptr++ = FONTCHR;
-						*dptr++ = cp.font|FX_FONT;	/* set font */
-						ca.font = cp.font;		/* active font is now what previously was potential */
-					}
-					if (cp.color != ca.color)	{	/* if changing color */
-						if (cp.color) {			/* if to non-default color */
-							while (spcount)	{	/* emit any spaces we have pending */
-								*dptr++ = SPACE;
-								spcount--;
-							}
-						}
-						*dptr++ = FONTCHR;
-						*dptr++ = cp.color|FX_COLOR;	/* set color */
-						ca.color = cp.color;		/* active color is now what previously was potential */
-					}
-					if (ca.style != cp.style)	{
-						while (spcount)	{	/* emit any spaces we have pending */
-							*dptr++ = SPACE;
-							spcount--;
-						}
-						*dptr++ = CODECHR;
-						*dptr++ = (ca.style^cp.style)&cp.style;		/* turn on what is changed in pending style */
-						ca.style |= cp.style;	/* current is current + pending */
-					}
-				}
-				pending = FALSE;
-			}
-			while (spcount)	{	/* while spaces to emit */
-				*dptr++ = SPACE;
-				spcount--;
-			}
-			if (fcount)	{	/* if field(s) to close */
-				while (fcount)	{
-					*dptr++ = '\0';		/* emit */
-					fcount--;
-				}
-				if ((ct.style || ct.font || ct.color) && *sptr != EOCS)	{	/* if need to restore pending codes and not finished page field */
-					/* (NB: EOCS test needed because pre 1.0.5 replace might have left some records badly coded */
-					cp = ct;			/* restore them */
-					pending = TRUE;
-					sptr--;			/* discount forthcoming advance */
-					continue;		/* go round again with same trigger character to force emission of codes */
-				}
-			}
-			*dptr++ = *sptr;
-		}
-	} while (*sptr++ != EOCS);
-		/* now fix any misplaced codes around special chars */
-	for (dptr = dest; *dptr != EOCS; dptr++)	{	/* for whole xstring */
-		if (*dptr == ESCCHR || *dptr == KEEPCHR || *dptr == OBRACE || *dptr == OBRACKET)	{	/* for chars that should be after codes */
-			for (sptr = dptr++; *dptr == CODECHR; dptr+=2)	/* while code sequences follow */
-				;		// skip them
-			if (dptr > sptr+1)	{	/* if passed over codes */
-				tchar = *sptr;
-				memmove(sptr,sptr+1,dptr-sptr);	/* move special char beyond code sequences */
-				*--dptr = tchar;
-			}
-		}
-		else if (*dptr == CBRACE || *dptr == CBRACKET)	{	/* for chars that should be before codes */
-			for (sptr = dptr; sptr >= dest+2 && *(sptr-2) == CODECHR; sptr -=2)	/* while code sequences precede */
-				;
-			if (sptr < dptr)	{		/* if passed over codes */
-				tchar = *dptr;
-				memmove(sptr+1,sptr,dptr-sptr);
-				*sptr = tchar;
-			}
-		}
-	}
-	return (dptr-dest);
-}
-#else
 /******************************************************************************/
 int str_adjustcodes(char * dest, int flags)	/* cleans up codes, removes surplus spaces (if trimming) */
 
@@ -1161,25 +874,10 @@ int str_adjustcodes(char * dest, int flags)	/* cleans up codes, removes surplus 
 	}
 	return (dptr-dest);
 }
-#endif
 /******************************************************************************/
 char * str_xfindcross(INDEX * FF, register char * string, short sflag)	/* find cross-ref (if any) in string */
 
 {
-#if 0
-	unsigned short matchlen, tlen;
-	
-	for (matchlen = 0; isgraph(FF->head.refpars.crosstart[matchlen]); matchlen++)	/* find length of segment to search for */
-		; 
-	if (matchlen)	{	/* if anything to seek */
-		while (string = str_xfind(string,FF->head.refpars.crosstart,sflag,matchlen,&tlen)) {	/* while possible refs */
-			if (str_crosscheck(FF,string))		/* if a real cross ref */
-				return (string);
-			string++;
-		}
-	}
-	return (NULL);
-#else
 	char * base = FF->head.refpars.crosstart;
 	char * tptr = strchr(base, SPACE);
 	
@@ -1192,7 +890,6 @@ char * str_xfindcross(INDEX * FF, register char * string, short sflag)	/* find c
 		}
 	}
 	return (NULL);
-#endif
 }
 /******************************************************************************/
 short str_crosscheck(INDEX * FF, char *str)    /* checks string to see if begins with 'see' */
@@ -1412,25 +1109,6 @@ int str_stripcopy(register unsigned char *dest, register unsigned char *source)	
 int str_texticmp(char *s1, char *s2)	   /* compares case insensitive, ignoring codes, up s1 len */
 
 {
-#if 0
-	unsigned char c1, c2;
-
-	do	{
-		while (iscodechar(*s1) && *++s1)
-			s1++;
-		while (iscodechar(*s2) && *++s2)
-			s2++;
-		if (isupper (c1 = *s1++))
-			c1 = _tolower(c1);
-		if (isupper (c2 = *s2++))
-			c2 = _tolower(c2);
-		while (iscodechar(*s1) && *++s1)
-			s1++;
-		while (iscodechar(*s2) && *++s2)
-			s2++;
-	} while (*s1 && c1 == c2);
-	return (c1-c2);
-#else
 	unichar uc1, uc2;
 
 	do	{
@@ -1446,7 +1124,6 @@ int str_texticmp(char *s1, char *s2)	   /* compares case insensitive, ignoring c
 			uc2 = u_tolower(uc2);
 	} while (*s1 && uc1 == uc2);
 	return (uc1-uc2);
-#endif
 }
 /******************************************************************************/
 void str_setgetlimits(unsigned char *base, unsigned long limit)	// sets limits on read buffer

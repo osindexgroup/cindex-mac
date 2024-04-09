@@ -16,13 +16,8 @@ NSString * CIPrefs = @"3_Preferences";
 NSString * CIFunctionKeys = @"FunctionKeys";
 #endif
 
-#if 0
-char * abbrev_prefix = "\n (['\"“‘";		/* prefixes */
-char * abbrev_suffix = "\r )],.;:'\"”’";   /* suffixes that can trigger expansion */
-#else
 unichar abbrev_prefix[] = {'\n',SPACE,'(','[','\"','\'',8220,8216,0};		/* prefixes */
 unichar abbrev_suffix[] = {SPACE,')',']',',','.',';',':','\"','\'', 8221,8217,0};		// suffixes that trigger expansion
-#endif
 char g_nullstr[] = "";		/* a null string */
 char g_nullrec[] = {0,0,'\177'};	/* null record */
 int g_tzoffset;		// time zone offset from GMT (sec)
@@ -74,7 +69,7 @@ struct prefs g_prefs = {		/* preferences info */
 		0,		/* use styles to define format indents */
 		0,		// use main window text size
 		TRUE,	// embed sort info
-		TRUE,	// check for updates
+		FALSE,	// check for updates
 		0,		// utf-8 encoding of plain text
 		PASTEMODE_STYLEONLY		// paste styles but not fonts
 	},
@@ -511,7 +506,7 @@ NSString * global_supportdirectory(BOOL writeable)	// returns Path to Cindex dir
 	return nil;
 }
 /**************************************************************************/
-static BOOL createCinDirectory()	{
+static BOOL createCinDirectory(void)	{
 	
 	// see https://github.com/michaelvobrien/OSXSlightlyBetterAuth
 	

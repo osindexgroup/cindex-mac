@@ -15,44 +15,8 @@
 #import "records.h"
 #import "strings_c.h"
 
-//static NSString* IRRecordWToolbarID = @"IRRecordToolbarIdentifier";
-
 static NSString* IRPropagateToolbarID = @"IRPropagateTBIdentifier";
 
-//static NSString* IRBraceToolbarID = @"IRBraceTBIdentifier";
-//static NSString* IRAngleToolbarID = @"IRAngleTBIdentifier";
-//static NSString* IRFlipNoToolbarID = @"IRFlipNoTBIdentifier";
-//static NSString* IRFlipToolbarID = @"IRFlipTBIdentifier";
-//static NSString* IRParenToolbarID = @"IRParenTBIdentifier";
-//static NSString* IRFontToolbarID = @"IRFontTBIdentifier";
-//static NSString* IRBoldToolbarID = @"IRBoldTBIdentifier";
-//static NSString* IRItalicToolbarID = @"IRItalicTBIdentifier";
-//static NSString* IRUlineToolbarID = @"IRUlineTBIdentifier";
-//static NSString* IRRevertToolbarID = @"IRRevertTBIdentifier";
-//static NSString* IRPrevToolbarID = @"IRPrevTBIdentifier";
-//static NSString* IRNextToolbarID = @"IRNextTBIdentifier";
-//static NSString* IREnterToolbarID = @"IREnterTBIdentifier";
-
-#if 0
-static TOOLBARITEM tbitems[] = {
-//	{@"IRPropagateTBIdentifier",TB_PROPAGATE,@"Propagation",@"Propagate changes to succeeding records",nil,@"setPropagate:",@"32propagate"},
-	{@"IRBraceTBIdentifier",MI_BRACES,@"Spell Out",@"Sort on hidden text [Control B]",nil,@"encloseText:",@"32braces"},
-	{@"IRAngleTBIdentifier",MI_BRACKETS,@"Hide Text",@"Hide selected text from sort [Control A]",nil,@"encloseText:",@"32brackets"},
-	{@"IRFlipNoTBIdentifier",TB_FLIPFULL,@"Flip",@"Full Flip [Control +]",nil,@"flipField:",@"32fullflip"},
-	{@"IRFlipTBIdentifier",TB_FLIPHALF,@"Half Flip",@"Half flip [Control -]",nil,@"flipField:",@"32halfflip"},
-	{@"IRParenTBIdentifier",TB_SWAPPAREN,@"Swap Text",@"Swap Text in Parens [Control P]",nil,@"swapParens:",@"32fliphoriz"},
-	{@"IRFontTBIdentifier",MI_DEFAULTFONT,@"Default Font",@"Set font to default [Control F]",nil,@"defaultFont:",@"32defaultfont"},
-//	{@"IRBoldTBIdentifier",TB_BOLD,@"Bold",@"Set boldface",nil,@"addFontTrait:",@"bold"},
-//	{@"IRItalicTBIdentifier",TB_ITALIC,@"Italic",@"Set italic",nil,@"addFontTrait:",@"italic"},
-//	{@"IRUlineTBIdentifier",TB_UNDERLINE,@"Underline",@"Underline",nil,@"underline:",@"underline"},
-	{@"IRRevertTBIdentifier",TB_REVERT,@"Revert",@"Restore record to original state [Option ESC]",nil,@"toolbarAction:",@"32revert"},
-	{@"IRPrevTBIdentifier",TB_PREVRECORD,@"Previous",@"Enter record and move to previous [Page Up]",nil,@"toolbarAction:",@"32prevrecord"},
-	{@"IRNextTBIdentifier",TB_NEXTRECORD,@"Next",@"Enter record and move to next [Page Down]",nil,@"toolbarAction:",@"32nextrecord"},
-	{@"IREnterTBIdentifier",TB_ENTERRECORD,@"Enter/copy",@"Enter record and leave copy [Option Page Down]",nil,@"toolbarAction:",@"32enter_copy"},
-};
-#define MAXTBITEMS (sizeof(tbitems)/sizeof(TOOLBARITEM))
-
-#endif
 @interface IRIndexRecordWController () {
 
 }
@@ -88,13 +52,13 @@ static TOOLBARITEM tbitems[] = {
 				[self _stepRecord:-1];
 				return;
 			case NSPageDownFunctionKey:
-				if (flags&NSAlternateKeyMask)	// enter and leave copy
+				if (flags&NSEventModifierFlagOption)	// enter and leave copy
 					[self duplicate:nil];
 				else 
 					[self _stepRecord:1];
 				return;
 			case 0x1b:	// escape key
-				if (flags&NSAlternateKeyMask)
+				if (flags&NSEventModifierFlagOption)
 					[self _setRecord:_currentRecord];	// reset current record
 				else
 					[[self window] close];		// abandon
@@ -134,7 +98,7 @@ static TOOLBARITEM tbitems[] = {
 	_nptr = sort_setuplist(FF);
 	[[_entry superview] setPostsBoundsChangedNotifications:YES];	// scroll view posts notifications
 	
-	[_prompt setAlignment:NSRightTextAlignment];
+	[_prompt setAlignment:NSTextAlignmentRight];
 	[[_prompt textStorage] setAttributedString:[NSAttributedString asFromXString:" " 
 		fontMap:FF->head.fm size:g_prefs.gen.recordtextsize ? g_prefs.gen.recordtextsize : FF->head.privpars.size termchar:0]];	// force settings for default font
 	[_prompt.textStorage addAttribute:NSForegroundColorAttributeName value:NSColor.textColor range:NSMakeRange(0, _prompt.textStorage.length)];
@@ -148,7 +112,7 @@ static TOOLBARITEM tbitems[] = {
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_showRecord) name:NOTE_CONDITIONALOPENRECORD object:[self document]];
 }
 - (BOOL)validateMenuItem:(NSMenuItem *)mitem {
-	int itemid = [mitem tag];
+	NSInteger itemid = [mitem tag];
 	
 //	NSLog([mitem title]);
 	if (itemid == MI_DUPLICATE)
@@ -158,7 +122,7 @@ static TOOLBARITEM tbitems[] = {
 	return YES;
 }
 - (BOOL)validateToolbarItem: (NSToolbarItem *)toolbarItem {
-	int tag = [toolbarItem tag];
+	NSInteger tag = [toolbarItem tag];
 
 //	NSLog(@"RWindow %@",[toolbarItem label]);
 	if (![[self window] isMainWindow] || [[self window] toolbar] != [toolbarItem toolbar])
@@ -515,72 +479,6 @@ static TOOLBARITEM tbitems[] = {
 - (void)textViewDidChangeTypingAttributes:(NSNotification *)notification {
 	[_entry textViewDidChangeTypingAttributes:notification];
 }
-#if 0
-- (NSToolbarItem *)toolbar:(NSToolbar *)toolbar itemForItemIdentifier:(NSString *)itemIdent willBeInsertedIntoToolbar:(BOOL)willBeInserted {
-	NSToolbarItem * toolbarItem;
-	unsigned int index;
-	
-	if([itemIdent isEqualToString:IRPropagateToolbarID]) {
-		NSMenu *submenu = nil;
-		NSMenuItem *submenuItem = nil, *menuFormRep = nil;
-	
-		toolbarItem = [[NSToolbarItem alloc] initWithItemIdentifier: itemIdent];
-		[toolbarItem setLabel:@"Propagate"];
-		[toolbarItem setPaletteLabel:@"Propagate"];
-		[toolbarItem setToolTip: @"Switch propagation on or off"];
-		[toolbarItem setView:_propagateButton];
-		[toolbarItem setMinSize:NSMakeSize(24,24)];
-		[toolbarItem setMaxSize:NSMakeSize(32,32)];
-		[toolbarItem setTarget:nil];
-		[toolbarItem setAction:@selector(setPropagate:)];
-		[_propagateButton setState:_propagate];
-
-		// now set menu in case need text mode
-		submenu = [[NSMenu alloc] init];
-		submenuItem = [[NSMenuItem alloc] initWithTitle: @"Propagate" action: @selector(setPropagate:) keyEquivalent: @""];
-		[submenuItem setState:_propagate];
-		[submenuItem setTag:TB_PROPAGATE];
-		menuFormRep = [[NSMenuItem alloc] init];
-		[submenu addItem: submenuItem];
-		[submenuItem setTarget: self];
-		[menuFormRep setSubmenu: submenu];
-		[menuFormRep setTitle: [toolbarItem label]];
-		[toolbarItem setMenuFormRepresentation: menuFormRep];
-
-		return toolbarItem;
-	}
-	for (index = 0; index < MAXTBITEMS; index++) {
-		if ([itemIdent isEqualToString:tbitems[index].identifier]) {
-			toolbarItem = [[NSToolbarItem alloc] initWithItemIdentifier: itemIdent];
-			
-			[toolbarItem setTag:tbitems[index].tag];
-			[toolbarItem setLabel:tbitems[index].label];
-			[toolbarItem setPaletteLabel:tbitems[index].label];
-			[toolbarItem setToolTip:tbitems[index].tooltip];
-			[toolbarItem setImage:[NSImage imageNamed:tbitems[index].image]];
-//			if (tbitems[index].tag == TB_BOLD || tbitems[index].tag == TB_ITALIC)
-//				[toolbarItem setTarget:[NSFontManager sharedFontManager]];
-//			else
-//				[toolbarItem setTarget:self];
-			[toolbarItem setTarget:tbitems[index].target];
-			[toolbarItem setAction:NSSelectorFromString(tbitems[index].action)];
-			return toolbarItem;
-		}
-	}
-	return nil;
-}
-- (NSArray *)toolbarDefaultItemIdentifiers: (NSToolbar *) toolbar {
-    return [NSArray arrayWithObjects:IRPropagateToolbarID,IRBraceToolbarID,IRAngleToolbarID,IRFlipNoToolbarID,IRFlipToolbarID,IRParenToolbarID,
-		IRFontToolbarID,IRBoldToolbarID,IRItalicToolbarID,IRUlineToolbarID,IRRevertToolbarID,IRPrevToolbarID,IRNextToolbarID,IREnterToolbarID,
-		nil];
-}
-- (NSArray *)toolbarAllowedItemIdentifiers: (NSToolbar *) toolbar {
-    return [NSArray arrayWithObjects:IRPropagateToolbarID,IRBraceToolbarID,IRAngleToolbarID,IRFlipNoToolbarID,IRFlipToolbarID,IRParenToolbarID,
-		IRFontToolbarID,IRBoldToolbarID,IRItalicToolbarID,IRUlineToolbarID,IRRevertToolbarID,IRPrevToolbarID,IRNextToolbarID,IREnterToolbarID,
-		/* NSToolbarShowColorsItemIdentifier, */ NSToolbarShowFontsItemIdentifier,  NSToolbarCustomizeToolbarItemIdentifier,
-		NSToolbarFlexibleSpaceItemIdentifier, NSToolbarSpaceItemIdentifier, NSToolbarSeparatorItemIdentifier, nil];
-}
-#endif
 - (void)checkFormatItems:(NSMenu *)tmenu {
 	unsigned int attribs = [_entry textAttributes:nil];
 	

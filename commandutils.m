@@ -122,7 +122,8 @@ static char * _infos[] = {
 	"During conversion Cindex changed the following characters: %s",
 	"There are %d empty records in the file. These will be discarded.",
 	"No errors were found in the index.",
-	"The index is locked. You can view it in different formats, but cannot modify entries."
+	"The index is locked. You can view it in different formats, but cannot modify entries.",
+	"This new index contains %ld records imported from “%s”."
 };
 static char * _warnings[] = {
 	"The file containing Cindex preferences is out of date.  Should Cindex replace it?",
@@ -403,9 +404,13 @@ void infoSheet(NSWindow * parent, int infonum, ...)		/*  O.K. */
 	NSAlert * warning = [[NSAlert alloc] init];
 	warning.alertStyle = NSAlertStyleInformational;
 	warning.messageText = [NSString stringWithUTF8String:tbuff];
-	[warning beginSheetModalForWindow:parent completionHandler:^(NSInteger result) {
-		;
-	}];
+	if (parent) {
+		[warning beginSheetModalForWindow:parent completionHandler:^(NSInteger result) {
+			;
+		}];
+	}
+	else
+		[warning runModal];
 }
 #if 0
 /*******************************************************************************/

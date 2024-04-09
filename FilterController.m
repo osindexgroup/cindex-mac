@@ -20,7 +20,7 @@
 		[[labels cellWithTag:count] setState:FF->head.privpars.filter.label[count]];
 }
 - (IBAction)showHelp:(id)sender {
-	[[NSHelpManager sharedHelpManager] openHelpAnchor:@"hiding0_Anchor-14210" inBook:@"Cindex 4.2.5 Help"];
+	[[NSHelpManager sharedHelpManager] openHelpAnchor:@"hiding0_Anchor-14210" inBook:@"Cindex 4 Help"];
 }
 - (IBAction)closeSheet:(id)sender {    
 	if ([sender tag] == OKTAG)	{

@@ -37,7 +37,7 @@
 	centerwindow([NSApp keyWindow],[self window]);
 }
 - (IBAction)showHelp:(id)sender {
-	[[NSHelpManager sharedHelpManager] openHelpAnchor:@"textstyles0_Anchor-14210" inBook:@"Cindex 4.2.5 Help"];
+	[[NSHelpManager sharedHelpManager] openHelpAnchor:@"textstyles0_Anchor-14210" inBook:@"Cindex 4 Help"];
 }
 - (IBAction)closePanel:(id)sender {    
 	if ([sender tag] == OKTAG)	{

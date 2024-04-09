@@ -375,21 +375,6 @@ static void writetext(FCONTROLX * exp,char * base, int length)	/* emits text str
 	unichar uc;
 	char *iptr;
 	
-#if 0
-	while (bptr-base < length)	{	/* while chars to emit */
-		uc = u8_nextU(&bptr);
-		if (uc == '\t')		/* if tab */
-			writestring(exp,exp->tab);
-		else if (iptr = memchr(exp->protected,uc,MAXTSTRINGS))	/* if in protected list */
-			writestring(exp,exp->pstrings[iptr-exp->protected]);	/* insert string at index */
-		else {
-			if (uc >= 0x80)	// if not ASCII
-				(exp->efwriter)(exp,uc);	// encode it
-			else
-				*exp->esptr++ = uc;
-		}
-	}
-#else
 	while (bptr-base < length)	{	/* while chars to emit */
 		if (*bptr == '\t')		/* if tab */
 			writestring(exp,exp->tab);
@@ -404,141 +389,7 @@ static void writetext(FCONTROLX * exp,char * base, int length)	/* emits text str
 			*exp->esptr++ = *bptr;
 		bptr++;
 	}
-#endif
 }
-#if 0
-/**********************************************************************/
-static void writeattributes(FCONTROLX * exp,ATTRIBUTES * as, char codes)	/* set up attributes from code byte */
-
-{
-	if (codes&FX_AUTOFONT)	{	/* if a font */
-		codes &= ~FX_AUTOFONT;		// clear autofont flag
-		if (codes&FX_FONT)	{
-			int newbase = codes&FX_AUTOFONT;	/* flags change of base font */
-			int fcode;
-			
-			codes &= FX_FONTMASK;
-			if (codes < T_NUMFONTS)	{	/* if have a potential code to produce */
-				if (!codes)	{					/* if want current base */
-					while (!atbasefont(as))	{	/* while not at base font */
-						fcode = popfont(as);
-						if (*exp->fontset[(fcode <<1)+1])	/* if the current format uses off codes */
-							writestring(exp,exp->fontset[(fcode <<1)+1]);	/* send string */
-						else if (atbasefont(as))	/* no off codes ; if reached base */
-							writestring(exp,exp->fontset[(currentfont(as) <<1)]);	/* emit it */
-					}
-				}
-				else if (codes == secondfont(as))	/* if reverting to last font */
-					endfont(exp,as);
-				else	{							/* must be new one */
-					fcode = pushfont(as,codes);
-					writestring(exp,exp->fontset[fcode<<1]);
-				}
-				if (newbase)
-					setbasefont(as);	/* set new base font */
-			}
-		}
-	}
-	else {				/* a style code */
-		if (codes&FX_OFF)	{	/* if turning off */
-			if (codes&FX_SUB)	{		/* do in reverse order from turn on */
-				writecode(exp,EX_SUBOFF);
-				as->base = 0;
-			}
-			if (codes&FX_SUPER)	{
-				writecode(exp,EX_SUPEROFF);
-				as->base = 0;
-			}
-			if (codes&FX_SMALL && as->attcount[FX_SMALLX] && !--as->attcount[FX_SMALLX])	{
-				as->attr &= ~FX_SMALL;
-				writecode(exp,EX_SMALLOFF);
-			}
-			if (codes&FX_ULINE && as->attcount[FX_ULINEX] && !--as->attcount[FX_ULINEX])	{
-				as->attr &= ~FX_ULINE;
-				writecode(exp,EX_ULINEOFF);
-			}
-			if ((codes&FX_BOLDITAL) == FX_BOLDITAL && *exp->styleset[EX_BOLDITALON] && as->attcount[FX_BOLDITALX]&& !--as->attcount[FX_BOLDITALX])	{
-				as->attr &= ~FX_BOLDITAL;
-				writecode(exp,EX_BOLDITALOFF);
-			}
-			else {
-				if (codes&FX_ITAL)	{
-					if (as->attcount[FX_ITALX] && !--as->attcount[FX_ITALX])	{	/* if ordinary ital off */
-						as->attr &= ~FX_ITAL;
-						writecode(exp,EX_ITALOFF);
-					}
-					else if (!as->attcount[FX_ITALX] && *exp->styleset[EX_BOLDITALON] && as->attcount[FX_BOLDITALX] && !--as->attcount[FX_BOLDITALX])	{/* bold ital is active */
-						as->attr &= ~FX_ITAL;
-						writecode(exp,EX_BOLDITALOFF);
-						if (!as->attcount[FX_BOLDX]++)
-							writecode(exp,EX_BOLDON);
-					}
-				}
-				if (codes&FX_BOLD)	{
-					if (as->attcount[FX_BOLDX] && !--as->attcount[FX_BOLDX])	{	/* if ordinary bold off */
-						as->attr &= ~FX_BOLD;
-						writecode(exp,EX_BOLDOFF);
-					}
-					else if (!as->attcount[FX_BOLDX] && *exp->styleset[EX_BOLDITALON] && as->attcount[FX_BOLDITALX] && !--as->attcount[FX_BOLDITALX])	{/* bold ital is active */
-						as->attr &= ~FX_BOLD;
-						writecode(exp,EX_BOLDITALOFF);
-						if (!as->attcount[FX_ITALX]++)
-							writecode(exp,EX_ITALON);
-					}
-				}
-			}
-		}
-		else {					/* turning on */
-			if ((codes&FX_BOLDITAL) == FX_BOLDITAL && *exp->styleset[EX_BOLDITALON] && !as->attcount[FX_BOLDITALX]++)	{
-				as->attr |= FX_BOLDITAL;
-				writecode(exp,EX_BOLDITALON);
-			}
-			else {
-				if (codes&FX_BOLD)	{	/* if want bold on */
-					if (as->attcount[FX_ITALX] && *exp->styleset[EX_BOLDITALON] && !as->attcount[FX_BOLDITALX]++)	{	/* if already have ital on and can do bold ital */
-						if (!--as->attcount[FX_ITALX])
-							writecode(exp,EX_ITALOFF);
-						as->attr |= FX_BOLDITAL;
-						writecode(exp,EX_BOLDITALON);	
-					}
-					else if (!as->attcount[FX_BOLDX]++)	{	/* just do plain */
-						as->attr |= FX_BOLD;
-						writecode(exp,EX_BOLDON);
-					}
-				}
-				if (codes&FX_ITAL)	{	/* if want ital on */
-					if (as->attcount[FX_BOLDX] && *exp->styleset[EX_BOLDITALON] && !as->attcount[FX_BOLDITALX]++)	{	/* if already have bold on and can do bold ital */
-						if (!--as->attcount[FX_BOLDX])
-							writecode(exp,EX_BOLDOFF);
-						as->attr |= FX_BOLDITAL;
-						writecode(exp,EX_BOLDITALON);	
-					}
-					else if (!as->attcount[FX_ITALX]++)	{	/* just do plain */
-						as->attr |= FX_ITAL;
-						writecode(exp,EX_ITALON);
-					}
-				}
-			}
-			if (codes&FX_ULINE && !as->attcount[FX_ULINEX]++)	{
-				as->attr |= FX_ULINE;
-				writecode(exp,EX_ULINEON);
-			}
-			if (codes&FX_SMALL && !as->attcount[FX_SMALLX]++)	{
-				as->attr |= FX_SMALL;
-				writecode(exp,EX_SMALLON);
-			}
-			if (codes&FX_SUPER && as->base <= 0)	{	/* if not already in super position */
-				writecode(exp,EX_SUPERON);
-				as->base = SUPSUBSTEP;
-			}
-			if (codes&FX_SUB && as->base >= 0)	{	/* if not already in sub position */
-				writecode(exp,EX_SUBON);
-				as->base = -SUPSUBSTEP;
-			}
-		}
-	}
-}
-#else
 /**********************************************************************/
 static void writeattributes(FCONTROLX * exp,ATTRIBUTES * as, char codes)	/* set up attributes from code byte */
 
@@ -670,7 +521,6 @@ static void writeattributes(FCONTROLX * exp,ATTRIBUTES * as, char codes)	/* set 
 		}
 	}
 }
-#endif
 /**********************************************************************/
 static void writecode(FCONTROLX * exp,short code)	/* emits style code */
 

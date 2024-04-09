@@ -13,31 +13,19 @@
 #import "SplashWindowController.h"
 
 @implementation IRApp
-#if 0
-- (void)removeWindowsItem:(NSWindow *)aWindow {
-	if ([aWindow isVisible])
-		[super removeWindowsItem:aWindow];
-}
-#endif
+
 - (void)terminate:(id)sender {
 	// do this cleanup here because [IRdc applicationShouldTerminate] is called *after*
-	// doc controller handles any dirty programs.
+	// doccontroller handles any dirty documents.
 	
     IRIndexDocument * doc = [(IRIndexDocumentController *)[self delegate] currentDocument];
     NSArray * docarray = [(IRIndexDocumentController *)[self delegate] documents];
-	int index;
 
 	if ([[doc fileType] isEqualToString:CINIndexType])	// if have current index doc
 		[[NSUserDefaults standardUserDefaults] setObject:[[doc fileURL] path] forKey:CILastIndex];	// save it as last used
-#if 0
-	while (doc = [dnum nextObject])	{   // for all docs
-		[[[doc mainWindowController] window] performClose:self];
-	}
-#else				// need this because objects are removed from array
-	for (index = [docarray count]; --index >= 0;)
+	for (NSInteger index = [docarray count]; --index >= 0;)
 		[[[[docarray objectAtIndex:index] mainWindowController] window] performClose:self];
-#endif
-	[[NSPasteboard pasteboardWithName:NSDragPboard] clearContents];		// terminate calls Pboard to deliver any promised data
+	[[NSPasteboard pasteboardWithName:NSPasteboardNameDrag] clearContents];		// terminate calls Pboard to deliver any promised data
 	[super terminate:sender];
 }
 - (void)orderFrontStandardAboutPanel:(id)sender {

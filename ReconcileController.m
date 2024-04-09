@@ -31,7 +31,7 @@
 	[protectnames setState:YES];
 }
 - (IBAction)showHelp:(id)sender {
-	[[NSHelpManager sharedHelpManager] openHelpAnchor:@"reconcile0_Anchor-14210" inBook:@"Cindex 4.2.5 Help"];
+	[[NSHelpManager sharedHelpManager] openHelpAnchor:@"reconcile0_Anchor-14210" inBook:@"Cindex 4 Help"];
 }
 - (void)windowDidUpdate:(NSNotification *)aNotification {
 //	if ([[mode selectedCell] tag])	{	// if want reconciliation

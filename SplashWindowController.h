@@ -6,12 +6,6 @@
 //  Copyright 2005 Indexing Research. All rights reserved.
 //
 
-typedef struct {
-	char name[64];
-	char org[64];
-	char serial[64];
-} LICENSE;
-
 @interface SplashWindowController : NSWindowController <NSWindowDelegate>{
 	IBOutlet NSImageView * sview;
 	IBOutlet NSTextField * version;
@@ -31,7 +25,6 @@ typedef struct {
 	IBOutlet NSButton * credits;
 }
 + (void)showWithButton:(BOOL)button;
-- (IBAction)closePanel:(id)sender;
 - (IBAction)showCredits:(id)sender;
 - (IBAction)closeCredits:(id)sender;
 

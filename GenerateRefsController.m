@@ -20,7 +20,7 @@
 	FF = [[self document] iIndex];
 }
 - (IBAction)showHelp:(id)sender {
-	[[NSHelpManager sharedHelpManager] openHelpAnchor:@"crossmanage0_Anchor-14210" inBook:@"Cindex 4.2.5 Help"];
+	[[NSHelpManager sharedHelpManager] openHelpAnchor:@"crossmanage0_Anchor-14210" inBook:@"Cindex 4 Help"];
 }
 - (IBAction)doSetAction:(id)sender {
 	if ([sender selectedRow] == 1)	{
@@ -40,10 +40,10 @@
 			
 			if (defaultDirectory)
 				[openpanel setDirectoryURL:[NSURL fileURLWithPath:defaultDirectory isDirectory:YES]];
-			[openpanel setAllowedFileTypes:[NSArray arrayWithObject:CINIndexExtension]];
+			openpanel.allowedFileTypes = @[CINIndexType];
 			[openpanel setAccessoryView:_accessory];
 			[openpanel beginSheetModalForWindow:IRdc.currentDocument.windowForSheet completionHandler:^(NSModalResponse result)  {
-				if (result == NSFileHandlingPanelOKButton) {
+				if (result == NSModalResponseOK) {
 					NSURL * url = [[openpanel URLs] objectAtIndex:0];
 					[IRdc openDocumentWithContentsOfURL:url display:NO completionHandler:^(NSDocument *gendoc, BOOL alreadyOpen, NSError *error){
 						if (gendoc)	{	// if have document as source

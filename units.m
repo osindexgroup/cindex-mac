@@ -33,10 +33,6 @@ short env_tobase(short unit, float eval)	/* converts from expression to base */
 			tval = eval*PIXELSTOEMS;
 			break;
 	}
-#if 0
-	if ((short)(tval+0.5) > (short)tval)	/* if nearer higher value */
-		tval++;
-#endif
 	return (tval);
 }
 /*******************************************************************************/

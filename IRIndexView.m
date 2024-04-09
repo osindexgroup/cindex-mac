@@ -18,16 +18,16 @@
 #import "strings_c.h"
 #import "IRDisplayString.h"
 
-//NSString * IRRecordsPBoardType = @"IRRecordsPasteboard3";
 NSString * IRRecordsPBoardType = @"com.indexres.pbrecords3";
 
 static NSCursor * _rightCursor;
-static NSTrackingArea * rightCursorTrackingArea;
 
 @interface IRIndexView () {
+	
 }
 @property (assign) IRIndexDocWController <IRIndexViewDelegate, NSObject> * owner;
 @property (assign) IRIndexDocument * document;
+@property (strong) NSTrackingArea * marginArea;
 
 - (void)_stepRecord:(int)step mode:(int)mode;
 - (void)_selectFrom:(RECN)base to:(RECN)end;
@@ -38,7 +38,6 @@ static NSTrackingArea * rightCursorTrackingArea;
 
 + (void)initialize {
 	_rightCursor = getcursor(@"rightcursor",NSMakePoint(14,1));
-	[_rightCursor setOnMouseEntered:YES];
 }
 - (void)awakeFromNib {
 	[super awakeFromNib];
@@ -66,7 +65,7 @@ static NSTrackingArea * rightCursorTrackingArea;
 - (BOOL)performKeyEquivalent:(NSEvent *)theEvent {
 	NSEventModifierFlags mflags = [theEvent modifierFlags];
 
-	if (mflags&NSCommandKeyMask) {	// if cmnd-key (function keys don't necess need it to have Key Equivs)
+	if (mflags&NSEventModifierFlagCommand) {	// if cmnd-key (function keys don't necess need it to have Key Equivs)
 		NSString * kchars = [theEvent charactersIgnoringModifiers];
 		unichar uchar = [kchars characterAtIndex:0];
 		
@@ -111,14 +110,6 @@ static NSTrackingArea * rightCursorTrackingArea;
 	}
 	return [super validateMenuItem:mitem];
 }
-
-- (void)cursorUpdate:(NSEvent *)theEvent	{if ( rightCursorTrackingArea ) {
-	// check if mouse pointer is in the tracking area; avoid resetting if it is
-	if ( !NSPointInRect([[self window] mouseLocationOutsideOfEventStream], [rightCursorTrackingArea rect]) ) {
-			[[NSCursor arrowCursor] set];
-		}
-	}
-}
 - (BOOL)acceptsFirstMouse:(NSEvent *)theEvent	{
 	return [[_document recordWindowController] window] == [IRdc lastKeyWindow];	// accept click from record-entry window
 }
@@ -126,16 +117,10 @@ static NSTrackingArea * rightCursorTrackingArea;
 	// need to override to prevent text cursor overriding our cursor
 }
 - (void)mouseEntered:(NSEvent *)theEvent	{
-	// need to override to prevent text cursor overriding our cursor
-	
-	// set mouse cursor to rightCursor
 	[_rightCursor set];
 }
 - (void)mouseExited:(NSEvent *)theEvent	{
-	// need to override to prevent text cursor overriding our cursor
-	
-	// reset mouse cursor back to regular pointer
-	[[NSCursor arrowCursor] set];
+	[NSCursor.arrowCursor set];
 }
 - (void)mouseDown:(NSEvent *)theEvent	{
 	[_owner displayError:nil];	// clear any displayed error
@@ -158,7 +143,7 @@ static NSTrackingArea * rightCursorTrackingArea;
 			_lastSelected = [_owner selectedRecords].location;
 			_firstSelected = [_owner selectedRecords].length;
 		}
-		else if ([theEvent modifierFlags]&NSShiftKeyMask)		{	// if extending selection
+		else if ([theEvent modifierFlags]&NSEventModifierFlagShift)		{	// if extending selection
 			_lastSelected = recordatmouse;
 			[self _selectFrom:_firstSelected to:_lastSelected];
 		}
@@ -169,19 +154,19 @@ static NSTrackingArea * rightCursorTrackingArea;
 		}
 		[NSEvent startPeriodicEventsAfterDelay:0.2 withPeriod:.05];
 		while (down)	{
-			theEvent = [NSApp nextEventMatchingMask:NSPeriodicMask|NSLeftMouseUpMask|NSLeftMouseDraggedMask untilDate:[NSDate date] inMode:NSEventTrackingRunLoopMode dequeue:YES];
+			theEvent = [NSApp nextEventMatchingMask:NSEventMaskPeriodic|NSEventMaskLeftMouseUp|NSEventMaskLeftMouseDragged untilDate:[NSDate date] inMode:NSEventTrackingRunLoopMode dequeue:YES];
 			
 			switch ([theEvent type])	{
-				case NSLeftMouseUp:
+				case NSEventTypeLeftMouseUp:
 					down = NO;
 					break;
-				case NSPeriodic:
+				case NSEventTypePeriodic:
 					if (scrollevent)	{	// if ready for autoscroll
 						[self autoscroll:scrollevent];
 						break;
 					}
 					continue;
-				case NSLeftMouseDragged:
+				case NSEventTypeLeftMouseDragged:
 					if (!hasdragged && isinselection && !rightcursor)	{	// if drag started in existing selection
 						[NSEvent stopPeriodicEvents];
 						NSPasteboardItem *pbItem = [NSPasteboardItem new];
@@ -216,12 +201,6 @@ static NSTrackingArea * rightCursorTrackingArea;
 		[[NSNotificationCenter defaultCenter] postNotificationName:NOTE_CONDITIONALOPENRECORD object:_document];
 	}
 }
-#if 0
-- (void)keyUp:(NSEvent *)theEvent {
-	[[NSNotificationCenter defaultCenter] postNotificationName:NOTE_SCROLLKEYEVENT object:theEvent];
-	[super keyUp:theEvent];
-}
-#endif
 - (void)keyDown:(NSEvent *)theEvent {
 	NSString * kchars = [theEvent characters];
 	if (kchars.length) {	// if not a dead key
@@ -238,10 +217,10 @@ static NSTrackingArea * rightCursorTrackingArea;
 				}
 				return;
 			case NSUpArrowFunctionKey:
-				[self _stepRecord:-1 mode:[theEvent modifierFlags]&NSShiftKeyMask];
+				[self _stepRecord:-1 mode:[theEvent modifierFlags]&NSEventModifierFlagShift];
 				return;
 			case NSDownArrowFunctionKey:
-				[self _stepRecord:1 mode:[theEvent modifierFlags]&NSShiftKeyMask];
+				[self _stepRecord:1 mode:[theEvent modifierFlags]&NSEventModifierFlagShift];
 				return;
 			case NSHomeFunctionKey:
 				[_owner showRecord:rec_number(sort_top([_document iIndex])) position:VD_TOP];
@@ -340,7 +319,6 @@ static NSTrackingArea * rightCursorTrackingArea;
 	[_document iIndex]->head.formpars.pf.alignment = [sender tag]-MI_ALIGNNATURAL;
 	[_document redisplay:0 mode:VD_CUR];
 }
-//- (void)insertText:(NSString *)text {
 - (void)insertText:(id)text replacementRange:(NSRange)replacementRange {
 	if ([text length] && [_document canCloseActiveRecord])	{	// if not dead key && don't have record window or entry is ok
 		NSUInteger length = [text length];
@@ -372,29 +350,22 @@ static NSTrackingArea * rightCursorTrackingArea;
 	else
 		[super insertText:text replacementRange:replacementRange];
 }
-
-// add tracking area upon update event if isn't already initialized
-- (void) updateTrackingAreas {
-	[self createAndAddRightMarginTrack];
+- (void)updateTrackingAreas {
 	[super updateTrackingAreas];
-}
-
-- (void) createAndAddRightMarginTrack {
-	// invalidate tracking area before initializing
-	if ( rightCursorTrackingArea != nil )
-		[self removeTrackingArea:rightCursorTrackingArea];
-		
 	int rwidth = [_owner rightCursorWidth];
-	NSRect rrect = [self visibleRect];
-
-	rrect.origin.x += 1;		// doesn't catch left entry if origin is 0;
-	rrect.size.width = rwidth;	// marginal rect for right-pointing cursor
+	NSRect rrect = self.visibleRect;
 	
-	// create tracking area and add it to the window
-	rightCursorTrackingArea = [[NSTrackingArea alloc] initWithRect:rrect options:(NSTrackingMouseEnteredAndExited | NSTrackingActiveAlways) owner:self userInfo:nil];
-	[self addTrackingArea:rightCursorTrackingArea];
+	if ([_document iIndex]->righttoleftreading)
+		rrect.origin.x += rrect.size.width-rwidth-1;
+	else
+		rrect.origin.x += 1;		// doesn't catch left entry if origin is 0;
+	rrect.size.width = rwidth;	// marginal rect for right-pointing cursor
+	for (NSTrackingArea * ta in self.trackingAreas) {
+		[self removeTrackingArea:ta];
+	}
+	self.marginArea = [NSTrackingArea.alloc initWithRect:rrect options:NSTrackingMouseEnteredAndExited|NSTrackingMouseMoved|NSTrackingActiveInActiveApp owner:self userInfo:nil];
+	[self addTrackingArea:self.marginArea];
 }
-
 #pragma NSDraggingSession
 - (NSDragOperation)draggingSession:(NSDraggingSession *)session sourceOperationMaskForDraggingContext:(NSDraggingContext)context {
 	return NSDragOperationCopy;

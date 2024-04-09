@@ -156,7 +156,7 @@ static char * errorstrings[] = {
 		anchor = @"checkindex1_Anchor-14210";
 	else
 		anchor = @"checkindex2_Anchor-14210";
-	[[NSHelpManager sharedHelpManager] openHelpAnchor:anchor inBook:@"Cindex 4.2.5 Help"];
+	[[NSHelpManager sharedHelpManager] openHelpAnchor:anchor inBook:@"Cindex 4 Help"];
 }
 - (IBAction)closePanel:(id)sender {
 	if ([sender tag] == OKTAG)	{

@@ -59,7 +59,7 @@
 	[popup selectItemAtIndex:itemindex >= 0 ? itemindex : 0];
 }
 - (IBAction)showHelp:(id)sender {
-	[[NSHelpManager sharedHelpManager] openHelpAnchor:_currentTagType == XMLTAGS ? @"tags1_Anchor-14210" : @"tags0_Anchor-14210" inBook:@"Cindex 4.2.5 Help"];
+	[[NSHelpManager sharedHelpManager] openHelpAnchor:_currentTagType == XMLTAGS ? @"tags1_Anchor-14210" : @"tags0_Anchor-14210" inBook:@"Cindex 4 Help"];
 }
 - (void)_setTagset:(NSString *)path {
 	_tset = ts_openset(path);

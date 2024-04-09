@@ -46,7 +46,7 @@
 	[self _setField:0];
 }
 - (IBAction)showHelp:(id)sender {
-	[[NSHelpManager sharedHelpManager] openHelpAnchor:@"headings0_Anchor-14210" inBook:@"Cindex 4.2.5 Help"];
+	[[NSHelpManager sharedHelpManager] openHelpAnchor:@"headings0_Anchor-14210" inBook:@"Cindex 4 Help"];
 }
 - (IBAction)showForHeading:(id)sender {
 	NSInteger index = [sender indexOfSelectedItem];

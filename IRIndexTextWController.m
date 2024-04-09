@@ -36,7 +36,7 @@
 	NSSize csize = NSMakeSize([pinfo paperSize].width-[pinfo rightMargin]-[pinfo leftMargin],[pinfo paperSize].height-[pinfo topMargin]-[pinfo bottomMargin]);
 	NSSize scrollsize = [NSScrollView frameSizeForContentSize:csize
 									horizontalScrollerClass:nil verticalScrollerClass:[NSScroller class]
-									borderType:NSNoBorder controlSize:NSRegularControlSize scrollerStyle:NSScrollerStyleOverlay];
+												   borderType:NSNoBorder controlSize:NSControlSizeRegular scrollerStyle:NSScrollerStyleOverlay];
 	
 	[[self window] setContentMaxSize:scrollsize];		// set max width
 	[[self window] setContentSize:NSMakeSize(scrollsize.width,[[[self window] contentView] frame].size.height)];	// set display width
