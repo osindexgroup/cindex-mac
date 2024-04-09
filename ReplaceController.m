@@ -74,7 +74,7 @@ static void recoverreplacestyle(NSMatrix * control,REPLACEATTRIBUTES *ra,int ind
 	}
 }
 - (IBAction)showHelp:(id)sender {
-	[[NSHelpManager sharedHelpManager] openHelpAnchor:@"rep0_Anchor-14210" inBook:@"Cindex 4.2.5 Help"];
+	[[NSHelpManager sharedHelpManager] openHelpAnchor:@"rep0_Anchor-14210" inBook:@"Cindex 4 Help"];
 }
 - (void)setNewFind {
 	[super setNewFind];

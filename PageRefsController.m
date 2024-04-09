@@ -49,7 +49,7 @@
 }
 - (IBAction)showHelp:(id)sender {
 	NSString * hstring = [sender window] == [self window] ? @"pageform0_Anchor-14210" : @"pageform4_Anchor-14210";
-	[[NSHelpManager sharedHelpManager] openHelpAnchor:hstring inBook:@"Cindex 4.2.5 Help"];
+	[[NSHelpManager sharedHelpManager] openHelpAnchor:hstring inBook:@"Cindex 4 Help"];
 }
 - (IBAction)showLeader:(id)sender {
 	if ([sender state])	{

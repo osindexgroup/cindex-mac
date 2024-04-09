@@ -7,27 +7,17 @@
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>ucdx</string>
-			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>index</string>
-			<key>CFBundleTypeIconSystemGenerated</key>
-			<integer>1</integer>
+			<string></string>
 			<key>CFBundleTypeName</key>
 			<string>Cindex Index</string>
-			<key>CFBundleTypeOSTypes</key>
-			<array>
-				<string>CDXU</string>
-			</array>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Default</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>com.example.cindex</string>
+				<string>com.ir.cindex</string>
 			</array>
 			<key>LSTypeIsPackage</key>
 			<false/>
@@ -35,144 +25,100 @@
 			<string>IRIndexDocument</string>
 			<key>NSExportableTypes</key>
 			<array>
-				<string>com.example.cindex</string>
-				<string>com.example.cindex.template</string>
-				<string>com.example.cindex.ixml</string>
-				<string>com.example.cindex.archive</string>
-				<string>com.example.delimited</string>
-				<string>public.plain-text</string>
+				<string>com.ir.cindex</string>
+				<string>com.ir.cindex.template</string>
+				<string>com.ir.cindex.ixml</string>
+				<string>com.ir.cindex.archive</string>
+				<string>com.ir.cindex.delimited</string>
+				<string>public.utf8-plain-text</string>
 				<string>public.rtf</string>
 				<string>com.quark.xpress</string>
 				<string>com.adobe.indesign</string>
 				<string>com.index.manager</string>
-				<string>public.xml</string>
-				<string>com.example.cindex.sgml</string>
+				<string>com.ir.cindex.xml</string>
+				<string>com.ir.cindex.sgml</string>
 			</array>
 		</dict>
 		<dict>
-			<key>CFBundleTypeIconFile</key>
-			<string>index</string>
 			<key>CFBundleTypeName</key>
 			<string>Cindex V2 Index</string>
-			<key>CFBundleTypeOSTypes</key>
-			<array>
-				<string>CDXF</string>
-			</array>
 			<key>CFBundleTypeRole</key>
 			<string>Viewer</string>
+			<key>LSHandlerRank</key>
+			<string>Default</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>com.example.cindex-v2</string>
+				<string>com.ir.cindex-v2</string>
 			</array>
 			<key>LSTypeIsPackage</key>
 			<false/>
 			<key>NSDocumentClass</key>
 			<string>IRIndexDocument</string>
-			<key>NSPersistentStoreTypeKey</key>
-			<string>Binary</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeIconFile</key>
-			<string>index</string>
 			<key>CFBundleTypeName</key>
 			<string>Cindex V1 Index</string>
-			<key>CFBundleTypeOSTypes</key>
-			<array>
-				<string>NDXF</string>
-			</array>
 			<key>CFBundleTypeRole</key>
 			<string>Viewer</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>com.example.cindex-v1</string>
+				<string>com.ir.cindex-v1</string>
 			</array>
 			<key>LSTypeIsPackage</key>
 			<false/>
 			<key>NSDocumentClass</key>
 			<string>IRIndexDocument</string>
-			<key>NSPersistentStoreTypeKey</key>
-			<string>Binary</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeIconFile</key>
-			<string>stationery</string>
 			<key>CFBundleTypeName</key>
 			<string>Cindex Template</string>
-			<key>CFBundleTypeOSTypes</key>
-			<array>
-				<string>tDXU</string>
-			</array>
 			<key>CFBundleTypeRole</key>
 			<string>Viewer</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>com.example.cindex.template</string>
+				<string>com.ir.cindex.template</string>
 			</array>
 			<key>LSTypeIsPackage</key>
 			<false/>
 			<key>NSDocumentClass</key>
 			<string>IRIndexDocument</string>
-			<key>NSPersistentStoreTypeKey</key>
-			<string>Binary</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeIconFile</key>
-			<string>stationery_old</string>
 			<key>CFBundleTypeName</key>
 			<string>Cindex V2 Template</string>
-			<key>CFBundleTypeOSTypes</key>
-			<array>
-				<string>tDXF</string>
-			</array>
 			<key>CFBundleTypeRole</key>
 			<string>Viewer</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>com.example.cindex-v2.template</string>
+				<string>com.ir.cindex-v2.template</string>
 			</array>
 			<key>LSTypeIsPackage</key>
 			<false/>
 			<key>NSDocumentClass</key>
 			<string>IRIndexDocument</string>
-			<key>NSPersistentStoreTypeKey</key>
-			<string>Binary</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeIconFile</key>
-			<string>stationery_old</string>
 			<key>CFBundleTypeName</key>
 			<string>Cindex V1 Template</string>
-			<key>CFBundleTypeOSTypes</key>
-			<array>
-				<string>sDXF</string>
-			</array>
 			<key>CFBundleTypeRole</key>
 			<string>Viewer</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>com.example.cindex-v1.template</string>
+				<string>com.ir.cindex-v1.template</string>
 			</array>
 			<key>LSTypeIsPackage</key>
 			<false/>
 			<key>NSDocumentClass</key>
-			<string>IRIndexDoxument</string>
-			<key>NSPersistentStoreTypeKey</key>
-			<string>Binary</string>
+			<string>IRIndexDocument</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeIconFile</key>
-			<string>stylesheet</string>
 			<key>CFBundleTypeName</key>
 			<string>Cindex Style Sheet</string>
-			<key>CFBundleTypeOSTypes</key>
-			<array>
-				<string>CFRU</string>
-			</array>
 			<key>CFBundleTypeRole</key>
 			<string>Viewer</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>com.example.cindex.stylesheet</string>
+				<string>com.ir.cindex.stylesheet</string>
 			</array>
 			<key>LSTypeIsPackage</key>
 			<false/>
@@ -180,89 +126,69 @@
 			<string>IRIndexDocument</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeIconFile</key>
-			<string>stylesheet_old</string>
 			<key>CFBundleTypeName</key>
 			<string>Cindex V2 Style Sheet</string>
-			<key>CFBundleTypeOSTypes</key>
-			<array>
-				<string>CFR2</string>
-			</array>
 			<key>CFBundleTypeRole</key>
 			<string>Viewer</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>com.example.cindex.stylesheet-v2</string>
+				<string>com.ir.cindex.stylesheet-v2</string>
 			</array>
 			<key>LSTypeIsPackage</key>
 			<false/>
 			<key>NSDocumentClass</key>
 			<string>IRIndexDocument</string>
-			<key>NSPersistentStoreTypeKey</key>
-			<string>Binary</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeIconFile</key>
-			<string>stylesheet_old</string>
 			<key>CFBundleTypeName</key>
 			<string>Cindex V1 Style Sheet</string>
-			<key>CFBundleTypeOSTypes</key>
-			<array>
-				<string>CFRM</string>
-			</array>
 			<key>CFBundleTypeRole</key>
 			<string>Viewer</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>com.example.cindex.stylesheet-v1</string>
+				<string>com.ir.cindex.stylesheet-v1</string>
 			</array>
 			<key>LSTypeIsPackage</key>
 			<false/>
 			<key>NSDocumentClass</key>
 			<string>IRIndexDocument</string>
-			<key>NSPersistentStoreTypeKey</key>
-			<string>Binary</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeIconFile</key>
-			<string>xmlrecords</string>
-			<key>CFBundleTypeMIMETypes</key>
-			<array>
-				<string>text/xml</string>
-			</array>
 			<key>CFBundleTypeName</key>
 			<string>XML Records</string>
-			<key>CFBundleTypeOSTypes</key>
-			<array>
-				<string>CXML</string>
-			</array>
 			<key>CFBundleTypeRole</key>
 			<string>Viewer</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>com.example.cindex.ixml</string>
+				<string>com.ir.cindex.ixml</string>
 			</array>
 			<key>LSTypeIsPackage</key>
 			<false/>
 			<key>NSDocumentClass</key>
 			<string>IRIndexArchive</string>
-			<key>NSPersistentStoreTypeKey</key>
-			<string>Binary</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeIconFile</key>
-			<string>archive</string>
+			<key>CFBundleTypeName</key>
+			<string>Delimited Records</string>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.ir.cindex.delimited</string>
+			</array>
+			<key>LSTypeIsPackage</key>
+			<false/>
+			<key>NSDocumentClass</key>
+			<string>IRIndexArchive</string>
+		</dict>
+		<dict>
 			<key>CFBundleTypeName</key>
 			<string>Cindex Archive</string>
-			<key>CFBundleTypeOSTypes</key>
-			<array>
-				<string>CDAM</string>
-			</array>
 			<key>CFBundleTypeRole</key>
 			<string>Viewer</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>com.example.cindex.archive</string>
+				<string>com.ir.cindex.archive</string>
 			</array>
 			<key>LSTypeIsPackage</key>
 			<false/>
@@ -270,17 +196,13 @@
 			<string>IRIndexArchive</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeMIMETypes</key>
-			<array>
-				<string>text/plain</string>
-			</array>
 			<key>CFBundleTypeName</key>
 			<string>Cindex DOS Data</string>
 			<key>CFBundleTypeRole</key>
 			<string>Viewer</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>com.example.cindex.dos-data</string>
+				<string>com.ir.cindex.dos-data</string>
 			</array>
 			<key>LSTypeIsPackage</key>
 			<false/>
@@ -290,10 +212,6 @@
 		<dict>
 			<key>CFBundleTypeName</key>
 			<string>Macrex Backup</string>
-			<key>CFBundleTypeOSTypes</key>
-			<array>
-				<string>????</string>
-			</array>
 			<key>CFBundleTypeRole</key>
 			<string>Viewer</string>
 			<key>LSItemContentTypes</key>
@@ -306,19 +224,13 @@
 			<string>IRIndexArchive</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeIconFile</key>
-			<string>abbreviations</string>
 			<key>CFBundleTypeName</key>
 			<string>Cindex Abbreviations</string>
-			<key>CFBundleTypeOSTypes</key>
-			<array>
-				<string>ABRF</string>
-			</array>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>com.example.cindex.abbreviations</string>
+				<string>com.ir.cindex.abbreviations</string>
 			</array>
 			<key>LSTypeIsPackage</key>
 			<false/>
@@ -339,35 +251,13 @@
 			<key>NSDocumentClass</key>
 			<string>IRCindexArchive</string>
 		</dict>
-		<dict>
-			<key>CFBundleTypeMIMETypes</key>
-			<array>
-				<string>text/plain</string>
-			</array>
-			<key>CFBundleTypeName</key>
-			<string>Index-Manager</string>
-			<key>CFBundleTypeOSTypes</key>
-			<array>
-				<string>TEXT</string>
-			</array>
-			<key>CFBundleTypeRole</key>
-			<string>None</string>
-			<key>LSItemContentTypes</key>
-			<array>
-				<string>com.index.manager</string>
-			</array>
-			<key>LSTypeIsPackage</key>
-			<integer>0</integer>
-			<key>NSDocumentClass</key>
-			<string>IRIndexDocument</string>
-		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
 	<string>Cindex 4</string>
 	<key>CFBundleHelpBookFolder</key>
 	<string>Help</string>
 	<key>CFBundleHelpBookName</key>
-	<string>Cindex 4.2.5 Help</string>
+	<string>Cindex 4 Help</string>
 	<key>CFBundleIconFile</key>
 	<string>cindex</string>
 	<key>CFBundleIdentifier</key>
@@ -378,6 +268,8 @@
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleSignature</key>
 	<string>CNDX</string>
+	<key>CFBundleDisplayName</key>
+	<string>Cindex 4.3</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -405,11 +297,7 @@
 	<key>NSPrincipalClass</key>
 	<string>IRApp</string>
 	<key>SUEnableAutomaticChecks</key>
-	<true/>
-	<key>SUFeedURL</key>
-	<string>https://www.example.com/CinMac4/appcast.xml</string>
-	<key>SUPublicDSAKeyFile</key>
-	<string>dsa_pub.pem</string>
+	<false/>
 	<key>UTExportedTypeDeclarations</key>
 	<array>
 		<dict>
@@ -427,16 +315,20 @@
 				<string>index</string>
 			</array>
 			<key>UTTypeIdentifier</key>
-			<string>com.example.cindex</string>
+			<string>com.ir.cindex</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
+				<key>com.apple.ostype</key>
+				<array>
+					<string>CDXU</string>
+				</array>
 				<key>public.filename-extension</key>
 				<array>
 					<string>ucdx</string>
 				</array>
 				<key>public.mime-type</key>
 				<array>
-					<string>application/com.example.cindex</string>
+					<string>application/com.ir.cindex</string>
 				</array>
 			</dict>
 		</dict>
@@ -448,8 +340,12 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>Cindex V2 Index</string>
+			<key>UTTypeIconFile</key>
+			<string>index_old</string>
+			<key>UTTypeIcons</key>
+			<dict/>
 			<key>UTTypeIdentifier</key>
-			<string>com.example.cindex-v2</string>
+			<string>com.ir.cindex-v2</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>
@@ -458,7 +354,7 @@
 				</array>
 				<key>public.mime-type</key>
 				<array>
-					<string>application/com.example.cindex-v2</string>
+					<string>application/com.ir.cindex-v2</string>
 				</array>
 			</dict>
 		</dict>
@@ -470,8 +366,12 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>Cindex V1 Index</string>
+			<key>UTTypeIconFile</key>
+			<string>index_old</string>
+			<key>UTTypeIcons</key>
+			<dict/>
 			<key>UTTypeIdentifier</key>
-			<string>com.example.cindex-v1</string>
+			<string>com.ir.cindex-v1</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>
@@ -480,7 +380,7 @@
 				</array>
 				<key>public.mime-type</key>
 				<array>
-					<string>application/com.example.cindex-v1</string>
+					<string>application/com.ir.cindex-v1</string>
 				</array>
 			</dict>
 		</dict>
@@ -499,16 +399,20 @@
 				<string>stationery</string>
 			</array>
 			<key>UTTypeIdentifier</key>
-			<string>com.example.cindex.template</string>
+			<string>com.ir.cindex.template</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
+				<key>com.apple.ostype</key>
+				<array>
+					<string>tDXU</string>
+				</array>
 				<key>public.filename-extension</key>
 				<array>
 					<string>utpl</string>
 				</array>
 				<key>public.mime-type</key>
 				<array>
-					<string>application/com.example.cindex.template</string>
+					<string>application/com.ir.cindex.template</string>
 				</array>
 			</dict>
 		</dict>
@@ -519,9 +423,13 @@
 				<string>public.data</string>
 			</array>
 			<key>UTTypeDescription</key>
-			<string>Cindex Style Sheet</string>
+			<string>Cindex V2 Template</string>
+			<key>UTTypeIconFile</key>
+			<string>stationery_old</string>
+			<key>UTTypeIcons</key>
+			<dict/>
 			<key>UTTypeIdentifier</key>
-			<string>com.example.cindex-v2.template</string>
+			<string>com.ir.cindex-v2.template</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>
@@ -530,7 +438,7 @@
 				</array>
 				<key>public.mime-type</key>
 				<array>
-					<string>application/com.example.cindex-v2.template</string>
+					<string>application/com.ir.cindex-v2.template</string>
 				</array>
 			</dict>
 		</dict>
@@ -541,9 +449,13 @@
 				<string>public.data</string>
 			</array>
 			<key>UTTypeDescription</key>
-			<string>Cindex Style Sheet</string>
+			<string>Cindex V1 Template</string>
+			<key>UTTypeIconFile</key>
+			<string>stationery_old</string>
+			<key>UTTypeIcons</key>
+			<dict/>
 			<key>UTTypeIdentifier</key>
-			<string>com.example.cindex-v1.template</string>
+			<string>com.ir.cindex-v1.template</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>
@@ -552,7 +464,37 @@
 				</array>
 				<key>public.mime-type</key>
 				<array>
-					<string>application/com.example.cindex-v1.template</string>
+					<string>application/com.ir.cindex-v1.template</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.text</string>
+				<string>public.xml</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>XML Records</string>
+			<key>UTTypeIconFile</key>
+			<string>xmlrecords</string>
+			<key>UTTypeIcons</key>
+			<dict/>
+			<key>UTTypeIdentifier</key>
+			<string>com.ir.cindex.ixml</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>com.apple.ostype</key>
+				<array>
+					<string>CXML</string>
+				</array>
+				<key>public.filename-extension</key>
+				<array>
+					<string>ixml</string>
+				</array>
+				<key>public.mime-type</key>
+				<array>
+					<string>application/com.ir.cindex.ixml</string>
 				</array>
 			</dict>
 		</dict>
@@ -564,39 +506,26 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>Cindex Archive</string>
+			<key>UTTypeIconFile</key>
+			<string>archive</string>
+			<key>UTTypeIcons</key>
+			<dict/>
 			<key>UTTypeIdentifier</key>
-			<string>com.example.cindex.archive</string>
+			<string>com.ir.cindex.archive</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
+				<key>com.apple.ostype</key>
+				<array>
+					<string>CDAM</string>
+				</array>
 				<key>public.filename-extension</key>
 				<array>
 					<string>arc</string>
+					<string>xaf</string>
 				</array>
 				<key>public.mime-type</key>
 				<array>
-					<string>application/com.example.cindex.archive</string>
-				</array>
-			</dict>
-		</dict>
-		<dict>
-			<key>UTTypeConformsTo</key>
-			<array>
-				<string>public.item</string>
-				<string>public.data</string>
-			</array>
-			<key>UTTypeDescription</key>
-			<string>Cindex Style Sheet</string>
-			<key>UTTypeIdentifier</key>
-			<string>com.example.cindex.stylesheet</string>
-			<key>UTTypeTagSpecification</key>
-			<dict>
-				<key>public.filename-extension</key>
-				<array>
-					<string>ustl</string>
-				</array>
-				<key>public.mime-type</key>
-				<array>
-					<string>application/com.example.cindex.stylesheet</string>
+					<string>application/com.ir.cindex.archive</string>
 				</array>
 			</dict>
 		</dict>
@@ -608,8 +537,12 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>Cindex Abbreviations</string>
+			<key>UTTypeIconFile</key>
+			<string>abbreviations</string>
+			<key>UTTypeIcons</key>
+			<dict/>
 			<key>UTTypeIdentifier</key>
-			<string>com.example.cindex.abbreviations</string>
+			<string>com.ir.cindex.abbreviations</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>
@@ -618,7 +551,7 @@
 				</array>
 				<key>public.mime-type</key>
 				<array>
-					<string>application/com.example.cindex.abbreviations</string>
+					<string>application/com.ir.cindex.abbreviations</string>
 				</array>
 			</dict>
 		</dict>
@@ -630,17 +563,51 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>Cindex Style Sheet</string>
+			<key>UTTypeIconFile</key>
+			<string>stylesheet</string>
+			<key>UTTypeIcons</key>
+			<dict/>
 			<key>UTTypeIdentifier</key>
-			<string>com.example.cindex.stylesheet-v2</string>
+			<string>com.ir.cindex.stylesheet</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>ustl</string>
+				</array>
+				<key>public.mime-type</key>
+				<array>
+					<string>application/com.ir.cindex.stylesheet</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.item</string>
+				<string>public.data</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Cindex V2 Style Sheet</string>
+			<key>UTTypeIconFile</key>
+			<string>stylesheet_old</string>
+			<key>UTTypeIcons</key>
+			<dict/>
+			<key>UTTypeIdentifier</key>
+			<string>com.ir.cindex.stylesheet-v2</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>com.apple.ostype</key>
+				<array>
+					<string>CFR2</string>
+				</array>
 				<key>public.filename-extension</key>
 				<array>
 					<string>cfr2</string>
 				</array>
 				<key>public.mime-type</key>
 				<array>
-					<string>application/com.example.cindex.stylesheet-v2</string>
+					<string>application/com.ir.cindex.stylesheet-v2</string>
 				</array>
 			</dict>
 		</dict>
@@ -651,18 +618,26 @@
 				<string>public.data</string>
 			</array>
 			<key>UTTypeDescription</key>
-			<string>Cindex Style Sheet</string>
+			<string>Cindex V1 Style Sheet</string>
+			<key>UTTypeIconFile</key>
+			<string>stylesheet_old</string>
+			<key>UTTypeIcons</key>
+			<dict/>
 			<key>UTTypeIdentifier</key>
-			<string>com.example.cindex.stylesheet-v1</string>
+			<string>com.ir.cindex.stylesheet-v1</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
+				<key>com.apple.ostype</key>
+				<array>
+					<string>CFRM</string>
+				</array>
 				<key>public.filename-extension</key>
 				<array>
 					<string>cfrm</string>
 				</array>
 				<key>public.mime-type</key>
 				<array>
-					<string>application/com.example.cindex.stylesheet-v1</string>
+					<string>application/com.ir.cindex.stylesheet-v1</string>
 				</array>
 			</dict>
 		</dict>
@@ -675,7 +650,7 @@
 			<key>UTTypeDescription</key>
 			<string>Cindex DOS Data</string>
 			<key>UTTypeIdentifier</key>
-			<string>com.example.cindex.dos-data</string>
+			<string>com.ir.cindex.dos-data</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>
@@ -684,7 +659,80 @@
 				</array>
 				<key>public.mime-type</key>
 				<array>
-					<string>application/com.example.cindex.dos-data</string>
+					<string>text/plain</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.text</string>
+				<string>public.delimited-values-text</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Delimited Records</string>
+			<key>UTTypeIdentifier</key>
+			<string>com.ir.cindex.delimited</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>com.apple.ostype</key>
+				<array>
+					<string>TEXT</string>
+				</array>
+				<key>public.filename-extension</key>
+				<array>
+					<string>txt</string>
+					<string>text</string>
+				</array>
+				<key>public.mime-type</key>
+				<array>
+					<string>text/plain</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.xml</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>XML Tagged Text</string>
+			<key>UTTypeIcons</key>
+			<dict/>
+			<key>UTTypeIdentifier</key>
+			<string>com.ir.cindex.xml</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>xml</string>
+				</array>
+				<key>public.mime-type</key>
+				<array>
+					<string>application/xml</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.text</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>SGML Tagged Text</string>
+			<key>UTTypeIcons</key>
+			<dict/>
+			<key>UTTypeIdentifier</key>
+			<string>com.ir.cindex.sgml</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>tag</string>
+				</array>
+				<key>public.mime-type</key>
+				<array>
+					<string>text/sgml</string>
 				</array>
 			</dict>
 		</dict>
@@ -694,52 +742,7 @@
 		<dict>
 			<key>UTTypeConformsTo</key>
 			<array>
-				<string>public.item</string>
-				<string>public.data</string>
-			</array>
-			<key>UTTypeDescription</key>
-			<string>XML Records</string>
-			<key>UTTypeIdentifier</key>
-			<string>com.example.cindex.ixml</string>
-			<key>UTTypeTagSpecification</key>
-			<dict>
-				<key>public.filename-extension</key>
-				<array>
-					<string>ixml</string>
-				</array>
-				<key>public.mime-type</key>
-				<array>
-					<string>application/com.example.cindex.ixml</string>
-				</array>
-			</dict>
-		</dict>
-		<dict>
-			<key>UTTypeConformsTo</key>
-			<array>
-				<string>public.item</string>
-				<string>public.data</string>
-			</array>
-			<key>UTTypeDescription</key>
-			<string>Delimited Records</string>
-			<key>UTTypeIdentifier</key>
-			<string>com.example.delimited</string>
-			<key>UTTypeTagSpecification</key>
-			<dict>
-				<key>public.filename-extension</key>
-				<array>
-					<string>txt</string>
-				</array>
-				<key>public.mime-type</key>
-				<array>
-					<string>application/com.example.delimited</string>
-				</array>
-			</dict>
-		</dict>
-		<dict>
-			<key>UTTypeConformsTo</key>
-			<array>
-				<string>public.item</string>
-				<string>public.data</string>
+				<string>public.text</string>
 			</array>
 			<key>UTTypeDescription</key>
 			<string>QuarkXPress</string>
@@ -760,8 +763,7 @@
 		<dict>
 			<key>UTTypeConformsTo</key>
 			<array>
-				<string>public.item</string>
-				<string>public.data</string>
+				<string>public.text</string>
 			</array>
 			<key>UTTypeDescription</key>
 			<string>Adobe InDesign</string>
@@ -782,11 +784,10 @@
 		<dict>
 			<key>UTTypeConformsTo</key>
 			<array>
-				<string>public.item</string>
-				<string>public.data</string>
+				<string>public.text</string>
 			</array>
 			<key>UTTypeDescription</key>
-			<string>Index Manager</string>
+			<string>Index-Manager</string>
 			<key>UTTypeIdentifier</key>
 			<string>com.index.manager</string>
 			<key>UTTypeTagSpecification</key>
@@ -797,7 +798,7 @@
 				</array>
 				<key>public.mime-type</key>
 				<array>
-					<string>application/com.index.manager</string>
+					<string>text/plain</string>
 				</array>
 			</dict>
 		</dict>
@@ -808,29 +809,7 @@
 				<string>public.data</string>
 			</array>
 			<key>UTTypeDescription</key>
-			<string>SGML Tagged Text</string>
-			<key>UTTypeIdentifier</key>
-			<string>com.example.cindex.sgml</string>
-			<key>UTTypeTagSpecification</key>
-			<dict>
-				<key>public.filename-extension</key>
-				<array>
-					<string>tag</string>
-				</array>
-				<key>public.mime-type</key>
-				<array>
-					<string>application/com.example.cindex.sgml</string>
-				</array>
-			</dict>
-		</dict>
-		<dict>
-			<key>UTTypeConformsTo</key>
-			<array>
-				<string>public.item</string>
-				<string>public.data</string>
-			</array>
-			<key>UTTypeDescription</key>
-			<string>Cindex Style Sheet</string>
+			<string>Macrex Backup</string>
 			<key>UTTypeIdentifier</key>
 			<string>com.macrex.backup</string>
 			<key>UTTypeTagSpecification</key>
@@ -852,7 +831,7 @@
 				<string>public.data</string>
 			</array>
 			<key>UTTypeDescription</key>
-			<string>Cindex Style Sheet</string>
+			<string>Sky Text</string>
 			<key>UTTypeIdentifier</key>
 			<string>com.sky.text</string>
 			<key>UTTypeTagSpecification</key>
@@ -860,10 +839,60 @@
 				<key>public.filename-extension</key>
 				<array>
 					<string>sky7</string>
+					<string>txtsky7</string>
+					<string>txtsky8</string>
 				</array>
 				<key>public.mime-type</key>
 				<array>
 					<string>application/com.sky.text</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.plain-text</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Plain Text</string>
+			<key>UTTypeIcons</key>
+			<dict/>
+			<key>UTTypeIdentifier</key>
+			<string>public.utf8-plain-text</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>txt</string>
+					<string>text</string>
+				</array>
+				<key>public.mime-type</key>
+				<array>
+					<string>text/plain</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.text</string>
+				<string>public.content</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Rich Text Format</string>
+			<key>UTTypeIcons</key>
+			<dict/>
+			<key>UTTypeIdentifier</key>
+			<string>public.rtf</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>rtf</string>
+				</array>
+				<key>public.mime-type</key>
+				<array>
+					<string>application/rtf</string>
 				</array>
 			</dict>
 		</dict>

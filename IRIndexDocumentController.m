@@ -136,7 +136,7 @@ NSMutableDictionary * _abbreviations;
 	buildlabelmenu([findmenuitem(MI_LABELED) submenu],14);
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_setActiveIndex:) name:NSWindowDidBecomeMainNotification object:nil];
 
-#if TOPREC < RECLIMIT	// disable update for Student or Demo
+#if FALSE	// disable update for Student or Demo
 	[findmenuitem(MI_CHECKUPDATE) setTarget:nil];
 	[findmenuitem(MI_CHECKUPDATE) setState:NSOffState];
 #endif
@@ -223,7 +223,6 @@ NSMutableDictionary * _abbreviations;
 		code = 0;
 	return code;
 }
-#if 1
 - (void)openDocumentWithContentsOfURL:(NSURL *)url display:(BOOL)displayDocument completionHandler:(void (^)(NSDocument *document, BOOL documentWasAlreadyOpen, NSError *error))completionHandler {
 	NSString * path = [NSString stringWithString:[url path]];
 	NSString * docType = [self typeForContentsOfURL:url error:NULL];
@@ -241,23 +240,17 @@ NSMutableDictionary * _abbreviations;
 			creturn = [self convertpath:path newpath:&newpath extension:CINIndexExtension type:CIN_NDX];
 			if (creturn > 0)
 				ok = v3_convertindex(newpath,docType);
-//			else if (creturn == 0)
-//				completionHandler(nil,FALSE,err);
 		}
 	}
 	else if ([docType isEqualToString:CINV2StationeryType] || [docType isEqualToString:CINV1StationeryType])	{
 		creturn = [self convertpath:path newpath:&newpath extension:CINStationeryExtension type:CIN_STAT];
 		if (creturn > 0)
 			ok = v3_convertindex(newpath,docType);
-//		else if (creturn == 0)
-//			completionHandler(nil,FALSE,err);
 	}
 	else if ([docType isEqualToString:CINV2StyleSheetType] || [docType isEqualToString:CINV1StyleSheetType])	{
 		creturn = [self convertpath:path newpath:&newpath extension:CINStyleSheetExtension type:CIN_FORM];
 		if (creturn > 0)
 			ok = v3_convertstylesheet(newpath,docType);
-//		else if (creturn == 0)
-//			completionHandler(nil,FALSE,err);
 	}
 	else	{		// existing index; open normally
 		newpath = path;
@@ -283,67 +276,6 @@ NSMutableDictionary * _abbreviations;
 	}
 	completionHandler(nil,FALSE,err);
 }
-#else
-- (id)openDocumentWithContentsOfURL:(NSURL *)url display:(BOOL)displayDocument error:(NSError **)err	{
-	NSString * path = [NSString stringWithString:[url path]];
-	NSString * docType = [self typeForContentsOfURL:url error:NULL];
-	BOOL ok = FALSE;		// default for file that needs conversion
-	int creturn; 
-	NSString * newpath;
-	
-	if (err)
-		*err = [NSError errorWithDomain:NSCocoaErrorDomain code:NSUserCancelledError userInfo:nil];	// suppress any error
-	if ([docType isEqualToString:CINV2IndexType] || [docType isEqualToString:CINV1IndexType])	{	// if convertable index
-		NSString * tpath = [[path stringByDeletingPathExtension] stringByAppendingPathExtension:CINIndexExtension];
-		NSDocument * opendoc = [self documentForURL:[NSURL fileURLWithPath:tpath]];
-		if (opendoc)	// if new doc already open
-			return opendoc;
-		creturn = [self convertpath:path newpath:&newpath extension:CINIndexExtension type:CIN_NDX];
-		if (creturn > 0)
-			ok = v3_convertindex(newpath,docType);
-		else if (creturn == 0)
-			return nil;
-	}
-	else if ([docType isEqualToString:CINV2StationeryType] || [docType isEqualToString:CINV1StationeryType])	{
-		creturn = [self convertpath:path newpath:&newpath extension:CINStationeryExtension type:CIN_STAT];
-		if (creturn > 0)
-			ok = v3_convertindex(newpath,docType);
-		else if (creturn == 0)
-			return nil;
-	}
-	else if ([docType isEqualToString:CINV2StyleSheetType] || [docType isEqualToString:CINV1StyleSheetType])	{
-		creturn = [self convertpath:path newpath:&newpath extension:CINStyleSheetExtension type:CIN_FORM];
-		if (creturn > 0)
-			ok = v3_convertstylesheet(newpath,docType);
-		else if (creturn == 0)
-			return nil;
-	}
-	else	{
-		newpath = path;	// existing index; open normally
-		ok = TRUE;
-	}
-	if (ok)	{	// if ok to open file
-		NSURL * nurl = [NSURL fileURLWithPath:newpath];
-		BOOL display = ![[self typeForContentsOfURL:nurl error:NULL] isEqualToString:CINStyleSheetType];
-		
-		if ([docType isEqualToString:CINV2IndexType] || [docType isEqualToString:CINV1IndexType] ||
-			[docType isEqualToString:CINV2StationeryType] || [docType isEqualToString:CINV1StationeryType])	{
-			char warnings[500];
-			
-			if (v3_warnings(warnings))
-				sendinfo(INFO_CONVERSIONCHANGES,warnings);
-		}
-		[[NSUserDefaults standardUserDefaults] setObject:[newpath stringByDeletingLastPathComponent] forKey:CIOpenFolder];	// save directory as current default
-		return [super openDocumentWithContentsOfURL:nurl display:display error:err];
-	}
-	// must be conversion error
-	[[NSFileManager defaultManager] removeItemAtPath:newpath error:NULL];	// delete any new file
-//	if (!ok)
-//		*err = makeNSError(CONVERSIONERR);
-	senderr(CONVERSIONERR, WARN);
-	return nil;
-}
-#endif
 - (NSDocument *)makeDocumentWithContentsOfURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError * _Nullable *)outError {
 	IRIndexDocument * newndx;
 	if ([typeName isEqualToString:CINArchiveType] || [typeName isEqualToString:CINXMLRecordType] ||
@@ -352,51 +284,36 @@ NSMutableDictionary * _abbreviations;
 		
 		NSString * fileName = [url path];
 		NSString * newname = [[fileName stringByDeletingPathExtension] stringByAppendingPathExtension:CINIndexExtension];
+		BOOL exists = [[NSFileManager defaultManager] fileExistsAtPath:newname];	// check if index exists
 		
-		if ([[NSFileManager defaultManager] fileExistsAtPath:newname])		// if file exists
-#if 0
-			newndx = [IRIndexDocument newDocumentWithMessage:[NSString stringWithFormat:@"Create a new index from the archive \"%@\"",[fileName lastPathComponent]] error:outError];		// set up for naming new
-		else
-			newndx = [[IRIndexDocument alloc] initWithName:newname hideExtension:[[NSSavePanel savePanel] isExtensionHidden] error:outError];
-#else
-			newndx = [IRIndexDocument newDocumentFromURL:url error:outError];		// set up for naming new
+		if (exists)
+			newndx = [IRIndexDocument newDocumentFromURL:url error:outError];		// set up for requesting new name
 		else
 			newndx = [[IRIndexDocument alloc] initWithName:newname template:nil hideExtension:[[NSSavePanel savePanel] isExtensionHidden] error:outError];
-#endif
 		if (newndx)	{	// if have created new index
-			if ([[IRIndexArchive alloc] initWithContentsOfURL:url ofType:typeName forIndex:[newndx iIndex]])
+			if ([[IRIndexArchive alloc] initWithContentsOfURL:url ofType:typeName forIndex:[newndx iIndex]]) {
+				if (!exists) {	// if new index from imported records
+					dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+						char * impName = [[fileName lastPathComponent] UTF8String];
+						infoSheet(newndx.windowForSheet, INFO_NEWFROMIMPORT,newndx.iIndex->head.rtot, impName);
+					});
+				}
 				return (id)newndx;
-			[[NSFileManager defaultManager] removeItemAtPath:newname error:nil];
+			}
+			[[NSFileManager defaultManager] removeItemAtPath:newname error:nil];	// failure
 		}
 		return nil;
 	}
-	else if ([typeName isEqualToString:CINStationeryType])	{
-#if 0
-		NSString * message = [NSString stringWithFormat:@"Create a new index from the template \"%@\"",[[url path] lastPathComponent]];
-		newndx = [IRIndexDocument newDocumentWithMessage:message error:outError];
-		if (newndx)
-			return [newndx initWithTemplateURL:url error:outError];
-		return nil;
-#else
+	else if ([typeName isEqualToString:CINStationeryType])
 		return [IRIndexDocument newDocumentFromURL:url error:outError];
-#endif
-	}
 	return [super makeDocumentWithContentsOfURL:url ofType:typeName error:outError];
 }
 - (NSInteger)runModalOpenPanel:(NSOpenPanel *)openPanel forTypes:(NSArray *)openableFileExtensions {
 	NSString * defaultPath = [[NSUserDefaults standardUserDefaults] stringForKey:CIOpenFolder];
-	NSArray * types = [NSArray arrayWithObjects:
-				CINIndexExtension,NSFileTypeForHFSTypeCode(CIN_NDX),
-				CINIndexV2Extension,NSFileTypeForHFSTypeCode(CIN_V2NDX),
-				CINIndexV1Extension,NSFileTypeForHFSTypeCode(CIN_V1NDX),
-				CINStyleSheetExtension,NSFileTypeForHFSTypeCode(CIN_FORM),
-				CINV1StyleSheetExtension,NSFileTypeForHFSTypeCode(CIN_V1FORM),
-				CINV2StyleSheetExtension,NSFileTypeForHFSTypeCode(CIN_V2FORM),
-				@"ixml",
-				@"arc",NSFileTypeForHFSTypeCode(CIN_MDAT),
-				@"tdxf",NSFileTypeForHFSTypeCode(CIN_STAT),
-				@"sdxf",NSFileTypeForHFSTypeCode(CIN_V1STAT),nil];
-	int result;
+	NSArray * types = @[CINIndexType,CINV2IndexType,CINV1IndexType,CINStyleSheetType,CINV2StyleSheetType,CINV1StyleSheetType,
+						CINXMLRecordType,CINArchiveType,CINStationeryType,CINV2StationeryType,CINV1StationeryType,
+						MBackupType,SkyType];
+	NSInteger result;
 	
 	if (defaultPath)
 		[openPanel setDirectoryURL:[NSURL fileURLWithPath:defaultPath isDirectory:YES]];
@@ -459,18 +376,18 @@ NSMutableDictionary * _abbreviations;
 	if (defaultDirectory)
 		[savepanel setDirectoryURL:[NSURL fileURLWithPath:defaultDirectory isDirectory:YES]];
 	[savepanel setCanSelectHiddenExtension:YES];
-    [savepanel setAllowedFileTypes:[NSArray arrayWithObject:CINStyleSheetExtension]];
+    savepanel.allowedFileTypes = @[CINStyleSheetType];
 	if (curdoc)	{
 		[savepanel setNameFieldStringValue:[curdoc displayName]];
 		[savepanel beginSheetModalForWindow:[NSApp mainWindow] completionHandler:^(NSInteger result) {
-			if (result == NSFileHandlingPanelOKButton)
+			if (result == NSModalResponseOK)
 				[self _saveStyleSheet:[savepanel URL]];
 			[[NSUserDefaults standardUserDefaults] setObject:[[savepanel directoryURL] path] forKey:CIStyleSheetFolder];
 		}];
 	}
 	else {
 		[savepanel setTitle:@"Save Style Sheet"];
-		if ([savepanel runModal] == NSFileHandlingPanelOKButton)
+		if ([savepanel runModal] == NSModalResponseOK)
 			[self _saveStyleSheet:[savepanel URL]];
 	}
 }

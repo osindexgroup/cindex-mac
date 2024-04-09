@@ -49,7 +49,7 @@ static int countfonts(FONTMAP * fm);		// counts # fonts in map
 //	[check setHidden:countfonts(_fm) <= VOLATILEFONTS || !FF || FF->readonly || allfontsused];	// don't display fontcheck during index opening checks
 }
 - (IBAction)showHelp:(id)sender {
-	[[NSHelpManager sharedHelpManager] openHelpAnchor:@"font0_Anchor-14210" inBook:@"Cindex 4.2.5 Help"];
+	[[NSHelpManager sharedHelpManager] openHelpAnchor:@"font0_Anchor-14210" inBook:@"Cindex 4 Help"];
 }
 - (IBAction)checkUse:(id)sender {
 //	if (!type_scanfonts(FF,_farray)) {		// if not all used

@@ -64,7 +64,7 @@ enum {
 		[self manageAbbreviation:_activeText];	// set attributed string
 }
 - (IBAction)showHelp:(id)sender {
-	[[NSHelpManager sharedHelpManager] openHelpAnchor:@"abbrev0_Anchor-14210" inBook:@"Cindex 4.2.5 Help"];
+	[[NSHelpManager sharedHelpManager] openHelpAnchor:@"abbrev0_Anchor-14210" inBook:@"Cindex 4 Help"];
 }
 - (void)windowDidUpdate:(NSNotification *)aNotification {
 	[segs setEnabled:_dictionary ? YES : NO forSegment:0];
@@ -118,15 +118,14 @@ enum {
 	[NSApp stopModal];
 }
 - (IBAction)openAbbreviations:(id)sender {
-    NSArray *fileTypes = [NSArray arrayWithObjects:CINAbbrevExtension/*, NSFileTypeForHFSTypeCode(CINAbbrevType) */,nil]; // !! might add old abbrev type
-    NSOpenPanel *openpanel = [NSOpenPanel openPanel];
+	NSOpenPanel *openpanel = [NSOpenPanel openPanel];
 	NSString * defaultDirectory = [[NSUserDefaults standardUserDefaults] stringForKey:CIIndexFolder];
 	
 	if (defaultDirectory)
 		[openpanel setDirectoryURL:[NSURL fileURLWithPath:defaultDirectory isDirectory:YES]];
-	[openpanel setAllowedFileTypes:fileTypes];
+	openpanel.allowedFileTypes = @[CINAbbrevType];
 	[openpanel beginSheetModalForWindow:[self window] completionHandler:^(NSInteger result) {
-		if (result == NSFileHandlingPanelOKButton)	{
+		if (result == NSModalResponseOK)	{
 			NSMutableDictionary * newset = [NSKeyedUnarchiver unarchiveObjectWithData:[NSData dataWithContentsOfURL:[openpanel URL]]];
 			
 			[self _setDictionary:newset forPath:[[openpanel URL] path]];
@@ -160,13 +159,13 @@ enum {
 	NSSavePanel *savepanel = [NSSavePanel savePanel];
 	
     [savepanel setCanSelectHiddenExtension:YES];
-    [savepanel setAllowedFileTypes:[NSArray arrayWithObject:CINAbbrevExtension]];
+    savepanel.allowedFileTypes = @[CINAbbrevType];
 	[savepanel setNameFieldLabel:@"Create As:"];
 	[savepanel setPrompt:@"Create"];
 	[savepanel setMessage:@"Create a new set of abbreviations"];
 	[savepanel setNameFieldStringValue:[[NSUserDefaults standardUserDefaults] objectForKey:CIAbbreviations] ? @"New Abbreviations" : @"Default Abbreviations"];
 	[savepanel beginSheetModalForWindow:[self window] completionHandler:^(NSInteger result) {
-		if (result == NSFileHandlingPanelOKButton)	{
+		if (result == NSModalResponseOK)	{
 			NSDictionary * dic = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:[savepanel isExtensionHidden]] forKey:NSFileExtensionHidden];
 			
 			self.dicpath = [[savepanel URL] path];

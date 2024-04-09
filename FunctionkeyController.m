@@ -52,7 +52,7 @@ FunctionkeyController * fkc;
 	[self _setDictionary:[NSMutableDictionary dictionaryWithDictionary:newset]];
 }
 - (IBAction)showHelp:(id)sender {
-	[[NSHelpManager sharedHelpManager] openHelpAnchor:@"functkey0_Anchor-14210" inBook:@"Cindex 4.2.5 Help"];
+	[[NSHelpManager sharedHelpManager] openHelpAnchor:@"functkey0_Anchor-14210" inBook:@"Cindex 4 Help"];
 }
 - (void)windowWillClose:(NSNotification *)aNotification {
 	[[self window] makeFirstResponder:table];	// deselect all to force write

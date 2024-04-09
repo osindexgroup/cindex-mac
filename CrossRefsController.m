@@ -47,7 +47,7 @@
 	[prefixstylecheck setState:_cParams.suppressifbodystyle];
 }
 - (IBAction)showHelp:(id)sender {
-	[[NSHelpManager sharedHelpManager] openHelpAnchor:@"crossform0_Anchor-14210" inBook:@"Cindex 4.2.5 Help"];
+	[[NSHelpManager sharedHelpManager] openHelpAnchor:@"crossform0_Anchor-14210" inBook:@"Cindex 4 Help"];
 }
 - (IBAction)showTextStylePanel:(id)sender {
 	if (prefixstyle == sender)

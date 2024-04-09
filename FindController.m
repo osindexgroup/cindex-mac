@@ -60,7 +60,7 @@ NSString * IRWindowFind = @"FindWindow";
 	}
 }
 - (IBAction)showHelp:(id)sender {
-	[[NSHelpManager sharedHelpManager] openHelpAnchor:@"fnd0_Anchor-14210" inBook:@"Cindex 4.2.5 Help"];
+	[[NSHelpManager sharedHelpManager] openHelpAnchor:@"fnd0_Anchor-14210" inBook:@"Cindex 4 Help"];
 }
 - (IBAction)findall:(id)sender {
 	if ([self checkFindValid]) {

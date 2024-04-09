@@ -1,11 +1,18 @@
-Apple help index tool (hiutil)
+man page on hiutil (Apple help index utility) is useful
 
-From man page   
+cd to Help directory
 
- Here's what you'll mostly use this tool for, creating a help index:
+run hiutil from console:
 
-           hiutil -Caf /tmp/myhelp.helpindex myHelpDirectory
+	hiutil -I corespotlight -Caf CindexHelp.cshelpindex .
 
-     And if you then want to make sure that worked as expected:
+See:
+	https://forums.developer.apple.com/forums/thread/667260
 
-           hiutil -Af /tmp/myhelp.helpindex
+	https://github.com/Red-Menace/RubyMotionRonin/tree/master/Help%20Book%20Sample
+           
+See also (older info):
+	https://wiki.lazarus.freepascal.org/Add_an_Apple_Help_Book_to_your_macOS_app
+
+	https://developer.apple.com/library/archive/documentation/Carbon/Conceptual/ProvidingUserAssitAppleHelp/user_help_intro/user_assistance_intro.html
+

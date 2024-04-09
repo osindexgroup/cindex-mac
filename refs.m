@@ -24,7 +24,6 @@ short rf_nullorder[]={0,1,2,3,4,5,6,7,8,-1};			/* null page order sequence */
 #define PARSEMAX 40		// max number of components that can be parsed
 #define REFMAX 300      /* max length of individual page ref */
 
-//static short parseref(INDEX * FF, char *base, PARSEDREF * strptr, char *sptr);   /* parses source page ref into series of component strings */
 static short parseref(INDEX * FF, char *base, PARSEDREF * strptr, char * residue, char *sptr);   /* parses source page ref into series of component strings */
 static unsigned short rnum(char *start);     /* converts roman number to unsigned leaves pointing beyond */
 static short month(LMONTH * months, char *string);      /* returns month number if legit spelling, else -1 */
@@ -97,68 +96,6 @@ static short typeref(INDEX * FF, char *sptr)	/* identifies ref segment, returns 
 	}
 	return (EMPTY);
 }
-#if 0
-/******************************************************************************/
-static short parseref(INDEX * FF, char *base, PARSEDREF * strptr, char *sptr)   /* parses source page ref into series of component strings */
-
-{
-	unsigned char *dptr, *dlimit, *tbase;
-	short count;
-	
-	dlimit = base+REFMAX-2; 		/* limit of what can be put in destination string */
-	strptr[0].ref = dptr = base;
-	strptr[0].style = '\0';
-	
-	for (count = 0; *sptr && *sptr != FF->head.refpars.psep && dptr < dlimit;)  {	  /* for whole of page ref */
-		unichar uc = u8_nextU(&sptr);
-		switch (uc)        {
-			case FONTCHR:
-				sptr++;
-				continue;
-			case CODECHR:
-				if (*sptr)	{
-					if (!(*sptr&FX_OFF))	// if not turning off style
-						strptr[count].style = *sptr&(FX_BOLD|FX_ITAL|FX_ULINE);	// save style
-					sptr++;
-				}
-				continue;
-			case ESCCHR:
-				if (*sptr)
-					sptr++;
-				continue;
-			case OBRACKET:
-				sptr = str_skiptoclose(sptr,CBRACKET);
-				continue;
-			default:
-				tbase = dptr;		/* save start in case component discarded as invalid */
-				if (u_isdigit(uc))     {       /* an arabic numeral */
-					do {
-						dptr = u8_appendU(dptr, uc);
-					} while (dptr < dlimit && *sptr && (uc = u8_toU(sptr)) && u_isdigit(uc) && (sptr = u8_forward1(sptr)));
-					*dptr = '\0'; 		/* terminate it */
-				}
-				else if (u_isalpha(uc))		{	// if letter
-					do {
-						dptr = u8_appendU(dptr, uc);
-					} while (dptr < dlimit && *sptr && (uc = u8_toU(sptr)) && u_isalpha(uc) && (sptr = u8_forward1(sptr)));
-					*dptr = '\0'; 		/* terminate it */
-				}
-				else
-					continue;
-				if (typeref(FF,strptr[count].ref) == INVALID)   { /* if this to be ignored */
-					dptr = tbase;		/* restore orig pointer posn */
-					strptr[count].style = '\0';
-					continue;
-				}
-				if (++count == PARSEMAX) 		/* if reached limit of components */
-					return (count);
-				strptr[count].ref = ++dptr;      //  set base for next field */
-				strptr[count].style = '\0';		// set no style
-		}
-	}
-	return (count);       /* return # of components recognized */
-}
-#else
 /******************************************************************************/
 static short parseref(INDEX * FF, char *base, PARSEDREF * strptr, char * residue, char *sptr)   /* parses source page ref into series of component strings */
 
@@ -181,16 +118,11 @@ static short parseref(INDEX * FF, char *base, PARSEDREF * strptr, char * residue
 				continue;
 			case CODECHR:
 				if (*sptr)	{
-#if 0
-					if (!(*sptr&FX_OFF))	// if not turning off style
-						strptr[count].style = *sptr&(FX_BOLD|FX_ITAL|FX_ULINE);	// save style
-#else
 					if (!(*sptr&FX_OFF))	// if not turning off style
 						style |= *sptr&(FX_BOLD|FX_ITAL|FX_ULINE);	// add permissible style
 					else
 						style &= ~(*sptr&(FX_BOLD|FX_ITAL|FX_ULINE));	// strip permissible style
 					strptr[count].style = style;
-#endif
 					sptr++;
 				}
 				continue;
@@ -233,7 +165,6 @@ static short parseref(INDEX * FF, char *base, PARSEDREF * strptr, char * residue
 	}
 	return (count);       /* return # of components recognized */
 }
-#endif
 /******************************************************************************/
 short ref_match(INDEX * FF,char *s1, char *s2, short *order, char flags)	/* compares strings by page ref sorting rules */
 				/* order sets evaluation order of components */
@@ -301,16 +232,11 @@ short ref_match(INDEX * FF,char *s1, char *s2, short *order, char flags)	/* comp
 		loop:	
 		stylesign = FF->head.sortpars.styletab[strptr1[rpos].style] - FF->head.sortpars.styletab[strptr2[rpos].style];	// save most recent style sign
 	}
-#if 0
-	if (!count1 && (!count2 || !(flags&PMEXACT)))	/* if both refs at end or will accept match to end of first */
-		return ((flags&PMSTYLE) ? stylesign : 0);
-#else
 	if (!count1 && (!count2 || !(flags&PMEXACT)))	{	/* if both refs at end or will accept match to end of first */
 		if ((flags&PMSTYLE) && stylesign)		// if style can be tiebreaker
 			return stylesign;
 		return col_match(FF,&FF->head.sortpars, residue1, residue2, MATCH_IGNORECODES);	// try residue as tiebreaker
 	}
-#endif
 	return (count1 ? sense : -sense);  /* return 1 if first has more segs */
 }
 /******************************************************************************/

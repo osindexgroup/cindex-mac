@@ -27,7 +27,7 @@ enum {
 		[[scope cellWithTag:CSELECTREC] setEnabled:NO];
 }
 - (IBAction)showHelp:(id)sender {
-	[[NSHelpManager sharedHelpManager] openHelpAnchor:@"count0_Anchor-14210" inBook:@"Cindex 4.2.5 Help"];
+	[[NSHelpManager sharedHelpManager] openHelpAnchor:@"count0_Anchor-14210" inBook:@"Cindex 4 Help"];
 }
 - (IBAction)closeSheet:(id)sender {    
 	if ([sender tag] == OKTAG)	{

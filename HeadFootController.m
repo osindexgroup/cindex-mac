@@ -62,7 +62,7 @@
 	[tab selectTabViewItemAtIndex:0];
 }
 - (IBAction)showHelp:(id)sender {
-	[[NSHelpManager sharedHelpManager] openHelpAnchor:@"headfoot0_Anchor-14210" inBook:@"Cindex 4.2.5 Help"];
+	[[NSHelpManager sharedHelpManager] openHelpAnchor:@"headfoot0_Anchor-14210" inBook:@"Cindex 4 Help"];
 }
 - (void)_setLeftHeadText{
 	[lhleft setStringValue:[NSString stringWithCString:_hParams.lefthead.left encoding:NSUTF8StringEncoding]];

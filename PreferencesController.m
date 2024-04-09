@@ -23,7 +23,7 @@
 }
 - (void)awakeFromNib {
 	[super awakeFromNib];
-#if defined _DEMOCOPY || defined _STUDENTCOPY
+#if TRUE
 	[checkforupdates setState:NO];
 	[checkforupdates setEnabled:NO];
 #endif
@@ -64,7 +64,7 @@
 		anchor = @"prf2_Anchor-35882";
 	else
 		anchor = @"prf3_Anchor-14210";
-	[[NSHelpManager sharedHelpManager] openHelpAnchor:anchor inBook:@"Cindex 4.2.5 Help"];
+	[[NSHelpManager sharedHelpManager] openHelpAnchor:anchor inBook:@"Cindex 4 Help"];
 }
 - (IBAction)closePanel:(id)sender {    
 	if ([sender tag] == OKTAG)	{

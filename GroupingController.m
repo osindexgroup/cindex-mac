@@ -40,7 +40,7 @@
 	[symbolgrouping selectItemAtIndex:_gParams.method];
 }
 - (IBAction)showHelp:(id)sender {
-	[[NSHelpManager sharedHelpManager] openHelpAnchor:@"groupentry0_Anchor-14210" inBook:@"Cindex 4.2.5 Help"];
+	[[NSHelpManager sharedHelpManager] openHelpAnchor:@"groupentry0_Anchor-14210" inBook:@"Cindex 4 Help"];
 }
 - (IBAction)showTextStylePanel:(id)sender {
 	[TextStyleController showForStyle:&_gParams.gstyle extraMode:0];

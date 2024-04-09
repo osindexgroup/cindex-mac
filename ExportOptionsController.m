@@ -102,7 +102,7 @@
 		anchor = @"exopt2_Anchor-11481";
 	else
 		anchor = @"exopt3_Anchor-11481";
-	[[NSHelpManager sharedHelpManager] openHelpAnchor:anchor inBook:@"Cindex 4.2.5 Help"];
+	[[NSHelpManager sharedHelpManager] openHelpAnchor:anchor inBook:@"Cindex 4 Help"];
 }
 - (IBAction)closePanel:(id)sender {    
 //	NSLog([[tab selectedTabViewItem] identifier]);

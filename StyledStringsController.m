@@ -38,7 +38,7 @@ char newstring[] = {FX_OFF,0};
 	[self _showStyles:[table selectedRow]];
 }
 - (IBAction)showHelp:(id)sender {
-	[[NSHelpManager sharedHelpManager] openHelpAnchor:@"styledstring0_Anchor-14210" inBook:@"Cindex 4.2.5 Help"];
+	[[NSHelpManager sharedHelpManager] openHelpAnchor:@"styledstring0_Anchor-14210" inBook:@"Cindex 4 Help"];
 }
 - (void)windowDidUpdate:(NSNotification *)aNotification {
 	[segs setEnabled:([table selectedRow] >= 0) forSegment:1];

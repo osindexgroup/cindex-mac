@@ -623,35 +623,6 @@
 	}
 	return nil;
 }
-#if 0
-- (NSRange)characterRangeForRecord:(RECN)record {
-	[_indexView characterRangeForRecord:record];
-	if (record)	{
-		int count = [_layoutDescriptors count];
-		LayoutDescriptor * ld = [_layoutDescriptors objectAtIndex:0];
-		int characters, base, length;
-		int index;
-		
-		base = 0;		// set values for first record
-		length = [ld entryLength];
-		characters = length;
-		if (_startLine)		{	// if we start at offset line
-			int offset = [[[ld lineRanges] objectAtIndex:_startLine] rangeValue].location;// back out skipped lines in first entry
-			characters -= offset;
-			length -= offset;
-		}
-		for (index = 1; index < count && [ld record] != record; index++) {	// until we hit our record
-			base = characters;
-			ld = [_layoutDescriptors objectAtIndex:index];
-			length = [ld entryLength];
-			characters += length;
-		}
-		if ([ld record] == record)
-			return NSMakeRange(base, length);
-	}
-	return NSMakeRange(0,0);
-}
-#endif
 - (NSString *)windowTitleForDocumentDisplayName:(NSString *)docname {
 	NSMutableString *statusname = [NSMutableString stringWithCapacity:50];
     NSString * name = nil;
@@ -730,9 +701,6 @@
 - (void)windowDidResize:(NSNotification *)aNotification {
 	if (_allowFrameSet)
 		FF->head.mainviewrect = IRRectFromNSRect([[self window] contentRectForFrameRect:[[self window] frame]]);	// remember content
-	
-	// updating margin tracking area when the window is resized
-	[_indexView updateTrackingAreas];
 }
 - (void)windowWillEnterFullScreen:(NSNotification *)aNotification {
 	_allowFrameSet = NO;
@@ -1169,7 +1137,6 @@
 				_rightCursorWidth = levelspacing.width+6;
 				if (_rightCursorWidth < 12)
 					_rightCursorWidth = 12;
-				[[self window] invalidateCursorRectsForView:_indexView];
 				if (pfp->entryspace)	{	// if main head and need extra para space
 					float lineheight = pfp->autospace ? levelspacing.height : pfp->lineheight;
 					[tpara setParagraphSpacingBefore:lineheight * pfp->entryspace];
@@ -1212,7 +1179,6 @@
 		}
 		[_paragraphs addObject:tpara];
 	}
-	[[self window] invalidateCursorRectsForView:_indexView];
 }
 - (float)rightCursorWidth {
 	return _rightCursorWidth;

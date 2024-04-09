@@ -18,16 +18,16 @@
 #import "strings_c.h"
 #import "IRDisplayString.h"
 
-//NSString * IRRecordsPBoardType = @"IRRecordsPasteboard3";
 NSString * IRRecordsPBoardType = @"com.indexres.pbrecords3";
 
 static NSCursor * _rightCursor;
-static NSTrackingArea * rightCursorTrackingArea;
 
 @interface IRIndexView () {
+	
 }
 @property (assign) IRIndexDocWController <IRIndexViewDelegate, NSObject> * owner;
 @property (assign) IRIndexDocument * document;
+@property (strong) NSTrackingArea * marginArea;
 
 - (void)_stepRecord:(int)step mode:(int)mode;
 - (void)_selectFrom:(RECN)base to:(RECN)end;
@@ -38,7 +38,7 @@ static NSTrackingArea * rightCursorTrackingArea;
 
 + (void)initialize {
 	_rightCursor = getcursor(@"rightcursor",NSMakePoint(14,1));
-	[_rightCursor setOnMouseEntered:YES];
+//	[_rightCursor setOnMouseEntered:YES];
 }
 - (void)awakeFromNib {
 	[super awakeFromNib];
@@ -111,14 +111,6 @@ static NSTrackingArea * rightCursorTrackingArea;
 	}
 	return [super validateMenuItem:mitem];
 }
-
-- (void)cursorUpdate:(NSEvent *)theEvent	{if ( rightCursorTrackingArea ) {
-	// check if mouse pointer is in the tracking area; avoid resetting if it is
-	if ( !NSPointInRect([[self window] mouseLocationOutsideOfEventStream], [rightCursorTrackingArea rect]) ) {
-			[[NSCursor arrowCursor] set];
-		}
-	}
-}
 - (BOOL)acceptsFirstMouse:(NSEvent *)theEvent	{
 	return [[_document recordWindowController] window] == [IRdc lastKeyWindow];	// accept click from record-entry window
 }
@@ -126,16 +118,10 @@ static NSTrackingArea * rightCursorTrackingArea;
 	// need to override to prevent text cursor overriding our cursor
 }
 - (void)mouseEntered:(NSEvent *)theEvent	{
-	// need to override to prevent text cursor overriding our cursor
-	
-	// set mouse cursor to rightCursor
 	[_rightCursor set];
 }
 - (void)mouseExited:(NSEvent *)theEvent	{
-	// need to override to prevent text cursor overriding our cursor
-	
-	// reset mouse cursor back to regular pointer
-	[[NSCursor arrowCursor] set];
+	[NSCursor.arrowCursor set];
 }
 - (void)mouseDown:(NSEvent *)theEvent	{
 	[_owner displayError:nil];	// clear any displayed error
@@ -372,29 +358,22 @@ static NSTrackingArea * rightCursorTrackingArea;
 	else
 		[super insertText:text replacementRange:replacementRange];
 }
-
-// add tracking area upon update event if isn't already initialized
-- (void) updateTrackingAreas {
-	[self createAndAddRightMarginTrack];
+- (void)updateTrackingAreas {
 	[super updateTrackingAreas];
-}
-
-- (void) createAndAddRightMarginTrack {
-	// invalidate tracking area before initializing
-	if ( rightCursorTrackingArea != nil )
-		[self removeTrackingArea:rightCursorTrackingArea];
-		
 	int rwidth = [_owner rightCursorWidth];
-	NSRect rrect = [self visibleRect];
-
-	rrect.origin.x += 1;		// doesn't catch left entry if origin is 0;
-	rrect.size.width = rwidth;	// marginal rect for right-pointing cursor
+	NSRect rrect = self.visibleRect;
 	
-	// create tracking area and add it to the window
-	rightCursorTrackingArea = [[NSTrackingArea alloc] initWithRect:rrect options:(NSTrackingMouseEnteredAndExited | NSTrackingActiveAlways) owner:self userInfo:nil];
-	[self addTrackingArea:rightCursorTrackingArea];
+	if ([_document iIndex]->righttoleftreading)
+		rrect.origin.x += rrect.size.width-rwidth-1;
+	else
+		rrect.origin.x += 1;		// doesn't catch left entry if origin is 0;
+	rrect.size.width = rwidth;	// marginal rect for right-pointing cursor
+	for (NSTrackingArea * ta in self.trackingAreas) {
+		[self removeTrackingArea:ta];
+	}
+	self.marginArea = [NSTrackingArea.alloc initWithRect:rrect options:NSTrackingMouseEnteredAndExited|NSTrackingMouseMoved|NSTrackingActiveInActiveApp owner:self userInfo:nil];
+	[self addTrackingArea:self.marginArea];
 }
-
 #pragma NSDraggingSession
 - (NSDragOperation)draggingSession:(NSDraggingSession *)session sourceOperationMaskForDraggingContext:(NSDraggingContext)context {
 	return NSDragOperationCopy;

@@ -17,13 +17,7 @@
 #define FIELDLIM 16		/* max number of fields in record */
 #define RECLIMIT 0xFFFFFFFF
 
-#if _DEMOCOPY
-#define TOPREC 100
-#elif _STUDENTCOPY
-#define TOPREC 500
-#else
 #define TOPREC RECLIMIT
-#endif
 
 #define EOCS '\177'	 /* char at end of compound string */
 

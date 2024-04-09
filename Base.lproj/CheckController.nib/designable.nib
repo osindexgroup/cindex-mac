@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22689"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -39,23 +39,23 @@
         <window title="Check Settings" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="102" userLabel="Panel" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="345" y="208" width="398" height="300"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
+            <rect key="contentRect" x="345" y="208" width="368" height="300"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1728" height="1079"/>
             <value key="minSize" type="size" width="213" height="107"/>
             <view key="contentView" id="101">
-                <rect key="frame" x="0.0" y="0.0" width="398" height="300"/>
+                <rect key="frame" x="0.0" y="0.0" width="368" height="300"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <tabView fixedFrame="YES" controlSize="small" initialItem="11" translatesAutoresizingMaskIntoConstraints="NO" id="8">
-                        <rect key="frame" x="13" y="39" width="372" height="244"/>
+                        <rect key="frame" x="13" y="39" width="342" height="244"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <tabViewItems>
                             <tabViewItem label="Basic" identifier="1" id="11">
-                                <view key="view" ambiguous="YES" id="9">
-                                    <rect key="frame" x="10" y="29" width="352" height="202"/>
+                                <view key="view" id="9">
+                                    <rect key="frame" x="10" y="29" width="322" height="202"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <button toolTip="Finds spaces improperly placed before punctuation" verticalHuggingPriority="750" fixedFrame="YES" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="bJJ-xJ-ETS">
+                                        <button toolTip="Finds spaces improperly placed before punctuation" tag="2" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bJJ-xJ-ETS">
                                             <rect key="frame" x="14" y="159" width="226" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Misplaced or questionable punctuation" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="9sf-4x-z1J">
@@ -63,7 +63,7 @@
                                                 <font key="font" metaFont="smallSystem"/>
                                             </buttonCell>
                                         </button>
-                                        <button toolTip="Checks for spaces missing before opening parentheses or brackets" verticalHuggingPriority="750" fixedFrame="YES" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="OQb-Ma-IUK">
+                                        <button toolTip="Checks for spaces missing before opening parentheses or brackets" tag="3" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OQb-Ma-IUK">
                                             <rect key="frame" x="14" y="139" width="265" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Missing space before parentheses or brackets" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="grS-AV-1PD">
@@ -71,7 +71,7 @@
                                                 <font key="font" metaFont="smallSystem"/>
                                             </buttonCell>
                                         </button>
-                                        <button identifier="Finds mismatched opening or closing parentheses" verticalHuggingPriority="750" fixedFrame="YES" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="054-LE-Vpx">
+                                        <button identifier="Finds mismatched opening or closing parentheses" tag="4" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="054-LE-Vpx">
                                             <rect key="frame" x="14" y="119" width="215" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Unbalanced parentheses or brackets" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="Zzj-lj-1Z8">
@@ -79,7 +79,7 @@
                                                 <font key="font" metaFont="smallSystem"/>
                                             </buttonCell>
                                         </button>
-                                        <button toolTip="Finds mismatched opening or closing quotation marks" verticalHuggingPriority="750" fixedFrame="YES" tag="5" translatesAutoresizingMaskIntoConstraints="NO" id="cr1-xY-88T">
+                                        <button toolTip="Finds mismatched opening or closing quotation marks" tag="5" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cr1-xY-88T">
                                             <rect key="frame" x="14" y="99" width="173" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Unbalanced quotation marks" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="HMK-hO-uwU">
@@ -87,7 +87,7 @@
                                                 <font key="font" metaFont="smallSystem"/>
                                             </buttonCell>
                                         </button>
-                                        <button toolTip="Finds words in mixed case lettering (except initial caps)" verticalHuggingPriority="750" fixedFrame="YES" tag="6" translatesAutoresizingMaskIntoConstraints="NO" id="PpC-PX-eRb">
+                                        <button toolTip="Finds words in mixed case lettering (except initial caps)" tag="6" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PpC-PX-eRb">
                                             <rect key="frame" x="14" y="79" width="304" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Mixed case words. (Ignores initial cap, plural endings)" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="v7A-Zg-Src">
@@ -108,10 +108,10 @@
                             </tabViewItem>
                             <tabViewItem label="Headings" identifier="2" id="7">
                                 <view key="view" id="10">
-                                    <rect key="frame" x="10" y="25" width="352" height="206"/>
+                                    <rect key="frame" x="10" y="25" width="322" height="206"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <button toolTip="Finds headings that are identical except for letter case" verticalHuggingPriority="750" fixedFrame="YES" tag="10" translatesAutoresizingMaskIntoConstraints="NO" id="cV6-5S-SVf">
+                                        <button toolTip="Finds headings that are identical except for letter case" tag="10" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cV6-5S-SVf">
                                             <rect key="frame" x="14" y="183" width="181" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Inconsistent capitalization" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="Q8i-1f-6ra">
@@ -119,7 +119,7 @@
                                                 <font key="font" metaFont="smallSystem"/>
                                             </buttonCell>
                                         </button>
-                                        <button toolTip="Finds headings that are identical except for text style and/or font" verticalHuggingPriority="750" fixedFrame="YES" tag="11" translatesAutoresizingMaskIntoConstraints="NO" id="T5O-sl-ct0">
+                                        <button toolTip="Finds headings that are identical except for text style and/or font" tag="11" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T5O-sl-ct0">
                                             <rect key="frame" x="14" y="163" width="187" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Inconsistent style/typeface" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="xyh-JS-CNg">
@@ -127,7 +127,7 @@
                                                 <font key="font" metaFont="smallSystem"/>
                                             </buttonCell>
                                         </button>
-                                        <button toolTip="Finds headings that are identical except for punctuation" verticalHuggingPriority="750" fixedFrame="YES" tag="12" translatesAutoresizingMaskIntoConstraints="NO" id="CkK-es-O79">
+                                        <button toolTip="Finds headings that are identical except for punctuation" tag="12" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CkK-es-O79">
                                             <rect key="frame" x="14" y="143" width="173" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Inconsistent punctuation" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="Dwi-YW-Qrr">
@@ -135,7 +135,7 @@
                                                 <font key="font" metaFont="smallSystem"/>
                                             </buttonCell>
                                         </button>
-                                        <button identifier="Finds headings that differ only in their leading conjunctions or prepositions" verticalHuggingPriority="750" fixedFrame="YES" tag="12" translatesAutoresizingMaskIntoConstraints="NO" id="ikf-TO-EqJ">
+                                        <button identifier="Finds headings that differ only in their leading conjunctions or prepositions" tag="12" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ikf-TO-EqJ">
                                             <rect key="frame" x="14" y="123" width="289" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Inconsistent leading conjunctions and prepositions" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="PQ1-r4-JjD">
@@ -147,27 +147,27 @@
                                             <rect key="frame" x="20" y="31" width="209" height="87"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <view key="contentView" id="wDA-zH-i6v">
-                                                <rect key="frame" x="3" y="3" width="203" height="69"/>
+                                                <rect key="frame" x="4" y="5" width="201" height="67"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <button toolTip="Finds headings that differ only in their plural endings" verticalHuggingPriority="750" fixedFrame="YES" tag="13" translatesAutoresizingMaskIntoConstraints="NO" id="Cac-0v-P8A">
-                                                        <rect key="frame" x="17" y="45" width="64" height="20"/>
+                                                    <button toolTip="Finds headings that differ only in their plural endings" tag="13" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cac-0v-P8A">
+                                                        <rect key="frame" x="17" y="43" width="64" height="20"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                         <buttonCell key="cell" type="check" title="Plurals" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="mES-vs-Pt7">
                                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                             <font key="font" metaFont="smallSystem"/>
                                                         </buttonCell>
                                                     </button>
-                                                    <button toolTip="Finds headings that are identical except for an ending conjunction or preposition" verticalHuggingPriority="750" fixedFrame="YES" tag="14" translatesAutoresizingMaskIntoConstraints="NO" id="xvM-mU-nBa">
-                                                        <rect key="frame" x="17" y="25" width="182" height="20"/>
+                                                    <button toolTip="Finds headings that are identical except for an ending conjunction or preposition" tag="14" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xvM-mU-nBa">
+                                                        <rect key="frame" x="17" y="23" width="182" height="20"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                         <buttonCell key="cell" type="check" title="Conjunctions and prepositions" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="mcp-Ss-LSv">
                                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                             <font key="font" metaFont="smallSystem"/>
                                                         </buttonCell>
                                                     </button>
-                                                    <button toolTip="Finds headings that are identical except for an ending phrase in parentheses" verticalHuggingPriority="750" fixedFrame="YES" tag="15" translatesAutoresizingMaskIntoConstraints="NO" id="ho0-ZT-RNW">
-                                                        <rect key="frame" x="17" y="5" width="155" height="20"/>
+                                                    <button toolTip="Finds headings that are identical except for an ending phrase in parentheses" tag="15" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ho0-ZT-RNW">
+                                                        <rect key="frame" x="17" y="3" width="155" height="20"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                         <buttonCell key="cell" type="check" title="Parenthetical phrases" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="bzs-bX-UiP">
                                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -205,7 +205,7 @@
                             </tabViewItem>
                             <tabViewItem label="References" identifier="3" id="12">
                                 <view key="view" id="13">
-                                    <rect key="frame" x="10" y="25" width="352" height="206"/>
+                                    <rect key="frame" x="10" y="25" width="322" height="206"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button toolTip="Finds empty locator fields" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OcU-Xw-2FH">
@@ -217,14 +217,14 @@
                                             </buttonCell>
                                         </button>
                                         <box autoresizesSubviews="NO" fixedFrame="YES" borderType="line" title="Page References" translatesAutoresizingMaskIntoConstraints="NO" id="np3-DP-fA8">
-                                            <rect key="frame" x="14" y="2" width="239" height="96"/>
+                                            <rect key="frame" x="14" y="2" width="294" height="96"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <view key="contentView" id="Yil-EA-Saq">
-                                                <rect key="frame" x="3" y="3" width="233" height="78"/>
+                                                <rect key="frame" x="4" y="5" width="286" height="76"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <button toolTip="Report entries that contain more than the specified number of unqualified page references" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Qh-AO-suq">
-                                                        <rect key="frame" x="17" y="50" width="85" height="20"/>
+                                                        <rect key="frame" x="17" y="48" width="85" height="20"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                         <buttonCell key="cell" type="check" title="More than" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="8fW-UN-Zrc">
                                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -232,7 +232,7 @@
                                                         </buttonCell>
                                                     </button>
                                                     <button toolTip="Finds duplicate page references or overlapping page ranges" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UHV-gm-RLn">
-                                                        <rect key="frame" x="17" y="30" width="142" height="20"/>
+                                                        <rect key="frame" x="17" y="28" width="142" height="20"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                         <buttonCell key="cell" type="check" title="Overlapping ranges" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="3HA-a7-J29">
                                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -240,7 +240,7 @@
                                                         </buttonCell>
                                                     </button>
                                                     <button toolTip="Checks whether locators are present only on the lowest level subheadings of entries" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nq5-zP-11W">
-                                                        <rect key="frame" x="17" y="10" width="166" height="20"/>
+                                                        <rect key="frame" x="17" y="8" width="166" height="20"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                         <buttonCell key="cell" type="check" title="On headings above lowest" bezelStyle="regularSquare" imagePosition="left" controlSize="small" inset="2" id="TX2-6r-VJn">
                                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -248,7 +248,7 @@
                                                         </buttonCell>
                                                     </button>
                                                     <textField toolTip="The maximum acceptable number of unqualified page references in an entry" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r6p-ct-OY7">
-                                                        <rect key="frame" x="98" y="51" width="29" height="19"/>
+                                                        <rect key="frame" x="98" y="49" width="29" height="19"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="5" drawsBackground="YES" id="ttv-Iq-PdW">
                                                             <font key="font" metaFont="smallSystem"/>
@@ -257,7 +257,7 @@
                                                         </textFieldCell>
                                                     </textField>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3SA-t3-fXy">
-                                                        <rect key="frame" x="133" y="53" width="88" height="14"/>
+                                                        <rect key="frame" x="133" y="51" width="88" height="14"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="undifferentiated" id="JJH-uD-c3M">
                                                             <font key="font" metaFont="smallSystem"/>
@@ -269,14 +269,14 @@
                                             </view>
                                         </box>
                                         <box autoresizesSubviews="NO" fixedFrame="YES" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="IC4-ND-Wdl">
-                                            <rect key="frame" x="14" y="102" width="239" height="75"/>
+                                            <rect key="frame" x="14" y="102" width="294" height="75"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <view key="contentView" id="CJm-lG-JeM">
-                                                <rect key="frame" x="3" y="3" width="233" height="57"/>
+                                                <rect key="frame" x="4" y="5" width="286" height="55"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f8c-0z-h3w">
-                                                        <rect key="frame" x="17" y="7" width="162" height="20"/>
+                                                        <rect key="frame" x="17" y="5" width="162" height="20"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                         <string key="toolTip">Specifies whether Cindex requires an exact match between the text of the cross reference and the target heading, or accepts an abbreviated form of the target heading</string>
                                                         <buttonCell key="cell" type="check" title="Require exact matches" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="gom-v6-RXF">
@@ -285,7 +285,7 @@
                                                         </buttonCell>
                                                     </button>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OYy-l7-oAN">
-                                                        <rect key="frame" x="18" y="33" width="102" height="14"/>
+                                                        <rect key="frame" x="18" y="31" width="102" height="14"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Require at least " id="s6X-HH-5If">
                                                             <font key="font" metaFont="smallSystem"/>
@@ -294,7 +294,7 @@
                                                         </textFieldCell>
                                                     </textField>
                                                     <textField toolTip="Specifies the acceptable minimum number of target entries for a cross-reference. Cindex always requires at least 1 match" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pVL-u6-fCH">
-                                                        <rect key="frame" x="109" y="31" width="29" height="19"/>
+                                                        <rect key="frame" x="109" y="29" width="29" height="19"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="1" drawsBackground="YES" id="88S-rZ-2Z8">
                                                             <font key="font" metaFont="smallSystem"/>
@@ -303,7 +303,7 @@
                                                         </textFieldCell>
                                                     </textField>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yQS-z4-bOA">
-                                                        <rect key="frame" x="142" y="34" width="56" height="14"/>
+                                                        <rect key="frame" x="142" y="32" width="56" height="14"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="matches" id="luQ-GF-aG5">
                                                             <font key="font" metaFont="smallSystem"/>
@@ -327,8 +327,19 @@
                             </tabViewItem>
                         </tabViewItems>
                     </tabView>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" tag="-1" translatesAutoresizingMaskIntoConstraints="NO" id="106">
-                        <rect key="frame" x="303" y="15" width="80" height="28"/>
+                    <button horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="107">
+                        <rect key="frame" x="16" y="17" width="25" height="25"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" controlSize="small" borderStyle="border" inset="2" id="356">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="smallSystem"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="showHelp:" target="-1" id="109"/>
+                        </connections>
+                    </button>
+                    <button tag="-1" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="106">
+                        <rect key="frame" x="274" y="14" width="80" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" tag="-1" inset="2" id="355">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -342,19 +353,8 @@ DQ
                             <outlet property="nextKeyView" destination="8" id="yZa-cr-zGy"/>
                         </connections>
                     </button>
-                    <button horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="107">
-                        <rect key="frame" x="16" y="17" width="25" height="25"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" controlSize="small" borderStyle="border" inset="2" id="356">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="smallSystem"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="showHelp:" target="-1" id="109"/>
-                        </connections>
-                    </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="108">
-                        <rect key="frame" x="225" y="15" width="80" height="28"/>
+                        <rect key="frame" x="196" y="14" width="80" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" inset="2" id="357">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -373,7 +373,7 @@ Gw
                 <outlet property="delegate" destination="-2" id="222"/>
                 <outlet property="initialFirstResponder" destination="8" id="pON-P6-g3e"/>
             </connections>
-            <point key="canvasLocation" x="22" y="3"/>
+            <point key="canvasLocation" x="67" y="93"/>
         </window>
     </objects>
 </document>

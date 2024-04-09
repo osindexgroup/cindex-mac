@@ -76,7 +76,7 @@ static short DUMMYLINESPACE;
 	[stylepunct setState:_fParams.ef.adjstyles];
 }
 - (IBAction)showHelp:(id)sender {
-	[[NSHelpManager sharedHelpManager] openHelpAnchor:@"stylelayout0_Anchor-14210" inBook:@"Cindex 4.2.5 Help"];
+	[[NSHelpManager sharedHelpManager] openHelpAnchor:@"stylelayout0_Anchor-14210" inBook:@"Cindex 4 Help"];
 }
 - (IBAction)setEnables:(id)sender {
 	if (sender == collapsebelow)	{

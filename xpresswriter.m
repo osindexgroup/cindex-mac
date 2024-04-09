@@ -67,57 +67,6 @@ FCONTROLX xpresscontrol = {
 	FALSE,			// don't tag individual crossrefs
 	TRUE			/* internal set */
 };
-#if 0
-/**********************************************************************/
-static short xpressinit(INDEX * FF, FCONTROLX * fxp, NSString * typename)	/* initializes control struct and emits header */
-
-{
-	short count, lspace, rtabpos, width;
-	int baseindent, firstindent;
-	char * fsptr, rtabchar;
-	char tabstops[200];
-	char tabstring[FIELDLIM];
-	
-	width = FF->head.formpars.pf.pi.pwidthactual-(FF->head.formpars.pf.mc.right+FF->head.formpars.pf.mc.left); /* overall width less margins (points) */
-	rtabpos = (width-(FF->head.formpars.pf.mc.ncols-1)*FF->head.formpars.pf.mc.gutter)/FF->head.formpars.pf.mc.ncols; /* fix for columns */
-	rtabchar = FF->head.formpars.ef.lf.leader ? '.' : SPACE;
-	fxp->esptr += sprintf(fxp->esptr,"%s%s","<v1.70><e0>",fxp->newlinestring);	/* load start stuff && set default font */
-	for (fsptr = stringbase, count = 0; *FF->head.fm[count].pname && count < T_NUMFONTS; count++)	{	/* for all fonts we use */
-		fonttags[count*2] = fsptr;		/* pointer for font id string */
-		if (!count)		/* if default font */
-			fsptr += sprintf(fsptr,"<f$>");
-		else
-			fsptr += sprintf(fsptr,"<f\"%s\">", FF->head.fm[count].pname)+1;	/* add string for name */
-		fonttags[count*2+1] = fsptr;		/* pointer for font id string */
-		*fsptr++ = '\0';		/* no off string */
-	}
-	if (FF->head.formpars.pf.autospace)
-		lspace = 0;
-	else
-		lspace = FF->head.formpars.pf.lineheight;
-	for (count = 0; count < FF->head.indexpars.maxfields-1; count++)	{	/* for all text fields */
-		formexport_gettypeindents(FF,count,fxp->usetabs, 1,&firstindent,&baseindent,"%d,0,\"1  \",",tabstops,tabstring);	/* gets base and first indents */
-		fxp->esptr += sprintf(fxp->esptr,"@%s=[S\"\",\"%s\"]<*L*h\"Standard\"*kn0*kt0*ra0*rb0*d0*p(%d,%d,0,%d,0,0,g,\"U.S. English\")*t(%s%d,2,\"2 %c\")Ps100t0h100z%dk0b0c\"Black\"f\"%s\">%s",
-			 FF->head.indexpars.field[count].name,FF->head.indexpars.field[count].name,(short)(baseindent), (short)firstindent,lspace,
-			 tabstops,rtabpos,rtabchar,
-			 FF->head.privpars.size,FF->head.fm[0].pname,fxp->newlinestring);	/* emit header spec */
-		structtags[count+STR_MAIN] = fsptr;				/* pointer for lead string */
-		structtags[count+STR_MAINEND] = g_nullstr;		/* pointer for trailing string (none) */
-		fsptr += sprintf(fsptr,"@%s:%s", FF->head.indexpars.field[count].name,tabstring)+1;		/* generate lead tag */
-	}
-	structtags[STR_PAGE] = g_nullstr;		/* pointer for page tag */
-	structtags[STR_PAGEND] = g_nullstr;		/* pointer for page end tag */
-	structtags[STR_CROSS] = g_nullstr;		/* pointer for cross tag */
-	structtags[STR_CROSSEND] = g_nullstr;	/* pointer for cross end tag */
-	fxp->newpara = fxp->newlinestring;	/* set end of line string */
-	fxp->esptr += sprintf(fxp->esptr,"@Ahead=[S\"\",\"Ahead\"]<*L*h\"Standard\"*kn0*kt0*ra0*rb0*d0*p(%d,-%d,0,%d,0,0,g,\"U.S. English\")Ps100t0h100z%dk0b0c\"Black\"f\"%s\">%s",
-		 27, 27,lspace,FF->head.privpars.size,FF->head.fm[0].pname,fxp->newlinestring);	/* emit header spec */
-	structtags[STR_AHEAD] = fsptr;		/* set ahead tag */
-	fsptr += sprintf(fsptr, "@Ahead:");	/* group header tag (style 1) */
-	structtags[STR_AHEADEND] = g_nullstr;	/* set ahead end tag */
-	return (TRUE);
-}
-#else
 /**********************************************************************/
 static short xpressinit(INDEX * FF, FCONTROLX * fxp)	/* initializes control struct and emits header */
 
@@ -203,7 +152,6 @@ static short xpressinit(INDEX * FF, FCONTROLX * fxp)	/* initializes control stru
 	structtags[STR_AHEADEND] = g_nullstr;	/* set ahead end tag */
 	return (TRUE);
 }
-#endif
 /**********************************************************************/
 static void xpresscleanup(INDEX * FF, FCONTROLX * fxp)	/* cleans up */
 

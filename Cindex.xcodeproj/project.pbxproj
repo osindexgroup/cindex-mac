@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -48,7 +48,6 @@
 		6E09044B1ECF7C5E00C094BD /* UserIDController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6E532F42086DC2AE003A0153 /* UserIDController.nib */; };
 		6E09044C1ECF7C5E00C094BD /* SplashWController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC121A108E747770060680B /* SplashWController.nib */; };
 		6E09044D1ECF7C5E00C094BD /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EC121A408E747850060680B /* splash.png */; };
-		6E09044E1ECF7C5E00C094BD /* Help in Resources */ = {isa = PBXBuildFile; fileRef = 6E24EA841C7A9C04005ABA4A /* Help */; };
 		6E09044F1ECF7C5E00C094BD /* FunctionkeyController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EADF28108FDE5E10032B456 /* FunctionkeyController.nib */; };
 		6E0904601ECF7C5E00C094BD /* FilterController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6E12A85A0DFAD26E006FBB91 /* FilterController.nib */; };
 		6E0904621ECF7C5E00C094BD /* UCP Tagged Text.cstg in Resources */ = {isa = PBXBuildFile; fileRef = 6E5A9C671317E62900D309F6 /* UCP Tagged Text.cstg */; };
@@ -68,7 +67,6 @@
 		6E0904701ECF7C5E00C094BD /* stationery_old.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6E889462138C7CBD00436A05 /* stationery_old.icns */; };
 		6E0904711ECF7C5E00C094BD /* stylesheet_old.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6E88946C138C7F5200436A05 /* stylesheet_old.icns */; };
 		6E0904721ECF7C5E00C094BD /* Standard Tags.cxtg in Resources */ = {isa = PBXBuildFile; fileRef = 6E5EE4211392C37D00CC7334 /* Standard Tags.cxtg */; };
-		6E0904731ECF7C5E00C094BD /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 6EA2E7B01395B26C0027A5EB /* dsa_pub.pem */; };
 		6E0904741ECF7C5E00C094BD /* FlipStringsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E69C37E13C46AA8002ACBDA /* FlipStringsController.xib */; };
 		6E0904771ECF7C5E00C094BD /* IRIndexDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4ACFDCFA73011CA2CEA /* IRIndexDocument.m */; settings = {ATTRIBUTES = (); }; };
 		6E0904781ECF7C5E00C094BD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
@@ -169,412 +167,35 @@
 		6E0904DE1ECF7C5E00C094BD /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */; };
 		6E0904DF1ECF7C5E00C094BD /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EDCD72D086E268400B8142D /* Carbon.framework */; };
 		6E0904E01ECF7C5E00C094BD /* ExceptionHandling.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EC11EE508E6F0DE0060680B /* ExceptionHandling.framework */; };
-		6E0904F21ECF7C6E00C094BD /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */; };
-		6E0904F31ECF7C6E00C094BD /* IRIndexDocWController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B4FDCFA73011CA2CEA /* IRIndexDocWController.nib */; };
-		6E0904F41ECF7C6E00C094BD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165FFE840EACC02AAC07 /* InfoPlist.strings */; };
-		6E0904F51ECF7C6E00C094BD /* SortController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EB2D2C207591B2B00F8EB8A /* SortController.nib */; };
-		6E0904F61ECF7C6E00C094BD /* PreferencesController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EDF446B0791640400F8746D /* PreferencesController.nib */; };
-		6E0904F71ECF7C6E00C094BD /* RecordStructureController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC014C0079197D8005695DD /* RecordStructureController.nib */; };
-		6E0904F81ECF7C6E00C094BD /* MarkupTagsController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC0154E0791A7EC005695DD /* MarkupTagsController.nib */; };
-		6E0904F91ECF7C6E00C094BD /* GoToController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC0157D0791AB59005695DD /* GoToController.nib */; };
-		6E0904FA1ECF7C6E00C094BD /* CountController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC016140791B2E7005695DD /* CountController.nib */; };
-		6E0904FB1ECF7C6E00C094BD /* StatisticsController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC016170791B396005695DD /* StatisticsController.nib */; };
-		6E0904FC1ECF7C6E00C094BD /* RefSyntaxController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC0172F0791BB24005695DD /* RefSyntaxController.nib */; };
-		6E0904FD1ECF7C6E00C094BD /* StyledStringsController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC017320791BB7A005695DD /* StyledStringsController.nib */; };
-		6E0904FE1ECF7C6E00C094BD /* PageRefsController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC017380791BBBA005695DD /* PageRefsController.nib */; };
-		6E0904FF1ECF7C6E00C094BD /* CrossRefsController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC0173B0791BBEF005695DD /* CrossRefsController.nib */; };
-		6E0905001ECF7C6E00C094BD /* HeadingsController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC0173E0791BC27005695DD /* HeadingsController.nib */; };
-		6E0905011ECF7C6E00C094BD /* StyleLayoutController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC017410791BC57005695DD /* StyleLayoutController.nib */; };
-		6E0905021ECF7C6E00C094BD /* GroupingController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC017440791BC85005695DD /* GroupingController.nib */; };
-		6E0905031ECF7C6E00C094BD /* HeadFootController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC017470791BCB4005695DD /* HeadFootController.nib */; };
-		6E0905041ECF7C6E00C094BD /* MarginColumnController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC0174A0791BCDE005695DD /* MarginColumnController.nib */; };
-		6E0905051ECF7C6E00C094BD /* CompressController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC018100791C66C005695DD /* CompressController.nib */; };
-		6E0905061ECF7C6E00C094BD /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 6EA2E7B01395B26C0027A5EB /* dsa_pub.pem */; };
-		6E0905071ECF7C6E00C094BD /* ReconcileController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC018130791C6CE005695DD /* ReconcileController.nib */; };
-		6E0905081ECF7C6E00C094BD /* GenerateRefsController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC0181A0791C735005695DD /* GenerateRefsController.nib */; };
-		6E0905091ECF7C6E00C094BD /* AlterRefsController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC0181D0791C777005695DD /* AlterRefsController.nib */; };
-		6E09050B1ECF7C6E00C094BD /* GroupsController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC018850791CCF3005695DD /* GroupsController.nib */; };
-		6E09050C1ECF7C6E00C094BD /* SaveGroupController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC018DF0791CFE4005695DD /* SaveGroupController.nib */; };
-		6E09050D1ECF7C6E00C094BD /* TextStyleController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC019F50791F4E3005695DD /* TextStyleController.nib */; };
-		6E09050E1ECF7C6E00C094BD /* ManageFontController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6ED5355907935E2600519D46 /* ManageFontController.nib */; };
-		6E09050F1ECF7C6E00C094BD /* IRIndexTextWController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC09C04079C05AD00CC55C4 /* IRIndexTextWController.nib */; };
-		6E0905101ECF7C6E00C094BD /* AAP Tagged Text.cstg in Resources */ = {isa = PBXBuildFile; fileRef = 6E85BC3F07A45214005D425E /* AAP Tagged Text.cstg */; };
-		6E0905111ECF7C6E00C094BD /* HTML Tagged Text.cstg in Resources */ = {isa = PBXBuildFile; fileRef = 6E85BC4007A45214005D425E /* HTML Tagged Text.cstg */; };
-		6E0905121ECF7C6E00C094BD /* ExportOptionsController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6E1DAC3A07A8954E006F8E2E /* ExportOptionsController.nib */; };
-		6E0905131ECF7C6E00C094BD /* FindController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6E1EBB7A07C8250B00AD208C /* FindController.nib */; };
-		6E0905141ECF7C6E00C094BD /* ReplaceController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6E1EBBA607C82B4700AD208C /* ReplaceController.nib */; };
-		6E0905151ECF7C6E00C094BD /* SpellController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6ECA117107CAE078003F16AC /* SpellController.nib */; };
-		6E0905161ECF7C6E00C094BD /* ReplaceFontController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6E26834507DBBBAF004BA6AD /* ReplaceFontController.nib */; };
-		6E0905171ECF7C6E00C094BD /* IRIndexRecordWController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6E65F0DA07E3785600780E48 /* IRIndexRecordWController.nib */; };
-		6E0905181ECF7C6E00C094BD /* rightcursor.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6E65F68507E4D5CC00780E48 /* rightcursor.gif */; };
-		6E0905191ECF7C6E00C094BD /* AbbreviationController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6E0AC96407F5A0B7001E528D /* AbbreviationController.nib */; };
-		6E0905221ECF7C6E00C094BD /* UserIDController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6E532F42086DC2AE003A0153 /* UserIDController.nib */; };
-		6E0905231ECF7C6E00C094BD /* SplashWController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC121A108E747770060680B /* SplashWController.nib */; };
-		6E0905241ECF7C6E00C094BD /* Help in Resources */ = {isa = PBXBuildFile; fileRef = 6E24EA841C7A9C04005ABA4A /* Help */; };
-		6E0905251ECF7C6E00C094BD /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EC121A408E747850060680B /* splash.png */; };
-		6E0905261ECF7C6E00C094BD /* FunctionkeyController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EADF28108FDE5E10032B456 /* FunctionkeyController.nib */; };
-		6E0905371ECF7C6E00C094BD /* FilterController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6E12A85A0DFAD26E006FBB91 /* FilterController.nib */; };
-		6E0905391ECF7C6E00C094BD /* UCP Tagged Text.cstg in Resources */ = {isa = PBXBuildFile; fileRef = 6E5A9C671317E62900D309F6 /* UCP Tagged Text.cstg */; };
-		6E09053A1ECF7C6E00C094BD /* notices.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 6E69B5DF1363956400D2B5A7 /* notices.rtf */; };
-		6E09053B1ECF7C6E00C094BD /* en_US.dic in Resources */ = {isa = PBXBuildFile; fileRef = 6E67A4CA138BC48C001475C0 /* en_US.dic */; };
-		6E09053C1ECF7C6E00C094BD /* en_US.aff in Resources */ = {isa = PBXBuildFile; fileRef = 6E67A4CB138BC48C001475C0 /* en_US.aff */; };
-		6E09053D1ECF7C6E00C094BD /* abbreviations.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6E889440138C7C6300436A05 /* abbreviations.icns */; };
-		6E09053E1ECF7C6E00C094BD /* stylesheet.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6E889441138C7C6300436A05 /* stylesheet.icns */; };
-		6E09053F1ECF7C6E00C094BD /* archive.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6E889442138C7C6300436A05 /* archive.icns */; };
-		6E0905401ECF7C6E00C094BD /* stationery.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6E889443138C7C6300436A05 /* stationery.icns */; };
-		6E0905411ECF7C6E00C094BD /* index.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6E889444138C7C6300436A05 /* index.icns */; };
-		6E0905421ECF7C6E00C094BD /* cindex.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6E889445138C7C6300436A05 /* cindex.icns */; };
-		6E0905431ECF7C6E00C094BD /* userdictionary.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6E889446138C7C6300436A05 /* userdictionary.icns */; };
-		6E0905441ECF7C6E00C094BD /* maindictionary.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6E889447138C7C6300436A05 /* maindictionary.icns */; };
-		6E0905451ECF7C6E00C094BD /* xmlrecords.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6E889460138C7CBD00436A05 /* xmlrecords.icns */; };
-		6E0905461ECF7C6E00C094BD /* index_old.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6E889461138C7CBD00436A05 /* index_old.icns */; };
-		6E0905471ECF7C6E00C094BD /* stationery_old.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6E889462138C7CBD00436A05 /* stationery_old.icns */; };
-		6E0905481ECF7C6E00C094BD /* stylesheet_old.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6E88946C138C7F5200436A05 /* stylesheet_old.icns */; };
-		6E0905491ECF7C6E00C094BD /* Standard Tags.cxtg in Resources */ = {isa = PBXBuildFile; fileRef = 6E5EE4211392C37D00CC7334 /* Standard Tags.cxtg */; };
-		6E09054A1ECF7C6E00C094BD /* FlipStringsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E69C37E13C46AA8002ACBDA /* FlipStringsController.xib */; };
-		6E09054D1ECF7C6E00C094BD /* IRIndexDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4ACFDCFA73011CA2CEA /* IRIndexDocument.m */; settings = {ATTRIBUTES = (); }; };
-		6E09054E1ECF7C6E00C094BD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
-		6E09054F1ECF7C6E00C094BD /* v1handler.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E8FE51F0790839D00D8C456 /* v1handler.m */; };
-		6E0905501ECF7C6E00C094BD /* IRIndexDocWController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EDF41D50790A74900F8746D /* IRIndexDocWController.m */; };
-		6E0905511ECF7C6E00C094BD /* strings_c.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EDF42540790B4DF00F8746D /* strings_c.m */; };
-		6E0905521ECF7C6E00C094BD /* IRIndexDocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EDF43C00790CE1000F8746D /* IRIndexDocumentController.m */; };
-		6E0905541ECF7C6E00C094BD /* SortController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EDF44540791636A00F8746D /* SortController.m */; };
-		6E0905551ECF7C6E00C094BD /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EDF445A0791639E00F8746D /* PreferencesController.m */; };
-		6E0905561ECF7C6E00C094BD /* RecordStructureController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC014A207919601005695DD /* RecordStructureController.m */; };
-		6E0905571ECF7C6E00C094BD /* MarkupTagsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC015270791A583005695DD /* MarkupTagsController.m */; };
-		6E0905581ECF7C6E00C094BD /* GoToController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC015830791AB81005695DD /* GoToController.m */; };
-		6E0905591ECF7C6E00C094BD /* StatisticsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC015D90791AFAF005695DD /* StatisticsController.m */; };
-		6E09055A1ECF7C6E00C094BD /* CountController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC015DF0791AFC1005695DD /* CountController.m */; };
-		6E09055B1ECF7C6E00C094BD /* MarginColumnController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC016740791B760005695DD /* MarginColumnController.m */; };
-		6E09055C1ECF7C6E00C094BD /* HeadFootController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC0167A0791B772005695DD /* HeadFootController.m */; };
-		6E09055D1ECF7C6E00C094BD /* GroupingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC0168A0791B78F005695DD /* GroupingController.m */; };
-		6E09055E1ECF7C6E00C094BD /* StyleLayoutController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC016980791B7AC005695DD /* StyleLayoutController.m */; };
-		6E09055F1ECF7C6E00C094BD /* HeadingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC016A60791B7E6005695DD /* HeadingsController.m */; };
-		6E0905601ECF7C6E00C094BD /* CrossRefsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC016AC0791B7F7005695DD /* CrossRefsController.m */; };
-		6E0905611ECF7C6E00C094BD /* PageRefsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC016B50791B816005695DD /* PageRefsController.m */; };
-		6E0905621ECF7C6E00C094BD /* StyledStringsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC016CB0791B835005695DD /* StyledStringsController.m */; };
-		6E0905631ECF7C6E00C094BD /* RefSyntaxController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC016D90791B884005695DD /* RefSyntaxController.m */; };
-		6E0905641ECF7C6E00C094BD /* CompressController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC017900791C362005695DD /* CompressController.m */; };
-		6E0905651ECF7C6E00C094BD /* ReconcileController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC017A00791C399005695DD /* ReconcileController.m */; };
-		6E0905661ECF7C6E00C094BD /* GenerateRefsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC017A60791C3B2005695DD /* GenerateRefsController.m */; };
-		6E0905671ECF7C6E00C094BD /* AlterRefsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC017B80791C3CD005695DD /* AlterRefsController.m */; };
-		6E0905691ECF7C6E00C094BD /* GroupsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC0185C0791CBB4005695DD /* GroupsController.m */; };
-		6E09056A1ECF7C6E00C094BD /* SaveGroupController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC018B40791CEBA005695DD /* SaveGroupController.m */; };
-		6E09056B1ECF7C6E00C094BD /* TextStyleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC019C30791F368005695DD /* TextStyleController.m */; };
-		6E09056C1ECF7C6E00C094BD /* ManageFontController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ED53516079359E000519D46 /* ManageFontController.m */; };
-		6E09056D1ECF7C6E00C094BD /* globals.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ED537760793742C00519D46 /* globals.m */; };
-		6E09056E1ECF7C6E00C094BD /* units.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ED538FD07937E6A00519D46 /* units.m */; };
-		6E09056F1ECF7C6E00C094BD /* sort.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE69ECA0794AEF400E7454E /* sort.m */; };
-		6E0905701ECF7C6E00C094BD /* refs.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E834A830794BCFB008A666C /* refs.m */; };
-		6E0905711ECF7C6E00C094BD /* regex.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E834AA20794BD85008A666C /* regex.m */; };
-		6E0905721ECF7C6E00C094BD /* records.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EF7750A0795E7E60013E972 /* records.m */; };
-		6E0905731ECF7C6E00C094BD /* type.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EF7761F0795FE1A0013E972 /* type.m */; };
-		6E0905741ECF7C6E00C094BD /* commandutils.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E98E5E407996DD200E353DA /* commandutils.m */; };
-		6E0905751ECF7C6E00C094BD /* search.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E98E8220799879400E353DA /* search.m */; };
-		6E0905761ECF7C6E00C094BD /* group.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E98E8AC0799933100E353DA /* group.m */; };
-		6E0905771ECF7C6E00C094BD /* index.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E707F530799C82C00875FDC /* index.m */; };
-		6E0905781ECF7C6E00C094BD /* tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC09A67079BE67100CC55C4 /* tools.m */; };
-		6E0905791ECF7C6E00C094BD /* IRIndexTextWController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC09BD7079C023B00CC55C4 /* IRIndexTextWController.m */; };
-		6E09057A1ECF7C6E00C094BD /* IRIndexArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6B372B07A292C0002DA14B /* IRIndexArchive.m */; };
-		6E09057B1ECF7C6E00C094BD /* translate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E80F870079C95BA00D0C5C3 /* translate.m */; };
-		6E09057C1ECF7C6E00C094BD /* tags.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E85BB6407A44331005D425E /* tags.m */; };
-		6E09057D1ECF7C6E00C094BD /* StringCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E208A4607A5FC0A00709DE3 /* StringCategories.m */; };
-		6E09057E1ECF7C6E00C094BD /* ExportOptionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1DAB9107A885B5006F8E2E /* ExportOptionsController.m */; };
-		6E09057F1ECF7C6E00C094BD /* drafttext.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6ED34E07B5443600AC14A6 /* drafttext.m */; };
-		6E0905801ECF7C6E00C094BD /* formattedtext.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E8E174907BD8C4700F19402 /* formattedtext.m */; };
-		6E0905811ECF7C6E00C094BD /* IRIndexView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E09AB5107C6D5C9002D4DC5 /* IRIndexView.m */; };
-		6E0905821ECF7C6E00C094BD /* FindController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1EBB5307C8213600AD208C /* FindController.m */; };
-		6E0905831ECF7C6E00C094BD /* ReplaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1EBB8607C828CA00AD208C /* ReplaceController.m */; };
-		6E0905841ECF7C6E00C094BD /* SpellController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECA112C07CAD68F003F16AC /* SpellController.m */; };
-		6E0905851ECF7C6E00C094BD /* spell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E4C826E07CD4DC700FC6AED /* spell.m */; };
-		6E0905861ECF7C6E00C094BD /* ReplaceFontController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E26820D07DBB58F004BA6AD /* ReplaceFontController.m */; };
-		6E0905871ECF7C6E00C094BD /* IRIndexRecordWController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E65EE8807E34A6300780E48 /* IRIndexRecordWController.m */; };
-		6E0905881ECF7C6E00C094BD /* IRRecordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E65F29E07E3B04E00780E48 /* IRRecordView.m */; };
-		6E0905891ECF7C6E00C094BD /* TextViewCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E16D38807E90E4200D77486 /* TextViewCategories.m */; };
-		6E09058A1ECF7C6E00C094BD /* AbbreviationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E0AC94607F59E58001E528D /* AbbreviationController.m */; };
-		6E09058B1ECF7C6E00C094BD /* IRAbbreviations.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E04A51207F601D8001C05F0 /* IRAbbreviations.m */; };
-		6E09058C1ECF7C6E00C094BD /* AttributedStringCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E97B56F07F6F00700452F9A /* AttributedStringCategories.m */; };
-		6E09058D1ECF7C6E00C094BD /* IRDisplayString.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1B6115080819FF006D7ED8 /* IRDisplayString.m */; };
-		6E09058E1ECF7C6E00C094BD /* IRAttributedDisplayString.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1B618508083C8C006D7ED8 /* IRAttributedDisplayString.m */; };
-		6E09058F1ECF7C6E00C094BD /* StorageCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1B61FA080846EB006D7ED8 /* StorageCategories.m */; };
-		6E0905901ECF7C6E00C094BD /* LayoutDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1B62800808587B006D7ED8 /* LayoutDescriptor.m */; };
-		6E0905911ECF7C6E00C094BD /* export.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1B71AB081AEE2200C83478 /* export.m */; };
-		6E0905921ECF7C6E00C094BD /* rtfwriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E039B96081C119D00D700BD /* rtfwriter.m */; };
-		6E0905931ECF7C6E00C094BD /* textwriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E039E64081EF7C600D700BD /* textwriter.m */; };
-		6E0905941ECF7C6E00C094BD /* xpresswriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E039E6A081EF7DF00D700BD /* xpresswriter.m */; };
-		6E0905951ECF7C6E00C094BD /* taggedtextwriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E039EF3081F043300D700BD /* taggedtextwriter.m */; };
-		6E0905961ECF7C6E00C094BD /* UserIDController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E532F33086DC062003A0153 /* UserIDController.m */; };
-		6E0905971ECF7C6E00C094BD /* IRTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E532F8B086DCEE7003A0153 /* IRTextView.m */; };
-		6E0905981ECF7C6E00C094BD /* IRApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA409DA08CA19120039C307 /* IRApp.m */; };
-		6E0905991ECF7C6E00C094BD /* IRIndexPrintView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E3E431C08DF840E00596535 /* IRIndexPrintView.m */; };
-		6E09059A1ECF7C6E00C094BD /* SplashWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC1219808E737710060680B /* SplashWindowController.m */; };
-		6E09059B1ECF7C6E00C094BD /* SplashWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC121AB08E74E780060680B /* SplashWindow.m */; };
-		6E09059C1ECF7C6E00C094BD /* FunctionkeyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EADF26208FDD1BD0032B456 /* FunctionkeyController.m */; };
-		6E09059D1ECF7C6E00C094BD /* SpellTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E57F5D8094A7CB800DDB8F6 /* SpellTextField.m */; };
-		6E09059E1ECF7C6E00C094BD /* swap.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EF68F7D0DF0DE71002324C7 /* swap.m */; };
-		6E09059F1ECF7C6E00C094BD /* FilterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E12A8530DFACDE1006FBB91 /* FilterController.m */; };
-		6E0905A01ECF7C6E00C094BD /* indesign.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E788EC60DFC53F70027CA83 /* indesign.m */; };
-		6E0905A21ECF7C6E00C094BD /* collate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E7AF76E12CFE748001999B1 /* collate.m */; };
-		6E0905A31ECF7C6E00C094BD /* hspell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E348B6412D3EDF4008FD1D2 /* hspell.m */; };
-		6E0905A51ECF7C6E00C094BD /* locales.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E348E2C12D6B006008FD1D2 /* locales.m */; };
-		6E0905A61ECF7C6E00C094BD /* utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EED4E5B12E0F4BA00F13656 /* utilities.m */; };
-		6E0905A71ECF7C6E00C094BD /* v3handler.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EF8357712E4F5FE006C7E31 /* v3handler.m */; };
-		6E0905A81ECF7C6E00C094BD /* attributedstrings.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E8FA79912E7D1E8002E9BA7 /* attributedstrings.m */; };
-		6E0905A91ECF7C6E00C094BD /* formattedexport.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E31EDC012F49C6C00663859 /* formattedexport.m */; };
-		6E0905AA1ECF7C6E00C094BD /* xmlwriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E31EEA312F4E36500663859 /* xmlwriter.m */; };
-		6E0905AB1ECF7C6E00C094BD /* xmlparser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E31F55F12FA2F1800663859 /* xmlparser.m */; };
-		6E0905AC1ECF7C6E00C094BD /* import.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E31F59512FB71BB00663859 /* import.m */; };
-		6E0905AD1ECF7C6E00C094BD /* mfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1C492C136D5DF30066FE33 /* mfile.m */; };
-		6E0905AE1ECF7C6E00C094BD /* FlipStringsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E69C36013C3D3BB002ACBDA /* FlipStringsController.m */; };
-		6E0905B01ECF7C6E00C094BD /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */; };
-		6E0905B11ECF7C6E00C094BD /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EDCD72D086E268400B8142D /* Carbon.framework */; };
-		6E0905B21ECF7C6E00C094BD /* ExceptionHandling.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EC11EE508E6F0DE0060680B /* ExceptionHandling.framework */; };
-		6E0905C71ECF7C7B00C094BD /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */; };
-		6E0905C81ECF7C7B00C094BD /* IRIndexDocWController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B4FDCFA73011CA2CEA /* IRIndexDocWController.nib */; };
-		6E0905C91ECF7C7B00C094BD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165FFE840EACC02AAC07 /* InfoPlist.strings */; };
-		6E0905CA1ECF7C7B00C094BD /* SortController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EB2D2C207591B2B00F8EB8A /* SortController.nib */; };
-		6E0905CB1ECF7C7B00C094BD /* PreferencesController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EDF446B0791640400F8746D /* PreferencesController.nib */; };
-		6E0905CC1ECF7C7B00C094BD /* RecordStructureController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC014C0079197D8005695DD /* RecordStructureController.nib */; };
-		6E0905CD1ECF7C7B00C094BD /* MarkupTagsController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC0154E0791A7EC005695DD /* MarkupTagsController.nib */; };
-		6E0905CE1ECF7C7B00C094BD /* GoToController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC0157D0791AB59005695DD /* GoToController.nib */; };
-		6E0905CF1ECF7C7B00C094BD /* CountController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC016140791B2E7005695DD /* CountController.nib */; };
-		6E0905D01ECF7C7B00C094BD /* StatisticsController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC016170791B396005695DD /* StatisticsController.nib */; };
-		6E0905D11ECF7C7B00C094BD /* RefSyntaxController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC0172F0791BB24005695DD /* RefSyntaxController.nib */; };
-		6E0905D21ECF7C7B00C094BD /* StyledStringsController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC017320791BB7A005695DD /* StyledStringsController.nib */; };
-		6E0905D31ECF7C7B00C094BD /* PageRefsController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC017380791BBBA005695DD /* PageRefsController.nib */; };
-		6E0905D41ECF7C7B00C094BD /* CrossRefsController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC0173B0791BBEF005695DD /* CrossRefsController.nib */; };
-		6E0905D51ECF7C7B00C094BD /* HeadingsController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC0173E0791BC27005695DD /* HeadingsController.nib */; };
-		6E0905D61ECF7C7B00C094BD /* StyleLayoutController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC017410791BC57005695DD /* StyleLayoutController.nib */; };
-		6E0905D71ECF7C7B00C094BD /* GroupingController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC017440791BC85005695DD /* GroupingController.nib */; };
-		6E0905D81ECF7C7B00C094BD /* HeadFootController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC017470791BCB4005695DD /* HeadFootController.nib */; };
-		6E0905D91ECF7C7B00C094BD /* MarginColumnController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC0174A0791BCDE005695DD /* MarginColumnController.nib */; };
-		6E0905DA1ECF7C7B00C094BD /* CompressController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC018100791C66C005695DD /* CompressController.nib */; };
-		6E0905DB1ECF7C7B00C094BD /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 6EA2E7B01395B26C0027A5EB /* dsa_pub.pem */; };
-		6E0905DC1ECF7C7B00C094BD /* ReconcileController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC018130791C6CE005695DD /* ReconcileController.nib */; };
-		6E0905DD1ECF7C7B00C094BD /* GenerateRefsController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC0181A0791C735005695DD /* GenerateRefsController.nib */; };
-		6E0905DE1ECF7C7B00C094BD /* AlterRefsController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC0181D0791C777005695DD /* AlterRefsController.nib */; };
-		6E0905E01ECF7C7B00C094BD /* GroupsController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC018850791CCF3005695DD /* GroupsController.nib */; };
-		6E0905E11ECF7C7B00C094BD /* SaveGroupController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC018DF0791CFE4005695DD /* SaveGroupController.nib */; };
-		6E0905E21ECF7C7B00C094BD /* TextStyleController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC019F50791F4E3005695DD /* TextStyleController.nib */; };
-		6E0905E31ECF7C7B00C094BD /* ManageFontController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6ED5355907935E2600519D46 /* ManageFontController.nib */; };
-		6E0905E41ECF7C7B00C094BD /* IRIndexTextWController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC09C04079C05AD00CC55C4 /* IRIndexTextWController.nib */; };
-		6E0905E51ECF7C7B00C094BD /* AAP Tagged Text.cstg in Resources */ = {isa = PBXBuildFile; fileRef = 6E85BC3F07A45214005D425E /* AAP Tagged Text.cstg */; };
-		6E0905E61ECF7C7B00C094BD /* HTML Tagged Text.cstg in Resources */ = {isa = PBXBuildFile; fileRef = 6E85BC4007A45214005D425E /* HTML Tagged Text.cstg */; };
-		6E0905E71ECF7C7B00C094BD /* ExportOptionsController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6E1DAC3A07A8954E006F8E2E /* ExportOptionsController.nib */; };
-		6E0905E81ECF7C7B00C094BD /* FindController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6E1EBB7A07C8250B00AD208C /* FindController.nib */; };
-		6E0905E91ECF7C7B00C094BD /* ReplaceController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6E1EBBA607C82B4700AD208C /* ReplaceController.nib */; };
-		6E0905EA1ECF7C7B00C094BD /* SpellController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6ECA117107CAE078003F16AC /* SpellController.nib */; };
-		6E0905EB1ECF7C7B00C094BD /* ReplaceFontController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6E26834507DBBBAF004BA6AD /* ReplaceFontController.nib */; };
-		6E0905EC1ECF7C7B00C094BD /* IRIndexRecordWController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6E65F0DA07E3785600780E48 /* IRIndexRecordWController.nib */; };
-		6E0905ED1ECF7C7B00C094BD /* rightcursor.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6E65F68507E4D5CC00780E48 /* rightcursor.gif */; };
-		6E0905EE1ECF7C7B00C094BD /* AbbreviationController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6E0AC96407F5A0B7001E528D /* AbbreviationController.nib */; };
-		6E0905F71ECF7C7B00C094BD /* UserIDController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6E532F42086DC2AE003A0153 /* UserIDController.nib */; };
-		6E0905F81ECF7C7B00C094BD /* SplashWController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC121A108E747770060680B /* SplashWController.nib */; };
-		6E0905F91ECF7C7B00C094BD /* Help in Resources */ = {isa = PBXBuildFile; fileRef = 6E24EA841C7A9C04005ABA4A /* Help */; };
-		6E0905FA1ECF7C7B00C094BD /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EC121A408E747850060680B /* splash.png */; };
-		6E0905FB1ECF7C7B00C094BD /* FunctionkeyController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EADF28108FDE5E10032B456 /* FunctionkeyController.nib */; };
-		6E09060C1ECF7C7B00C094BD /* FilterController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6E12A85A0DFAD26E006FBB91 /* FilterController.nib */; };
-		6E09060E1ECF7C7B00C094BD /* UCP Tagged Text.cstg in Resources */ = {isa = PBXBuildFile; fileRef = 6E5A9C671317E62900D309F6 /* UCP Tagged Text.cstg */; };
-		6E09060F1ECF7C7B00C094BD /* notices.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 6E69B5DF1363956400D2B5A7 /* notices.rtf */; };
-		6E0906101ECF7C7B00C094BD /* en_US.dic in Resources */ = {isa = PBXBuildFile; fileRef = 6E67A4CA138BC48C001475C0 /* en_US.dic */; };
-		6E0906111ECF7C7B00C094BD /* en_US.aff in Resources */ = {isa = PBXBuildFile; fileRef = 6E67A4CB138BC48C001475C0 /* en_US.aff */; };
-		6E0906121ECF7C7B00C094BD /* abbreviations.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6E889440138C7C6300436A05 /* abbreviations.icns */; };
-		6E0906131ECF7C7B00C094BD /* stylesheet.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6E889441138C7C6300436A05 /* stylesheet.icns */; };
-		6E0906141ECF7C7B00C094BD /* archive.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6E889442138C7C6300436A05 /* archive.icns */; };
-		6E0906151ECF7C7B00C094BD /* stationery.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6E889443138C7C6300436A05 /* stationery.icns */; };
-		6E0906161ECF7C7B00C094BD /* index.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6E889444138C7C6300436A05 /* index.icns */; };
-		6E0906171ECF7C7B00C094BD /* cindex.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6E889445138C7C6300436A05 /* cindex.icns */; };
-		6E0906181ECF7C7B00C094BD /* userdictionary.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6E889446138C7C6300436A05 /* userdictionary.icns */; };
-		6E0906191ECF7C7B00C094BD /* maindictionary.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6E889447138C7C6300436A05 /* maindictionary.icns */; };
-		6E09061A1ECF7C7B00C094BD /* xmlrecords.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6E889460138C7CBD00436A05 /* xmlrecords.icns */; };
-		6E09061B1ECF7C7B00C094BD /* index_old.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6E889461138C7CBD00436A05 /* index_old.icns */; };
-		6E09061C1ECF7C7B00C094BD /* stationery_old.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6E889462138C7CBD00436A05 /* stationery_old.icns */; };
-		6E09061D1ECF7C7B00C094BD /* stylesheet_old.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6E88946C138C7F5200436A05 /* stylesheet_old.icns */; };
-		6E09061E1ECF7C7B00C094BD /* Standard Tags.cxtg in Resources */ = {isa = PBXBuildFile; fileRef = 6E5EE4211392C37D00CC7334 /* Standard Tags.cxtg */; };
-		6E09061F1ECF7C7B00C094BD /* FlipStringsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E69C37E13C46AA8002ACBDA /* FlipStringsController.xib */; };
-		6E0906221ECF7C7B00C094BD /* IRIndexDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4ACFDCFA73011CA2CEA /* IRIndexDocument.m */; settings = {ATTRIBUTES = (); }; };
-		6E0906231ECF7C7B00C094BD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
-		6E0906241ECF7C7B00C094BD /* v1handler.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E8FE51F0790839D00D8C456 /* v1handler.m */; };
-		6E0906251ECF7C7B00C094BD /* IRIndexDocWController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EDF41D50790A74900F8746D /* IRIndexDocWController.m */; };
-		6E0906261ECF7C7B00C094BD /* strings_c.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EDF42540790B4DF00F8746D /* strings_c.m */; };
-		6E0906271ECF7C7B00C094BD /* IRIndexDocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EDF43C00790CE1000F8746D /* IRIndexDocumentController.m */; };
-		6E0906291ECF7C7B00C094BD /* SortController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EDF44540791636A00F8746D /* SortController.m */; };
-		6E09062A1ECF7C7B00C094BD /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EDF445A0791639E00F8746D /* PreferencesController.m */; };
-		6E09062B1ECF7C7B00C094BD /* RecordStructureController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC014A207919601005695DD /* RecordStructureController.m */; };
-		6E09062C1ECF7C7B00C094BD /* MarkupTagsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC015270791A583005695DD /* MarkupTagsController.m */; };
-		6E09062D1ECF7C7B00C094BD /* GoToController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC015830791AB81005695DD /* GoToController.m */; };
-		6E09062E1ECF7C7B00C094BD /* StatisticsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC015D90791AFAF005695DD /* StatisticsController.m */; };
-		6E09062F1ECF7C7B00C094BD /* CountController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC015DF0791AFC1005695DD /* CountController.m */; };
-		6E0906301ECF7C7B00C094BD /* MarginColumnController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC016740791B760005695DD /* MarginColumnController.m */; };
-		6E0906311ECF7C7B00C094BD /* HeadFootController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC0167A0791B772005695DD /* HeadFootController.m */; };
-		6E0906321ECF7C7B00C094BD /* GroupingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC0168A0791B78F005695DD /* GroupingController.m */; };
-		6E0906331ECF7C7B00C094BD /* StyleLayoutController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC016980791B7AC005695DD /* StyleLayoutController.m */; };
-		6E0906341ECF7C7B00C094BD /* HeadingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC016A60791B7E6005695DD /* HeadingsController.m */; };
-		6E0906351ECF7C7B00C094BD /* CrossRefsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC016AC0791B7F7005695DD /* CrossRefsController.m */; };
-		6E0906361ECF7C7B00C094BD /* PageRefsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC016B50791B816005695DD /* PageRefsController.m */; };
-		6E0906371ECF7C7B00C094BD /* StyledStringsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC016CB0791B835005695DD /* StyledStringsController.m */; };
-		6E0906381ECF7C7B00C094BD /* RefSyntaxController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC016D90791B884005695DD /* RefSyntaxController.m */; };
-		6E0906391ECF7C7B00C094BD /* CompressController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC017900791C362005695DD /* CompressController.m */; };
-		6E09063A1ECF7C7B00C094BD /* ReconcileController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC017A00791C399005695DD /* ReconcileController.m */; };
-		6E09063B1ECF7C7B00C094BD /* GenerateRefsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC017A60791C3B2005695DD /* GenerateRefsController.m */; };
-		6E09063C1ECF7C7B00C094BD /* AlterRefsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC017B80791C3CD005695DD /* AlterRefsController.m */; };
-		6E09063E1ECF7C7B00C094BD /* GroupsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC0185C0791CBB4005695DD /* GroupsController.m */; };
-		6E09063F1ECF7C7B00C094BD /* SaveGroupController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC018B40791CEBA005695DD /* SaveGroupController.m */; };
-		6E0906401ECF7C7B00C094BD /* TextStyleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC019C30791F368005695DD /* TextStyleController.m */; };
-		6E0906411ECF7C7B00C094BD /* ManageFontController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ED53516079359E000519D46 /* ManageFontController.m */; };
-		6E0906421ECF7C7B00C094BD /* globals.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ED537760793742C00519D46 /* globals.m */; };
-		6E0906431ECF7C7B00C094BD /* units.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ED538FD07937E6A00519D46 /* units.m */; };
-		6E0906441ECF7C7B00C094BD /* sort.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE69ECA0794AEF400E7454E /* sort.m */; };
-		6E0906451ECF7C7B00C094BD /* refs.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E834A830794BCFB008A666C /* refs.m */; };
-		6E0906461ECF7C7B00C094BD /* regex.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E834AA20794BD85008A666C /* regex.m */; };
-		6E0906471ECF7C7B00C094BD /* records.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EF7750A0795E7E60013E972 /* records.m */; };
-		6E0906481ECF7C7B00C094BD /* type.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EF7761F0795FE1A0013E972 /* type.m */; };
-		6E0906491ECF7C7B00C094BD /* commandutils.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E98E5E407996DD200E353DA /* commandutils.m */; };
-		6E09064A1ECF7C7B00C094BD /* search.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E98E8220799879400E353DA /* search.m */; };
-		6E09064B1ECF7C7B00C094BD /* group.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E98E8AC0799933100E353DA /* group.m */; };
-		6E09064C1ECF7C7B00C094BD /* index.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E707F530799C82C00875FDC /* index.m */; };
-		6E09064D1ECF7C7B00C094BD /* tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC09A67079BE67100CC55C4 /* tools.m */; };
-		6E09064E1ECF7C7B00C094BD /* IRIndexTextWController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC09BD7079C023B00CC55C4 /* IRIndexTextWController.m */; };
-		6E09064F1ECF7C7B00C094BD /* IRIndexArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6B372B07A292C0002DA14B /* IRIndexArchive.m */; };
-		6E0906501ECF7C7B00C094BD /* translate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E80F870079C95BA00D0C5C3 /* translate.m */; };
-		6E0906511ECF7C7B00C094BD /* tags.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E85BB6407A44331005D425E /* tags.m */; };
-		6E0906521ECF7C7B00C094BD /* StringCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E208A4607A5FC0A00709DE3 /* StringCategories.m */; };
-		6E0906531ECF7C7B00C094BD /* ExportOptionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1DAB9107A885B5006F8E2E /* ExportOptionsController.m */; };
-		6E0906541ECF7C7B00C094BD /* drafttext.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6ED34E07B5443600AC14A6 /* drafttext.m */; };
-		6E0906551ECF7C7B00C094BD /* formattedtext.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E8E174907BD8C4700F19402 /* formattedtext.m */; };
-		6E0906561ECF7C7B00C094BD /* IRIndexView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E09AB5107C6D5C9002D4DC5 /* IRIndexView.m */; };
-		6E0906571ECF7C7B00C094BD /* FindController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1EBB5307C8213600AD208C /* FindController.m */; };
-		6E0906581ECF7C7B00C094BD /* ReplaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1EBB8607C828CA00AD208C /* ReplaceController.m */; };
-		6E0906591ECF7C7B00C094BD /* SpellController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECA112C07CAD68F003F16AC /* SpellController.m */; };
-		6E09065A1ECF7C7B00C094BD /* spell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E4C826E07CD4DC700FC6AED /* spell.m */; };
-		6E09065B1ECF7C7B00C094BD /* ReplaceFontController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E26820D07DBB58F004BA6AD /* ReplaceFontController.m */; };
-		6E09065C1ECF7C7B00C094BD /* IRIndexRecordWController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E65EE8807E34A6300780E48 /* IRIndexRecordWController.m */; };
-		6E09065D1ECF7C7B00C094BD /* IRRecordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E65F29E07E3B04E00780E48 /* IRRecordView.m */; };
-		6E09065E1ECF7C7B00C094BD /* TextViewCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E16D38807E90E4200D77486 /* TextViewCategories.m */; };
-		6E09065F1ECF7C7B00C094BD /* AbbreviationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E0AC94607F59E58001E528D /* AbbreviationController.m */; };
-		6E0906601ECF7C7B00C094BD /* IRAbbreviations.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E04A51207F601D8001C05F0 /* IRAbbreviations.m */; };
-		6E0906611ECF7C7B00C094BD /* AttributedStringCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E97B56F07F6F00700452F9A /* AttributedStringCategories.m */; };
-		6E0906621ECF7C7B00C094BD /* IRDisplayString.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1B6115080819FF006D7ED8 /* IRDisplayString.m */; };
-		6E0906631ECF7C7B00C094BD /* IRAttributedDisplayString.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1B618508083C8C006D7ED8 /* IRAttributedDisplayString.m */; };
-		6E0906641ECF7C7B00C094BD /* StorageCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1B61FA080846EB006D7ED8 /* StorageCategories.m */; };
-		6E0906651ECF7C7B00C094BD /* LayoutDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1B62800808587B006D7ED8 /* LayoutDescriptor.m */; };
-		6E0906661ECF7C7B00C094BD /* export.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1B71AB081AEE2200C83478 /* export.m */; };
-		6E0906671ECF7C7B00C094BD /* rtfwriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E039B96081C119D00D700BD /* rtfwriter.m */; };
-		6E0906681ECF7C7B00C094BD /* textwriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E039E64081EF7C600D700BD /* textwriter.m */; };
-		6E0906691ECF7C7B00C094BD /* xpresswriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E039E6A081EF7DF00D700BD /* xpresswriter.m */; };
-		6E09066A1ECF7C7B00C094BD /* taggedtextwriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E039EF3081F043300D700BD /* taggedtextwriter.m */; };
-		6E09066B1ECF7C7B00C094BD /* UserIDController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E532F33086DC062003A0153 /* UserIDController.m */; };
-		6E09066C1ECF7C7B00C094BD /* IRTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E532F8B086DCEE7003A0153 /* IRTextView.m */; };
-		6E09066D1ECF7C7B00C094BD /* IRApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA409DA08CA19120039C307 /* IRApp.m */; };
-		6E09066E1ECF7C7B00C094BD /* IRIndexPrintView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E3E431C08DF840E00596535 /* IRIndexPrintView.m */; };
-		6E09066F1ECF7C7B00C094BD /* SplashWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC1219808E737710060680B /* SplashWindowController.m */; };
-		6E0906701ECF7C7B00C094BD /* SplashWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC121AB08E74E780060680B /* SplashWindow.m */; };
-		6E0906711ECF7C7B00C094BD /* FunctionkeyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EADF26208FDD1BD0032B456 /* FunctionkeyController.m */; };
-		6E0906721ECF7C7B00C094BD /* SpellTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E57F5D8094A7CB800DDB8F6 /* SpellTextField.m */; };
-		6E0906731ECF7C7B00C094BD /* swap.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EF68F7D0DF0DE71002324C7 /* swap.m */; };
-		6E0906741ECF7C7B00C094BD /* FilterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E12A8530DFACDE1006FBB91 /* FilterController.m */; };
-		6E0906751ECF7C7B00C094BD /* indesign.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E788EC60DFC53F70027CA83 /* indesign.m */; };
-		6E0906771ECF7C7B00C094BD /* collate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E7AF76E12CFE748001999B1 /* collate.m */; };
-		6E0906781ECF7C7B00C094BD /* hspell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E348B6412D3EDF4008FD1D2 /* hspell.m */; };
-		6E09067A1ECF7C7B00C094BD /* locales.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E348E2C12D6B006008FD1D2 /* locales.m */; };
-		6E09067B1ECF7C7B00C094BD /* utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EED4E5B12E0F4BA00F13656 /* utilities.m */; };
-		6E09067C1ECF7C7B00C094BD /* v3handler.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EF8357712E4F5FE006C7E31 /* v3handler.m */; };
-		6E09067D1ECF7C7B00C094BD /* attributedstrings.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E8FA79912E7D1E8002E9BA7 /* attributedstrings.m */; };
-		6E09067E1ECF7C7B00C094BD /* formattedexport.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E31EDC012F49C6C00663859 /* formattedexport.m */; };
-		6E09067F1ECF7C7B00C094BD /* xmlwriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E31EEA312F4E36500663859 /* xmlwriter.m */; };
-		6E0906801ECF7C7B00C094BD /* xmlparser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E31F55F12FA2F1800663859 /* xmlparser.m */; };
-		6E0906811ECF7C7B00C094BD /* import.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E31F59512FB71BB00663859 /* import.m */; };
-		6E0906821ECF7C7B00C094BD /* mfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1C492C136D5DF30066FE33 /* mfile.m */; };
-		6E0906831ECF7C7B00C094BD /* FlipStringsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E69C36013C3D3BB002ACBDA /* FlipStringsController.m */; };
-		6E0906851ECF7C7B00C094BD /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */; };
-		6E0906861ECF7C7B00C094BD /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EDCD72D086E268400B8142D /* Carbon.framework */; };
-		6E0906871ECF7C7B00C094BD /* ExceptionHandling.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EC11EE508E6F0DE0060680B /* ExceptionHandling.framework */; };
 		6E125F32207EEDCD0046222C /* SplitController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E125F31207EEDCD0046222C /* SplitController.m */; };
-		6E125F33207EEDCD0046222C /* SplitController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E125F31207EEDCD0046222C /* SplitController.m */; };
-		6E125F34207EEDCD0046222C /* SplitController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E125F31207EEDCD0046222C /* SplitController.m */; };
 		6E125F37207EEE320046222C /* SplitController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6E125F35207EEE320046222C /* SplitController.nib */; };
-		6E125F38207EEE320046222C /* SplitController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6E125F35207EEE320046222C /* SplitController.nib */; };
-		6E125F39207EEE320046222C /* SplitController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6E125F35207EEE320046222C /* SplitController.nib */; };
 		6E125F3C207F66B50046222C /* NSMutableAttributedString+NSMutableAttributedString.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E125F3B207F66B50046222C /* NSMutableAttributedString+NSMutableAttributedString.m */; };
-		6E125F3D207F66B50046222C /* NSMutableAttributedString+NSMutableAttributedString.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E125F3B207F66B50046222C /* NSMutableAttributedString+NSMutableAttributedString.m */; };
-		6E125F3E207F66B50046222C /* NSMutableAttributedString+NSMutableAttributedString.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E125F3B207F66B50046222C /* NSMutableAttributedString+NSMutableAttributedString.m */; };
 		6E18ACC12138398E004FDC4D /* SearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E18ACBF2138398E004FDC4D /* SearchController.m */; };
-		6E18ACC22138398E004FDC4D /* SearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E18ACBF2138398E004FDC4D /* SearchController.m */; };
-		6E18ACC32138398E004FDC4D /* SearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E18ACBF2138398E004FDC4D /* SearchController.m */; };
 		6E1DFB8F2184FD5000A8E0C0 /* libhunspell-1.6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E1DFB8A2184FD4F00A8E0C0 /* libhunspell-1.6.a */; };
-		6E1DFB902184FD5000A8E0C0 /* libhunspell-1.6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E1DFB8A2184FD4F00A8E0C0 /* libhunspell-1.6.a */; };
-		6E1DFB912184FD5000A8E0C0 /* libhunspell-1.6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E1DFB8A2184FD4F00A8E0C0 /* libhunspell-1.6.a */; };
 		6E1DFB922184FD5000A8E0C0 /* libicui18n.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E1DFB8B2184FD5000A8E0C0 /* libicui18n.a */; };
-		6E1DFB932184FD5000A8E0C0 /* libicui18n.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E1DFB8B2184FD5000A8E0C0 /* libicui18n.a */; };
-		6E1DFB942184FD5000A8E0C0 /* libicui18n.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E1DFB8B2184FD5000A8E0C0 /* libicui18n.a */; };
 		6E1DFB952184FD5000A8E0C0 /* libicuio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E1DFB8C2184FD5000A8E0C0 /* libicuio.a */; };
-		6E1DFB962184FD5000A8E0C0 /* libicuio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E1DFB8C2184FD5000A8E0C0 /* libicuio.a */; };
-		6E1DFB972184FD5000A8E0C0 /* libicuio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E1DFB8C2184FD5000A8E0C0 /* libicuio.a */; };
 		6E1DFB982184FD5000A8E0C0 /* libicudata.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E1DFB8D2184FD5000A8E0C0 /* libicudata.a */; };
-		6E1DFB992184FD5000A8E0C0 /* libicudata.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E1DFB8D2184FD5000A8E0C0 /* libicudata.a */; };
-		6E1DFB9A2184FD5000A8E0C0 /* libicudata.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E1DFB8D2184FD5000A8E0C0 /* libicudata.a */; };
 		6E1DFB9B2184FD5000A8E0C0 /* libicuuc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E1DFB8E2184FD5000A8E0C0 /* libicuuc.a */; };
-		6E1DFB9C2184FD5000A8E0C0 /* libicuuc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E1DFB8E2184FD5000A8E0C0 /* libicuuc.a */; };
-		6E1DFB9D2184FD5000A8E0C0 /* libicuuc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E1DFB8E2184FD5000A8E0C0 /* libicuuc.a */; };
 		6E1F01EE247CA394006AA724 /* macrex_translations.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6E1F01ED247CA394006AA724 /* macrex_translations.txt */; };
-		6E1F01EF247CA394006AA724 /* macrex_translations.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6E1F01ED247CA394006AA724 /* macrex_translations.txt */; };
-		6E1F01F0247CA394006AA724 /* macrex_translations.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6E1F01ED247CA394006AA724 /* macrex_translations.txt */; };
 		6E249D5D20958EEF005F2943 /* CheckController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6E249D5B20958EEE005F2943 /* CheckController.nib */; };
-		6E249D5E20958EEF005F2943 /* CheckController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6E249D5B20958EEE005F2943 /* CheckController.nib */; };
-		6E249D5F20958EEF005F2943 /* CheckController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6E249D5B20958EEE005F2943 /* CheckController.nib */; };
 		6E249D6220958F11005F2943 /* CheckController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E249D6120958F11005F2943 /* CheckController.m */; };
-		6E249D6320958F11005F2943 /* CheckController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E249D6120958F11005F2943 /* CheckController.m */; };
-		6E249D6420958F11005F2943 /* CheckController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E249D6120958F11005F2943 /* CheckController.m */; };
+		6E26165E2BB7C2FE006406AE /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E26165C2BB7C2B4006406AE /* Sparkle.framework */; };
+		6E26165F2BB7C2FE006406AE /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6E26165C2BB7C2B4006406AE /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6E2D2A71208D3D4F005D5539 /* utime.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E2D2A70208D3D4F005D5539 /* utime.m */; };
-		6E2D2A72208D3D4F005D5539 /* utime.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E2D2A70208D3D4F005D5539 /* utime.m */; };
-		6E2D2A73208D3D4F005D5539 /* utime.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E2D2A70208D3D4F005D5539 /* utime.m */; };
 		6E2FD848247B29ED007D99F4 /* imwriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E2FD847247B29ED007D99F4 /* imwriter.m */; };
-		6E2FD849247B29ED007D99F4 /* imwriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E2FD847247B29ED007D99F4 /* imwriter.m */; };
-		6E2FD84A247B29ED007D99F4 /* imwriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E2FD847247B29ED007D99F4 /* imwriter.m */; };
 		6E31ED6D2083308E00DD2FD8 /* IRPrintAccessoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E31ED6B2083308E00DD2FD8 /* IRPrintAccessoryController.m */; };
-		6E31ED6E2083308E00DD2FD8 /* IRPrintAccessoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E31ED6B2083308E00DD2FD8 /* IRPrintAccessoryController.m */; };
-		6E31ED6F2083308E00DD2FD8 /* IRPrintAccessoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E31ED6B2083308E00DD2FD8 /* IRPrintAccessoryController.m */; };
 		6E31ED752083311C00DD2FD8 /* IRPrintAccessoryController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E31ED732083311C00DD2FD8 /* IRPrintAccessoryController.xib */; };
-		6E31ED762083311C00DD2FD8 /* IRPrintAccessoryController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E31ED732083311C00DD2FD8 /* IRPrintAccessoryController.xib */; };
-		6E31ED772083311C00DD2FD8 /* IRPrintAccessoryController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E31ED732083311C00DD2FD8 /* IRPrintAccessoryController.xib */; };
 		6E4619D72078965200040DC8 /* NSArray+NSArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E4619D62078965200040DC8 /* NSArray+NSArray.m */; };
-		6E4619D82078965200040DC8 /* NSArray+NSArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E4619D62078965200040DC8 /* NSArray+NSArray.m */; };
-		6E4619D92078965200040DC8 /* NSArray+NSArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E4619D62078965200040DC8 /* NSArray+NSArray.m */; };
 		6E550B232079822200C02D6E /* IRTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E550B222079822200C02D6E /* IRTableHeaderView.m */; };
-		6E550B242079822200C02D6E /* IRTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E550B222079822200C02D6E /* IRTableHeaderView.m */; };
-		6E550B252079822200C02D6E /* IRTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E550B222079822200C02D6E /* IRTableHeaderView.m */; };
 		6E6137C820CFA87100EB153A /* IRToolbarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6137C720CFA87100EB153A /* IRToolbarItem.m */; };
-		6E6137C920CFA87100EB153A /* IRToolbarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6137C720CFA87100EB153A /* IRToolbarItem.m */; };
-		6E6137CA20CFA87100EB153A /* IRToolbarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6137C720CFA87100EB153A /* IRToolbarItem.m */; };
 		6E820142229AF51600323748 /* NSColor+NSColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E820141229AF51600323748 /* NSColor+NSColor.m */; };
-		6E820143229AF51600323748 /* NSColor+NSColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E820141229AF51600323748 /* NSColor+NSColor.m */; };
-		6E820144229AF51600323748 /* NSColor+NSColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E820141229AF51600323748 /* NSColor+NSColor.m */; };
 		6E8201A1229C334700323748 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E8201A0229C334700323748 /* Media.xcassets */; };
-		6E8201A2229C334700323748 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E8201A0229C334700323748 /* Media.xcassets */; };
-		6E8201A3229C334700323748 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E8201A0229C334700323748 /* Media.xcassets */; };
-		6EC3543720DF1BE600261CD0 /* HTTPService.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E069E4C0E01D01C006904DF /* HTTPService.m */; };
-		6EC3543820DF1BE700261CD0 /* HTTPService.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E069E4C0E01D01C006904DF /* HTTPService.m */; };
 		6ED4243E2184E1F7009606AF /* libexpat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED4243B2184E1F6009606AF /* libexpat.a */; };
-		6ED4243F2184E1F7009606AF /* libexpat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED4243B2184E1F6009606AF /* libexpat.a */; };
-		6ED424402184E1F7009606AF /* libexpat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED4243B2184E1F6009606AF /* libexpat.a */; };
 		6ED424412184E1F7009606AF /* libiconv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED4243C2184E1F6009606AF /* libiconv.a */; };
-		6ED424422184E1F7009606AF /* libiconv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED4243C2184E1F6009606AF /* libiconv.a */; };
-		6ED424432184E1F7009606AF /* libiconv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED4243C2184E1F6009606AF /* libiconv.a */; };
 		6ED424442184E1F7009606AF /* libcharset.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED4243D2184E1F7009606AF /* libcharset.a */; };
-		6ED424452184E1F7009606AF /* libcharset.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED4243D2184E1F7009606AF /* libcharset.a */; };
-		6ED424462184E1F7009606AF /* libcharset.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED4243D2184E1F7009606AF /* libcharset.a */; };
 		6EF7C39620A0445A00617CB5 /* MessageController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EF7C39420A0445A00617CB5 /* MessageController.nib */; };
-		6EF7C39720A0445A00617CB5 /* MessageController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EF7C39420A0445A00617CB5 /* MessageController.nib */; };
-		6EF7C39820A0445A00617CB5 /* MessageController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EF7C39420A0445A00617CB5 /* MessageController.nib */; };
 		6EF7C39B20A044B600617CB5 /* MessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EF7C39920A044B600617CB5 /* MessageController.m */; };
-		6EF7C39C20A044B600617CB5 /* MessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EF7C39920A044B600617CB5 /* MessageController.m */; };
-		6EF7C39D20A044B600617CB5 /* MessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EF7C39920A044B600617CB5 /* MessageController.m */; };
-		9E47833029B696AE00E5F415 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EC759D929A9716500090D98 /* Sparkle.framework */; };
-		9E47833129B696D300E5F415 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EC759D929A9716500090D98 /* Sparkle.framework */; };
-		9E47833429B697B900E5F415 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9EC759D929A9716500090D98 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		9E47833529B697CA00E5F415 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9EC759D929A9716500090D98 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		9EC759DA29A9716500090D98 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EC759D929A9716500090D98 /* Sparkle.framework */; };
-		9EC759DB29A9716500090D98 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9EC759D929A9716500090D98 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6EF863D72BC4251100C32F0E /* Help in Resources */ = {isa = PBXBuildFile; fileRef = 6EF863D52BC4251100C32F0E /* Help */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -584,27 +205,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				9EC759DB29A9716500090D98 /* Sparkle.framework in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6E0905BC1ECF7C6E00C094BD /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				9E47833429B697B900E5F415 /* Sparkle.framework in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6E0906911ECF7C7B00C094BD /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				9E47833529B697CA00E5F415 /* Sparkle.framework in CopyFiles */,
+				6E26165F2BB7C2FE006406AE /* Sparkle.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -631,8 +232,6 @@
 		6E069E4B0E01D01C006904DF /* HTTPService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPService.h; sourceTree = "<group>"; };
 		6E069E4C0E01D01C006904DF /* HTTPService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPService.m; sourceTree = "<group>"; };
 		6E0904ED1ECF7C5E00C094BD /* Cindex 4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cindex 4.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6E0905C21ECF7C6E00C094BD /* Cindex 4 Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cindex 4 Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6E0906971ECF7C7B00C094BD /* Cindex 4 Student.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cindex 4 Student.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E09AB5007C6D5C9002D4DC5 /* IRIndexView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRIndexView.h; sourceTree = "<group>"; };
 		6E09AB5107C6D5C9002D4DC5 /* IRIndexView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRIndexView.m; sourceTree = "<group>"; };
 		6E0AC94507F59E58001E528D /* AbbreviationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbbreviationController.h; sourceTree = "<group>"; };
@@ -675,6 +274,7 @@
 		6E208A4607A5FC0A00709DE3 /* StringCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringCategories.m; sourceTree = "<group>"; };
 		6E249D6020958F10005F2943 /* CheckController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckController.h; sourceTree = "<group>"; };
 		6E249D6120958F11005F2943 /* CheckController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckController.m; sourceTree = "<group>"; };
+		6E26165C2BB7C2B4006406AE /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Sparkle/Sparkle.framework; sourceTree = "<group>"; };
 		6E26820C07DBB58F004BA6AD /* ReplaceFontController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplaceFontController.h; sourceTree = "<group>"; };
 		6E26820D07DBB58F004BA6AD /* ReplaceFontController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplaceFontController.m; sourceTree = "<group>"; };
 		6E2D2A70208D3D4F005D5539 /* utime.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = utime.m; sourceTree = "<group>"; };
@@ -745,7 +345,6 @@
 		6E8128FD12FF3F240047CCEA /* osdependencies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = osdependencies.h; sourceTree = "<group>"; };
 		6E820140229AF51600323748 /* NSColor+NSColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSColor+NSColor.h"; sourceTree = "<group>"; };
 		6E820141229AF51600323748 /* NSColor+NSColor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSColor+NSColor.m"; sourceTree = "<group>"; };
-		6E820149229BCE8400323748 /* en */ = {isa = PBXFileReference; lastKnownFileType = folder; name = en; path = en.lproj/Help; sourceTree = "<group>"; };
 		6E82014A229BCE8600323748 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6E820174229BCEB100323748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/IRIndexDocWController.nib; sourceTree = "<group>"; };
 		6E820175229BCEB100323748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/IRIndexRecordWController.nib; sourceTree = "<group>"; };
@@ -765,7 +364,6 @@
 		6E820183229BCEBA00323748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/SplitController.nib; sourceTree = "<group>"; };
 		6E820184229BCEBB00323748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/SaveGroupController.nib; sourceTree = "<group>"; };
 		6E820185229BCEBC00323748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/StatisticsController.nib; sourceTree = "<group>"; };
-		6E820186229BCEBC00323748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/VerifyRefsController.nib; sourceTree = "<group>"; };
 		6E820187229BCEBD00323748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/IRPrintAccessoryController.xib; sourceTree = "<group>"; };
 		6E820188229BCEBE00323748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/CrossRefsController.nib; sourceTree = "<group>"; };
 		6E820189229BCEBE00323748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/GroupingController.nib; sourceTree = "<group>"; };
@@ -814,8 +412,6 @@
 		6E889461138C7CBD00436A05 /* index_old.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = index_old.icns; path = icons/index_old.icns; sourceTree = "<group>"; };
 		6E889462138C7CBD00436A05 /* stationery_old.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = stationery_old.icns; path = icons/stationery_old.icns; sourceTree = "<group>"; };
 		6E88946C138C7F5200436A05 /* stylesheet_old.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = stylesheet_old.icns; path = icons/stylesheet_old.icns; sourceTree = "<group>"; };
-		6E8B358E2002AD6300B245BC /* NSDocument+NSDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDocument+NSDocument.h"; sourceTree = "<group>"; };
-		6E8B358F2002AD6300B245BC /* NSDocument+NSDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDocument+NSDocument.m"; sourceTree = "<group>"; };
 		6E8E174807BD8C4700F19402 /* formattedtext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = formattedtext.h; sourceTree = "<group>"; };
 		6E8E174907BD8C4700F19402 /* formattedtext.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = formattedtext.m; sourceTree = "<group>"; };
 		6E8FA41812E61314002E9BA7 /* V3 changes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "V3 changes.txt"; sourceTree = "<group>"; };
@@ -830,7 +426,6 @@
 		6E98E8220799879400E353DA /* search.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = search.m; sourceTree = "<group>"; };
 		6E98E8AB0799933100E353DA /* group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = group.h; sourceTree = "<group>"; };
 		6E98E8AC0799933100E353DA /* group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = group.m; sourceTree = "<group>"; };
-		6EA2E7B01395B26C0027A5EB /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = dsa_pub.pem; path = "DSA Keys/dsa_pub.pem"; sourceTree = "<group>"; };
 		6EA2E7B5139703850027A5EB /* indexdocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = indexdocument.h; sourceTree = "<group>"; };
 		6EA409D908CA19120039C307 /* IRApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRApp.h; sourceTree = "<group>"; };
 		6EA409DA08CA19120039C307 /* IRApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRApp.m; sourceTree = "<group>"; };
@@ -873,8 +468,6 @@
 		6EC017A60791C3B2005695DD /* GenerateRefsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenerateRefsController.m; sourceTree = "<group>"; };
 		6EC017B70791C3CD005695DD /* AlterRefsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlterRefsController.h; sourceTree = "<group>"; };
 		6EC017B80791C3CD005695DD /* AlterRefsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlterRefsController.m; sourceTree = "<group>"; };
-		6EC017C50791C3E8005695DD /* VerifyRefsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerifyRefsController.h; sourceTree = "<group>"; };
-		6EC017C60791C3E8005695DD /* VerifyRefsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerifyRefsController.m; sourceTree = "<group>"; };
 		6EC0185B0791CBB4005695DD /* GroupsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupsController.h; sourceTree = "<group>"; };
 		6EC0185C0791CBB4005695DD /* GroupsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupsController.m; sourceTree = "<group>"; };
 		6EC018B30791CEBA005695DD /* SaveGroupController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveGroupController.h; sourceTree = "<group>"; };
@@ -927,9 +520,7 @@
 		6EE69ECA0794AEF400E7454E /* sort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = sort.m; sourceTree = "<group>"; };
 		6EED4E5A12E0F4BA00F13656 /* utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utilities.h; sourceTree = "<group>"; };
 		6EED4E5B12E0F4BA00F13656 /* utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = utilities.m; sourceTree = "<group>"; };
-		6EF1D23022823119005C5D84 /* Info.demo64.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.demo64.plist; sourceTree = "<group>"; };
 		6EF1D2312282311A005C5D84 /* Info64.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info64.plist; sourceTree = "<group>"; };
-		6EF1D2322282311A005C5D84 /* Info.student64.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.student64.plist; sourceTree = "<group>"; };
 		6EF260E70794D3A000B5924B /* printformat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = printformat.h; sourceTree = "<group>"; };
 		6EF68F7C0DF0DE71002324C7 /* swap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = swap.h; sourceTree = "<group>"; };
 		6EF68F7D0DF0DE71002324C7 /* swap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = swap.m; sourceTree = "<group>"; };
@@ -942,7 +533,7 @@
 		6EF7C39A20A044B600617CB5 /* MessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageController.h; sourceTree = "<group>"; };
 		6EF8357612E4F5FE006C7E31 /* v3handler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = v3handler.h; sourceTree = "<group>"; };
 		6EF8357712E4F5FE006C7E31 /* v3handler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = v3handler.m; sourceTree = "<group>"; };
-		9EC759D929A9716500090D98 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Sparkle/Sparkle.framework; sourceTree = "<group>"; };
+		6EF863D62BC4251100C32F0E /* en */ = {isa = PBXFileReference; lastKnownFileType = folder; name = en; path = en.lproj/Help; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -960,47 +551,9 @@
 				6ED424442184E1F7009606AF /* libcharset.a in Frameworks */,
 				6E0904E01ECF7C5E00C094BD /* ExceptionHandling.framework in Frameworks */,
 				6E1DFB922184FD5000A8E0C0 /* libicui18n.a in Frameworks */,
-				9EC759DA29A9716500090D98 /* Sparkle.framework in Frameworks */,
+				6E26165E2BB7C2FE006406AE /* Sparkle.framework in Frameworks */,
 				6ED4243E2184E1F7009606AF /* libexpat.a in Frameworks */,
 				6E1DFB952184FD5000A8E0C0 /* libicuio.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6E0905AF1ECF7C6E00C094BD /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6E1DFB992184FD5000A8E0C0 /* libicudata.a in Frameworks */,
-				6E0905B01ECF7C6E00C094BD /* Cocoa.framework in Frameworks */,
-				6E1DFB962184FD5000A8E0C0 /* libicuio.a in Frameworks */,
-				6ED424452184E1F7009606AF /* libcharset.a in Frameworks */,
-				6ED424422184E1F7009606AF /* libiconv.a in Frameworks */,
-				6ED4243F2184E1F7009606AF /* libexpat.a in Frameworks */,
-				6E1DFB902184FD5000A8E0C0 /* libhunspell-1.6.a in Frameworks */,
-				6E0905B11ECF7C6E00C094BD /* Carbon.framework in Frameworks */,
-				6E1DFB932184FD5000A8E0C0 /* libicui18n.a in Frameworks */,
-				6E1DFB9C2184FD5000A8E0C0 /* libicuuc.a in Frameworks */,
-				6E0905B21ECF7C6E00C094BD /* ExceptionHandling.framework in Frameworks */,
-				9E47833029B696AE00E5F415 /* Sparkle.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6E0906841ECF7C7B00C094BD /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6E1DFB9A2184FD5000A8E0C0 /* libicudata.a in Frameworks */,
-				6E0906851ECF7C7B00C094BD /* Cocoa.framework in Frameworks */,
-				6E1DFB972184FD5000A8E0C0 /* libicuio.a in Frameworks */,
-				6ED424462184E1F7009606AF /* libcharset.a in Frameworks */,
-				6ED424432184E1F7009606AF /* libiconv.a in Frameworks */,
-				6ED424402184E1F7009606AF /* libexpat.a in Frameworks */,
-				6E1DFB912184FD5000A8E0C0 /* libhunspell-1.6.a in Frameworks */,
-				6E0906861ECF7C7B00C094BD /* Carbon.framework in Frameworks */,
-				6E1DFB942184FD5000A8E0C0 /* libicui18n.a in Frameworks */,
-				6E1DFB9D2184FD5000A8E0C0 /* libicuuc.a in Frameworks */,
-				6E0906871ECF7C7B00C094BD /* ExceptionHandling.framework in Frameworks */,
-				9E47833129B696D300E5F415 /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1039,8 +592,6 @@
 			isa = PBXGroup;
 			children = (
 				6E0904ED1ECF7C5E00C094BD /* Cindex 4.app */,
-				6E0905C21ECF7C6E00C094BD /* Cindex 4 Demo.app */,
-				6E0906971ECF7C7B00C094BD /* Cindex 4 Student.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1113,15 +664,12 @@
 		2A37F4B8FDCFA73011CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				6E24EA841C7A9C04005ABA4A /* Help */,
+				6EF863D52BC4251100C32F0E /* Help */,
 				6E8201A0229C334700323748 /* Media.xcassets */,
-				6EA2E7B01395B26C0027A5EB /* dsa_pub.pem */,
 				6E69B5DF1363956400D2B5A7 /* notices.rtf */,
 				6E67A4CA138BC48C001475C0 /* en_US.dic */,
 				6E67A4CB138BC48C001475C0 /* en_US.aff */,
 				6EF1D2312282311A005C5D84 /* Info64.plist */,
-				6EF1D23022823119005C5D84 /* Info.demo64.plist */,
-				6EF1D2322282311A005C5D84 /* Info.student64.plist */,
 				089C165FFE840EACC02AAC07 /* InfoPlist.strings */,
 				6EC0163B0791B472005695DD /* Document nibs */,
 				6EC0164A0791B4CB005695DD /* Dual nibs */,
@@ -1145,7 +693,7 @@
 		2A37F4C3FDCFA73011CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9EC759D929A9716500090D98 /* Sparkle.framework */,
+				6E26165C2BB7C2B4006406AE /* Sparkle.framework */,
 				1058C7A6FEA54F5311CA2CBB /* Linked Frameworks */,
 				1058C7A8FEA54F5311CA2CBB /* Other Frameworks */,
 			);
@@ -1173,8 +721,6 @@
 				6E4619D62078965200040DC8 /* NSArray+NSArray.m */,
 				6E820140229AF51600323748 /* NSColor+NSColor.h */,
 				6E820141229AF51600323748 /* NSColor+NSColor.m */,
-				6E8B358E2002AD6300B245BC /* NSDocument+NSDocument.h */,
-				6E8B358F2002AD6300B245BC /* NSDocument+NSDocument.m */,
 				6E125F3A207F66B50046222C /* NSMutableAttributedString+NSMutableAttributedString.h */,
 				6E125F3B207F66B50046222C /* NSMutableAttributedString+NSMutableAttributedString.m */,
 				6E1B61F9080846EB006D7ED8 /* StorageCategories.h */,
@@ -1390,7 +936,6 @@
 				6E125F35207EEE320046222C /* SplitController.nib */,
 				6EC018DF0791CFE4005695DD /* SaveGroupController.nib */,
 				6EC016170791B396005695DD /* StatisticsController.nib */,
-				6EC018200791C7BC005695DD /* VerifyRefsController.nib */,
 				6E31ED732083311C00DD2FD8 /* IRPrintAccessoryController.xib */,
 			);
 			name = "Document nibs";
@@ -1521,8 +1066,6 @@
 				6E125F31207EEDCD0046222C /* SplitController.m */,
 				6EC015D80791AFAF005695DD /* StatisticsController.h */,
 				6EC015D90791AFAF005695DD /* StatisticsController.m */,
-				6EC017C50791C3E8005695DD /* VerifyRefsController.h */,
-				6EC017C60791C3E8005695DD /* VerifyRefsController.m */,
 			);
 			name = "Doc Interface";
 			sourceTree = "<group>";
@@ -1615,44 +1158,6 @@
 			productReference = 6E0904ED1ECF7C5E00C094BD /* Cindex 4.app */;
 			productType = "com.apple.product-type.application";
 		};
-		6E0904EF1ECF7C6E00C094BD /* Cindex 4 Demo */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 6E0905BE1ECF7C6E00C094BD /* Build configuration list for PBXNativeTarget "Cindex 4 Demo" */;
-			buildPhases = (
-				6E0904F01ECF7C6E00C094BD /* Resources */,
-				6E09054C1ECF7C6E00C094BD /* Sources */,
-				6E0905AF1ECF7C6E00C094BD /* Frameworks */,
-				6E0905BC1ECF7C6E00C094BD /* CopyFiles */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Cindex 4 Demo";
-			productInstallPath = "$(HOME)/Applications";
-			productName = Cindex;
-			productReference = 6E0905C21ECF7C6E00C094BD /* Cindex 4 Demo.app */;
-			productType = "com.apple.product-type.application";
-		};
-		6E0905C41ECF7C7B00C094BD /* Cindex 4 Student */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 6E0906931ECF7C7B00C094BD /* Build configuration list for PBXNativeTarget "Cindex 4 Student" */;
-			buildPhases = (
-				6E0905C51ECF7C7B00C094BD /* Resources */,
-				6E0906211ECF7C7B00C094BD /* Sources */,
-				6E0906841ECF7C7B00C094BD /* Frameworks */,
-				6E0906911ECF7C7B00C094BD /* CopyFiles */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Cindex 4 Student";
-			productInstallPath = "$(HOME)/Applications";
-			productName = Cindex;
-			productReference = 6E0906971ECF7C7B00C094BD /* Cindex 4 Student.app */;
-			productType = "com.apple.product-type.application";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1662,7 +1167,7 @@
 				LastUpgradeCheck = 1000;
 			};
 			buildConfigurationList = 6E863AB3085546A200328DE9 /* Build configuration list for PBXProject "Cindex" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 15.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 1;
 			knownRegions = (
@@ -1677,8 +1182,6 @@
 			projectRoot = "";
 			targets = (
 				6E0904191ECF7C5E00C094BD /* Cindex 4 */,
-				6E0904EF1ECF7C6E00C094BD /* Cindex 4 Demo */,
-				6E0905C41ECF7C7B00C094BD /* Cindex 4 Student */,
 			);
 		};
 /* End PBXProject section */
@@ -1732,7 +1235,6 @@
 				6E09044B1ECF7C5E00C094BD /* UserIDController.nib in Resources */,
 				6E09044C1ECF7C5E00C094BD /* SplashWController.nib in Resources */,
 				6E09044D1ECF7C5E00C094BD /* splash.png in Resources */,
-				6E09044E1ECF7C5E00C094BD /* Help in Resources */,
 				6E09044F1ECF7C5E00C094BD /* FunctionkeyController.nib in Resources */,
 				6E125F37207EEE320046222C /* SplitController.nib in Resources */,
 				6E0904601ECF7C5E00C094BD /* FilterController.nib in Resources */,
@@ -1754,161 +1256,9 @@
 				6E09046F1ECF7C5E00C094BD /* index_old.icns in Resources */,
 				6E0904701ECF7C5E00C094BD /* stationery_old.icns in Resources */,
 				6E0904711ECF7C5E00C094BD /* stylesheet_old.icns in Resources */,
+				6EF863D72BC4251100C32F0E /* Help in Resources */,
 				6E0904721ECF7C5E00C094BD /* Standard Tags.cxtg in Resources */,
-				6E0904731ECF7C5E00C094BD /* dsa_pub.pem in Resources */,
 				6E0904741ECF7C5E00C094BD /* FlipStringsController.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6E0904F01ECF7C6E00C094BD /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6E0904F21ECF7C6E00C094BD /* MainMenu.nib in Resources */,
-				6E0904F31ECF7C6E00C094BD /* IRIndexDocWController.nib in Resources */,
-				6E0904F41ECF7C6E00C094BD /* InfoPlist.strings in Resources */,
-				6E0904F51ECF7C6E00C094BD /* SortController.nib in Resources */,
-				6E0904F61ECF7C6E00C094BD /* PreferencesController.nib in Resources */,
-				6E0904F71ECF7C6E00C094BD /* RecordStructureController.nib in Resources */,
-				6E0904F81ECF7C6E00C094BD /* MarkupTagsController.nib in Resources */,
-				6E0904F91ECF7C6E00C094BD /* GoToController.nib in Resources */,
-				6E0904FA1ECF7C6E00C094BD /* CountController.nib in Resources */,
-				6E0904FB1ECF7C6E00C094BD /* StatisticsController.nib in Resources */,
-				6E0904FC1ECF7C6E00C094BD /* RefSyntaxController.nib in Resources */,
-				6E0904FD1ECF7C6E00C094BD /* StyledStringsController.nib in Resources */,
-				6E0904FE1ECF7C6E00C094BD /* PageRefsController.nib in Resources */,
-				6E1F01EF247CA394006AA724 /* macrex_translations.txt in Resources */,
-				6E0904FF1ECF7C6E00C094BD /* CrossRefsController.nib in Resources */,
-				6E0905001ECF7C6E00C094BD /* HeadingsController.nib in Resources */,
-				6E0905011ECF7C6E00C094BD /* StyleLayoutController.nib in Resources */,
-				6EF7C39720A0445A00617CB5 /* MessageController.nib in Resources */,
-				6E0905021ECF7C6E00C094BD /* GroupingController.nib in Resources */,
-				6E31ED762083311C00DD2FD8 /* IRPrintAccessoryController.xib in Resources */,
-				6E0905031ECF7C6E00C094BD /* HeadFootController.nib in Resources */,
-				6E0905041ECF7C6E00C094BD /* MarginColumnController.nib in Resources */,
-				6E0905051ECF7C6E00C094BD /* CompressController.nib in Resources */,
-				6E0905061ECF7C6E00C094BD /* dsa_pub.pem in Resources */,
-				6E0905071ECF7C6E00C094BD /* ReconcileController.nib in Resources */,
-				6E0905081ECF7C6E00C094BD /* GenerateRefsController.nib in Resources */,
-				6E0905091ECF7C6E00C094BD /* AlterRefsController.nib in Resources */,
-				6E09050B1ECF7C6E00C094BD /* GroupsController.nib in Resources */,
-				6E09050C1ECF7C6E00C094BD /* SaveGroupController.nib in Resources */,
-				6E09050D1ECF7C6E00C094BD /* TextStyleController.nib in Resources */,
-				6E09050E1ECF7C6E00C094BD /* ManageFontController.nib in Resources */,
-				6E09050F1ECF7C6E00C094BD /* IRIndexTextWController.nib in Resources */,
-				6E0905101ECF7C6E00C094BD /* AAP Tagged Text.cstg in Resources */,
-				6E0905111ECF7C6E00C094BD /* HTML Tagged Text.cstg in Resources */,
-				6E0905121ECF7C6E00C094BD /* ExportOptionsController.nib in Resources */,
-				6E0905131ECF7C6E00C094BD /* FindController.nib in Resources */,
-				6E0905141ECF7C6E00C094BD /* ReplaceController.nib in Resources */,
-				6E0905151ECF7C6E00C094BD /* SpellController.nib in Resources */,
-				6E0905161ECF7C6E00C094BD /* ReplaceFontController.nib in Resources */,
-				6E0905171ECF7C6E00C094BD /* IRIndexRecordWController.nib in Resources */,
-				6E0905181ECF7C6E00C094BD /* rightcursor.gif in Resources */,
-				6E0905191ECF7C6E00C094BD /* AbbreviationController.nib in Resources */,
-				6E0905221ECF7C6E00C094BD /* UserIDController.nib in Resources */,
-				6E0905231ECF7C6E00C094BD /* SplashWController.nib in Resources */,
-				6E0905241ECF7C6E00C094BD /* Help in Resources */,
-				6E0905251ECF7C6E00C094BD /* splash.png in Resources */,
-				6E0905261ECF7C6E00C094BD /* FunctionkeyController.nib in Resources */,
-				6E125F38207EEE320046222C /* SplitController.nib in Resources */,
-				6E0905371ECF7C6E00C094BD /* FilterController.nib in Resources */,
-				6E0905391ECF7C6E00C094BD /* UCP Tagged Text.cstg in Resources */,
-				6E09053A1ECF7C6E00C094BD /* notices.rtf in Resources */,
-				6E09053B1ECF7C6E00C094BD /* en_US.dic in Resources */,
-				6E09053C1ECF7C6E00C094BD /* en_US.aff in Resources */,
-				6E09053D1ECF7C6E00C094BD /* abbreviations.icns in Resources */,
-				6E09053E1ECF7C6E00C094BD /* stylesheet.icns in Resources */,
-				6E09053F1ECF7C6E00C094BD /* archive.icns in Resources */,
-				6E8201A2229C334700323748 /* Media.xcassets in Resources */,
-				6E0905401ECF7C6E00C094BD /* stationery.icns in Resources */,
-				6E0905411ECF7C6E00C094BD /* index.icns in Resources */,
-				6E0905421ECF7C6E00C094BD /* cindex.icns in Resources */,
-				6E0905431ECF7C6E00C094BD /* userdictionary.icns in Resources */,
-				6E249D5E20958EEF005F2943 /* CheckController.nib in Resources */,
-				6E0905441ECF7C6E00C094BD /* maindictionary.icns in Resources */,
-				6E0905451ECF7C6E00C094BD /* xmlrecords.icns in Resources */,
-				6E0905461ECF7C6E00C094BD /* index_old.icns in Resources */,
-				6E0905471ECF7C6E00C094BD /* stationery_old.icns in Resources */,
-				6E0905481ECF7C6E00C094BD /* stylesheet_old.icns in Resources */,
-				6E0905491ECF7C6E00C094BD /* Standard Tags.cxtg in Resources */,
-				6E09054A1ECF7C6E00C094BD /* FlipStringsController.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6E0905C51ECF7C7B00C094BD /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6E0905C71ECF7C7B00C094BD /* MainMenu.nib in Resources */,
-				6E0905C81ECF7C7B00C094BD /* IRIndexDocWController.nib in Resources */,
-				6E0905C91ECF7C7B00C094BD /* InfoPlist.strings in Resources */,
-				6E0905CA1ECF7C7B00C094BD /* SortController.nib in Resources */,
-				6E0905CB1ECF7C7B00C094BD /* PreferencesController.nib in Resources */,
-				6E0905CC1ECF7C7B00C094BD /* RecordStructureController.nib in Resources */,
-				6E0905CD1ECF7C7B00C094BD /* MarkupTagsController.nib in Resources */,
-				6E0905CE1ECF7C7B00C094BD /* GoToController.nib in Resources */,
-				6E0905CF1ECF7C7B00C094BD /* CountController.nib in Resources */,
-				6E0905D01ECF7C7B00C094BD /* StatisticsController.nib in Resources */,
-				6E0905D11ECF7C7B00C094BD /* RefSyntaxController.nib in Resources */,
-				6E0905D21ECF7C7B00C094BD /* StyledStringsController.nib in Resources */,
-				6E0905D31ECF7C7B00C094BD /* PageRefsController.nib in Resources */,
-				6E1F01F0247CA394006AA724 /* macrex_translations.txt in Resources */,
-				6E0905D41ECF7C7B00C094BD /* CrossRefsController.nib in Resources */,
-				6E0905D51ECF7C7B00C094BD /* HeadingsController.nib in Resources */,
-				6E0905D61ECF7C7B00C094BD /* StyleLayoutController.nib in Resources */,
-				6EF7C39820A0445A00617CB5 /* MessageController.nib in Resources */,
-				6E0905D71ECF7C7B00C094BD /* GroupingController.nib in Resources */,
-				6E31ED772083311C00DD2FD8 /* IRPrintAccessoryController.xib in Resources */,
-				6E0905D81ECF7C7B00C094BD /* HeadFootController.nib in Resources */,
-				6E0905D91ECF7C7B00C094BD /* MarginColumnController.nib in Resources */,
-				6E0905DA1ECF7C7B00C094BD /* CompressController.nib in Resources */,
-				6E0905DB1ECF7C7B00C094BD /* dsa_pub.pem in Resources */,
-				6E0905DC1ECF7C7B00C094BD /* ReconcileController.nib in Resources */,
-				6E0905DD1ECF7C7B00C094BD /* GenerateRefsController.nib in Resources */,
-				6E0905DE1ECF7C7B00C094BD /* AlterRefsController.nib in Resources */,
-				6E0905E01ECF7C7B00C094BD /* GroupsController.nib in Resources */,
-				6E0905E11ECF7C7B00C094BD /* SaveGroupController.nib in Resources */,
-				6E0905E21ECF7C7B00C094BD /* TextStyleController.nib in Resources */,
-				6E0905E31ECF7C7B00C094BD /* ManageFontController.nib in Resources */,
-				6E0905E41ECF7C7B00C094BD /* IRIndexTextWController.nib in Resources */,
-				6E0905E51ECF7C7B00C094BD /* AAP Tagged Text.cstg in Resources */,
-				6E0905E61ECF7C7B00C094BD /* HTML Tagged Text.cstg in Resources */,
-				6E0905E71ECF7C7B00C094BD /* ExportOptionsController.nib in Resources */,
-				6E0905E81ECF7C7B00C094BD /* FindController.nib in Resources */,
-				6E0905E91ECF7C7B00C094BD /* ReplaceController.nib in Resources */,
-				6E0905EA1ECF7C7B00C094BD /* SpellController.nib in Resources */,
-				6E0905EB1ECF7C7B00C094BD /* ReplaceFontController.nib in Resources */,
-				6E0905EC1ECF7C7B00C094BD /* IRIndexRecordWController.nib in Resources */,
-				6E0905ED1ECF7C7B00C094BD /* rightcursor.gif in Resources */,
-				6E0905EE1ECF7C7B00C094BD /* AbbreviationController.nib in Resources */,
-				6E0905F71ECF7C7B00C094BD /* UserIDController.nib in Resources */,
-				6E0905F81ECF7C7B00C094BD /* SplashWController.nib in Resources */,
-				6E0905F91ECF7C7B00C094BD /* Help in Resources */,
-				6E0905FA1ECF7C7B00C094BD /* splash.png in Resources */,
-				6E0905FB1ECF7C7B00C094BD /* FunctionkeyController.nib in Resources */,
-				6E125F39207EEE320046222C /* SplitController.nib in Resources */,
-				6E09060C1ECF7C7B00C094BD /* FilterController.nib in Resources */,
-				6E09060E1ECF7C7B00C094BD /* UCP Tagged Text.cstg in Resources */,
-				6E09060F1ECF7C7B00C094BD /* notices.rtf in Resources */,
-				6E0906101ECF7C7B00C094BD /* en_US.dic in Resources */,
-				6E0906111ECF7C7B00C094BD /* en_US.aff in Resources */,
-				6E0906121ECF7C7B00C094BD /* abbreviations.icns in Resources */,
-				6E0906131ECF7C7B00C094BD /* stylesheet.icns in Resources */,
-				6E0906141ECF7C7B00C094BD /* archive.icns in Resources */,
-				6E8201A3229C334700323748 /* Media.xcassets in Resources */,
-				6E0906151ECF7C7B00C094BD /* stationery.icns in Resources */,
-				6E0906161ECF7C7B00C094BD /* index.icns in Resources */,
-				6E0906171ECF7C7B00C094BD /* cindex.icns in Resources */,
-				6E0906181ECF7C7B00C094BD /* userdictionary.icns in Resources */,
-				6E249D5F20958EEF005F2943 /* CheckController.nib in Resources */,
-				6E0906191ECF7C7B00C094BD /* maindictionary.icns in Resources */,
-				6E09061A1ECF7C7B00C094BD /* xmlrecords.icns in Resources */,
-				6E09061B1ECF7C7B00C094BD /* index_old.icns in Resources */,
-				6E09061C1ECF7C7B00C094BD /* stationery_old.icns in Resources */,
-				6E09061D1ECF7C7B00C094BD /* stylesheet_old.icns in Resources */,
-				6E09061E1ECF7C7B00C094BD /* Standard Tags.cxtg in Resources */,
-				6E09061F1ECF7C7B00C094BD /* FlipStringsController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2029,234 +1379,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6E09054C1ECF7C6E00C094BD /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6E09054D1ECF7C6E00C094BD /* IRIndexDocument.m in Sources */,
-				6E09054E1ECF7C6E00C094BD /* main.m in Sources */,
-				6E125F33207EEDCD0046222C /* SplitController.m in Sources */,
-				6E09054F1ECF7C6E00C094BD /* v1handler.m in Sources */,
-				6E0905501ECF7C6E00C094BD /* IRIndexDocWController.m in Sources */,
-				6E0905511ECF7C6E00C094BD /* strings_c.m in Sources */,
-				6E0905521ECF7C6E00C094BD /* IRIndexDocumentController.m in Sources */,
-				6E0905541ECF7C6E00C094BD /* SortController.m in Sources */,
-				6E0905551ECF7C6E00C094BD /* PreferencesController.m in Sources */,
-				6E0905561ECF7C6E00C094BD /* RecordStructureController.m in Sources */,
-				6E0905571ECF7C6E00C094BD /* MarkupTagsController.m in Sources */,
-				6E0905581ECF7C6E00C094BD /* GoToController.m in Sources */,
-				6E0905591ECF7C6E00C094BD /* StatisticsController.m in Sources */,
-				6E550B242079822200C02D6E /* IRTableHeaderView.m in Sources */,
-				6E09055A1ECF7C6E00C094BD /* CountController.m in Sources */,
-				6E09055B1ECF7C6E00C094BD /* MarginColumnController.m in Sources */,
-				6E09055C1ECF7C6E00C094BD /* HeadFootController.m in Sources */,
-				6E09055D1ECF7C6E00C094BD /* GroupingController.m in Sources */,
-				6E09055E1ECF7C6E00C094BD /* StyleLayoutController.m in Sources */,
-				6E09055F1ECF7C6E00C094BD /* HeadingsController.m in Sources */,
-				6E0905601ECF7C6E00C094BD /* CrossRefsController.m in Sources */,
-				6E0905611ECF7C6E00C094BD /* PageRefsController.m in Sources */,
-				6E0905621ECF7C6E00C094BD /* StyledStringsController.m in Sources */,
-				6E0905631ECF7C6E00C094BD /* RefSyntaxController.m in Sources */,
-				6E0905641ECF7C6E00C094BD /* CompressController.m in Sources */,
-				6E0905651ECF7C6E00C094BD /* ReconcileController.m in Sources */,
-				6E0905661ECF7C6E00C094BD /* GenerateRefsController.m in Sources */,
-				6E0905671ECF7C6E00C094BD /* AlterRefsController.m in Sources */,
-				6E0905691ECF7C6E00C094BD /* GroupsController.m in Sources */,
-				6E820143229AF51600323748 /* NSColor+NSColor.m in Sources */,
-				6E09056A1ECF7C6E00C094BD /* SaveGroupController.m in Sources */,
-				6E09056B1ECF7C6E00C094BD /* TextStyleController.m in Sources */,
-				6E09056C1ECF7C6E00C094BD /* ManageFontController.m in Sources */,
-				6E09056D1ECF7C6E00C094BD /* globals.m in Sources */,
-				6E09056E1ECF7C6E00C094BD /* units.m in Sources */,
-				6E09056F1ECF7C6E00C094BD /* sort.m in Sources */,
-				6E0905701ECF7C6E00C094BD /* refs.m in Sources */,
-				6E0905711ECF7C6E00C094BD /* regex.m in Sources */,
-				6E0905721ECF7C6E00C094BD /* records.m in Sources */,
-				6E31ED6E2083308E00DD2FD8 /* IRPrintAccessoryController.m in Sources */,
-				6E0905731ECF7C6E00C094BD /* type.m in Sources */,
-				6E0905741ECF7C6E00C094BD /* commandutils.m in Sources */,
-				6E0905751ECF7C6E00C094BD /* search.m in Sources */,
-				6E0905761ECF7C6E00C094BD /* group.m in Sources */,
-				6E0905771ECF7C6E00C094BD /* index.m in Sources */,
-				6E2D2A72208D3D4F005D5539 /* utime.m in Sources */,
-				6E0905781ECF7C6E00C094BD /* tools.m in Sources */,
-				6E0905791ECF7C6E00C094BD /* IRIndexTextWController.m in Sources */,
-				6E09057A1ECF7C6E00C094BD /* IRIndexArchive.m in Sources */,
-				6E09057B1ECF7C6E00C094BD /* translate.m in Sources */,
-				6E09057C1ECF7C6E00C094BD /* tags.m in Sources */,
-				6E249D6320958F11005F2943 /* CheckController.m in Sources */,
-				6E09057D1ECF7C6E00C094BD /* StringCategories.m in Sources */,
-				6E09057E1ECF7C6E00C094BD /* ExportOptionsController.m in Sources */,
-				6E09057F1ECF7C6E00C094BD /* drafttext.m in Sources */,
-				6E0905801ECF7C6E00C094BD /* formattedtext.m in Sources */,
-				6E125F3D207F66B50046222C /* NSMutableAttributedString+NSMutableAttributedString.m in Sources */,
-				6E0905811ECF7C6E00C094BD /* IRIndexView.m in Sources */,
-				6E0905821ECF7C6E00C094BD /* FindController.m in Sources */,
-				6E0905831ECF7C6E00C094BD /* ReplaceController.m in Sources */,
-				6EF7C39C20A044B600617CB5 /* MessageController.m in Sources */,
-				6E0905841ECF7C6E00C094BD /* SpellController.m in Sources */,
-				6E0905851ECF7C6E00C094BD /* spell.m in Sources */,
-				6E0905861ECF7C6E00C094BD /* ReplaceFontController.m in Sources */,
-				6E0905871ECF7C6E00C094BD /* IRIndexRecordWController.m in Sources */,
-				6E0905881ECF7C6E00C094BD /* IRRecordView.m in Sources */,
-				6E0905891ECF7C6E00C094BD /* TextViewCategories.m in Sources */,
-				6E09058A1ECF7C6E00C094BD /* AbbreviationController.m in Sources */,
-				6E09058B1ECF7C6E00C094BD /* IRAbbreviations.m in Sources */,
-				6E09058C1ECF7C6E00C094BD /* AttributedStringCategories.m in Sources */,
-				6E09058D1ECF7C6E00C094BD /* IRDisplayString.m in Sources */,
-				6E2FD849247B29ED007D99F4 /* imwriter.m in Sources */,
-				6E09058E1ECF7C6E00C094BD /* IRAttributedDisplayString.m in Sources */,
-				6E09058F1ECF7C6E00C094BD /* StorageCategories.m in Sources */,
-				6E0905901ECF7C6E00C094BD /* LayoutDescriptor.m in Sources */,
-				6E6137C920CFA87100EB153A /* IRToolbarItem.m in Sources */,
-				6E0905911ECF7C6E00C094BD /* export.m in Sources */,
-				6E0905921ECF7C6E00C094BD /* rtfwriter.m in Sources */,
-				6E0905931ECF7C6E00C094BD /* textwriter.m in Sources */,
-				6E0905941ECF7C6E00C094BD /* xpresswriter.m in Sources */,
-				6E0905951ECF7C6E00C094BD /* taggedtextwriter.m in Sources */,
-				6E0905961ECF7C6E00C094BD /* UserIDController.m in Sources */,
-				6E18ACC22138398E004FDC4D /* SearchController.m in Sources */,
-				6E0905971ECF7C6E00C094BD /* IRTextView.m in Sources */,
-				6E0905981ECF7C6E00C094BD /* IRApp.m in Sources */,
-				6E0905991ECF7C6E00C094BD /* IRIndexPrintView.m in Sources */,
-				6EC3543720DF1BE600261CD0 /* HTTPService.m in Sources */,
-				6E09059A1ECF7C6E00C094BD /* SplashWindowController.m in Sources */,
-				6E09059B1ECF7C6E00C094BD /* SplashWindow.m in Sources */,
-				6E09059C1ECF7C6E00C094BD /* FunctionkeyController.m in Sources */,
-				6E09059D1ECF7C6E00C094BD /* SpellTextField.m in Sources */,
-				6E09059E1ECF7C6E00C094BD /* swap.m in Sources */,
-				6E09059F1ECF7C6E00C094BD /* FilterController.m in Sources */,
-				6E0905A01ECF7C6E00C094BD /* indesign.m in Sources */,
-				6E4619D82078965200040DC8 /* NSArray+NSArray.m in Sources */,
-				6E0905A21ECF7C6E00C094BD /* collate.m in Sources */,
-				6E0905A31ECF7C6E00C094BD /* hspell.m in Sources */,
-				6E0905A51ECF7C6E00C094BD /* locales.m in Sources */,
-				6E0905A61ECF7C6E00C094BD /* utilities.m in Sources */,
-				6E0905A71ECF7C6E00C094BD /* v3handler.m in Sources */,
-				6E0905A81ECF7C6E00C094BD /* attributedstrings.m in Sources */,
-				6E0905A91ECF7C6E00C094BD /* formattedexport.m in Sources */,
-				6E0905AA1ECF7C6E00C094BD /* xmlwriter.m in Sources */,
-				6E0905AB1ECF7C6E00C094BD /* xmlparser.m in Sources */,
-				6E0905AC1ECF7C6E00C094BD /* import.m in Sources */,
-				6E0905AD1ECF7C6E00C094BD /* mfile.m in Sources */,
-				6E0905AE1ECF7C6E00C094BD /* FlipStringsController.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6E0906211ECF7C7B00C094BD /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6E0906221ECF7C7B00C094BD /* IRIndexDocument.m in Sources */,
-				6E0906231ECF7C7B00C094BD /* main.m in Sources */,
-				6E125F34207EEDCD0046222C /* SplitController.m in Sources */,
-				6E0906241ECF7C7B00C094BD /* v1handler.m in Sources */,
-				6E0906251ECF7C7B00C094BD /* IRIndexDocWController.m in Sources */,
-				6E0906261ECF7C7B00C094BD /* strings_c.m in Sources */,
-				6E0906271ECF7C7B00C094BD /* IRIndexDocumentController.m in Sources */,
-				6E0906291ECF7C7B00C094BD /* SortController.m in Sources */,
-				6E09062A1ECF7C7B00C094BD /* PreferencesController.m in Sources */,
-				6E09062B1ECF7C7B00C094BD /* RecordStructureController.m in Sources */,
-				6E09062C1ECF7C7B00C094BD /* MarkupTagsController.m in Sources */,
-				6E09062D1ECF7C7B00C094BD /* GoToController.m in Sources */,
-				6E09062E1ECF7C7B00C094BD /* StatisticsController.m in Sources */,
-				6E550B252079822200C02D6E /* IRTableHeaderView.m in Sources */,
-				6E09062F1ECF7C7B00C094BD /* CountController.m in Sources */,
-				6E0906301ECF7C7B00C094BD /* MarginColumnController.m in Sources */,
-				6E0906311ECF7C7B00C094BD /* HeadFootController.m in Sources */,
-				6E0906321ECF7C7B00C094BD /* GroupingController.m in Sources */,
-				6E0906331ECF7C7B00C094BD /* StyleLayoutController.m in Sources */,
-				6E0906341ECF7C7B00C094BD /* HeadingsController.m in Sources */,
-				6E0906351ECF7C7B00C094BD /* CrossRefsController.m in Sources */,
-				6E0906361ECF7C7B00C094BD /* PageRefsController.m in Sources */,
-				6E0906371ECF7C7B00C094BD /* StyledStringsController.m in Sources */,
-				6E0906381ECF7C7B00C094BD /* RefSyntaxController.m in Sources */,
-				6E0906391ECF7C7B00C094BD /* CompressController.m in Sources */,
-				6E09063A1ECF7C7B00C094BD /* ReconcileController.m in Sources */,
-				6E09063B1ECF7C7B00C094BD /* GenerateRefsController.m in Sources */,
-				6E09063C1ECF7C7B00C094BD /* AlterRefsController.m in Sources */,
-				6E09063E1ECF7C7B00C094BD /* GroupsController.m in Sources */,
-				6E820144229AF51600323748 /* NSColor+NSColor.m in Sources */,
-				6E09063F1ECF7C7B00C094BD /* SaveGroupController.m in Sources */,
-				6E0906401ECF7C7B00C094BD /* TextStyleController.m in Sources */,
-				6E0906411ECF7C7B00C094BD /* ManageFontController.m in Sources */,
-				6E0906421ECF7C7B00C094BD /* globals.m in Sources */,
-				6E0906431ECF7C7B00C094BD /* units.m in Sources */,
-				6E0906441ECF7C7B00C094BD /* sort.m in Sources */,
-				6E0906451ECF7C7B00C094BD /* refs.m in Sources */,
-				6E0906461ECF7C7B00C094BD /* regex.m in Sources */,
-				6E0906471ECF7C7B00C094BD /* records.m in Sources */,
-				6E31ED6F2083308E00DD2FD8 /* IRPrintAccessoryController.m in Sources */,
-				6E0906481ECF7C7B00C094BD /* type.m in Sources */,
-				6E0906491ECF7C7B00C094BD /* commandutils.m in Sources */,
-				6E09064A1ECF7C7B00C094BD /* search.m in Sources */,
-				6E09064B1ECF7C7B00C094BD /* group.m in Sources */,
-				6E09064C1ECF7C7B00C094BD /* index.m in Sources */,
-				6E2D2A73208D3D4F005D5539 /* utime.m in Sources */,
-				6E09064D1ECF7C7B00C094BD /* tools.m in Sources */,
-				6E09064E1ECF7C7B00C094BD /* IRIndexTextWController.m in Sources */,
-				6E09064F1ECF7C7B00C094BD /* IRIndexArchive.m in Sources */,
-				6E0906501ECF7C7B00C094BD /* translate.m in Sources */,
-				6E0906511ECF7C7B00C094BD /* tags.m in Sources */,
-				6E249D6420958F11005F2943 /* CheckController.m in Sources */,
-				6E0906521ECF7C7B00C094BD /* StringCategories.m in Sources */,
-				6E0906531ECF7C7B00C094BD /* ExportOptionsController.m in Sources */,
-				6E0906541ECF7C7B00C094BD /* drafttext.m in Sources */,
-				6E0906551ECF7C7B00C094BD /* formattedtext.m in Sources */,
-				6E125F3E207F66B50046222C /* NSMutableAttributedString+NSMutableAttributedString.m in Sources */,
-				6E0906561ECF7C7B00C094BD /* IRIndexView.m in Sources */,
-				6E0906571ECF7C7B00C094BD /* FindController.m in Sources */,
-				6E0906581ECF7C7B00C094BD /* ReplaceController.m in Sources */,
-				6EF7C39D20A044B600617CB5 /* MessageController.m in Sources */,
-				6E0906591ECF7C7B00C094BD /* SpellController.m in Sources */,
-				6E09065A1ECF7C7B00C094BD /* spell.m in Sources */,
-				6E09065B1ECF7C7B00C094BD /* ReplaceFontController.m in Sources */,
-				6E09065C1ECF7C7B00C094BD /* IRIndexRecordWController.m in Sources */,
-				6E09065D1ECF7C7B00C094BD /* IRRecordView.m in Sources */,
-				6E09065E1ECF7C7B00C094BD /* TextViewCategories.m in Sources */,
-				6E09065F1ECF7C7B00C094BD /* AbbreviationController.m in Sources */,
-				6E0906601ECF7C7B00C094BD /* IRAbbreviations.m in Sources */,
-				6E0906611ECF7C7B00C094BD /* AttributedStringCategories.m in Sources */,
-				6E0906621ECF7C7B00C094BD /* IRDisplayString.m in Sources */,
-				6E2FD84A247B29ED007D99F4 /* imwriter.m in Sources */,
-				6E0906631ECF7C7B00C094BD /* IRAttributedDisplayString.m in Sources */,
-				6E0906641ECF7C7B00C094BD /* StorageCategories.m in Sources */,
-				6E0906651ECF7C7B00C094BD /* LayoutDescriptor.m in Sources */,
-				6E6137CA20CFA87100EB153A /* IRToolbarItem.m in Sources */,
-				6E0906661ECF7C7B00C094BD /* export.m in Sources */,
-				6E0906671ECF7C7B00C094BD /* rtfwriter.m in Sources */,
-				6E0906681ECF7C7B00C094BD /* textwriter.m in Sources */,
-				6E0906691ECF7C7B00C094BD /* xpresswriter.m in Sources */,
-				6E09066A1ECF7C7B00C094BD /* taggedtextwriter.m in Sources */,
-				6E09066B1ECF7C7B00C094BD /* UserIDController.m in Sources */,
-				6E18ACC32138398E004FDC4D /* SearchController.m in Sources */,
-				6E09066C1ECF7C7B00C094BD /* IRTextView.m in Sources */,
-				6E09066D1ECF7C7B00C094BD /* IRApp.m in Sources */,
-				6E09066E1ECF7C7B00C094BD /* IRIndexPrintView.m in Sources */,
-				6EC3543820DF1BE700261CD0 /* HTTPService.m in Sources */,
-				6E09066F1ECF7C7B00C094BD /* SplashWindowController.m in Sources */,
-				6E0906701ECF7C7B00C094BD /* SplashWindow.m in Sources */,
-				6E0906711ECF7C7B00C094BD /* FunctionkeyController.m in Sources */,
-				6E0906721ECF7C7B00C094BD /* SpellTextField.m in Sources */,
-				6E0906731ECF7C7B00C094BD /* swap.m in Sources */,
-				6E0906741ECF7C7B00C094BD /* FilterController.m in Sources */,
-				6E0906751ECF7C7B00C094BD /* indesign.m in Sources */,
-				6E4619D92078965200040DC8 /* NSArray+NSArray.m in Sources */,
-				6E0906771ECF7C7B00C094BD /* collate.m in Sources */,
-				6E0906781ECF7C7B00C094BD /* hspell.m in Sources */,
-				6E09067A1ECF7C7B00C094BD /* locales.m in Sources */,
-				6E09067B1ECF7C7B00C094BD /* utilities.m in Sources */,
-				6E09067C1ECF7C7B00C094BD /* v3handler.m in Sources */,
-				6E09067D1ECF7C7B00C094BD /* attributedstrings.m in Sources */,
-				6E09067E1ECF7C7B00C094BD /* formattedexport.m in Sources */,
-				6E09067F1ECF7C7B00C094BD /* xmlwriter.m in Sources */,
-				6E0906801ECF7C7B00C094BD /* xmlparser.m in Sources */,
-				6E0906811ECF7C7B00C094BD /* import.m in Sources */,
-				6E0906821ECF7C7B00C094BD /* mfile.m in Sources */,
-				6E0906831ECF7C7B00C094BD /* FlipStringsController.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
@@ -2340,14 +1462,6 @@
 				6E820179229BCEB400323748 /* Base */,
 			);
 			name = CheckController.nib;
-			sourceTree = "<group>";
-		};
-		6E24EA841C7A9C04005ABA4A /* Help */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6E820149229BCE8400323748 /* en */,
-			);
-			name = Help;
 			sourceTree = "<group>";
 		};
 		6E26834507DBBBAF004BA6AD /* ReplaceFontController.nib */ = {
@@ -2551,14 +1665,6 @@
 			name = AlterRefsController.nib;
 			sourceTree = "<group>";
 		};
-		6EC018200791C7BC005695DD /* VerifyRefsController.nib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6E820186229BCEBC00323748 /* Base */,
-			);
-			name = VerifyRefsController.nib;
-			sourceTree = "<group>";
-		};
 		6EC018850791CCF3005695DD /* GroupsController.nib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -2631,6 +1737,14 @@
 			name = MessageController.nib;
 			sourceTree = "<group>";
 		};
+		6EF863D52BC4251100C32F0E /* Help */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6EF863D62BC4251100C32F0E /* en */,
+			);
+			name = Help;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -2641,11 +1755,13 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 4.2.5;
+				CURRENT_PROJECT_VERSION = 4.3;
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Sparkle",
+					"$(PROJECT_DIR)/Sparkle/Sparkle-1.27.0",
+					"$(PROJECT_DIR)/Sparkle/Sparkle-1.20.0",
 				);
 				GCC_DYNAMIC_NO_PIC = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
@@ -2661,8 +1777,11 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/macports/ICU/lib",
 					"$(PROJECT_DIR)/macports/hunspell/lib",
+					"$(PROJECT_DIR)/macports/expat/lib",
+					"$(PROJECT_DIR)/macports/libiconv/lib",
 				);
-				MARKETING_VERSION = 4.2.5;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MARKETING_VERSION = 4.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.indexres.cindex64;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2677,11 +1796,13 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 4.2.5;
+				CURRENT_PROJECT_VERSION = 4.3;
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Sparkle",
+					"$(PROJECT_DIR)/Sparkle/Sparkle-1.27.0",
+					"$(PROJECT_DIR)/Sparkle/Sparkle-1.20.0",
 				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 3;
@@ -2690,8 +1811,11 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/macports/ICU/lib",
 					"$(PROJECT_DIR)/macports/hunspell/lib",
+					"$(PROJECT_DIR)/macports/expat/lib",
+					"$(PROJECT_DIR)/macports/libiconv/lib",
 				);
-				MARKETING_VERSION = 4.2.5;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MARKETING_VERSION = 4.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.indexres.cindex64;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2708,11 +1832,13 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 4.2.5;
+				CURRENT_PROJECT_VERSION = 4.3;
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Sparkle",
+					"$(PROJECT_DIR)/Sparkle/Sparkle-1.27.0",
+					"$(PROJECT_DIR)/Sparkle/Sparkle-1.20.0",
 				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				INFOPLIST_FILE = Info64.plist;
@@ -2720,208 +1846,14 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/macports/ICU/lib",
 					"$(PROJECT_DIR)/macports/hunspell/lib",
+					"$(PROJECT_DIR)/macports/expat/lib",
+					"$(PROJECT_DIR)/macports/libiconv/lib",
 				);
-				MARKETING_VERSION = 4.2.5;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MARKETING_VERSION = 4.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.indexres.cindex64;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Default;
-		};
-		6E0905BF1ECF7C6E00C094BD /* Development */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 4.2.5;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Sparkle",
-				);
-				GCC_DYNAMIC_NO_PIC = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					_DEMOCOPY,
-					_DEBUG_ON,
-				);
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_POINTER_SIGNEDNESS = NO;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
-				GCC_WARN_MISSING_PARENTHESES = NO;
-				GCC_WARN_SIGN_COMPARE = YES;
-				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_LABEL = YES;
-				GCC_WARN_UNUSED_VALUE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = Info.demo64.plist;
-				INSTALL_PATH = "$(HOME)/Applications";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/macports/ICU/lib",
-					"$(PROJECT_DIR)/macports/hunspell/lib",
-					"$(PROJECT_DIR)/Sparkle/Sparkle.framework/Versions/A",
-				);
-				MARKETING_VERSION = 4.2.5;
-				PRODUCT_BUNDLE_IDENTIFIER = com.indexres.cindex64.demo;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				VALID_ARCHS = x86_64;
-				WRAPPER_EXTENSION = app;
-			};
-			name = Development;
-		};
-		6E0905C01ECF7C6E00C094BD /* Deployment */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 4.2.5;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Sparkle",
-				);
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = _DEMOCOPY;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNKNOWN_PRAGMAS = YES;
-				INFOPLIST_FILE = Info.demo64.plist;
-				INSTALL_PATH = "$(HOME)/Applications";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/macports/ICU/lib",
-					"$(PROJECT_DIR)/macports/hunspell/lib",
-					"$(PROJECT_DIR)/Sparkle/Sparkle.framework/Versions/A",
-				);
-				MARKETING_VERSION = 4.2.5;
-				PRODUCT_BUNDLE_IDENTIFIER = com.indexres.cindex64.demo;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				VALID_ARCHS = x86_64;
-				WRAPPER_EXTENSION = app;
-			};
-			name = Deployment;
-		};
-		6E0905C11ECF7C6E00C094BD /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 4.2.5;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Sparkle",
-				);
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				INFOPLIST_FILE = Info.demo64.plist;
-				INSTALL_PATH = "$(HOME)/Applications";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/macports/ICU/lib",
-					"$(PROJECT_DIR)/macports/hunspell/lib",
-					"$(PROJECT_DIR)/Sparkle/Sparkle.framework/Versions/A",
-				);
-				MARKETING_VERSION = 4.2.5;
-				PRODUCT_BUNDLE_IDENTIFIER = com.indexres.cindex64.demo;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				VALID_ARCHS = x86_64;
-				WRAPPER_EXTENSION = app;
-			};
-			name = Default;
-		};
-		6E0906941ECF7C7B00C094BD /* Development */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 4.2.5;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Sparkle",
-				);
-				GCC_DYNAMIC_NO_PIC = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					_STUDENTCOPY,
-					_DEBUG_ON,
-				);
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_POINTER_SIGNEDNESS = NO;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
-				GCC_WARN_MISSING_PARENTHESES = NO;
-				GCC_WARN_SIGN_COMPARE = YES;
-				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_LABEL = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = Info.student64.plist;
-				INSTALL_PATH = "$(HOME)/Applications";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/macports/ICU/lib",
-					"$(PROJECT_DIR)/macports/hunspell/lib",
-				);
-				MARKETING_VERSION = 4.2.5;
-				PRODUCT_BUNDLE_IDENTIFIER = com.indexres.cindex64.student;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				VALID_ARCHS = x86_64;
-				WRAPPER_EXTENSION = app;
-			};
-			name = Development;
-		};
-		6E0906951ECF7C7B00C094BD /* Deployment */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 4.2.5;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Sparkle",
-				);
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = _STUDENTCOPY;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				INFOPLIST_FILE = Info.student64.plist;
-				INSTALL_PATH = "$(HOME)/Applications";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/macports/ICU/lib",
-					"$(PROJECT_DIR)/macports/hunspell/lib",
-				);
-				MARKETING_VERSION = 4.2.5;
-				PRODUCT_BUNDLE_IDENTIFIER = com.indexres.cindex64.student;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				VALID_ARCHS = x86_64;
-				WRAPPER_EXTENSION = app;
-			};
-			name = Deployment;
-		};
-		6E0906961ECF7C7B00C094BD /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 4.2.5;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Sparkle",
-				);
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				INFOPLIST_FILE = Info.student64.plist;
-				INSTALL_PATH = "$(HOME)/Applications";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/macports/ICU/lib",
-					"$(PROJECT_DIR)/macports/hunspell/lib",
-				);
-				MARKETING_VERSION = 4.2.5;
-				PRODUCT_BUNDLE_IDENTIFIER = com.indexres.cindex64.student;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				VALID_ARCHS = x86_64;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Default;
@@ -2972,7 +1904,6 @@
 				LD_RUNPATH_SEARCH_PATHS = " @loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = "macports/**";
 				MACH_O_TYPE = mh_execute;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-lc++";
 				SDKROOT = macosx;
@@ -3020,7 +1951,6 @@
 				LD_RUNPATH_SEARCH_PATHS = " @loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = "macports/**";
 				MACH_O_TYPE = mh_execute;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-lc++";
 				SDKROOT = macosx;
@@ -3067,7 +1997,6 @@
 				LD_RUNPATH_SEARCH_PATHS = " @loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = "macports/**";
 				MACH_O_TYPE = mh_execute;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-lc++";
 				SDKROOT = macosx;
@@ -3085,26 +2014,6 @@
 				6E0904EA1ECF7C5E00C094BD /* Development */,
 				6E0904EB1ECF7C5E00C094BD /* Deployment */,
 				6E0904EC1ECF7C5E00C094BD /* Default */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
-		};
-		6E0905BE1ECF7C6E00C094BD /* Build configuration list for PBXNativeTarget "Cindex 4 Demo" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				6E0905BF1ECF7C6E00C094BD /* Development */,
-				6E0905C01ECF7C6E00C094BD /* Deployment */,
-				6E0905C11ECF7C6E00C094BD /* Default */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
-		};
-		6E0906931ECF7C7B00C094BD /* Build configuration list for PBXNativeTarget "Cindex 4 Student" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				6E0906941ECF7C7B00C094BD /* Development */,
-				6E0906951ECF7C7B00C094BD /* Deployment */,
-				6E0906961ECF7C7B00C094BD /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Default;

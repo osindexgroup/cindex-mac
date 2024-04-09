@@ -87,99 +87,6 @@ FCONTROLX rtfcontrol = {
 	FALSE,			// don't tag individual crossrefs
 	TRUE			/* internal set */
 };
-#if 0
-/**********************************************************************/
-static short rtfinit(INDEX * FF, FCONTROLX * fxp)	/* initializes control struct and emits header */
-
-{
-	int count, rtabpos, width, fieldlimit;
-	int baseindent, firstindent, hfontsize;
-	char * fsptr, lspace[30], spacebefore[30], *rtabtype;
-	char tabstops[200];
-	char tabstring[FIELDLIM];
-	float lineheightmultiple = 0;
-	int lcid;
-	
-	rtfcontrol.protected = protchars;	/* standard protection set */
-	width = FF->head.formpars.pf.pi.pwidthactual-(FF->head.formpars.pf.mc.right+FF->head.formpars.pf.mc.left); /* overall width less margins (points) */
-	rtabpos = TWIPS_PER_POINT*(width-(FF->head.formpars.pf.mc.ncols-1)*FF->head.formpars.pf.mc.gutter)/FF->head.formpars.pf.mc.ncols; /* fix for columns */
-	rtabtype = FF->head.formpars.ef.lf.leader ? "\\tldot" : g_nullstr;
-	//	fxp->esptr += sprintf(fxp->esptr,"{\\rtf1\\mac\\deff%d\\deflang%d",1,LCIDforCurrentLocale());	/* load start stuff && set default font (assigned id 1) */
-	lcid = uloc_getLCID(col_getLocaleInfo(&FF->head.sortpars)->localeID);
-	fxp->esptr += sprintf(fxp->esptr,"{\\rtf1\\mac\\deff%d\\deflang%d",1,lcid);	/* load start stuff && set default font (assigned id 1) */
-	
-	fsptr = rtf_setfonts(FF,fxp);
-	fxp->esptr += sprintf(fxp->esptr,stylespec);		/* start style definitions */
-	if (FF->head.formpars.pf.linespace)
-		lineheightmultiple = FF->head.formpars.pf.linespace == 1 ? 1.5 : 2;
-	if (FF->head.formpars.pf.autospace) {
-		if (FF->head.formpars.pf.linespace)	// if anything other than single space
-			sprintf(lspace,"\\sl%d\\slmult1",(int)(TWIPS_PER_POINT*lineheightmultiple*12));	// set space explicitly
-		else
-			*lspace = '\0';
-	}
-	else {		// fixed spacing
-		if (FF->head.formpars.pf.linespace)	// if anything other than single space
-			sprintf(lspace,"\\sl%d\\slmult1",(int)(-FF->head.formpars.pf.lineheight*TWIPS_PER_POINT*lineheightmultiple));
-		else
-			sprintf(lspace,"\\sl%d\\slmult0",-FF->head.formpars.pf.lineheight*TWIPS_PER_POINT);
-	}
-	fieldlimit = FF->head.indexpars.maxfields < FIELDLIM ? FF->head.indexpars.maxfields : FF->head.indexpars.maxfields-1;	// need 1 extra level for subhead cref
-	for (count = 0; count < fieldlimit; count++)	{	/* for all text fields in index */
-		int fontsize = FF->head.formpars.ef.field[count].size ? FF->head.formpars.ef.field[count].size : FF->head.privpars.size;
-		
-		if (!count && FF->head.formpars.pf.entryspace)	{	// if main head and want extra space
-			NSSize levelspacing = type_getfontmetrics(FF->head.formpars.ef.field[count].font,fontsize, FF);
-			sprintf(spacebefore, "\\sb%d", (int)(FF->head.formpars.pf.entryspace*levelspacing.height*TWIPS_PER_POINT));
-		}
-		else
-			*spacebefore = '\0';
-		formexport_gettypeindents(FF,count,fxp->usetabs, TWIPS_PER_POINT,&firstindent,&baseindent,"\\tx%d",tabstops,tabstring);	/* gets base and first indents */
-		fxp->esptr += sprintf(fxp->esptr,"{\\s%d%s\\tqr%s\\tx%d\\fi%d\\li%d%s%s\\fs%d\\sbasedon222 %s;}", count+MAINSTYLE, tabstops, rtabtype, rtabpos,(short)(firstindent), (short)baseindent, lspace, spacebefore, fontsize*2, FF->head.indexpars.field[count].name);	/* emit header spec */
-		structtags[count+STR_MAIN] = fsptr;				/* pointer for lead string */
-		structtags[count+STR_MAINEND] = g_nullstr;		/* pointer for trailing string (none) */
-		fsptr += sprintf(fsptr,"\\pard\\plain\\s%d%s\\tqr%s\\tx%d\\fi%d\\li%d%s%s\\fs%d %s", count+MAINSTYLE, tabstops, rtabtype, rtabpos,(short)(firstindent), (short)baseindent,lspace, spacebefore, fontsize*2,tabstring)+1;		/* generate lead tag */
-	}
-	structtags[STR_PAGE] = g_nullstr;		/* pointer for page tag */
-	structtags[STR_PAGEND] = g_nullstr;		/* pointer for page tag */
-	structtags[STR_CROSS] = g_nullstr;		/* pointer for cross tag */
-	structtags[STR_CROSSEND] = g_nullstr;		/* pointer for cross end tag */
-	sprintf(parabase,"\\par%s",fxp->newlinestring);	/* end para string + newline */
-	hfontsize = FF->head.formpars.ef.eg.gsize ? FF->head.formpars.ef.eg.gsize : FF->head.privpars.size;
-#if 0
-	if (FF->head.formpars.pf.above) {	// if want extra space before header
-		NSSize headerspacing = type_getfontmetrics(FF->head.formpars.ef.eg.gfont, hfontsize,FF);
-		sprintf(spacebefore, "\\sb%d", (int)(FF->head.formpars.pf.above*headerspacing.height*TWIPS_PER_POINT));
-		fxp->esptr += sprintf(fxp->esptr,"{\\s1\\fi-540\\li540%s%s\\fs%d\\sbasedon222 group;}", lspace, spacebefore, hfontsize*2);	/* emit group spec */
-		structtags[STR_GROUP] = fsptr;	// group start tag
-		fsptr += sprintf(fsptr, "\\pard\\plain\\s1%s%s\\fs%d ", lspace, spacebefore, hfontsize*2)+1;	/* group tag (style 1) */
-	}
-#else
-	if (FF->head.formpars.pf.above) {	// if want extra space before header
-		NSSize headerspacing = type_getfontmetrics(FF->head.formpars.ef.eg.gfont, hfontsize,FF);
-		sprintf(lspace, "\\sl%d", (int)(FF->head.formpars.pf.above*headerspacing.height*TWIPS_PER_POINT));
-		fxp->esptr += sprintf(fxp->esptr,"{\\s1%s%s\\fs%d\\sbasedon222 group;}", lspace, "", hfontsize*2);	/* emit group spec */
-		structtags[STR_GROUP] = fsptr;	// group start tag
-		fsptr += sprintf(fsptr, "\\pard\\plain\\s1%s%s\\fs%d ", lspace, "", hfontsize*2)+1;	/* group tag (style 1) */
-	}
-#endif
-	else
-		structtags[STR_GROUP] = g_nullstr;	// group start tag
-	structtags[STR_GROUPEND] = g_nullstr;	// group end tag
-	fxp->esptr += sprintf(fxp->esptr,"{\\s2\\fi-540\\li540%s%s\\keepn\\fs%d\\sbasedon222 ahead;}", lspace, "", hfontsize*2);	/* emit header spec */
-	structtags[STR_AHEAD] = fsptr;		/* set ahead tag */
-	sprintf(fsptr, "\\pard\\plain\\s2%s%s\\keepn\\fs%d ", lspace, "", hfontsize*2);	/* alpha header tag (style 2) */
-	structtags[STR_AHEADEND] = g_nullstr;	/* set ahead end tag */
-	*fxp->esptr++ = '}';
-	fxp->esptr += sprintf(fxp->esptr,"\\margt%d\\margb%d\\margl%d\\margr%d\\widowctrl\\notabind\\ftnbj\\sectd\\cols%d\\colsx%d\\endnhere ",
-						  FF->head.formpars.pf.mc.top*TWIPS_PER_POINT, FF->head.formpars.pf.mc.bottom*TWIPS_PER_POINT,
-						  FF->head.formpars.pf.mc.left*TWIPS_PER_POINT, FF->head.formpars.pf.mc.right*TWIPS_PER_POINT,
-						  FF->head.formpars.pf.mc.ncols,FF->head.formpars.pf.mc.gutter*TWIPS_PER_POINT);	/* start doc bits */
-	fxp->esptr += sprintf(fxp->esptr,"{\\info{\\title %s}}", "CINDEX Index");		/* doc info */
-	fxp->esptr += sprintf(fxp->esptr,"\\f1 ");		/* set default font */
-	return (TRUE);
-}
-#else
 /**********************************************************************/
 static short rtfinit(INDEX * FF, FCONTROLX * fxp)	/* initializes control struct and emits header */
 
@@ -287,20 +194,14 @@ static short rtfinit(INDEX * FF, FCONTROLX * fxp)	/* initializes control struct 
 		  FF->head.formpars.pf.mc.ncols,FF->head.formpars.pf.mc.gutter*TWIPS_PER_POINT);	/* start doc bits */
 	fxp->esptr += sprintf(fxp->esptr,"{\\info{\\title %s}}", "CINDEX Index");		/* doc info */
 	fxp->esptr += sprintf(fxp->esptr,"\\f1 ");		/* set default font */
-	
-	size_t fxpLen = strlen(fxp->esptr);
-	
-	NSLog(@"%ld", (long) fxpLen);
-	
 	return (TRUE);
 }
-#endif
 /**********************************************************************/
 static void rtfcleanup(INDEX * FF, FCONTROLX * fxp)	/* cleans up */
 
 {
 	*fxp->esptr++ = '}';	/* end of file */
-	// *fxp->esptr = '\0';
+	*fxp->esptr = '\0';
 }
 /**********************************************************************/
 static void rtfwriter(FCONTROLX * fxp,unichar uc)	// emits unichar
@@ -369,34 +270,6 @@ static void rtfembedder(INDEX * FF, FCONTROLX * fxp, RECORD * recptr)	/* forms e
 	strcpy(fxp->esptr,"}}");
 	fxp->esptr += 2;
 }
-#if 0
-/**********************************************************************/
-char * rtf_setfonts(INDEX * FF, FCONTROLX * fxp)	/* sets up font table */
-
-{
-	int count;
-	char * fsptr;
-
-	fxp->esptr += sprintf(fxp->esptr,"{\\fonttbl");	/* lead to font table */
-	/* in what follows we use the local index+1 (count+1) as the font id */
-	for (fsptr = stringbase, count = 0; *FF->head.fm[count].pname && count < T_NUMFONTS; count++)	{	/* for all fonts we use */
-		fxp->esptr += sprintf(fxp->esptr,  count == 1 ? "{\\f%d\\ftech\\fcharset2 %s;}" : "{\\f%d\\fnil\\fcharset77 %s;}", count+1, FF->head.fm[count].pname);
-		fonttags[count*2] = fsptr;		/* set pointer to it */
-		if (!count)	{		/* if default font */
-			*fsptr++ = '\0';	/* we never encode explicitly */
-			fonttags[count*2+1] = fsptr;		/* set pointer to it */
-			*fsptr++ = '\0';
-		}
-		else {
-			fsptr += sprintf(fsptr,"{\\f%d ", count+1)+1;	/* add string for turning font on */
-			fonttags[count*2+1] = fsptr;		/* set pointer to it */
-			fsptr += sprintf(fsptr, "}")+1;		/* and string for turning off */
-		}
-	}
-	*fxp->esptr++ = '}';
-	return fsptr;
-}
-#else
 /**********************************************************************/
 char * rtf_setfonts(INDEX * FF, FCONTROLX * fxp)	/* sets up font table */
 
@@ -424,4 +297,3 @@ char * rtf_setfonts(INDEX * FF, FCONTROLX * fxp)	/* sets up font table */
 	*fxp->esptr++ = '}';
 	return fsptr;
 }
-#endif

@@ -73,7 +73,7 @@ static NSString *fnames[] = {
 		[field addItemWithTitle: fnames[count < _iParam.maxfields-1 ? count : PAGEINDEX]];
 }
 - (IBAction)showHelp:(id)sender {
-	[[NSHelpManager sharedHelpManager] openHelpAnchor:@"recordstruct0_Anchor-14210" inBook:@"Cindex 4.2.5 Help"];
+	[[NSHelpManager sharedHelpManager] openHelpAnchor:@"recordstruct0_Anchor-14210" inBook:@"Cindex 4 Help"];
 }
 - (IBAction)changeNumberOfFields:(id)sender {
 	if (sender == minfields)	{
