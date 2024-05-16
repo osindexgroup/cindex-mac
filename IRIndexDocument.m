@@ -78,7 +78,7 @@ NSString * CINXMLTagExtension = @"cxtg";
 NSString * CINPDicExtension = @"pdic";
 
 NSString * NOTE_HEADERFOOTERCHANGED = @"headerFooterChanged";
-NSString * NOTE_REDISPLAYDOC = @"redisplayIndex";
+//NSString * NOTE_REDISPLAYDOC = @"redisplayIndex";
 NSString * NOTE_REVISEDLAYOUT = @"layoutIndex";
 NSString * NOTE_FONTSCHANGED = @"fontChanged";
 NSString * NOTE_NEWKEYTEXT = @"functionKeyChanged";
@@ -563,7 +563,7 @@ NSString * RecordAttributesKey = @"recordAttributes";
 				return FALSE;
 			}
 			if (error > 0) {	// record error(s)
-				if (sendwarning(DAMAGEDINDEXWARNING))	{
+				if (showWarning(self.windowForSheet,DAMAGEDINDEXWARNING))	{
 					RECN mcount;
 
 					if (_index.head.rtot > nomrtot)	// if claim too many records
@@ -577,16 +577,16 @@ NSString * RecordAttributesKey = @"recordAttributes";
 				else	// don't want to repair
 					return FALSE;
 			}
-			if (_index.head.rtot <= nomrtot || sendwarning(MISSINGRECORDS, nomrtot, _index.head.rtot)
+			if (_index.head.rtot <= nomrtot || showWarning(self.windowForSheet,MISSINGRECORDS, nomrtot, _index.head.rtot)
 				&& (_index.head.rtot = nomrtot) && index_writehead(&_index))	{	// if # records matches, or repaired OK
 					if (tdirty)		{	/* if badly closed */
-						if (sendwarning(CORRUPTINDEX))	/* if want resort */
+						if (showWarning(self.windowForSheet,CORRUPTINDEX))	/* if want resort */
 							_index.needsresort = TRUE;
 						else
 							_index.readonly = TRUE;
 					}
 				if (!grp_checkintegrity(&_index))	{	// if corrupt groups
-					if (sendwarning(DAMAGEDGROUPS))	// if want repair
+					if (showWarning(self.windowForSheet,DAMAGEDGROUPS))	// if want repair
 						grp_repair(&_index);
 					else
 						return FALSE;
@@ -679,7 +679,7 @@ NSString * RecordAttributesKey = @"recordAttributes";
 	return _hasBackup;
 }
 - (IBAction)revertToSaved:(id)sender {	// reverts to private backup
-	if (sendwarning(REVERTWARNING))	{
+	if (showWarning(self.windowForSheet, REVERTWARNING))	{
 		NSURL * burl = [NSURL fileURLWithPath:_backupPath];
 		NSURL * furl = [self fileURL];
 	
@@ -694,7 +694,7 @@ NSString * RecordAttributesKey = @"recordAttributes";
 			}
 			else {
 				IRdc.IRrevertsource = nil;
-				senderr(INTERNALERR, WARN, "Cannot revert to saved document");
+				errorSheet(self.mainWindowController.window, INTERNALERR, WARN, "Cannot revert to saved document");
 			}
 		}];
 	}
@@ -728,7 +728,7 @@ NSString * RecordAttributesKey = @"recordAttributes";
 		return NO;
 	if (itemid == MI_EDITRECORD)
 		return [self selectedRecords].location > 0 && [self selectedRecords].location == [self selectedRecords].length;
-	if (itemid == MI_NEWGROUP || itemid == MI_DUPLICATE || itemid == MI_DELETED || itemid == MI_DEMOTE || itemid == MI_REMOVEMARK)
+	if (itemid == MI_NEWGROUP || itemid == MI_DUPLICATE || itemid == MI_DELETED || itemid == MI_DEMOTE || itemid == MI_REMOVEMARK || itemid == MI_FLIP)
 		return [self selectedRecords].location > 0;
 	if (itemid == MI_FINDAGAIN)
 		return [self.currentSearchController canFindAgainInDocument:self];
@@ -743,7 +743,7 @@ NSString * RecordAttributesKey = @"recordAttributes";
 	if (itemid == MI_WRAPLINES)
 		return _index.head.privpars.vmode == VM_NONE;
 	if (itemid == MI_SHOWSORTED)
-		return !(_index.curfile || _index.viewtype == VIEW_NEW);	// no unsorted if group or new
+		return _index.viewtype != VIEW_NEW;	// no unsorted if new
 
 	if (itemid == MI_REVERT)
 		return _hasBackup && (_index.head.dirty || _index.wasdirty);
@@ -754,37 +754,31 @@ NSString * RecordAttributesKey = @"recordAttributes";
 
 	if (itemid == MI_GENERATE || itemid == MI_CHECK)
 		return _index.head.sortpars.fieldorder[0] != PAGEINDEX;
+	if (itemid == MI_COMPARE)
+		return IRdc.documents.count > 1;
 	if (itemid == MI_RECONCILE)
 		return !(_index.viewtype == VIEW_NEW || _index.curfile || _index.head.sortpars.fieldorder[0] == PAGEINDEX);
 	if (itemid == MI_COMPRESS || itemid == MI_EXPAND)
 		return !(_index.viewtype == VIEW_NEW || _index.curfile);
-		
-	if (itemid > MI_LABEL0 && itemid <= MI_LABEL7)	{		// set checks on labels
+	
+	if (itemid >= MI_LABEL0 && itemid <= MI_LABEL7)	{		// also set checks on labels
+		RECN rnum = (RECN)[self selectedRecords].location;
 		RECORD * recptr;
-		if (recptr = rec_getrec(&_index, [self selectedRecords].location))
+		if (recptr = rec_getrec(&_index, rnum))
 			[mitem setState: recptr->label == itemid-MI_LABEL0];
+		return rnum > 0;
 	}
 	return YES;
 }
 - (BOOL)validateToolbarItem: (NSToolbarItem *)toolbarItem {
 	NSInteger tag = [toolbarItem tag];
 	
-//	NSLog([toolbarItem label]);
-//	if ([[_mainWindowController window] toolbar] != [toolbarItem toolbar] || _recordWindowController)
 	if (_recordWindowController)
 		return NO;
 	if (tag == TB_DELETED || tag == TB_LABELED)
 		return [self selectedRecords].location && !_index.readonly;
 	if (tag == TB_VIEWALL)
 		return _index.viewtype != VIEW_ALL;
-//	if (tag == TB_FULLFORMAT)
-//		return _index.head.privpars.vmode != VM_FULL;
-//	if (tag == TB_DRAFTFORMAT)
-//		return _index.head.privpars.vmode != VM_DRAFT;
-//	if (tag == TB_INDENTED)
-//		return _index.head.formpars.ef.runlevel > 0 && _index.head.privpars.vmode != VM_DRAFT;
-//	if (tag == TB_RUNIN)
-//		return _index.head.formpars.ef.runlevel == 0 && _index.head.privpars.vmode != VM_DRAFT;
 	else if (tag == TB_STYLETYPE) {
 		((NSSegmentedControl *)toolbarItem.view).selectedSegment = _index.head.formpars.ef.runlevel > 0 ? 1 : 0;
 		return _index.head.privpars.vmode == VM_FULL;
@@ -795,10 +789,9 @@ NSString * RecordAttributesKey = @"recordAttributes";
 	if (tag == TB_SORTTYPE) {
 		[(NSSegmentedControl *)toolbarItem.view setEnabled:!_index.readonly forSegment:0];
 		[(NSSegmentedControl *)toolbarItem.view setEnabled:!_index.readonly forSegment:1];
-		if (_index.head.sortpars.ison) {
-			SORTPARAMS *sg = _index.curfile ? &_index.curfile->sg : &_index.head.sortpars;
+		SORTPARAMS *sg = _index.curfile ? &_index.curfile->sg : &_index.head.sortpars;
+		if (sg->ison)
 			((NSSegmentedControl *)toolbarItem.view).selectedSegment = sg->fieldorder[0] == PAGEINDEX ? 1 : 0;
-		}
 		else
 			((NSSegmentedControl *)toolbarItem.view).selectedSegment = 2;
 	}
@@ -919,6 +912,9 @@ NSString * RecordAttributesKey = @"recordAttributes";
 - (IBAction)checkEntries:(id)sender {
 	[self showSheet:[[CheckController alloc] initWithWindowNibName:@"CheckController"]];
 }
+- (IBAction)compareDocuments:(id)sender {
+	[self showSheet:[[CompareController alloc] initWithWindowNibName:@"CompareController"]];
+}
 - (IBAction)generateRefs:(id)sender {
 	[self showSheet:[[GenerateRefsController alloc] initWithWindowNibName:@"GenerateRefsController"]];
 }
@@ -1016,7 +1012,10 @@ NSString * RecordAttributesKey = @"recordAttributes";
 	[self redisplay:0 mode:VD_CUR];
 }
 - (IBAction)changeSort:(id)sender {
-	_index.head.sortpars.ison ^= 1;
+	if (_index.curfile)
+		sort_sortgroup(&_index,_index.curfile->sg.ison ^= 1);		// on/off change on group requires resort
+	else
+		_index.head.sortpars.ison ^= 1;
 	[self redisplay:0 mode:VD_RESET];
 }
 - (IBAction)newRecord:(id)sender {
@@ -1085,7 +1084,7 @@ NSString * RecordAttributesKey = @"recordAttributes";
 				maxfields = fcount;
 		} while ((trptr = sort_skip(&_index,trptr,1)) && trptr->num != rrange.length);
 		if (maxfields > _index.head.indexpars.maxfields)	{	/* if need to increase field limit */
-			if (sendwarning(DEMOTEFIELDNUMWARN, maxfields))	{
+			if (showWarning(self.windowForSheet,DEMOTEFIELDNUMWARN, maxfields))	{
 				int oldmaxfieldcount = _index.head.indexpars.maxfields;
 				_index.head.indexpars.maxfields = maxfields;
 				adjustsortfieldorder(_index.head.sortpars.fieldorder, oldmaxfieldcount, _index.head.indexpars.maxfields);
@@ -1096,7 +1095,7 @@ NSString * RecordAttributesKey = @"recordAttributes";
 		maxlength = maxlength + pgap + 10;
 		maxlength -= maxlength % 10;		// rounded up to nearest 10 above original maxlength + gap
 		if (maxlength > _index.head.indexpars.recsize)	{	/* if need record enlargement */
-			if (!sendwarning(DEMOTEENLARGEWARN,maxlength-_index.head.indexpars.recsize) ||	![self resizeIndex:maxlength])	// if don't want or can't do
+			if (!showWarning(self.windowForSheet,DEMOTEENLARGEWARN,maxlength-_index.head.indexpars.recsize) ||	![self resizeIndex:maxlength])	// if don't want or can't do
 				return;
 		}
 		struct numstruct * slptr = sort_setuplist(&_index);
@@ -1113,6 +1112,29 @@ NSString * RecordAttributesKey = @"recordAttributes";
 		[_recordWindowController setDemoting];
 	}
 }
+- (IBAction)flip:(id)sender {
+	NSRange rrange = [self selectionMaxRange];
+	RECORD * trptr;
+	INDEX * FF = &_index;
+	BOOL shifton = [(NSMenuItem *)sender keyEquivalentModifierMask]&NSEventModifierFlagShift ? YES : NO;
+	BOOL altstate = g_prefs.gen.smartflip && !shifton || !g_prefs.gen.smartflip && shifton;
+
+	if (trptr = rec_getrec(&_index,rrange.location))	{
+		struct numstruct * slptr = sort_setuplist(&_index);
+		char fs[MAXREC];
+		do {
+			str_xcpy(fs, trptr->rtext);
+			BOOL pageMode = str_xcount(fs) == 2;
+			char * smartlist = pageMode ? FF->head.refpars.crosstart : FF->head.flipwords;
+			str_flip(fs, smartlist, altstate,NO,pageMode);
+			memcpy(trptr->rtext, fs,str_xlen(fs));	// copy the string up to EOCS
+			sort_addtolist(slptr, trptr->num);
+			rec_stamp(&_index,trptr);
+		} while ((trptr = sort_skip(&_index,trptr,1)) && trptr->num != rrange.length);
+		sort_resortlist(&_index,slptr);
+		[self updateDisplay];
+	}
+}
 - (IBAction)deleted:(id)sender {
 	NSRange rrange = [self selectionMaxRange];
 	RECORD * trptr;
@@ -1124,8 +1146,6 @@ NSString * RecordAttributesKey = @"recordAttributes";
 			trptr->isdel = delflag;
 			rec_stamp(&_index,trptr);
 		} while ((trptr = sort_skip(&_index,trptr,1)) && trptr->num != rrange.length);
-//		if (_index.head.privpars.hidedelete)	// if hiding deleted
-//			[_mainWindowController selectRecord:0 range:NSMakeRange(0,0)];	// remove selection
 		[self updateDisplay];
 	}
 }
@@ -1202,7 +1222,7 @@ NSString * RecordAttributesKey = @"recordAttributes";
 				sg->fieldorder[count] = !count ? PAGEINDEX : count-1;
 		}
 		if (_index.curfile)
-			sort_sortgroup(&_index);
+			sort_sortgroup(&_index, YES);
 		else
 			sort_resort(&_index);
 		[self redisplay:0 mode:VD_RESET];
@@ -1277,7 +1297,7 @@ NSString * RecordAttributesKey = @"recordAttributes";
 	
 	[dic setObject:recnum forKey:RecordNumberKey];
 	[dic setObject:mode forKey:ViewModeKey];
-	[[NSNotificationCenter defaultCenter] postNotificationName:NOTE_REDISPLAYDOC object:self userInfo:dic];
+	[_mainWindowController redisplay:dic];
 }
 - (BOOL)formPageImages {
 	return [[_mainWindowController printView] buildPageStatistics];
@@ -1367,7 +1387,6 @@ NSString * RecordAttributesKey = @"recordAttributes";
 		delstate = labelstate = FALSE;
 	[[tmenu itemWithTag:MI_DELETED] setState:delstate];
 	[[tmenu itemWithTag:MI_LABELED] setState:labelstate];
-	[[tmenu itemWithTag:MI_LABELED] setEnabled:[self selectedRecords].location > 0 || [[_recordWindowController window] isMainWindow]];
 }
 - (void)checkViewItems:(NSMenu *)tmenu {
 	[[tmenu itemWithTag:MI_VIEWALL] setState:_index.viewtype == VIEW_ALL];
@@ -1385,7 +1404,7 @@ NSString * RecordAttributesKey = @"recordAttributes";
 	for (NSMenuItem * mi in [[[tmenu itemWithTag:MI_VIEWDEPTHMENU] submenu] itemArray])
 		[mi setState: [mi tag] == _index.head.privpars.hidebelow];
 	[[tmenu itemWithTag:MI_WRAPLINES] setState:_index.head.privpars.wrap && _index.head.privpars.vmode == VM_NONE];
-	[[tmenu itemWithTag:MI_SHOWSORTED] setState:_index.head.sortpars.ison && _index.viewtype != VIEW_NEW || _index.curfile];
+	[[tmenu itemWithTag:MI_SHOWSORTED] setState:_index.curfile && _index.curfile->sg.ison || !_index.curfile && _index.head.sortpars.ison && _index.viewtype != VIEW_NEW ];
 }
 - (void)checkFormatItems:(NSMenu *)menu {
 	[[menu itemWithTag:MI_ALIGNMENT] setEnabled:[[_mainWindowController window] isMainWindow]];
@@ -1437,7 +1456,7 @@ NSString * RecordAttributesKey = @"recordAttributes";
 		return (TRUE);
 	}
 	else
-		senderr(DISKFULLERR,WARN);
+		errorSheet(self.mainWindowController.window, DISKFULLERR,WARN);
 	return (FALSE);
 }
 - (BOOL)closeIndex {

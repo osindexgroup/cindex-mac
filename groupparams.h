@@ -23,7 +23,8 @@ typedef struct {		/* header to group */
 	LISTGROUP lg;	/* search structure */
 	SORTPARAMS sg;	/* sort structure */
 	RECN rectot;		/* # records in it */
-	int spare[32];	// spare
+	RECN curpos;	// index of current record in group
+	int spare[31];	// spare
 	RECN recbase[];		/* array of record numbers */
 } GROUP;
 

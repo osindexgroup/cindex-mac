@@ -27,7 +27,6 @@ static NSCursor * _rightCursor;
 }
 @property (assign) IRIndexDocWController <IRIndexViewDelegate, NSObject> * owner;
 @property (assign) IRIndexDocument * document;
-@property (strong) NSTrackingArea * marginArea;
 
 - (void)_stepRecord:(int)step mode:(int)mode;
 - (void)_selectFrom:(RECN)base to:(RECN)end;
@@ -64,11 +63,10 @@ static NSCursor * _rightCursor;
 }
 - (BOOL)performKeyEquivalent:(NSEvent *)theEvent {
 	NSEventModifierFlags mflags = [theEvent modifierFlags];
+	NSString * kchars = [theEvent charactersIgnoringModifiers];
+	unichar uchar = [kchars characterAtIndex:0];
 
 	if (mflags&NSEventModifierFlagCommand) {	// if cmnd-key (function keys don't necess need it to have Key Equivs)
-		NSString * kchars = [theEvent charactersIgnoringModifiers];
-		unichar uchar = [kchars characterAtIndex:0];
-		
 		switch (uchar)		{
 			case '=':		// toggle label 1
 				if ([_document selectedRecords].location)
@@ -78,7 +76,7 @@ static NSCursor * _rightCursor;
 				return YES;
 		}
 	}
-	return NO;
+	return [super performKeyEquivalent:theEvent];
 }
 - (void)changeFont:(id)sender {
 	INDEX * FF = [_document iIndex];
@@ -225,18 +223,10 @@ static NSCursor * _rightCursor;
 			case NSHomeFunctionKey:
 				[_owner showRecord:rec_number(sort_top([_document iIndex])) position:VD_TOP];
 				return;
-	#if 0
-			case NSPageDownFunctionKey:
-			case NSPageUpFunctionKey:
-				_fromKey = YES;
-				[super keyDown:theEvent];
-				return;
-	#endif
 			case NSEndFunctionKey:
 				[_owner showRecord:rec_number(sort_bottom([_document iIndex])) position:VD_TOP];
 				return;
 			case '\t':
-	//			[_owner selectRecord:[_owner selectedRecords].location range:NSMakeRange(0,0)];
 				[_owner showRecord:[_owner selectedRecords].location position:VD_SELPOS];
 				return;
 			case 0x3:	// enter key
@@ -248,12 +238,6 @@ static NSCursor * _rightCursor;
 	}
 	[super keyDown:theEvent];
 }
-#if 0
--(void)setSelectedRange:(NSRange)range {
-	[super setSelectedRange:range];
-	NSLog ([[[self textStorage] string] substringWithRange:range]);
-}
-#endif
 - (void)setFirstSelected:(RECN)base {		// sets first record of new selection
 	_firstSelected = _lastSelected = base;
 }
@@ -351,7 +335,6 @@ static NSCursor * _rightCursor;
 		[super insertText:text replacementRange:replacementRange];
 }
 - (void)updateTrackingAreas {
-	[super updateTrackingAreas];
 	int rwidth = [_owner rightCursorWidth];
 	NSRect rrect = self.visibleRect;
 	
@@ -363,8 +346,9 @@ static NSCursor * _rightCursor;
 	for (NSTrackingArea * ta in self.trackingAreas) {
 		[self removeTrackingArea:ta];
 	}
-	self.marginArea = [NSTrackingArea.alloc initWithRect:rrect options:NSTrackingMouseEnteredAndExited|NSTrackingMouseMoved|NSTrackingActiveInActiveApp owner:self userInfo:nil];
-	[self addTrackingArea:self.marginArea];
+	NSTrackingArea * marginArea = [NSTrackingArea.alloc initWithRect:rrect options:NSTrackingMouseEnteredAndExited|NSTrackingMouseMoved|NSTrackingActiveInActiveApp owner:self userInfo:nil];
+	[self addTrackingArea:marginArea];
+	[super updateTrackingAreas];
 }
 #pragma NSDraggingSession
 - (NSDragOperation)draggingSession:(NSDraggingSession *)session sourceOperationMaskForDraggingContext:(NSDraggingContext)context {

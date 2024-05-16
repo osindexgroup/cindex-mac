@@ -66,7 +66,6 @@ static NSInteger pbChangeCount;
 - (void)_setFieldRanges;
 - (NSRange)_selectedFields;
 - (void)_flipField:(int)halfmode;
-- (void)_swapParens;	// swaps contents of parens
 - (void)_incDec:(int)mode;	// increments/decrements last numerical component
 - (BOOL)_extendRef;	// adds upper element of range as lower+1
 - (void)_changeCase:(int)mode;
@@ -112,6 +111,8 @@ static NSInteger pbChangeCount;
 //	NSLog([mitem title]);
 	if (itemid == MI_SWAPPARENS)
 		return [self _selectedFields].location < _fieldCount-1 && [self _selectedFields].length == 1;
+	else if (itemid == MI_INVERT)
+		return [self _selectedFields].length == 1;
 	else if (itemid >= MI_DEFAULTFONT) {		// this just applies or removes check marks on current font
 		NSString * fname = ((NSFont *)[self.typingAttributes objectForKey:NSFontAttributeName]).familyName;
 		if (type_findlocal(FF->head.fm, fname.UTF8String, 0) == itemid-MI_DEFAULTFONT)	// if this is active font
@@ -211,12 +212,6 @@ static NSInteger pbChangeCount;
 	}
 	[super mouseDown:theEvent];
 }
-#if 0
-- (void)keyUp:(NSEvent *)theEvent {
-	[[NSNotificationCenter defaultCenter] postNotificationName:NOTE_SCROLLKEYEVENT object:theEvent];
-	[super keyUp:theEvent];
-}
-#endif
 - (void)keyDown:(NSEvent *)theEvent {
 	NSString * kchars = [theEvent characters];
 
@@ -252,7 +247,10 @@ static NSInteger pbChangeCount;
 					[self _incDec:uchar == ']'];
 					return;
 				case 'p':
-					[self _swapParens];
+					[self swapParens:nil];
+					return;
+				case 'i':
+					[self invertName:nil];
 					return;
 				default:
 					if (uchar >= '0' && uchar <= '9')	// if want field from last record
@@ -492,9 +490,6 @@ static NSInteger pbChangeCount;
 - (IBAction)flipField:(id)sender {
 	[self _flipField:[sender tag] != TB_FLIPFULL];	// full flip
 }
-- (IBAction)swapParens:(id)sender {
-	[self _swapParens];
-}
 - (IBAction)defaultFont:(id)sender {
 	_attributeChange = DA_DEFAULTFONT;
 	[self changeAttributes:self];
@@ -646,7 +641,7 @@ static NSInteger pbChangeCount;
 			int fcount = rec_strip(FF,_newString);	/* strip empty fields */
 			
 			if (fcount < FF->head.indexpars.minfields)	{	/* if for any reason too few fields */
-				senderr(INTERNALERR, WARN, "Lost Headings");
+				errorSheet(FF->owner.windowForSheet, INTERNALERR, WARN, "Lost Headings");
 				return NULL;
 			}
 		}
@@ -721,6 +716,36 @@ static NSInteger pbChangeCount;
 
 	return frange;
 }
+- (IBAction)invertName:sender {
+	NSRange sfields = [self _selectedFields];
+	if (sfields.length == 1)	{	// if selection all in single field
+		char xbuff[MAXREC];
+		long offset, matchlength;
+		NSRange nRange;
+		
+		if (self.selectedRange.length > 0)
+			nRange = self.selectedRange;
+		else {
+			nRange = [[_fieldRanges objectAtIndex:sfields.location] rangeValue];
+			if (sfields.location < _fieldCount-1)	// if not in locator field
+				nRange.length -= 1;	// lose newline at end
+			// adjust range for cursor beyond start of field
+			nRange.length -= self.selectedRange.location-nRange.location;
+			nRange.location = self.selectedRange.location;
+		}
+		[self _copyFromFontMap:FF->head.fm];
+		[[[self textStorage] attributedSubstringFromRange:nRange] convertToXString:xbuff fontMap:_fontMap mode:CC_TRIM];	// recover xstring
+		if (str_invertname(xbuff,&offset, &matchlength)) {
+			long uoffset = str_utextlen(xbuff,offset);
+			long ulength = str_utextlen(xbuff+offset,matchlength);
+			NSAttributedString * reptext = [NSAttributedString asFromXString:xbuff fontMap:FF->head.fm size:_fontsize termchar:0];
+			if ([self shouldChangeTextInRange:nRange replacementString:[reptext string]])	{
+				[self _replaceRangeOfCharacters:nRange withAttributedString:reptext];
+				[self setSelectedRange:NSMakeRange(nRange.location+uoffset,ulength)];
+			}
+		}
+	}
+}
 - (void)_flipField:(int)halfmode {
 	NSRange sfields = [self _selectedFields];
 	if (sfields.length == 1 && sfields.location < _fieldCount-1)		{	// if selection all in single field and not page field
@@ -745,7 +770,7 @@ static NSInteger pbChangeCount;
 		}
 	}
 }
-- (void)_swapParens {	// swaps contents of parens
+- (IBAction)swapParens:(id)sender {
 	NSRange sfields = [self _selectedFields];
 	if (sfields.length == 1 && sfields.location < _fieldCount-1)		{	// if selection all in single field and not page field
 		NSRange f1range = [[_fieldRanges objectAtIndex:sfields.location] rangeValue];

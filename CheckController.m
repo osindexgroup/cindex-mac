@@ -48,7 +48,8 @@ static char * errorstrings[] = {
 	"Overlapping page references",
 	"Locator not at lowest heading",
 	
-	"Invalid cross reference"
+	"Invalid cross reference",
+	"Modifying phrase could be subheading"
 };
 
 @interface CheckController () {
@@ -70,6 +71,7 @@ static char * errorstrings[] = {
 	IBOutlet NSButton * h_inconsistentEndingPhrase;
 	IBOutlet NSButton * h_checkOrphans;
 	IBOutlet NSPopUpButton * h_orphans;
+	IBOutlet NSButton * h_checkModifiers;
 
 	IBOutlet NSButton * l_missing;
 	IBOutlet NSButton * l_tooMany;
@@ -130,6 +132,7 @@ static char * errorstrings[] = {
 		l_headinglevel.state = *rKeyPtr++;
 		
 		c_verify.state = *rKeyPtr++;
+		h_checkModifiers.state = *rKeyPtr++;
 	}
 }
 - (void)dealloc {
@@ -188,6 +191,7 @@ static char * errorstrings[] = {
 		*rKeyPtr++ = l_headinglevel.state;
 
 		*rKeyPtr++ = c_verify.state;
+		*rKeyPtr++ = h_checkModifiers.state;
 
 		_cParam.errors = calloc(FF->head.rtot+1,sizeof(CHECKERROR *));
 		_cParam.pagereflimit = [l_limit intValue];

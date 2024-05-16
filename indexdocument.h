@@ -65,7 +65,7 @@ struct index {		/* runtime index structure */
 	short viewtype;			/* flags indcate what view we have */
 	GROUPHANDLE lastfile;	/* file for most recent search */
 	GROUPHANDLE curfile;	/* file used for skip, etc */
-	RECN curfilepos;		/* index of current record in group */
+//	RECN curfilepos;		/* index of current record in group */
 	RECN recordlimit;		// highest numbered record for which we have room
 	GROUP * gbase;			// base of groups
 	char wasdirty;			/* TRUE if index was ever dirty */

@@ -131,19 +131,11 @@ static NSString *fnames[] = {
 		}
 		if (mintot < maxtot)	/* find bigger error */
 			mintot = maxtot;
-#if 0
-		if (mintot > _iParam.recsize)	{		/* if require more space than recsize */
-			if (sendwarning(LONGFIELDWARNING,mintot-_iParam.recsize))
-				_iParam.recsize = mintot;
-			else
-				return;
-		}
-#endif
 		if (mintot < _minlength)
 			mintot = _minlength;
 		_iParam.recsize = [maxchars intValue];
 		if (_iParam.recsize < mintot)	{	// if record size too small
-			if (sendwarning(SHORTRECORDWARNING,mintot))
+			if (showWarning([self.document windowForSheet], SHORTRECORDWARNING,mintot))
 				_iParam.recsize = mintot;
 			else
 				return;

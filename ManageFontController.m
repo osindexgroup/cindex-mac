@@ -51,19 +51,13 @@ static int countfonts(FONTMAP * fm);		// counts # fonts in map
 - (IBAction)showHelp:(id)sender {
 	[[NSHelpManager sharedHelpManager] openHelpAnchor:@"font0_Anchor-14210" inBook:@"Cindex 4 Help"];
 }
-- (IBAction)checkUse:(id)sender {
-//	if (!type_scanfonts(FF,_farray)) {		// if not all used
-//		if (sendwarning(FONTGAPWARNING))	{	// if want to adjust
-			memcpy(self.fmp,_fm,sizeof(_fm));	// copy current map
-			type_adjustfonts(FF,_farray);
-			memcpy(_fm,self.fmp,sizeof(_fm));	// get new copy of map
-			[table reloadData];
-			[cancel setEnabled:NO];		// not undoable
-			[check setEnabled:NO];
-//		}
-//	}
-//	else
-//		sendinfo(ALLFONTSUSED);
+- (IBAction)checkUse:(id)sender {		// clears unused fonts
+	memcpy(self.fmp,_fm,sizeof(_fm));	// copy current map
+	type_adjustfonts(FF,_farray);
+	memcpy(_fm,self.fmp,sizeof(_fm));	// get new copy of map
+	[table reloadData];
+	[cancel setEnabled:NO];		// not undoable
+	[check setEnabled:NO];
 }
 - (IBAction)closeSheet:(id)sender {    
 	if ([sender tag] == OKTAG)	{

@@ -16,10 +16,14 @@
 #import "regex.h"
 #import "formattedtext.h"
 #import "search.h"
+#import "group.h"
+#import "utime.h"
 
 static BOOL goodbreak(unsigned char * base, unsigned char *cpos);	// checks if potentially good break point
 static int checkfield(unsigned char * source);		/* checks record field */
+static int checkModifiers(char * ct, char * lt, int findex);
 static CHECKERROR * errorforrecord(RECN number, INDEX * FF, CHECKERROR ** earray, int type);
+static RECORD * findMatchingRecord (INDEX * FF, RECORD * curptr, int textMode, BOOL * valid);
 
 /******************************************************************************/
 RECN tool_join (INDEX * FF, JOINPARAMS *js)	 /* joins fields of records that have redundant subheadings */
@@ -193,7 +197,6 @@ static BOOL goodbreak(unsigned char * base, unsigned char *cpos)	// checks if po
 		while (base < cpos)	{	// scan for codes up to potential break
 			unichar uc = u8_nextU((char **)&base);
 			switch (uc)      {      /* check chars */
-//			switch (*base++) {
 				case KEEPCHR:
 				case ESCCHR:
 				case CODECHR:
@@ -229,17 +232,12 @@ RECN tool_explode (INDEX * FF, SPLITPARAMS *sp)	 // explodes headings by separat
 
 {
 	// CODECHR is ctrl-Z; FONTCHAR is ctrl-Y
-	// forename(s): (?:[:lu:][:l:]+|[:lu:]\\.)(?:[- ](?:[:lu:][:l:]+|[:lu:]\\.))*	// !! order of | terms is important
-	// surname : (?:[:l:]+[’' ])?[:l:][:l:]+(?:[- ][:lu:][:l:]*)?
-	
-	// OLD surname, forname(s): (?:[:l:]+[’ ])?[:lu:][:l:]*(?:[- ][:lu:][:l:]*)?, (?:[:lu:][:l:]+|[:lu:]\.)(?:[- ](?:[:lu:][:l:]+|[:lu:]\.))*
-	// OLD forname(s) surname: (?:[:lu:][:l:]+|[:lu:]\.)(?:[- ](?:[:lu:][:l:]+|[:lu:]\.))*(?:[:l:]+[’ ])?[:lu:][:l:]*(?:[- ][:lu:][:l:]*)?
-	
+		
 	static char * patterns[] = {
 	// NB: ICU recommends using possessive operator after * when possible
-		"(?:[:l:](?:[-'’][:l:])*(?:~.)*\\s*)+",				// one or more space separated words. // can have ’'- in middle  // allows ~.
-		"(?:[:l:]+[’' ])?[:l:][:l:]+(?:[- ][:lu:][:l:]*)?, (?:[:lu:][:l:]+|[:lu:]\\.)(?:[- ](?:[:lu:][:l:]+|[:lu:]\\.))*",
-		"(?:[:lu:][:l:]+|[:lu:]\\.)(?:[- ](?:[:lu:][:l:]+|[:lu:]\\.))* (?:[:l:]+[’' ])?[:l:][:l:]+(?:[- ][:lu:][:l:]*)?",		// forenames and/or initials  plus surname
+		"(?:[:l:](?:[-'’][:l:])*(?:~.)*\\s*)+",		// one or more space separated words. // can have ’'- in middle  // allows ~.
+		"__placeholder__",
+		"__placeholder__"
 	};
 	
 	CSTR cr[FIELDLIM];		/* pointers to component strings */
@@ -253,6 +251,8 @@ RECN tool_explode (INDEX * FF, SPLITPARAMS *sp)	 // explodes headings by separat
 	delstat = FF->head.privpars.hidedelete;
 	FF->head.privpars.hidedelete = TRUE;
 	index_cleartags(FF);	// clear tags
+	patterns[1] = re_sf;	// replace placeholders with master patterns for names
+	patterns[2] = re_fs;
 
 	URegularExpression * regex = regex_build(sp->patternindex >= 0 ? patterns[sp->patternindex] : sp->userpattern ,0);
 	if (regex)	{	//
@@ -382,7 +382,6 @@ void tool_check (INDEX * FF, CHECKPARAMS *cp)		 // makes comprehensive checks on
 
 	for (curptr = sort_top(FF); curptr; curptr = sort_skip(FF, curptr,1)) {
 		fcount = str_xparse(curptr->rtext, cr);
-		char curbase[MAXREC];
 		short length;
 		
 		int findex = 0, matchindex = -1;
@@ -416,6 +415,7 @@ void tool_check (INDEX * FF, CHECKPARAMS *cp)		 // makes comprehensive checks on
 				}
 			}
 			else {	// these checks for headings only
+				char curbase[MAXREC];
 				str_textcpy(curbase,cr[findex].str);	// strip codes
 				if (strstr(curbase,"  "))				// if multiple spaces
 					errors |= CE_MULTISPACE;
@@ -430,9 +430,9 @@ void tool_check (INDEX * FF, CHECKPARAMS *cp)		 // makes comprehensive checks on
 						char lastbase[MAXREC];
 						char * scptr, * slptr;
 						str_textcpy(lastbase,lr[findex].str);	// strip codes
-						if (!strcmp(curbase, lastbase))		// if differ only in codes
+						if (!strcmp(curbase, lastbase))		// check 0: if differ only in codes
 							errors |= CE_INCONSISTENTSTYLE;
-						else  {	// don't match; check 1: case diff
+						else  {		// don't match; check 1: case diff
 							str_lwr(curbase);	// in place conversion (dangerous if U and L have diff utf-8 length)
 							str_lwr(lastbase);
 							if (!strcmp(curbase, lastbase))	// if now identical
@@ -443,7 +443,7 @@ void tool_check (INDEX * FF, CHECKPARAMS *cp)		 // makes comprehensive checks on
 								slptr = str_skiplist(lastbase,FF->head.flipwords,&tokens);
 								if (!strcmp(scptr, slptr))	// if now identical
 									errors |= CE_INCONSISTENTLEADPREP;
-								else {	// check 2a: inconsistent ending conjunctions/prepositions
+								else {	// check 3: inconsistent ending conjunctions/prepositions
 									scptr = str_skiplistrev(curbase,FF->head.flipwords,&tokens);
 									slptr = str_skiplistrev(lastbase,FF->head.flipwords,&tokens);
 									if (*scptr)		// if have end word
@@ -452,27 +452,28 @@ void tool_check (INDEX * FF, CHECKPARAMS *cp)		 // makes comprehensive checks on
 										*slptr = '\0';	// truncate before it
 									if (!strcmp(curbase, lastbase))	// if now identical
 										errors |= CE_INCONSISTENTENDPREP;
-									else {	// check 3: inconsistent punctuation
+									else {	// check 4: inconsistent punctuation
 										regex_replace(regexes[3], curbase, "");	// strip all punct
 										regex_replace(regexes[3], lastbase, "");
 										if (!strcmp(curbase, lastbase))	// if now identical
 											errors |= CE_INCONSISTENTPUNCT;
-										else {		// check 4: parenthetical endings
+										else {		// check 5: parenthetical endings
 											regex_replace(regexes[4], curbase, "");	// strip parens and contents
 											regex_replace(regexes[4], lastbase, "");
 											if (!strcmp(curbase, lastbase))	// if now identical (one or both had parenthetical phrase)
 												errors |= CE_INCONSISTENTENDPHRASE;
-											else {	// check 5: plural endings
+											else {	// check 6: plural endings
 												// https://en.oxforddictionaries.com/spelling/plurals-of-nouns
 												char * cptr, * lptr;
 												for (cptr = curbase, lptr = lastbase; *cptr && *cptr == *lptr; cptr++, lptr++)
 													;
-												if (!*lptr && (!strcmp(cptr,"s") || !strcmp(cptr,"es")))	// if simple suffix
+												if (!*lptr && (!strcmp(cptr,"s") || !strcmp(cptr,"es"))	// if simple suffix
+													|| !strcmp(lptr,"ies") && !strcmp(cptr,"y")		// special y to ies
+													|| !strcmp(lptr,"f") && !strcmp(cptr,"ves"))	// special f to ves
 													errors |= CE_INCONSISTENTENDPLURAL;
-												else if (!strcmp(lptr,"ies") && !strcmp(cptr,"y"))	// special y to ies
-													errors |= CE_INCONSISTENTENDPLURAL;
-												else if (!strcmp(lptr,"f") && !strcmp(cptr,"ves"))	// special f to ves
-													errors |= CE_INCONSISTENTENDPLURAL;
+												else {		// check 7: questionable modifying phrase (check original fields, attending to style & case)
+													errors |= checkModifiers(cr[0].str, lr[0].str, findex);
+												}
 											}
 										}
 									}
@@ -630,4 +631,184 @@ end:
 	if (dqcnt&1)   /* if mismatched simple quotes */
 		result |= CE_UNBALANCEDQUOTE;
 	return (result);
+}
+/******************************************************************************/
+static int checkModifiers(char * ct, char * lt, int findex)
+
+{
+	char * curstring = str_xatindex(ct, findex);
+	char * priorstring = str_xatindex(lt, findex);
+	char * priorend = str_rskipcodes(priorstring);	// move back over codes
+	char * basepoint = curstring+(priorend-priorstring);	// point at which we should find any modifying char if it exists
+	
+	if (strpbrk(basepoint,",;:") == basepoint && !memcmp(ct, lt,basepoint-ct))
+		return CE_QUERYMODIFYINGPHRASE;
+	return 0;
+}
+/******************************************************************************/
+void tool_compare (INDEX * FF, COMPAREPARAMS * cp)	// compares records in two indexes
+
+{
+	if (cp->XF) {
+		RECORD * curptr;
+		unsigned char delstat, delstatX, ison, isonX, vmode, vmodeX;
+		GROUPHANDLE tFile, tFileX;
+		RECN importBase;
+		BOOL valid;
+		
+		if (cp->op == OP_MODIFY) {	// set up groups, as needed
+			if (cp->groupOther) {
+				cp->gHandleThis = grp_startgroup(FF);
+				importBase = FF->head.rtot+1;
+			}
+			if (cp->groupThis) {
+				cp->gHandleThis = grp_startgroup(FF);
+			}
+			if (cp->groupBoth) {
+				cp->gHandleBoth = grp_startgroup(FF);
+			}
+		}
+		
+		delstatX = cp->XF->head.privpars.hidedelete;
+		delstat = FF->head.privpars.hidedelete;
+		vmode = FF->head.privpars.vmode;
+		vmodeX = cp->XF->head.privpars.vmode;
+		isonX = cp->XF->head.sortpars.ison;
+		ison = FF->head.sortpars.ison;
+		tFile = FF->curfile;
+		tFileX = cp->XF->curfile;
+
+		cp->XF->head.privpars.hidedelete = TRUE;
+		FF->head.privpars.hidedelete = TRUE;
+		FF->head.privpars.vmode = VM_FULL;
+		cp->XF->head.privpars.vmode = VM_FULL;
+		
+		cp->XF->head.sortpars.ison = NO;
+		FF->head.sortpars.ison = YES;
+		FF->curfile = NULL;
+		for (curptr = sort_top(cp->XF); curptr; curptr = sort_skip(cp->XF,curptr,1))	{	// for all records in other index
+			RECORD * recptr = findMatchingRecord(FF, curptr, cp->textMode, &valid);
+			if (!recptr) {	// only in other
+				if (cp->op == OP_COMPARE) {
+//					NSLog(@"Missing from this: [%d] %s",curptr->num, curptr->rtext);
+					cp->inOther++;
+					int length = str_xlen(curptr->rtext);
+					if (length > cp->longestImport)
+						cp->longestImport = length;
+					int depth = str_xcount(curptr->rtext);
+					if (depth > cp->deepestImport)
+						cp->deepestImport = depth;
+				}
+				else if (cp->importOther) {		// if should add record
+					RECORD * recptr = rec_makenew(FF,curptr->rtext,++FF->head.rtot);	// add, but stays out of sort
+					if (cp->labelImport > 0)	// if want to label
+						recptr->label = cp->labelImport;
+				}
+			}
+			else if (valid) {
+				if (cp->op == OP_COMPARE) {
+					cp->inBoth++;
+				}
+				else {		// modify
+					if (cp->deleteBoth)
+						recptr->isdel = TRUE;
+					if (cp->labelBoth >= 0)	// if want to touch label
+						recptr->label = cp->labelBoth;
+					if (cp->gHandleBoth)	{	// if want to add to group
+						grp_addrecord(cp->gHandleBoth,recptr);
+					}
+				}
+			}
+		}
+
+		// now find records unique to this index
+		FF->head.sortpars.ison = NO;
+		cp->XF->head.sortpars.ison = YES;
+		cp->XF->curfile = NULL;
+		for (curptr = sort_top(FF); curptr; curptr = sort_skip(FF,curptr,1))	{	// for all records in this index
+			RECORD * recptr = findMatchingRecord(cp->XF, curptr, cp->textMode, &valid);
+			if (!recptr) {	// if missing from other index
+				if (cp->op == OP_COMPARE) {
+//					NSLog(@"Missing from other: [%d] %s",curptr->num, curptr->rtext);
+					cp->inThis++;
+				}
+				else {		// modify
+					if (cp->deleteThis)
+						curptr->isdel = TRUE;
+					if (cp->labelThis >= 0)
+						curptr->label = cp->labelThis;
+					if (cp->gHandleThis)	{	// if want to add to group
+						grp_addrecord(cp->gHandleThis,curptr);
+					}
+				}
+			}
+		}
+		if (cp->op == OP_MODIFY) {	// clean up
+			char * timeString = time_stringFromTime(time(NULL), TRUE);
+			char name[60];
+			if (cp->gHandleThis) {
+				sprintf(name, "$- %s",timeString);
+				grp_make(FF,cp->gHandleThis,name,YES);
+				grp_dispose(cp->gHandleThis);
+			}
+			if (cp->gHandleBoth) {
+				sprintf(name, "$= %s",timeString);
+				grp_make(FF,cp->gHandleBoth,name,YES);
+				grp_dispose(cp->gHandleBoth);
+			}
+			if (cp->gHandleOther) {
+				grp_buildfromrange(FF,&cp->gHandleThis,importBase,FF->head.rtot,GF_RANGE);	// build group from range of import (sort is currently off)
+				sprintf(name, "$+ %s",timeString);
+				grp_make(FF,cp->gHandleThis,name,YES);
+				grp_dispose(cp->gHandleThis);
+			}
+			sort_resort(FF);		// adds nodes for any new records
+		}
+		cp->XF->head.privpars.hidedelete = delstat;
+		FF->head.privpars.hidedelete = delstat;
+		cp->XF->head.sortpars.ison = isonX;
+		FF->head.sortpars.ison = ison;
+		FF->head.privpars.vmode = vmode;
+		cp->XF->head.privpars.vmode = vmodeX;
+		FF->curfile = tFile;
+	}
+}
+/******************************************************************************/
+static RECORD * findMatchingRecord (INDEX * FF, RECORD * curptr, int textMode, BOOL * valid)
+
+{
+	RECORD * recptr = sort_bestmatch(FF,curptr->rtext);	// find best matching record
+	* valid = YES;	// returned record is presumed valid unless we set otherwise
+	if (recptr) {
+		if (!str_xcmp(recptr->rtext,curptr->rtext))	// if complete match
+			return recptr;
+		if (textMode != MATCH_ALL) {		// if want text fields or locator
+			BOOL excesstext;
+			char curtext[MAXREC], rectext[MAXREC];
+			// remove locator field
+			str_xcpy(curtext, curptr->rtext);
+			char * lptr = str_xlast(curtext);
+			*lptr = EOCS;
+			do {
+				// remove locator field
+				str_xcpy(rectext, recptr->rtext);
+				lptr = str_xlast(rectext);
+				*lptr = EOCS;
+				
+				if (!str_xcmp(rectext, curtext)) {	// if text fields match
+					if (textMode == MATCH_TEXT)
+						return recptr;
+					if (!strcmp(str_xlast(curptr->rtext), str_xlast(recptr->rtext)))	// if locators match as well
+						return recptr;
+					return NULL;	// locator fields differ in otherwise identical records
+				}
+				excesstext = str_xspn(curtext, rectext) == str_xlen(curtext); // we have text beyond what's needed for match
+			} while (excesstext && (recptr = sort_skip(FF,recptr,-1)));	// while we can move back nearer target for better match
+		}
+	}
+	if (textMode == MATCH_LOCATOR) {	// if we're interested only in locators in otherwise matching records
+		* valid = NO;	// force ignore to invalidate returned pointer
+		return curptr;
+	}
+	return NULL;
 }

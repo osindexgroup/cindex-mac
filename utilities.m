@@ -172,37 +172,6 @@ BOOL u8_isvalidUTF8(char * ptr, int32_t length)	// checks validity of utf8
 	free(dest);
 	return U_SUCCESS(error);
 }
-#if 0
-/***************************************************************************************/
-void u8_normalize(char * ptr, int length)		// normalizes utf-8 string to composed characters
-
-{
-	static const UNormalizer2 * n2;
-	unichar * sourcestring = malloc(length*sizeof(unichar));
-	UErrorCode error = U_ZERO_ERROR;
-	int32_t sourcelength,cleanlength;
-	
-	if (!n2)	{
-		n2 = unorm2_getInstance(NULL,"nfc",UNORM2_COMPOSE,&error);
-		error = U_ZERO_ERROR;
-	}
-	u_strFromUTF8(sourcestring,length,&sourcelength,ptr,length,&error);
-	if (error == U_ZERO_ERROR)	{
-		cleanlength = unorm2_spanQuickCheckYes(n2,sourcestring,sourcelength,&error);
-		if (cleanlength < sourcelength && error == U_ZERO_ERROR)	{		// if need normalization
-			unichar * normstring = malloc(2*sourcelength*sizeof(unichar));
-			int32_t normlength, utf8length;
-			
-			u_strncpy(normstring,sourcestring,cleanlength);
-			normlength = unorm2_normalizeSecondAndAppend(n2,normstring,cleanlength,2*sourcelength,&sourcestring[cleanlength],sourcelength-cleanlength,&error);
-			if (error == U_ZERO_ERROR)
-				u_strToUTF8(ptr, length, &utf8length, normstring, normlength, &error);
-			free(normstring);
-		}
-	}
-	free(sourcestring);
-}
-#else
 /***************************************************************************************/
 void u8_normalize(char * ptr, int length)		// normalizes utf-8 string to composed characters
 
@@ -231,4 +200,3 @@ void u8_normalize(char * ptr, int length)		// normalizes utf-8 string to compose
 	}
 	free(sourcestring);
 }
-#endif

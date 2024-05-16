@@ -18,6 +18,7 @@
 #import "formattedtext.h"
 #import "cindexmenuitems.h"
 #import "utime.h"
+#import "NSAlert+NSAlert.h"
 
 NSString * NOTE_PROGRESSCHANGED = @"progressChanged";
 
@@ -40,10 +41,8 @@ static UPATTERN pa[] = {
 	{"", "([:p:]+)\\1","Repeated punctuation"},
 	{"", "(?<=')[^']+(?=')|(?<=\")[^\"]+(?=\")|(?<=‘)[^‘]+(?=’)|(?<=“)[^“]+(?=”)","Text in Quotes"},		// uses pos lookbehind and lookahead
 	{"", "(?<=\\()[^(]+(?=\\))","Text in Parentheses"},		// uses pos lookbehind and lookahead
-//	{"", "(?:[:l:]+[’' ])?[:l:][:l:]+(?:[- ][:lu:][:l:]*)?, (?:[:lu:][:l:]+|[:lu:]\\.)(?:[- ](?:[:lu:][:l:]+|[:lu:]\\.))*","Surname, Forenames(s)"},
-	{"", "((?:[:l:]+[’' ])?[:lu:][:l:]+(?:[- ][:l:][:l:]*)?), ((?:[:lu:][:l:]+|(?:[:lu:]\\.)*)(?:[- ](?:[:lu:][:l:]+|(?:[:lu:]\\.)))*)","Surname, Forenames(s)"},
-//	{"", "(?:[:lu:][:l:]+|[:lu:]\\.)(?:[- ](?:[:lu:][:l:]+|[:lu:]\\.))* (?:[:l:]+[’' ])?[:lu:][:l:]+(?:[- ][:l:][:l:]*)?","Forename(s) Surname"},
-	{"", "((?:[:lu:][:l:]+|(?:[:lu:]\\.)*)(?:[- ](?:[:lu:][:l:]+|(?:[:lu:]\\.)))*) ((?:[:l:]+[’' ])?[:lu:][:l:]+(?:[- ][:l:][:l:]*)?)","Forename(s) Surname"},
+	{"", "__placeholder__","Surname, Forenames(s)"},	// NB: placeholders
+	{"", "__placeholder__","Forename(s) Surname"},
 	{"", "^$","Empty field"},
 	{"", "",NULL},
 };
@@ -123,7 +122,9 @@ static char * _infos[] = {
 	"There are %d empty records in the file. These will be discarded.",
 	"No errors were found in the index.",
 	"The index is locked. You can view it in different formats, but cannot modify entries.",
-	"This new index contains %ld records imported from “%s”."
+	"This new index contains %ld records imported from “%s”.",
+	"All records match."
+	
 };
 static char * _warnings[] = {
 	"The file containing Cindex preferences is out of date.  Should Cindex replace it?",
@@ -150,7 +151,7 @@ static char * _warnings[] = {
 	"This adjustment will remove locators referring to pages %d through %d. Do you want to continue?",
 	"Records you are importing use \\g and \\h attributes. Cindex can convert these attributes to fonts of your choice. Do you want to continue, and convert the attributes?",
 	"Some fonts associated with the index are not being used. Should Cindex remove unused fonts from the list?",
-	"Do you want to save changes to record %d?",
+//	"Do you want to save changes to record %d?",
 	"This document was made by an earlier version of Cindex. Should Cindex make a new document from this one and leave the original unchanged?",
 	"%d entries use an unknown font. Should Cindex assign the default font as an alternate?",
 	"The record size needs to be at least %d.  Do you want to increase the record size?",
@@ -380,6 +381,49 @@ RECN com_findrecord(INDEX * FF, char *arg, short lastmatchflag, int warnmode)		/
 	return 0;
 }
 /*******************************************************************************/
+static NSAlert * buildAlert(NSAlertStyle style, NSString * message, NSString * button1Title, NSString * button2Title)	// simple alert display with one button
+
+{
+	NSAlert * alert = [[NSAlert alloc] init];
+	alert.alertStyle = style;
+	alert.messageText = message;
+	[alert addButtonWithTitle:button1Title];
+	if (button2Title)
+		[alert addButtonWithTitle:button2Title];
+	[alert layout];
+	return alert;
+}
+/*******************************************************************************/
+BOOL showAlert(NSWindow * parent, NSAlertStyle style, NSString * message, NSString * button1Title, NSString * button2Title)	// simple alert display with two buttons
+
+{
+	NSAlert * alert = (buildAlert(style, message,button1Title,button2Title));
+	NSModalResponse __block response;
+	if (parent && !button2Title) {	// if single button
+		[alert beginSheetModalForWindow:parent completionHandler:^(NSInteger result) {
+			response = result;
+		}];
+		return YES;
+	}
+	else {
+		[alert configureForParent:parent];
+		return [alert runModal] == NSAlertFirstButtonReturn;	// TRUE if OK
+	}
+}
+/*******************************************************************************/
+void simpleAlert(NSWindow * parent, NSAlertStyle style, NSString * message)	// simple alert display with two buttons
+
+{
+	NSAlert * alert = (buildAlert(style, message,@"OK",nil));
+	if (parent) {
+		[alert beginSheetModalForWindow:parent completionHandler:^(NSInteger result) {
+			;
+		}];
+	}
+	else
+		[alert runModal];
+}
+/*******************************************************************************/
 void sendinfo(int infonum, ...)		/*  O.K. */
 
 {
@@ -389,7 +433,7 @@ void sendinfo(int infonum, ...)		/*  O.K. */
 	va_start (aptr, infonum);		 /* initialize arg pointer */
 	vsprintf(tbuff, _infos[infonum], aptr); /* get string */
 	va_end(aptr);
-	NSRunInformationalAlertPanel([NSString stringWithUTF8String:tbuff],@"",@"OK", nil,nil);	// display info string
+	simpleAlert(nil, NSAlertStyleInformational, [NSString stringWithUTF8String:tbuff]);
 }
 /*******************************************************************************/
 void infoSheet(NSWindow * parent, int infonum, ...)		/*  O.K. */
@@ -401,31 +445,8 @@ void infoSheet(NSWindow * parent, int infonum, ...)		/*  O.K. */
 	va_start (aptr, infonum);		 /* initialize arg pointer */
 	vsprintf(tbuff, _infos[infonum], aptr); /* get string */
 	va_end(aptr);
-	NSAlert * warning = [[NSAlert alloc] init];
-	warning.alertStyle = NSAlertStyleInformational;
-	warning.messageText = [NSString stringWithUTF8String:tbuff];
-	if (parent) {
-		[warning beginSheetModalForWindow:parent completionHandler:^(NSInteger result) {
-			;
-		}];
-	}
-	else
-		[warning runModal];
+	simpleAlert(parent, NSAlertStyleInformational, [NSString stringWithUTF8String:tbuff]);
 }
-#if 0
-/*******************************************************************************/
-short sendinfooption(int infonum, ...)		/*  O.K. */
-
-{
-	char tbuff[256];
-	va_list aptr;
-
-	va_start (aptr, infonum);		 /* initialize arg pointer */
-	vsprintf(tbuff, _infos[infonum], aptr); /* get string */
-	va_end(aptr);
-	return NSRunInformationalAlertPanel([NSString stringWithUTF8String:tbuff],@"",@"Yes", @"No",nil);	// display info string with option
-}
-#endif
 /*******************************************************************************/
 short sendwarning(int warnnum, ...)		/* cancel, O.K. */
 
@@ -436,24 +457,19 @@ short sendwarning(int warnnum, ...)		/* cancel, O.K. */
 	va_start (aptr, warnnum);		 /* initialize arg pointer */
 	vsprintf(tbuff, _warnings[warnnum], aptr); /* get string */
 	va_end(aptr);
-	return NSRunCriticalAlertPanel([NSString stringWithUTF8String:tbuff],@"",@"Yes", @"Cancel",nil);	// display warning string
+	return showAlert(nil, NSAlertStyleWarning, [NSString stringWithUTF8String:tbuff], @"OK", @"Cancel");
 }
 /*******************************************************************************/
-NSAlert * warningAlert(int warnnum, ...)		/* cancel, O.K. */
+short showWarning(NSWindow * parent,int warnnum, ...)		/* cancel, O.K. */
 
 {
 	char tbuff[256];
 	va_list aptr;
-	
+
 	va_start (aptr, warnnum);		 /* initialize arg pointer */
 	vsprintf(tbuff, _warnings[warnnum], aptr); /* get string */
 	va_end(aptr);
-	NSAlert * warning = [[NSAlert alloc] init];
-	warning.alertStyle = NSAlertStyleInformational;
-	warning.messageText = [NSString stringWithUTF8String:tbuff];
-	[warning addButtonWithTitle:@"OK"];
-	[warning addButtonWithTitle:@"Cancel"];
-	return warning;
+	return showAlert(parent, NSAlertStyleWarning, [NSString stringWithUTF8String:tbuff], @"OK", @"Cancel");
 }
 /*******************************************************************************/
 NSAlert * criticalAlert(int warnnum, ...)		/* cancel, O.K. */
@@ -465,24 +481,7 @@ NSAlert * criticalAlert(int warnnum, ...)		/* cancel, O.K. */
 	va_start (aptr, warnnum);		 /* initialize arg pointer */
 	vsprintf(tbuff, _warnings[warnnum], aptr); /* get string */
 	va_end(aptr);
-	NSAlert * warning = [[NSAlert alloc] init];
-	warning.alertStyle = NSAlertStyleCritical;
-	warning.messageText = [NSString stringWithUTF8String:tbuff];
-	[warning addButtonWithTitle:@"OK"];
-	[warning addButtonWithTitle:@"Cancel"];
-	return warning;
-}
-/*******************************************************************************/
-short savewarning(int warnnum, ...)		/* discard, cancel, o.k. */
-
-{
-	char tbuff[256];
-	va_list aptr;
-	
-	va_start (aptr, warnnum);		 /* initialize arg pointer */
-	vsprintf(tbuff, _warnings[warnnum], aptr); /* get string */
-	va_end(aptr);
-	return NSRunCriticalAlertPanel(@"Changed Record",@"%@",@"Yes",@"Cancel", @"Don't Save",[NSString stringWithUTF8String:tbuff]);	// display warning string
+	return buildAlert(NSAlertStyleCritical,[NSString stringWithUTF8String:tbuff],@"OK",@"Cancel");
 }
 /*******************************************************************************/
 short senderr(int errnum, int level, ...)
@@ -503,7 +502,7 @@ short senderr(int errnum, int level, ...)
 	strcpy(e_laststring,tbuff);
 	e_samecount &= 3;			/* limit alert level */
 	if (exx[level][e_samecount].box)
-		NSRunAlertPanel([NSString stringWithUTF8String:tbuff],@"",@"OK", nil,nil);	// display error string
+		simpleAlert(nil, NSAlertStyleCritical, [NSString stringWithUTF8String:tbuff]);
 	else {
 		for (bcount = 0; bcount < exx[level][e_samecount].beep; bcount++)
 			NSBeep();
@@ -531,14 +530,7 @@ short errorSheet(NSWindow * parent, int errnum, int level, ...)
 	strcpy(e_laststring,tbuff);
 	e_samecount &= 3;			/* limit alert level */
 	if (exx[level][e_samecount].box) {
-//		NSRunAlertPanel([NSString stringWithUTF8String:tbuff],@"",@"OK", nil,nil);	// display error string
-		NSAlert * warning = [[NSAlert alloc] init];
-		warning.alertStyle = NSAlertStyleCritical;
-		warning.messageText = [NSString stringWithUTF8String:tbuff];
-//		[warning.buttons objectAtIndex:0].keyEquivalent = @"\e";
-		[warning beginSheetModalForWindow:parent completionHandler:^(NSInteger result) {
-			;
-		}];
+		simpleAlert(parent, NSAlertStyleCritical, [NSString stringWithUTF8String:tbuff]);
 	}
 	else {
 		for (bcount = 0; bcount < exx[level][e_samecount].beep; bcount++)
@@ -571,12 +563,15 @@ short sendwindowerr(int errnum, int level, ...)
 		NSBeep();
 	if (exx[level][e_samecount].box)	{
 		IRIndexDocument * keydoc = [IRdc documentForWindow:[NSApp keyWindow]];
-		id idelegate = [keydoc recordWindowController] ? (id)[keydoc recordWindowController] : (id)[keydoc mainWindowController];
-		
-		if (keydoc && [idelegate respondsToSelector:@selector(displayError:)])		// if can do status line
-			[idelegate displayError:[NSString stringWithUTF8String:tbuff]];
-		else
-			NSRunAlertPanel([NSString stringWithUTF8String:tbuff],@"",@"OK", nil,nil);	// display error string
+		if (keydoc) {
+			id idelegate = [keydoc recordWindowController] ? (id)[keydoc recordWindowController] : (id)[keydoc mainWindowController];
+			if ([idelegate respondsToSelector:@selector(displayError:)])		// if can do status line
+				[idelegate displayError:[NSString stringWithUTF8String:tbuff]];
+		}
+		else {
+			NSWindow * dWindow = [IRdc.currentDocument recordWindowController] ? [IRdc.currentDocument recordWindowController].window : [IRdc.currentDocument mainWindowController].window;
+			simpleAlert(dWindow, NSAlertStyleCritical, [NSString stringWithUTF8String:tbuff]);
+		}
 	}
 	e_samecount++;	/* counts number of identical errors */
 	err_eflag = -1;
@@ -684,23 +679,24 @@ void addregexitems(NSMenu * mm)	// adds regex items to contextual menu
 {
 	unsigned long group;
 
-//	if (![mm itemWithTag:-1])	{		// if haven't already added the regex stuff
-		[mm addItem:[NSMenuItem separatorItem]];
-		for (group = 0; group < UPGCOUNT; group++)	{	// for all groups
-			NSMenu * sm = [[NSMenu alloc] initWithTitle:@""];
-			int count;
-			NSMenuItem * ti;
-			
-			[sm setAutoenablesItems:NO];
-			for (count = 0; pg[group].pat[count].display; count++)	{
-				ti = [sm addItemWithTitle:[NSString stringWithUTF8String:pg[group].pat[count].display] action:@selector(setRegex:) keyEquivalent:@""];
-				[ti setTag:group*100+count+1];
-			}
-			ti = [mm addItemWithTitle:[NSString stringWithUTF8String:pg[group].name] action:NULL keyEquivalent:@""];
-			ti.tag = -1;		// so that we can detect if it's already been added
-			[mm setSubmenu:sm forItem:ti];
+	pg[0].pat[7].abbrev = re_sf;	// // replace placeholders with master patterns for names
+	pg[0].pat[8].abbrev = re_fs;
+
+	[mm addItem:[NSMenuItem separatorItem]];
+	for (group = 0; group < UPGCOUNT; group++)	{	// for all groups
+		NSMenu * sm = [[NSMenu alloc] initWithTitle:@""];
+		int count;
+		NSMenuItem * ti;
+		
+		[sm setAutoenablesItems:NO];
+		for (count = 0; pg[group].pat[count].display; count++)	{
+			ti = [sm addItemWithTitle:[NSString stringWithUTF8String:pg[group].pat[count].display] action:@selector(setRegex:) keyEquivalent:@""];
+			[ti setTag:group*100+count+1];
 		}
-//	}
+		ti = [mm addItemWithTitle:[NSString stringWithUTF8String:pg[group].name] action:NULL keyEquivalent:@""];
+		ti.tag = -1;		// so that we can detect if it's already been added
+		[mm setSubmenu:sm forItem:ti];
+	}
 }
 /*******************************************************************************/
 NSString * regexfortag(NSInteger tag)		// returns regex text for tag
@@ -798,31 +794,6 @@ char * vistarget(INDEX * FF, RECORD * recptr, char *sptr, LISTGROUP *lg, short *
 	}
 	return (sptr);
 }
-#if 0
-/******************************************************************************/
-NSString * styledescriptor(unsigned char style, unsigned char font)	// returns string for styles
-
-{
-	char astring[20];
-	
-	*astring = '\0';
-	if (style&FX_BOLD)
-		strcat(astring,"B");
-	if (style&FX_ITAL)
-		strcat(astring,"I");
-	if (style&FX_ULINE)
-		strcat(astring,"U");
-	if (style&FX_SMALL)
-		strcat(astring,"S");
-	if (style&FX_SUPER)
-		strcat(astring,"Sp");
-	if (style&FX_SUB)
-		strcat(astring,"Sb");
-	if (font)
-		strcat(astring,"ƒ");
-	return [NSString stringWithUTF8String:astring];
-}
-#endif
 /******************************************************************************/
 NSString * attribdescriptor(unsigned char style, unsigned char font, unsigned char forbiddenstyle, unsigned char forbiddenfont)	// returns string for styles
 

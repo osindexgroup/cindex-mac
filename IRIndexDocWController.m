@@ -29,39 +29,10 @@
 
 #define SMALLVIEWSET 300
 
-//static NSString* IRDocWToolbarID = @"IRDocToolbarIdentifier";
-
-//static NSString* IRFontItemToolbarID = @"IRFontItemIdentifier";
-//static NSString* IRSizeItemToolbarID = @"IRSizeItemIdentifier";
-//static NSString* IRNewRecordToolbarID = @"IRNewRecordTBIdentifier";
-//static NSString* IRLabelToolbarID = @"IRlabelTBIdentifier";
-//static NSString* IRDeleteToolbarID = @"IRDeleteTBIdentifier";
-//static NSString* IRAllRecordsToolbarID = @"IRAllRecordsTBIdentifier";
-//static NSString* IRFullToolbarID = @"IRFullTBIdentifier";
-//static NSString* IRDraftToolbarID = @"IRDraftTBIdentifier";
-//static NSString* IRIndentedToolbarID = @"IRIndentedTBIdentifier";
-//static NSString* IRRuninToolbarID = @"IRRuninTBIdentifier";
-//static NSString* IRAlphaSortToolbarID = @"IRAlphaSortTBIdentifier";
-//static NSString* IRPageSortToolbarID = @"IRPageSortTBIdentifier";
-//static NSString* IRFormatToolbarID = @"IRFormatTBIdentifier";
-//static NSString* IRStyleToolbarID = @"IRStyleTBIdentifier";
-//static NSString* IRSortToolbarID = @"IRSortTBIdentifier";
-
-//static unichar nl[] = {'\n','\n','\n','\n','\n','\n','\n','\n','\n','\n'};
-//#define MAXWIDOWS (sizeof (nl)/sizeof(unichar))
-
 @interface IRIndexDocWController () {
 	IBOutlet NSComboBox * defaultFont;
 	IBOutlet NSComboBox * defaultSize;
 	IBOutlet NSPopUpButton * label;
-//	IBOutlet __weak NSSegmentedControl * iFormat;
-//	IBOutlet __weak NSSegmentedControl * iStyle;
-//	IBOutlet __weak NSSegmentedControl * iSort;
-//	IBOutlet __weak NSButton * viewAll;
-//	IBOutlet __weak NSButton * delete;
-//	IBOutlet __weak NSButton * newRecord;
-	
-//	IBOutlet NSToolbar * toolbar;
 
 	BOOL scrollDisabled;
 	BOOL shownReadonlyInfo;
@@ -74,7 +45,6 @@
 - (void)_setScrollIndicator;
 - (void)_setScrollLimit;
 - (void)_resetContainer;
-- (void)_redisplay:(NSNotification *)note;
 - (void)_fillViewFromRecord:(RECN)record line:(int)start;
 - (void)_loadMainView;	
 - (LayoutDescriptor *)_makeDescriptorForRecord:(RECORD *)recptr;
@@ -120,9 +90,6 @@
 	[lm addTextContainer:tc];
 	buildlabelmenu([label menu],0);	// set current label colors
 	[defaultFont addItemsWithObjectValues:[IRdc fonts]];
-	if (@available(macOS 11.0, *)) {
-		[self window].toolbarStyle = NSWindowToolbarStyleExpanded;
-	}
 	if (FF->head.mainviewrect.size.height)	{
 		[self setShouldCascadeWindows:NO];
 		[[self window] setFrame:[[self window] frameRectForContentRect:NSRectFromIRRect(FF->head.mainviewrect)] display:NO];
@@ -149,7 +116,7 @@
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_scrollMainView:) name:NSViewBoundsDidChangeNotification object:_clipView];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_sizemainView:) name:NSViewFrameDidChangeNotification object:_clipView];
 	
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_redisplay:) name:NOTE_REDISPLAYDOC object:self.document];
+//	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_redisplay:) name:NOTE_REDISPLAYDOC object:self.document];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_resetContainer) name:NOTE_REVISEDLAYOUT object:self.document];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_fontsChanged) name:NOTE_FONTSCHANGED object:self.document];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_prefsChanged) name:NOTE_PREFERENCESCHANGED object:nil];
@@ -397,6 +364,7 @@
 	[ts endEditing];
 	if (sellength)	// if want selection
 		[_indexView setSelectedRange:NSMakeRange(selstart,sellength)];
+	_indexView.needsDisplay = YES;
 }
 - (LayoutDescriptor *)_makeDescriptorForRecord:(RECORD *)recptr {
 	IRAttributedDisplayString *as = [[IRAttributedDisplayString alloc] initWithIRIndex:self.document paragraphs:_paragraphs record:recptr->num];
@@ -406,15 +374,6 @@
 	unsigned int steplines = 0;
 	
 	for (LayoutDescriptor * ld in _layoutDescriptors)	{   // for all descriptors
-#if 0
-		if ([ld record] == record)	{
-			if (position == VD_TOP)
-				[self _stepView:steplines-_startLine];
-			return;
-		}
-		else if (steplines-_startLine >= _endLine)	// if at last of displayed lines
-			break;
-#else
 		if ([ld record] == record)	{	// if target on screen
 			if (position == VD_TOP)
 				[self _stepView:steplines-_startLine];
@@ -424,7 +383,6 @@
 		}
 		if (steplines-_startLine >= _endLine)	// if at last of displayed lines
 			break;
-#endif
 		steplines += [ld lineCount];
 	}
 	[self _fillViewFromRecord:record line:0];	// refill array
@@ -629,26 +587,26 @@
 	NSString * sortstring = nil;
 	BOOL sflag = NO, locatorFirst = NO;
 	RECN availableRecords = 0;
+	SORTPARAMS * sgp = NULL;
 	
 	switch (FF->viewtype)	{
 		case VIEW_ALL:
 			name = [NSString stringWithFormat:@"%@: All Records",docname];
 			availableRecords = FF->head.rtot;
 			[statusname appendFormat:@"%u", availableRecords];
-			sflag = FF->head.sortpars.ison;
-			locatorFirst = FF->head.sortpars.fieldorder[0] == PAGEINDEX;
+			sgp = &FF->head.sortpars;
 			break;
 		case VIEW_GROUP:
 			name = [NSString stringWithFormat:@"%@: Group %s", docname, FF->curfile->gname];
 			availableRecords = FF->curfile->rectot;
 			[statusname appendFormat:@"%u of %u", availableRecords,FF->head.rtot];
-			sflag = FF->curfile->lg.sortmode; 
+			sgp = &FF->curfile->sg;
 			break;
 		case VIEW_TEMP:
 			name = [NSString stringWithFormat:@"%@: Temporary Group", docname];
 			availableRecords = FF->lastfile->rectot;
 			[statusname appendFormat:@"%u of %u", availableRecords,FF->head.rtot];
-			sflag = FF->lastfile->lg.sortmode;
+			sgp = &FF->lastfile->sg;
 			break;
 		case VIEW_NEW:
 			name = [NSString stringWithFormat:@"%@: New Records", docname];
@@ -664,13 +622,13 @@
 	else
 		_visibleRecords = availableRecords;
 	[self _setScrollLimit];
-	if (sflag) {
-		NSString * format = locatorFirst ? @"Sorted (%@ [By Locator]) " : @"Sorted (%@)";
+	if (sgp && sgp->ison) {
+		NSString * format = sgp->fieldorder[0] == PAGEINDEX ? @"Sorted (%@ [By Locator]) " : @"Sorted (%@)";
 		sortstring = [NSString stringWithFormat:format, [NSString stringWithUTF8String:cl_sorttypes[FF->head.sortpars.type]]];
 	}
 	else
 		sortstring = @"Unsorted";
-	[statusname appendFormat:[NSString stringWithUTF8String:" • %ld New • %@"],FF->head.rtot-FF->startnum, sortstring];
+	[statusname appendFormat:[NSString stringWithUTF8String:" • %u New • %@"],FF->head.rtot-FF->startnum, sortstring];
 	if (FF->head.privpars.vmode == VM_FULL && FF->head.privpars.filter.on)
 		[statusname appendString:@" • Hiding enabled"];
 	[viewStats setStringValue:statusname];
@@ -755,12 +713,7 @@
 			[self.document redisplay:target mode:VD_SELPOS];
 	}
 	else {	// closing record window
-#if 0
-		redisplay = (g_prefs.gen.vreturn || _addMode && !g_prefs.gen.track) 
-			|| _contextPrivParams.vmode == VM_FULL && g_prefs.gen.switchview || _nptr->tot;
-#else
 		redisplay = TRUE;		// need way to capture setting of _nptr->tot
-#endif			
 		FF->head.sortpars.ison = _contextSort;
 		FF->head.privpars = _contextPrivParams;
 		if (redisplay) {
@@ -804,9 +757,9 @@
 	[self _loadMainView];		// refresh display
 	[self synchronizeWindowTitleWithDocumentName];
 }
-- (void)_redisplay:(NSNotification *)note {
-	RECN record = [[[note userInfo] objectForKey:RecordNumberKey] unsignedIntValue];
-	unsigned int mode = [[[note userInfo] objectForKey:ViewModeKey] unsignedIntValue];
+- (void)redisplay:(NSDictionary *)dic {
+	RECN record = [dic[RecordNumberKey] unsignedIntValue];
+	unsigned int mode = [dic[ViewModeKey] unsignedIntValue];
 	int startline = 0;	// default start on first line of record
 	BOOL fontsizeoverride = FALSE;
 	BOOL fontnameoverride = FALSE;
@@ -874,10 +827,8 @@
 		sr = [_indexView characterRangeForRecord:record];	// default whole record
 		if (FF->head.privpars.vmode != VM_FULL && range.length > 0) {	// if draft and selection range
 			LayoutDescriptor *ld = [self descriptorForRecord:record];
-//			if (range.length) {	// if want to specify real range
-				sr = [ld displayRangeForSourceRange:range];
-				sr.location += [_indexView characterRangeForRecord:record].location;
-//			}
+			sr = [ld displayRangeForSourceRange:range];
+			sr.location += [_indexView characterRangeForRecord:record].location;
 		}
 		[_indexView setSelectedRange:sr];
 	}
@@ -1011,7 +962,7 @@
 	int nfindex;
 
 	if (rc->cs.deepest > FF->head.indexpars.maxfields)	{	/* if need to increase field limit */
-		if (sendwarning(RECFIELDNUMWARN, rc->cs.deepest))	{
+		if (showWarning([self.document windowForSheet],RECFIELDNUMWARN, rc->cs.deepest))	{
 			int oldmaxfieldcount = FF->head.indexpars.maxfields;
 			
 			FF->head.indexpars.maxfields = rc->cs.deepest;
@@ -1021,7 +972,7 @@
 			return NO;
 	}
 	if (rc->cs.longest > FF->head.indexpars.recsize)	{	/* if need record enlargement */
-		if (!sendwarning(RECENLARGEWARN,rc->cs.longest-FF->head.indexpars.recsize) ||	/* if don't want resize */
+		if (!showWarning([self.document windowForSheet],RECENLARGEWARN,rc->cs.longest-FF->head.indexpars.recsize) ||	/* if don't want resize */
 			![self.document resizeIndex:rc->cs.longest])
 			return NO;		/* can't do it */
 	}
@@ -1082,13 +1033,13 @@
 	if (pfp->alignment == 0)	{	// if want writing direction per language
 		int direction = col_getLocaleInfo(&FF->head.sortpars)->direction;
 		if (direction == ULOC_LAYOUT_RTL)
-			alignment = NSRightTextAlignment;
+			alignment = NSTextAlignmentRight;
 		else
-			alignment = NSLeftTextAlignment;
+			alignment = NSTextAlignmentLeft;
 	}
 	else
-		alignment = pfp->alignment == 1 ? NSLeftTextAlignment : NSRightTextAlignment;
-	if (alignment == NSLeftTextAlignment)	{
+		alignment = pfp->alignment == 1 ? NSTextAlignmentLeft : NSTextAlignmentRight;
+	if (alignment == NSTextAlignmentLeft)	{
 		righttab = NSRightTabStopType;
 		lefttab = NSLeftTabStopType;
 		padding = 10;
@@ -1099,7 +1050,7 @@
 		// non-zero first line indent messes up tab handling on right->left text; kludge to get reasonable behavior for text size up to 14 pt
 		padding = 25;
 	}
-	FF->righttoleftreading = alignment == NSRightTextAlignment;
+	FF->righttoleftreading = alignment == NSTextAlignmentRight;
 	self.paragraphs = [NSMutableArray arrayWithCapacity:FF->head.indexpars.maxfields+1];
 	if (FF->head.privpars.vmode == VM_FULL) {
 		NSSize headerspacing = type_getfontmetrics(efp->eg.gfont, efp->eg.gsize, FF);
@@ -1195,29 +1146,7 @@
 //		[addedItem setToolTip: @"Print the index"];
 		[addedItem setTarget: self];
     }
-#if 0
-	else if([[addedItem itemIdentifier] isEqual:IRFontItemToolbarID]) {
-		[defaultFont setStringValue:[NSString stringWithUTF8String:FF->head.fm[0].name]];
-	}
-	else if([[addedItem itemIdentifier] isEqual:IRSizeItemToolbarID]) {
-		[defaultSize setIntValue:FF->head.privpars.size];
-	}
-#endif
-}  
-#if 0
-- (void)toolbarDidRemoveItem: (NSNotification *) notif {
-    // Optional delegate method:  After an item is removed from a toolbar, this notification is sent.   This allows 
-    // the chance to tear down information related to the item that may have been cached.   The notification object
-    // is the toolbar from which the item is being removed.  The item being added is found by referencing the @"item"
-    // key in the userInfo
-    NSToolbarItem *removedItem = [[notif userInfo] objectForKey: @"item"];
-	
-    if (removedItem == activeSearchItem) {
-		[activeSearchItem autorelease];
-		activeSearchItem = nil;    
-    }
 }
-#endif
 - (IBAction)setTextFont:(id)sender {
 	if ([sender indexOfItemWithObjectValue:[sender stringValue]] != NSNotFound) {	// if font is available
 		char * fname = (char *)[[sender stringValue] cStringUsingEncoding:NSUTF8StringEncoding];

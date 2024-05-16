@@ -54,7 +54,6 @@ typedef struct  {		// contains parameters for splitting records
 	char ** reportlist;
 } SPLITPARAMS;
 
-#if 1
 enum errorTypes {	// item tags are shift size +1
 	CE_MULTISPACE = 1,
 	CE_PUNCTSPACE = 1<<1,
@@ -85,50 +84,55 @@ enum errorTypes {	// item tags are shift size +1
 	
 	CE_CROSSERR = 1<<21,
 
+	CE_QUERYMODIFYINGPHRASE = 1 << 22
+
 };
-#else
-enum errorTypes {	// item tags are shift size +1
-	CE_MULTISPACE = 1,
-	CE_PUNCTSPACE = CE_MULTISPACE<<1,
-	CE_MISSINGSPACE = CE_PUNCTSPACE<<1,
-	CE_UNBALANCEDPAREN = CE_MISSINGSPACE<<1,
-	CE_UNBALANCEDQUOTE = CE_UNBALANCEDPAREN<<1,
-	CE_MIXEDCASE = CE_UNBALANCEDQUOTE<<1,
-	CE_MISUSEDESCAPE = CE_MIXEDCASE<<1,
-	CE_MISUSEDBRACKETS = CE_MISUSEDESCAPE<<1,
-	CE_BADCODE = CE_MISUSEDBRACKETS<<1,
-	
-	CE_INCONSISTENTCAPS = CE_BADCODE<<1,
-	CE_INCONSISTENTSTYLE = CE_INCONSISTENTCAPS<<1,
-	CE_INCONSISTENTPUNCT = CE_INCONSISTENTSTYLE<<1,
-	CE_INCONSISTENTLEADPREP = CE_INCONSISTENTPUNCT<<1,
-	CE_INCONSISTENTENDPLURAL = CE_INCONSISTENTLEADPREP<<1,
-	CE_INCONSISTENTENDPREP = CE_INCONSISTENTENDPLURAL<<1,
-	CE_INCONSISTENTENDPHRASE = CE_INCONSISTENTENDPREP<<1,
-	CE_ORPHANEDSUBHEADING = CE_INCONSISTENTENDPHRASE<<1,
-	
-	CE_EMPTYPAGE = CE_ORPHANEDSUBHEADING<<1,
-	CE_TOOMANYPAGE = CE_EMPTYPAGE<<1,
-	CE_OVERLAPPING = CE_TOOMANYPAGE<<1,
-	CE_HEADINGLEVEL = CE_OVERLAPPING<<1,
-	
-	CE_CROSSERR = CE_HEADINGLEVEL<<1,
-	
-#endif
 
 typedef struct {
 	int version;
 	BOOL reportKeys[32];
-//	int orphanlevel;
 	int pagereflimit;
-//	int crossminmatch;
-//	BOOL crossexactmatch;
 	JOINPARAMS jng;
 	VERIFYGROUP vg;
 	CHECKERROR ** errors;
 } CHECKPARAMS;
 
+enum {
+	OP_COMPARE = 0,
+	OP_MODIFY = 1,
+};
 
+enum {
+	MATCH_ALL = -1,
+	MATCH_TEXT,
+	MATCH_LOCATOR
+};
+
+typedef struct {
+	int op;		// operation
+	INDEX * XF;	// other index
+	int textMode;
+	int deleteThis;
+	int deleteBoth;
+	int importOther;
+	int groupThis;
+	int groupBoth;
+	int groupOther;
+	int labelThis;
+	int labelBoth;
+	int labelImport;
+	long longestImport;
+	long deepestImport;
+	RECN inThis;
+	RECN inBoth;
+	RECN inOther;
+	GROUPHANDLE gHandleThis;
+	GROUPHANDLE gHandleBoth;
+	GROUPHANDLE gHandleOther;
+} COMPAREPARAMS;
+
+	
 RECN tool_join(INDEX * FF, JOINPARAMS *js);	 /* joins fields of records that have redundant subheadings */
 RECN tool_explode (INDEX * FF, SPLITPARAMS *sp);	 // explodes headings by separating entities
 void tool_check (INDEX * FF, CHECKPARAMS *cp);	 // makes comprehensive checks on entries
+void tool_compare (INDEX * FF, COMPAREPARAMS * cp);	// compares records in two indexes

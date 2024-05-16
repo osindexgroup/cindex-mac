@@ -57,13 +57,13 @@
 								[[[(IRIndexDocument *)gendoc mainWindowController] window] performClose:self];
 							if (reccount)	{		/* if generated any records */
 								if (ag.skipcount)
-									sendinfo(RECGENSKIPINFO,reccount,ag.skipcount,ag.maxneed);
+									infoSheet(self->FF->owner.windowForSheet, RECGENSKIPINFO,reccount,ag.skipcount,ag.maxneed);
 								else
-									sendinfo(RECGENNUMINFO,reccount);
+									infoSheet(self->FF->owner.windowForSheet,RECGENNUMINFO,reccount);
 								[[self document] setViewType:VIEW_ALL name:nil];
 							}
 							else
-								sendinfo(NONGENNUMINFO);
+								infoSheet(self->FF->owner.windowForSheet,NONGENNUMINFO);
 						}
 					}];
 				}
@@ -73,11 +73,11 @@
 			RECN reccount = search_convertcross(FF,[_targetcount intValue]);
 			
 			if (reccount)	{
-				sendinfo(INFO_RECCONVERT,reccount);
+				infoSheet(self->FF->owner.windowForSheet,INFO_RECCONVERT,reccount);
 				[[self document] setViewType:VIEW_ALL name:nil];
 			}
 			else
-				sendinfo(INFO_NORECCONVERT);
+				infoSheet(self->FF->owner.windowForSheet,INFO_NORECCONVERT);
 		}
 	}
 }

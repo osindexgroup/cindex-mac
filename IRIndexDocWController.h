@@ -17,6 +17,7 @@
 #import "ReconcileController.h"
 #import "SplitController.h"
 #import "CheckController.h"
+#import "CompareController.h"
 #import "CompressController.h"
 #import "CountController.h"
 #import "StatisticsController.h"
@@ -81,6 +82,7 @@ typedef struct {		/* for copying records as data object */
 }
 
 - (void)updateDisplay;
+- (void)redisplay:(NSDictionary *)dic;
 - (NSRange)normalizedCharacterRange:(NSRange)range;
 - (void)enableToolbarItems:(BOOL)enabled;
 - (IRIndexPrintView *)printView;

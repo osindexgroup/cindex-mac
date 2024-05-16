@@ -23,10 +23,6 @@
 }
 - (void)awakeFromNib {
 	[super awakeFromNib];
-#if TRUE
-	[checkforupdates setState:NO];
-	[checkforupdates setEnabled:NO];
-#endif
 	[defaultfont removeAllItems];
 	[defaultfont addItemsWithTitles:[IRdc fonts]];
 	wells[0] = labelcolor1;
@@ -51,6 +47,8 @@
 			[autocompletetrack setEnabled:NO];
 		}
 	}
+	if (sender == checkforupdates)
+		checkInterval.enabled = checkforupdates.state;
 }
 - (IBAction)showHelp:(id)sender {
 	NSInteger index = [_tabView indexOfTabViewItem:[_tabView selectedTabViewItem]];
@@ -80,7 +78,8 @@
 		g_prefs.gen.saveinterval = [saveinterval floatValue]*60;
 #endif
 		g_prefs.privpars.eunit = [[unit selectedItem] tag];
-//		g_prefs.gen.autoupdate = [checkforupdates state];
+		g_prefs.gen.autoupdate = [checkforupdates state];
+		[NSUserDefaults.standardUserDefaults setInteger:[checkInterval selectedTag] forKey:kUpdateCheckInterval];
 		
 		g_prefs.gen.switchview = [switchtodraft state];
 		g_prefs.gen.remspaces = [stripspaces state];
@@ -142,8 +141,13 @@
 	[userprompt setState:g_prefs.gen.setid];
 	[saveinterval setFloatValue:g_prefs.gen.saveinterval/60.];
 	[unit selectItemAtIndex:[unit indexOfItemWithTag:g_prefs.privpars.eunit]];
-//	[checkforupdates setState:g_prefs.gen.autoupdate];
-	
+	[checkforupdates setState:g_prefs.gen.autoupdate];
+	if (g_prefs.gen.autoupdate) {
+		checkInterval.enabled = YES;
+		[checkInterval selectItemWithTag:[NSUserDefaults.standardUserDefaults integerForKey:kUpdateCheckInterval]];
+	}
+	else
+		checkInterval.enabled = NO;
 	[switchtodraft setState:g_prefs.gen.switchview];
 	[stripspaces setState:g_prefs.gen.remspaces];
 	[smartflip setState:g_prefs.gen.smartflip];

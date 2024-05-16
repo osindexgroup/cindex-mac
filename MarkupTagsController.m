@@ -165,7 +165,7 @@
 - (IBAction)deleteTags:(id)sender {
 	NSString * setname = [[_currentPopUp selectedItem] representedObject];
 
-	if (sendwarning(DELTAGWARNING, [[_currentPopUp titleOfSelectedItem] UTF8String]))	{	/* if really want to delete tag set */
+	if (showWarning(self.window,DELTAGWARNING, [[_currentPopUp titleOfSelectedItem] UTF8String]))	{	/* if really want to delete tag set */
 		if ([[NSFileManager defaultManager] removeItemAtPath:setname error:NULL])	// if have removed
 			[_currentPopUp removeItemAtIndex:[_currentPopUp indexOfItemWithRepresentedObject: setname]];
 		[self chooseTags:_currentPopUp];	// force update of buttons. etc.
@@ -224,7 +224,7 @@
 					senderr(TAGDUPERR, WARN, [name UTF8String]);		// forbid name
 					return;
 				}
-				else if (!sendwarning(DUPTAGWARNING, [name UTF8String]))	// if don't want to replace
+				else if (!showWarning(self.window,DUPTAGWARNING, [name UTF8String]))	// if don't want to replace
 					return;
 			}
 			pathname = [[pathname stringByAppendingPathComponent:name] stringByAppendingPathExtension:textension];	// now have full path to new set

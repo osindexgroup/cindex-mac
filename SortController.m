@@ -254,7 +254,7 @@ static BOOL getitemstate(char *string, short *list, NSInteger row);
 			[[NSNotificationCenter defaultCenter] postNotificationName:NOTE_GLOBALLYCHANGING object:[self document]];
 			col_init(_sParamPtr,FF);	// rebuild tables
 			if (FF->curfile)	// if have active group
-				sort_sortgroup(FF);
+				sort_sortgroup(FF, YES);
 			else
 				sort_resort(FF);
 			[[self document] redisplay:0 mode:0];	// redisplay all records

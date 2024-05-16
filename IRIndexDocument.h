@@ -51,7 +51,7 @@ extern NSString * CINXMLTagExtension;
 extern NSString * CINPDicExtension;
 
 extern NSString * NOTE_HEADERFOOTERCHANGED;
-extern NSString * NOTE_REDISPLAYDOC;
+//extern NSString * NOTE_REDISPLAYDOC;
 extern NSString * NOTE_REVISEDLAYOUT;
 extern NSString * NOTE_FONTSCHANGED;
 extern NSString * NOTE_NEWKEYTEXT;
@@ -138,6 +138,7 @@ enum 	{		/* view display flags */
 - (IBAction)demote:(id)sender;
 - (IBAction)deleted:(id)sender;
 - (IBAction)labeled:(id)sender;
+- (IBAction)flip:(id)sender;
 - (IBAction)removeMark:(id)sender;
 
 - (void)setViewType:(int)type name:(NSString *)name;

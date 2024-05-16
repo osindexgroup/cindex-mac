@@ -4,6 +4,8 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
+	<key>CFBundleDisplayName</key>
+	<string>Cindex 4.4</string>
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
@@ -268,8 +270,6 @@
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleSignature</key>
 	<string>CNDX</string>
-	<key>CFBundleDisplayName</key>
-	<string>Cindex 4.3</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -310,10 +310,6 @@
 			<string>Cindex Index</string>
 			<key>UTTypeIconFile</key>
 			<string>index</string>
-			<key>UTTypeIconFiles</key>
-			<array>
-				<string>index</string>
-			</array>
 			<key>UTTypeIdentifier</key>
 			<string>com.ir.cindex</string>
 			<key>UTTypeTagSpecification</key>
@@ -394,10 +390,6 @@
 			<string>Cindex Template</string>
 			<key>UTTypeIconFile</key>
 			<string>stationery</string>
-			<key>UTTypeIconFiles</key>
-			<array>
-				<string>stationery</string>
-			</array>
 			<key>UTTypeIdentifier</key>
 			<string>com.ir.cindex.template</string>
 			<key>UTTypeTagSpecification</key>
@@ -810,6 +802,11 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>Macrex Backup</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconText</key>
+				<string>MACREX</string>
+			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>com.macrex.backup</string>
 			<key>UTTypeTagSpecification</key>
@@ -832,6 +829,11 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>Sky Text</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconText</key>
+				<string>SKY Index</string>
+			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>com.sky.text</string>
 			<key>UTTypeTagSpecification</key>

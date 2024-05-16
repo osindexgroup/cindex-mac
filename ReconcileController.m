@@ -34,18 +34,10 @@
 	[[NSHelpManager sharedHelpManager] openHelpAnchor:@"reconcile0_Anchor-14210" inBook:@"Cindex 4 Help"];
 }
 - (void)windowDidUpdate:(NSNotification *)aNotification {
-//	if ([[mode selectedCell] tag])	{	// if want reconciliation
-		[phrasechar setEnabled:YES];
-		[preservemodified setEnabled:YES];
-		[protectnames setEnabled:YES];
-		[handleorphans setEnabled:YES];
-//	}
-//	else {
-//		[phrasechar setEnabled:NO];
-//		[preservemodified setEnabled:NO];
-//		[protectnames setEnabled:NO];
-//		[handleorphans setEnabled:NO];
-//	}
+	[phrasechar setEnabled:YES];
+	[preservemodified setEnabled:YES];
+	[protectnames setEnabled:YES];
+	[handleorphans setEnabled:YES];
 }
 - (IBAction)closeSheet:(id)sender {    
 	if ([sender tag] == OKTAG)	{
@@ -56,51 +48,14 @@
 			return;
 		memset(&tjn,0,sizeof(tjn));
 		tjn.firstfield = [headings indexOfSelectedItem];
-//		tjn.showorphans = [[mode selectedCell] tag] == 0;	// if want orphan list
-//		if (tjn.showorphans)	{
-//			tjn.orphanaction = OR_PRESERVE;
-//			tjn.nosplit = TRUE;
-//		}
-//		else	{
-			tjn.protectnames = [protectnames state];
-			tjn.orphanaction = [[handleorphans selectedCell] tag];
-			tjn.nosplit = [preservemodified state];
-			[[NSNotificationCenter defaultCenter] postNotificationName:NOTE_GLOBALLYCHANGING object:[self document]];
-//		}
+		tjn.protectnames = [protectnames state];
+		tjn.orphanaction = [[handleorphans selectedCell] tag];
+		tjn.nosplit = [preservemodified state];
+		[[NSNotificationCenter defaultCenter] postNotificationName:NOTE_GLOBALLYCHANGING object:[self document]];
 		tjn.jchar = *[[phrasechar stringValue] UTF8String];
-//		tjn.orphans = calloc(FF->head.rtot+1,sizeof(RECN));
-//		tjn.orphans = malloc(ORPHANARRAYBLOCK*sizeof(int));
 		tjn.orphancount = 0;
 		if (markcount = tool_join(FF, &tjn))
-			senderr(RECMARKERR,WARN, markcount);
-#if 0
-		if (tjn.showorphans) {
-			NSMutableAttributedString * orphanlist = [[NSMutableAttributedString alloc] init];
-			int index;
-			
-			for (index = 0; index < tjn.orphancount; index++)	{
-				RECORD * curptr = rec_getrec(FF,tjn.orphans[index]);	// get record
-				if (curptr) {
-					char string[MAXREC];
-					int fcount = str_xcount(curptr->rtext);
-					sprintf(string,"\t%u\tOrphan\t%s... %s\r",curptr->num,curptr->rtext,str_xatindex(curptr->rtext,fcount-2));
-					[orphanlist appendAttributedString:[NSAttributedString asFromXString:string fontMap:NULL size:0 termchar:0]];
-				}
-			}
-			if (index)	{	// if have orphans to show
-				[orphanlist setTabs:tabset headIndent:60];
-				[[self document] showText:orphanlist title:@"Orphaned Subheadings"];
-			}
-			else {
-				[(IRIndexTextWController *)[[self document] textWindowController] close];
-				sendinfo(INFO_NOORPHANS);
-			}
-		}
-		else {	// some kind of join action
-			[[self document] redisplay:0 mode:0];	// redisplay all records
-		}
-		free(tjn.orphans);
-#endif
+			errorSheet([self.document windowForSheet], RECMARKERR,WARN, markcount);
 		[[self document] redisplay:0 mode:0];	// redisplay all records
 	}
 	[self.window.sheetParent endSheet:self.window returnCode:[sender tag]];

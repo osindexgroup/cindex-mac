@@ -11,6 +11,7 @@
 #define str_xlen(A)	(((char *)memchr(A,EOCS,UINT_MAX))-((char *)A))
 #define str_xshift(source,count) memmove((source)+(short)(count),source,str_xlen(source)+1)
 #define str_shift(source,count) memmove((source)+(short)(count),source,strlen(source)+1)
+#define str_stripcodes(A) str_textcpy((A),(A))
 
 enum	{			/* compound string search flags */
 	CCASE = 1, 		/* case sensitivity for compound string search */
@@ -40,6 +41,7 @@ char * str_xatindex(char * list, short index);	/* finds string at indexed positi
 char * str_extend(char * string);		/* converts string to extended string */
 void str_flip(char * fields, char * presuf, BOOL smart, BOOL half, BOOL page);	// flips fields
 BOOL str_swapparen(char * field, char * presuf,BOOL real);	//  in-place swap of text in parens and outside
+BOOL str_invertname(char * source, long * offset, long * matchlength);	// in-place inversion of name
 CSTATE str_codesatposition(char * string, int offset, int * span, char stylemask, char fontmask);	// returns net code value at offset
 char * str_spanforcodes(char * base, char style, char font, char forbiddenstyle, char forbiddenfont, short * span);	// returns position and span of specified style/font
 BOOL str_containscodes(char * base, char style, char  font, short span);	// returns position and span of specified style/font
@@ -52,6 +54,7 @@ char * str_xdup(char *source);	// duplicates compound string
 char * str_xcpy(register char *to, register char *from);	/* copies extended string */
 void str_xswap(char *string, short index1, short index2);	  /* swaps two component strings */
 int str_xcmp(register char *str1, register char *str2);	  /* compares two compound strings */
+long str_xspn(register char *str1, register char *str2);	 // finds longest match
 char *str_xfind(char *source, char *target, unsigned short flags, unsigned short maxlen, unsigned short * actuallen);	   /* finds substring in compound string */
 //char *str_skipbrackets(char *sptr);		/* skips to closing bracket */
 char * str_skiptoword(char * string);		// returns ptr to first non-punct, non code

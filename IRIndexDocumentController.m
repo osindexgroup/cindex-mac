@@ -63,7 +63,7 @@ NSArray * _fonts;
 NSMutableDictionary * _abbreviations;
 
 @interface IRIndexDocumentController () {
-	
+	HTTPService * updateService;
 }
 @property (weak) IRIndexDocument * activeIndex;
 
@@ -104,7 +104,11 @@ NSMutableDictionary * _abbreviations;
 }
 - (void)applicationWillFinishLaunching:(NSNotification *)note {
 	NSExceptionHandler * handler = [NSExceptionHandler defaultExceptionHandler];
+	NSMutableDictionary * defaults = [NSMutableDictionary dictionaryWithCapacity:40];
 	NSData * abbrevs;
+
+	defaults[kUpdateCheckInterval] = [NSNumber numberWithInt:1];	// 1 day check interval
+	[NSUserDefaults.standardUserDefaults registerDefaults:defaults];	// set default value
 
 // #ifdef _DEBUG_ON
 //	[handler setExceptionHangingMask:NSHangOnUncaughtSystemExceptionMask|NSHangOnUncaughtRuntimeErrorMask];
@@ -113,7 +117,6 @@ NSMutableDictionary * _abbreviations;
 		|NSHandleTopLevelExceptionMask|NSHandleUncaughtExceptionMask|NSHandleOtherExceptionMask];
 	[handler setDelegate:self];
 	ucnv_setDefaultName("UTF-8");	// set default code page
-//	NSLog(@"%s",ucnv_getDefaultName());
 	col_findlocales();		// find potential collators
 	if ((GetCurrentKeyModifiers()&shiftKey))	{	// if shift key down (no cocoa function for this)
 		NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];	// remove & rebuild all defaults for app
@@ -136,10 +139,8 @@ NSMutableDictionary * _abbreviations;
 	buildlabelmenu([findmenuitem(MI_LABELED) submenu],14);
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_setActiveIndex:) name:NSWindowDidBecomeMainNotification object:nil];
 
-#if FALSE	// disable update for Student or Demo
-	[findmenuitem(MI_CHECKUPDATE) setTarget:nil];
-	[findmenuitem(MI_CHECKUPDATE) setState:NSOffState];
-#endif
+//	[findmenuitem(MI_CHECKUPDATE) setTarget:nil];
+//	[findmenuitem(MI_CHECKUPDATE) setState:NSOffState];
 //	[findmenuitem(MI_HIDEINACTIVE) setState: g_prefs.hidden.hideinactive ? NSOnState : NSOffState];	// set hide/show menu
 }
 - (void)applicationDidFinishLaunching:(NSNotification *)note {
@@ -163,7 +164,8 @@ NSMutableDictionary * _abbreviations;
 		}
 	}
 	[[NSAppleEventManager sharedAppleEventManager] setEventHandler:self andSelector:@selector(getUrl:withReplyEvent:) forEventClass:kInternetEventClass andEventID:kAEGetURL];
-	[[[HTTPService alloc] init] check:nil];	// check
+	updateService = [[HTTPService alloc] init];
+	[updateService check:nil];	// check
 }
 - (void)getUrl:(NSAppleEventDescriptor *)event withReplyEvent:(NSAppleEventDescriptor *)replyEvent {
 	NSString * url = [[event paramDescriptorForKeyword:keyDirectObject] stringValue]; // Now you can parse the URL and perform whatever action is needed }
@@ -503,6 +505,9 @@ NSMutableDictionary * _abbreviations;
 }
 - (IBAction)showFunctionKeys:(id)sender {
 	[FunctionkeyController show];
+}
+- (IBAction)checkForUpdates:(id)sender {
+	[updateService check:sender];	// check
 }
 - (void)showPanel:(NSWindowController *)panel{
 	if (self.currentDocument)		// if there's a document, run as sheet

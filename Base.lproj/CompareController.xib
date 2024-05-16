@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment version="101300" identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22689"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="CompareController">
+            <connections>
+                <outlet property="cancel" destination="7" id="PQH-M6-hYL"/>
+                <outlet property="compare" destination="9" id="JY7-NU-4Oy"/>
+                <outlet property="deleteInBoth" destination="DSK-w3-g8s" id="5RG-QX-Iys"/>
+                <outlet property="deleteInThis" destination="85" id="EMu-kP-905"/>
+                <outlet property="fieldDepth" destination="HwR-HF-Lp5" id="tuE-dh-KIp"/>
+                <outlet property="groupInBoth" destination="liN-qW-VUi" id="aIO-n1-LWS"/>
+                <outlet property="groupInOther" destination="OiJ-Ee-ea9" id="xsW-kj-fYA"/>
+                <outlet property="groupInThis" destination="ADs-eg-cPM" id="Il7-R2-KpE"/>
+                <outlet property="importOther" destination="Stt-a8-21Z" id="4lz-cA-xCv"/>
+                <outlet property="indexList" destination="16" id="jbr-Q1-5kV"/>
+                <outlet property="labelInBoth" destination="YGo-eI-ZpL" id="otT-z6-7xt"/>
+                <outlet property="labelInImport" destination="GGW-YH-blp" id="r8d-Fm-NBC"/>
+                <outlet property="labelInThis" destination="LjT-gt-J2o" id="PZQ-Ep-Fgw"/>
+                <outlet property="modify" destination="0uB-61-VoP" id="SzX-em-m2X"/>
+                <outlet property="recordsInBoth" destination="Gck-J8-uoh" id="nMe-Y7-vwu"/>
+                <outlet property="recordsInImport" destination="z72-pE-zMS" id="3uZ-42-qtY"/>
+                <outlet property="recordsInThis" destination="Zxh-x6-vmp" id="ySv-tQ-6ke"/>
+                <outlet property="stack" destination="j3Z-4I-Q88" id="HeX-wW-KsX"/>
+                <outlet property="window" destination="6" id="14"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window title="Compare Indexes" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="6" userLabel="Panel" customClass="NSPanel">
+            <windowStyleMask key="styleMask" titled="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="514" y="455" width="365" height="355"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1415"/>
+            <view key="contentView" id="5">
+                <rect key="frame" x="0.0" y="0.0" width="365" height="315"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <subviews>
+                    <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Ro-hu-BJG">
+                        <rect key="frame" x="13" y="20" width="340" height="275"/>
+                        <subviews>
+                            <box borderType="none" translatesAutoresizingMaskIntoConstraints="NO" id="jEZ-HG-Yr9">
+                                <rect key="frame" x="0.0" y="190" width="340" height="85"/>
+                                <view key="contentView" id="Y74-Lt-RkP">
+                                    <rect key="frame" x="0.0" y="0.0" width="340" height="73"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="15">
+                                            <rect key="frame" x="10" y="56" width="112" height="14"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="Compare with index:" id="127">
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <popUpButton toolTip="Choose the comparison index" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="16">
+                                            <rect key="frame" x="130" y="51" width="207" height="22"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <popUpButtonCell key="cell" type="push" title="Another Index" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" autoenablesItems="NO" selectedItem="J8Z-oN-BDJ" id="128">
+                                                <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <menu key="menu" title="OtherViews" autoenablesItems="NO" id="20">
+                                                    <items>
+                                                        <menuItem title="Another Index" state="on" id="J8Z-oN-BDJ"/>
+                                                    </items>
+                                                </menu>
+                                            </popUpButtonCell>
+                                            <connections>
+                                                <action selector="doClick:" target="-1" id="Yfz-b9-frn"/>
+                                                <outlet property="nextKeyView" destination="HwR-HF-Lp5" id="1Cq-2G-nsR"/>
+                                            </connections>
+                                        </popUpButton>
+                                        <popUpButton toolTip="Choose the field(s) to compare" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HwR-HF-Lp5">
+                                            <rect key="frame" x="130" y="27" width="207" height="22"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <popUpButtonCell key="cell" type="push" title="All fields" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" tag="-1" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" autoenablesItems="NO" selectedItem="bSc-Uk-YQ8" id="4RR-Ck-W1n">
+                                                <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <menu key="menu" title="OtherViews" autoenablesItems="NO" id="2KN-yz-Krg">
+                                                    <items>
+                                                        <menuItem title="All fields" state="on" tag="-1" id="bSc-Uk-YQ8">
+                                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                                        </menuItem>
+                                                        <menuItem title="Headings and subheadings only" id="LU3-c6-IXi">
+                                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                                        </menuItem>
+                                                        <menuItem title="Locator field if other fields match" tag="1" id="NAR-kP-ziF">
+                                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                                        </menuItem>
+                                                    </items>
+                                                </menu>
+                                                <connections>
+                                                    <action selector="doClick:" target="-1" id="9rd-dq-zsM"/>
+                                                </connections>
+                                            </popUpButtonCell>
+                                            <connections>
+                                                <outlet property="nextKeyView" destination="85" id="Npc-xd-2Bg"/>
+                                            </connections>
+                                        </popUpButton>
+                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NC4-t9-7M5">
+                                            <rect key="frame" x="10" y="32" width="115" height="14"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="Compare records on:" id="gBP-s2-tct">
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <button horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8">
+                                            <rect key="frame" x="5" y="-1" width="25" height="25"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" controlSize="small" borderStyle="border" inset="2" id="125">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="smallSystem"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="showHelp:" target="-1" id="12"/>
+                                                <outlet property="nextKeyView" destination="7" id="3zy-Xz-cea"/>
+                                            </connections>
+                                        </button>
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7">
+                                            <rect key="frame" x="182" y="-3" width="80" height="28"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" inset="2" id="124">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="closeSheet:" target="-1" id="10"/>
+                                                <outlet property="nextKeyView" destination="9" id="48p-SP-4B3"/>
+                                            </connections>
+                                        </button>
+                                        <button toolTip="Compare the indexes" tag="1" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9">
+                                            <rect key="frame" x="258" y="-3" width="80" height="28"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="push" title="Compare" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" tag="-1" inset="2" id="126">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="compareIndexes:" target="-2" id="Rk3-u0-YAE"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="85" id="8Q9-Aj-ehL"/>
+                                    <constraint firstAttribute="width" constant="340" id="KQA-IJ-0MN"/>
+                                </constraints>
+                            </box>
+                            <stackView distribution="fill" orientation="vertical" alignment="trailing" spacing="9" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j3Z-4I-Q88">
+                                <rect key="frame" x="7" y="0.0" width="326" height="190"/>
+                                <subviews>
+                                    <box borderType="line" title="Present in this index only" translatesAutoresizingMaskIntoConstraints="NO" id="XsY-Ln-Mmt">
+                                        <rect key="frame" x="-3" y="137" width="332" height="53"/>
+                                        <view key="contentView" id="U3A-JU-PJ2">
+                                            <rect key="frame" x="4" y="5" width="324" height="33"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <subviews>
+                                                <button identifier="Delete records that are in this index but not the other" toolTip="Mark record(s) for deletion" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="85">
+                                                    <rect key="frame" x="98" y="9" width="55" height="16"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <buttonCell key="cell" type="check" title="Delete" bezelStyle="regularSquare" imagePosition="left" controlSize="small" inset="2" id="130">
+                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                        <font key="font" metaFont="smallSystem"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="doClick:" target="-1" id="Zuo-0D-XhD"/>
+                                                    </connections>
+                                                </button>
+                                                <popUpButton toolTip="Label records that are present only in this index" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LjT-gt-J2o">
+                                                    <rect key="frame" x="258" y="5" width="60" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <popUpButtonCell key="cell" type="push" title="As Is" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="-1" inset="2" selectedItem="TCl-IK-lRD" id="WZz-1R-6BT">
+                                                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                                        <font key="font" metaFont="message" size="11"/>
+                                                        <menu key="menu" title="OtherViews" id="TeY-xd-29F">
+                                                            <items>
+                                                                <menuItem title="As Is" state="on" tag="-1" id="TCl-IK-lRD">
+                                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                                </menuItem>
+                                                                <menuItem title="None" id="gBJ-9A-05l"/>
+                                                                <menuItem title="1" tag="1" id="0og-OT-wPc"/>
+                                                                <menuItem title="2" tag="2" id="3HJ-uF-lBA"/>
+                                                                <menuItem title="3" tag="3" id="AnI-XB-Kfc"/>
+                                                                <menuItem title="4" tag="4" id="GdW-1Z-kth"/>
+                                                                <menuItem title="5" tag="5" id="nam-ss-SeW"/>
+                                                                <menuItem title="6" tag="6" id="zpU-fg-Nre"/>
+                                                                <menuItem title="7" tag="7" id="i0b-Yd-Bda"/>
+                                                            </items>
+                                                        </menu>
+                                                    </popUpButtonCell>
+                                                    <connections>
+                                                        <action selector="doClick:" target="-1" id="THs-yI-2gc"/>
+                                                        <outlet property="nextKeyView" destination="DSK-w3-g8s" id="qZg-Xf-uIo"/>
+                                                    </connections>
+                                                </popUpButton>
+                                                <textField toolTip="The number of records that are in this index but not the other" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zxh-x6-vmp">
+                                                    <rect key="frame" x="10" y="10" width="57" height="14"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="— records" id="BOP-om-onA">
+                                                        <font key="font" metaFont="smallSystem"/>
+                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="obl-O5-Ys0">
+                                                    <rect key="frame" x="220" y="10" width="36" height="14"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <textFieldCell key="cell" controlSize="small" enabled="NO" sendsActionOnEndEditing="YES" alignment="left" title="Label:" id="ami-Up-3hI">
+                                                        <font key="font" metaFont="smallSystem"/>
+                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <button toolTip="Make a group from records that are present only in this index" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ADs-eg-cPM">
+                                                    <rect key="frame" x="160" y="9" width="54" height="16"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <buttonCell key="cell" type="check" title="Group" bezelStyle="regularSquare" imagePosition="left" controlSize="small" inset="2" id="3ME-UD-1vG">
+                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                        <font key="font" metaFont="smallSystem"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="doClick:" target="-1" id="9dH-dq-3yM"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="326" id="D8u-Zh-9oD"/>
+                                            <constraint firstAttribute="height" constant="49" id="ItU-Sf-RWU"/>
+                                        </constraints>
+                                    </box>
+                                    <box borderType="line" title="Contained in this index and the other" translatesAutoresizingMaskIntoConstraints="NO" id="5p5-zF-Nu0">
+                                        <rect key="frame" x="-3" y="79" width="332" height="53"/>
+                                        <view key="contentView" id="5AX-lJ-uYj">
+                                            <rect key="frame" x="4" y="5" width="324" height="33"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <subviews>
+                                                <popUpButton toolTip="Label records that match records in the other index" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YGo-eI-ZpL">
+                                                    <rect key="frame" x="258" y="5" width="60" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <popUpButtonCell key="cell" type="push" title="As Is" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="-1" inset="2" selectedItem="UiT-bA-seC" id="DLW-qk-Gft">
+                                                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                                        <font key="font" metaFont="message" size="11"/>
+                                                        <menu key="menu" title="OtherViews" id="mmf-Hk-nbD">
+                                                            <items>
+                                                                <menuItem title="As Is" state="on" tag="-1" id="UiT-bA-seC">
+                                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                                </menuItem>
+                                                                <menuItem title="None" id="E05-F6-mbf"/>
+                                                                <menuItem title="1" tag="1" id="5hr-id-eie"/>
+                                                                <menuItem title="2" tag="2" id="dGu-aH-yOk"/>
+                                                                <menuItem title="3" tag="3" id="Ot3-Ij-iRu"/>
+                                                                <menuItem title="4" tag="4" id="LBe-nY-MQm"/>
+                                                                <menuItem title="5" tag="5" id="3rC-LM-ENI"/>
+                                                                <menuItem title="6" tag="6" id="mHi-2Z-PKw"/>
+                                                                <menuItem title="7" tag="7" id="eop-cx-8ui"/>
+                                                            </items>
+                                                        </menu>
+                                                    </popUpButtonCell>
+                                                    <connections>
+                                                        <action selector="doClick:" target="-1" id="Akp-Q7-isX"/>
+                                                        <outlet property="nextKeyView" destination="Stt-a8-21Z" id="ljH-wh-n8e"/>
+                                                    </connections>
+                                                </popUpButton>
+                                                <textField identifier="The number of records that match in both indexes" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gck-J8-uoh">
+                                                    <rect key="frame" x="10" y="10" width="83" height="14"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="— records" id="OUB-C4-lpp">
+                                                        <font key="font" metaFont="smallSystem"/>
+                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <button toolTip="Delete records that match records in the other index" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DSK-w3-g8s">
+                                                    <rect key="frame" x="98" y="9" width="55" height="16"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <buttonCell key="cell" type="check" title="Delete" bezelStyle="regularSquare" imagePosition="left" controlSize="small" inset="2" id="6PJ-2L-pVt">
+                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                        <font key="font" metaFont="smallSystem"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="doClick:" target="-1" id="neS-8P-Kgg"/>
+                                                    </connections>
+                                                </button>
+                                                <button toolTip="Make a group from records that match records in the other index" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="liN-qW-VUi">
+                                                    <rect key="frame" x="160" y="9" width="54" height="16"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <buttonCell key="cell" type="check" title="Group" bezelStyle="regularSquare" imagePosition="left" controlSize="small" inset="2" id="naT-C5-wh7">
+                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                        <font key="font" metaFont="smallSystem"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="doClick:" target="-1" id="diL-Ma-4af"/>
+                                                    </connections>
+                                                </button>
+                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e7F-ua-hRh">
+                                                    <rect key="frame" x="220" y="10" width="36" height="14"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <textFieldCell key="cell" controlSize="small" enabled="NO" sendsActionOnEndEditing="YES" alignment="left" title="Label:" id="ddk-Zo-Rdj">
+                                                        <font key="font" metaFont="smallSystem"/>
+                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="326" id="ZY5-5z-1nn"/>
+                                            <constraint firstAttribute="height" constant="49" id="uX0-u1-Ydr"/>
+                                        </constraints>
+                                    </box>
+                                    <box borderType="line" title="Present in the other index only" translatesAutoresizingMaskIntoConstraints="NO" id="B7f-rc-pa6">
+                                        <rect key="frame" x="-3" y="21" width="332" height="53"/>
+                                        <view key="contentView" id="wCK-5g-OkP">
+                                            <rect key="frame" x="4" y="5" width="324" height="33"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <subviews>
+                                                <popUpButton toolTip="Label records imported from the other index" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GGW-YH-blp">
+                                                    <rect key="frame" x="258" y="5" width="60" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <popUpButtonCell key="cell" type="push" title="None" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" selectedItem="g3d-Xf-H19" id="flg-QL-KSQ">
+                                                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                                        <font key="font" metaFont="message" size="11"/>
+                                                        <menu key="menu" title="OtherViews" id="OBo-PE-YNX">
+                                                            <items>
+                                                                <menuItem title="None" state="on" id="g3d-Xf-H19"/>
+                                                                <menuItem title="1" tag="1" id="IpH-px-EMj"/>
+                                                                <menuItem title="2" tag="2" id="jDl-ZW-tAB"/>
+                                                                <menuItem title="3" tag="3" id="cOb-Es-W8o"/>
+                                                                <menuItem title="4" tag="4" id="KRs-Qu-2Oy"/>
+                                                                <menuItem title="5" tag="5" id="eUK-jh-yFW"/>
+                                                                <menuItem title="6" tag="6" id="5Hh-Du-qbe"/>
+                                                                <menuItem title="7" tag="7" id="X1W-jd-WAP"/>
+                                                            </items>
+                                                        </menu>
+                                                    </popUpButtonCell>
+                                                </popUpButton>
+                                                <textField toolTip="The number of records that are in the other index but not this one" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z72-pE-zMS">
+                                                    <rect key="frame" x="10" y="10" width="83" height="14"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="— records" id="S7l-af-Smw">
+                                                        <font key="font" metaFont="smallSystem"/>
+                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <button toolTip="Import records that are contained only in the other index" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Stt-a8-21Z">
+                                                    <rect key="frame" x="98" y="9" width="56" height="16"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <buttonCell key="cell" type="check" title="Import" bezelStyle="regularSquare" imagePosition="left" controlSize="small" inset="2" id="Z6V-oM-hp1">
+                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                        <font key="font" metaFont="smallSystem"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="doClick:" target="-1" id="8g8-Kk-4fP"/>
+                                                    </connections>
+                                                </button>
+                                                <button toolTip="Make a group from imported records" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OiJ-Ee-ea9">
+                                                    <rect key="frame" x="160" y="9" width="54" height="16"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <buttonCell key="cell" type="check" title="Group" bezelStyle="regularSquare" imagePosition="left" controlSize="small" inset="2" id="5FB-zb-GdQ">
+                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                        <font key="font" metaFont="smallSystem"/>
+                                                    </buttonCell>
+                                                </button>
+                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qeT-vg-qzG">
+                                                    <rect key="frame" x="220" y="10" width="36" height="14"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <textFieldCell key="cell" controlSize="small" enabled="NO" sendsActionOnEndEditing="YES" alignment="left" title="Label:" id="9xA-Xp-YYx">
+                                                        <font key="font" metaFont="smallSystem"/>
+                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="49" id="2ad-3p-8qD"/>
+                                            <constraint firstAttribute="width" constant="326" id="s3Y-1q-Xl3"/>
+                                        </constraints>
+                                    </box>
+                                    <button toolTip="Make the modifications enabled in the panel" tag="-1" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0uB-61-VoP">
+                                        <rect key="frame" x="268" y="-7" width="64" height="27"/>
+                                        <buttonCell key="cell" type="push" title="Modify" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" inset="2" id="2zU-6T-VV7">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="smallSystem"/>
+                                            <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="closeSheet:" target="-1" id="SsA-MC-XSr"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="190" id="Fsc-cn-Fru"/>
+                                    <constraint firstAttribute="width" constant="326" id="GkL-g3-us6"/>
+                                </constraints>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
+                        </subviews>
+                        <visibilityPriorities>
+                            <integer value="1000"/>
+                            <integer value="1000"/>
+                        </visibilityPriorities>
+                        <customSpacing>
+                            <real value="3.4028234663852886e+38"/>
+                            <real value="3.4028234663852886e+38"/>
+                        </customSpacing>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="0Ro-hu-BJG" secondAttribute="bottom" constant="20" symbolic="YES" id="P5w-Pk-mjE"/>
+                    <constraint firstItem="0Ro-hu-BJG" firstAttribute="top" secondItem="5" secondAttribute="top" constant="20" symbolic="YES" id="g1Z-vx-kFG"/>
+                    <constraint firstItem="0Ro-hu-BJG" firstAttribute="centerX" secondItem="5" secondAttribute="centerX" id="tKY-P3-FBA"/>
+                </constraints>
+            </view>
+            <connections>
+                <outlet property="delegate" destination="-2" id="13"/>
+            </connections>
+            <point key="canvasLocation" x="-799.5" y="-140.5"/>
+        </window>
+    </objects>
+</document>

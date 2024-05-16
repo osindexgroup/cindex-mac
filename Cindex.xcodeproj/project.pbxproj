@@ -7,49 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6E09041C1ECF7C5E00C094BD /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */; };
-		6E09041D1ECF7C5E00C094BD /* IRIndexDocWController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B4FDCFA73011CA2CEA /* IRIndexDocWController.nib */; };
 		6E09041E1ECF7C5E00C094BD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165FFE840EACC02AAC07 /* InfoPlist.strings */; };
-		6E09041F1ECF7C5E00C094BD /* SortController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EB2D2C207591B2B00F8EB8A /* SortController.nib */; };
-		6E0904201ECF7C5E00C094BD /* PreferencesController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EDF446B0791640400F8746D /* PreferencesController.nib */; };
-		6E0904211ECF7C5E00C094BD /* RecordStructureController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC014C0079197D8005695DD /* RecordStructureController.nib */; };
-		6E0904221ECF7C5E00C094BD /* MarkupTagsController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC0154E0791A7EC005695DD /* MarkupTagsController.nib */; };
-		6E0904231ECF7C5E00C094BD /* GoToController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC0157D0791AB59005695DD /* GoToController.nib */; };
-		6E0904241ECF7C5E00C094BD /* CountController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC016140791B2E7005695DD /* CountController.nib */; };
-		6E0904251ECF7C5E00C094BD /* StatisticsController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC016170791B396005695DD /* StatisticsController.nib */; };
-		6E0904261ECF7C5E00C094BD /* RefSyntaxController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC0172F0791BB24005695DD /* RefSyntaxController.nib */; };
-		6E0904271ECF7C5E00C094BD /* StyledStringsController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC017320791BB7A005695DD /* StyledStringsController.nib */; };
-		6E0904281ECF7C5E00C094BD /* PageRefsController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC017380791BBBA005695DD /* PageRefsController.nib */; };
-		6E0904291ECF7C5E00C094BD /* CrossRefsController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC0173B0791BBEF005695DD /* CrossRefsController.nib */; };
-		6E09042A1ECF7C5E00C094BD /* HeadingsController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC0173E0791BC27005695DD /* HeadingsController.nib */; };
-		6E09042B1ECF7C5E00C094BD /* StyleLayoutController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC017410791BC57005695DD /* StyleLayoutController.nib */; };
-		6E09042C1ECF7C5E00C094BD /* GroupingController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC017440791BC85005695DD /* GroupingController.nib */; };
-		6E09042D1ECF7C5E00C094BD /* HeadFootController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC017470791BCB4005695DD /* HeadFootController.nib */; };
-		6E09042E1ECF7C5E00C094BD /* MarginColumnController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC0174A0791BCDE005695DD /* MarginColumnController.nib */; };
-		6E09042F1ECF7C5E00C094BD /* CompressController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC018100791C66C005695DD /* CompressController.nib */; };
-		6E0904301ECF7C5E00C094BD /* ReconcileController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC018130791C6CE005695DD /* ReconcileController.nib */; };
-		6E0904311ECF7C5E00C094BD /* GenerateRefsController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC0181A0791C735005695DD /* GenerateRefsController.nib */; };
-		6E0904321ECF7C5E00C094BD /* AlterRefsController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC0181D0791C777005695DD /* AlterRefsController.nib */; };
-		6E0904341ECF7C5E00C094BD /* GroupsController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC018850791CCF3005695DD /* GroupsController.nib */; };
-		6E0904351ECF7C5E00C094BD /* SaveGroupController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC018DF0791CFE4005695DD /* SaveGroupController.nib */; };
-		6E0904361ECF7C5E00C094BD /* TextStyleController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC019F50791F4E3005695DD /* TextStyleController.nib */; };
-		6E0904371ECF7C5E00C094BD /* ManageFontController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6ED5355907935E2600519D46 /* ManageFontController.nib */; };
-		6E0904381ECF7C5E00C094BD /* IRIndexTextWController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC09C04079C05AD00CC55C4 /* IRIndexTextWController.nib */; };
 		6E0904391ECF7C5E00C094BD /* AAP Tagged Text.cstg in Resources */ = {isa = PBXBuildFile; fileRef = 6E85BC3F07A45214005D425E /* AAP Tagged Text.cstg */; };
 		6E09043A1ECF7C5E00C094BD /* HTML Tagged Text.cstg in Resources */ = {isa = PBXBuildFile; fileRef = 6E85BC4007A45214005D425E /* HTML Tagged Text.cstg */; };
-		6E09043B1ECF7C5E00C094BD /* ExportOptionsController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6E1DAC3A07A8954E006F8E2E /* ExportOptionsController.nib */; };
-		6E09043C1ECF7C5E00C094BD /* FindController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6E1EBB7A07C8250B00AD208C /* FindController.nib */; };
-		6E09043D1ECF7C5E00C094BD /* ReplaceController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6E1EBBA607C82B4700AD208C /* ReplaceController.nib */; };
-		6E09043E1ECF7C5E00C094BD /* SpellController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6ECA117107CAE078003F16AC /* SpellController.nib */; };
-		6E09043F1ECF7C5E00C094BD /* ReplaceFontController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6E26834507DBBBAF004BA6AD /* ReplaceFontController.nib */; };
-		6E0904401ECF7C5E00C094BD /* IRIndexRecordWController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6E65F0DA07E3785600780E48 /* IRIndexRecordWController.nib */; };
 		6E0904411ECF7C5E00C094BD /* rightcursor.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6E65F68507E4D5CC00780E48 /* rightcursor.gif */; };
-		6E0904421ECF7C5E00C094BD /* AbbreviationController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6E0AC96407F5A0B7001E528D /* AbbreviationController.nib */; };
-		6E09044B1ECF7C5E00C094BD /* UserIDController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6E532F42086DC2AE003A0153 /* UserIDController.nib */; };
-		6E09044C1ECF7C5E00C094BD /* SplashWController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC121A108E747770060680B /* SplashWController.nib */; };
 		6E09044D1ECF7C5E00C094BD /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EC121A408E747850060680B /* splash.png */; };
-		6E09044F1ECF7C5E00C094BD /* FunctionkeyController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EADF28108FDE5E10032B456 /* FunctionkeyController.nib */; };
-		6E0904601ECF7C5E00C094BD /* FilterController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6E12A85A0DFAD26E006FBB91 /* FilterController.nib */; };
 		6E0904621ECF7C5E00C094BD /* UCP Tagged Text.cstg in Resources */ = {isa = PBXBuildFile; fileRef = 6E5A9C671317E62900D309F6 /* UCP Tagged Text.cstg */; };
 		6E0904631ECF7C5E00C094BD /* notices.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 6E69B5DF1363956400D2B5A7 /* notices.rtf */; };
 		6E0904641ECF7C5E00C094BD /* en_US.dic in Resources */ = {isa = PBXBuildFile; fileRef = 6E67A4CA138BC48C001475C0 /* en_US.dic */; };
@@ -168,7 +130,6 @@
 		6E0904DF1ECF7C5E00C094BD /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EDCD72D086E268400B8142D /* Carbon.framework */; };
 		6E0904E01ECF7C5E00C094BD /* ExceptionHandling.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EC11EE508E6F0DE0060680B /* ExceptionHandling.framework */; };
 		6E125F32207EEDCD0046222C /* SplitController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E125F31207EEDCD0046222C /* SplitController.m */; };
-		6E125F37207EEE320046222C /* SplitController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6E125F35207EEE320046222C /* SplitController.nib */; };
 		6E125F3C207F66B50046222C /* NSMutableAttributedString+NSMutableAttributedString.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E125F3B207F66B50046222C /* NSMutableAttributedString+NSMutableAttributedString.m */; };
 		6E18ACC12138398E004FDC4D /* SearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E18ACBF2138398E004FDC4D /* SearchController.m */; };
 		6E1DFB8F2184FD5000A8E0C0 /* libhunspell-1.6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E1DFB8A2184FD4F00A8E0C0 /* libhunspell-1.6.a */; };
@@ -177,24 +138,62 @@
 		6E1DFB982184FD5000A8E0C0 /* libicudata.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E1DFB8D2184FD5000A8E0C0 /* libicudata.a */; };
 		6E1DFB9B2184FD5000A8E0C0 /* libicuuc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E1DFB8E2184FD5000A8E0C0 /* libicuuc.a */; };
 		6E1F01EE247CA394006AA724 /* macrex_translations.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6E1F01ED247CA394006AA724 /* macrex_translations.txt */; };
-		6E249D5D20958EEF005F2943 /* CheckController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6E249D5B20958EEE005F2943 /* CheckController.nib */; };
 		6E249D6220958F11005F2943 /* CheckController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E249D6120958F11005F2943 /* CheckController.m */; };
-		6E26165E2BB7C2FE006406AE /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E26165C2BB7C2B4006406AE /* Sparkle.framework */; };
-		6E26165F2BB7C2FE006406AE /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6E26165C2BB7C2B4006406AE /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6E2D2A71208D3D4F005D5539 /* utime.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E2D2A70208D3D4F005D5539 /* utime.m */; };
+		6E2E39252BDFF4E3002C379E /* NSAlert+NSAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E2E39242BDFF4E3002C379E /* NSAlert+NSAlert.m */; };
 		6E2FD848247B29ED007D99F4 /* imwriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E2FD847247B29ED007D99F4 /* imwriter.m */; };
 		6E31ED6D2083308E00DD2FD8 /* IRPrintAccessoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E31ED6B2083308E00DD2FD8 /* IRPrintAccessoryController.m */; };
 		6E31ED752083311C00DD2FD8 /* IRPrintAccessoryController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E31ED732083311C00DD2FD8 /* IRPrintAccessoryController.xib */; };
 		6E4619D72078965200040DC8 /* NSArray+NSArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E4619D62078965200040DC8 /* NSArray+NSArray.m */; };
 		6E550B232079822200C02D6E /* IRTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E550B222079822200C02D6E /* IRTableHeaderView.m */; };
 		6E6137C820CFA87100EB153A /* IRToolbarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6137C720CFA87100EB153A /* IRToolbarItem.m */; };
+		6E6FD1C52BD2BB2500890B40 /* CompareController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6FD1C42BD2BB2500890B40 /* CompareController.m */; };
+		6E6FD1C82BD2BC8B00890B40 /* CompareController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E6FD1C62BD2BC8B00890B40 /* CompareController.xib */; };
+		6E7292182BD8570400B07956 /* IRIndexDocWController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E7292142BD8570400B07956 /* IRIndexDocWController.xib */; };
+		6E7292192BD8570400B07956 /* IRIndexRecordWController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E7292162BD8570400B07956 /* IRIndexRecordWController.xib */; };
 		6E820142229AF51600323748 /* NSColor+NSColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E820141229AF51600323748 /* NSColor+NSColor.m */; };
 		6E8201A1229C334700323748 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E8201A0229C334700323748 /* Media.xcassets */; };
+		6E8BD3BD2BE0357700BC6DEF /* FindController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E8BD3B72BE0357700BC6DEF /* FindController.xib */; };
+		6E8BD3BE2BE0357700BC6DEF /* SpellController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E8BD3B92BE0357700BC6DEF /* SpellController.xib */; };
+		6E8BD3BF2BE0357700BC6DEF /* ReplaceController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E8BD3BB2BE0357700BC6DEF /* ReplaceController.xib */; };
+		6E8BD3C22BE0371800BC6DEF /* IRIndexTextWController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E8BD3C02BE0371800BC6DEF /* IRIndexTextWController.xib */; };
+		6E8BD3CB2BE0379100BC6DEF /* MarkupTagsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E8BD3C32BE0379100BC6DEF /* MarkupTagsController.xib */; };
+		6E8BD3CC2BE0379100BC6DEF /* AbbreviationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E8BD3C52BE0379100BC6DEF /* AbbreviationController.xib */; };
+		6E8BD3CD2BE0379100BC6DEF /* FunctionkeyController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E8BD3C72BE0379100BC6DEF /* FunctionkeyController.xib */; };
+		6E8BD3CE2BE0379100BC6DEF /* GroupsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E8BD3C92BE0379100BC6DEF /* GroupsController.xib */; };
+		6E8BD3D72BE0390F00BC6DEF /* SplitController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E8BD3CF2BE0390F00BC6DEF /* SplitController.xib */; };
+		6E8BD3D82BE0390F00BC6DEF /* GenerateRefsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E8BD3D12BE0390F00BC6DEF /* GenerateRefsController.xib */; };
+		6E8BD3D92BE0390F00BC6DEF /* ReconcileController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E8BD3D32BE0390F00BC6DEF /* ReconcileController.xib */; };
+		6E8BD3DA2BE0390F00BC6DEF /* AlterRefsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E8BD3D52BE0390F00BC6DEF /* AlterRefsController.xib */; };
+		6E8BD3E12BE039F300BC6DEF /* StatisticsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E8BD3DB2BE039F300BC6DEF /* StatisticsController.xib */; };
+		6E8BD3E22BE039F300BC6DEF /* CountController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E8BD3DD2BE039F300BC6DEF /* CountController.xib */; };
+		6E8BD3E32BE039F300BC6DEF /* CompressController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E8BD3DF2BE039F300BC6DEF /* CompressController.xib */; };
+		6E8BD3E62BE03AB600BC6DEF /* SortController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E8BD3E42BE03AB600BC6DEF /* SortController.xib */; };
+		6E8BD3EF2BE03B7F00BC6DEF /* GroupingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E8BD3E72BE03B7E00BC6DEF /* GroupingController.xib */; };
+		6E8BD3F02BE03B7F00BC6DEF /* StyleLayoutController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E8BD3E92BE03B7E00BC6DEF /* StyleLayoutController.xib */; };
+		6E8BD3F12BE03B7F00BC6DEF /* HeadFootController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E8BD3EB2BE03B7E00BC6DEF /* HeadFootController.xib */; };
+		6E8BD3F22BE03B7F00BC6DEF /* MarginColumnController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E8BD3ED2BE03B7E00BC6DEF /* MarginColumnController.xib */; };
+		6E8BD3F92BE03C0E00BC6DEF /* HeadingsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E8BD3F32BE03C0E00BC6DEF /* HeadingsController.xib */; };
+		6E8BD3FA2BE03C0E00BC6DEF /* CrossRefsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E8BD3F52BE03C0E00BC6DEF /* CrossRefsController.xib */; };
+		6E8BD3FB2BE03C0E00BC6DEF /* PageRefsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E8BD3F72BE03C0E00BC6DEF /* PageRefsController.xib */; };
+		6E8BD4002BE03D1300BC6DEF /* RefSyntaxController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E8BD3FC2BE03D1300BC6DEF /* RefSyntaxController.xib */; };
+		6E8BD4012BE03D1300BC6DEF /* StyledStringsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E8BD3FE2BE03D1300BC6DEF /* StyledStringsController.xib */; };
+		6E8BD4042BE03DF200BC6DEF /* RecordStructureController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E8BD4022BE03DF200BC6DEF /* RecordStructureController.xib */; };
+		6E8BD4072BE03E7300BC6DEF /* TextStyleController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E8BD4052BE03E7300BC6DEF /* TextStyleController.xib */; };
+		6E8BD40A2BE03F2800BC6DEF /* SplashWController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E8BD4082BE03F2800BC6DEF /* SplashWController.xib */; };
+		6E8BD40F2BE03F7F00BC6DEF /* ReplaceFontController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E8BD40B2BE03F7F00BC6DEF /* ReplaceFontController.xib */; };
+		6E8BD4102BE03F7F00BC6DEF /* ManageFontController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E8BD40D2BE03F7F00BC6DEF /* ManageFontController.xib */; };
+		6E8BD4192BE0406500BC6DEF /* UserIDController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E8BD4112BE0406500BC6DEF /* UserIDController.xib */; };
+		6E8BD41A2BE0406500BC6DEF /* GoToController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E8BD4132BE0406500BC6DEF /* GoToController.xib */; };
+		6E8BD41B2BE0406500BC6DEF /* SaveGroupController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E8BD4152BE0406500BC6DEF /* SaveGroupController.xib */; };
+		6E8BD41C2BE0406500BC6DEF /* FilterController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E8BD4172BE0406500BC6DEF /* FilterController.xib */; };
+		6E8BD41F2BE041A000BC6DEF /* ExportOptionsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E8BD41D2BE041A000BC6DEF /* ExportOptionsController.xib */; };
+		6E9B09512BD97CD40000A37E /* CheckController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E9B094F2BD97CD40000A37E /* CheckController.xib */; };
+		6EA0F1BE2BD8094D0010865B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6EA0F1BC2BD8094D0010865B /* MainMenu.xib */; };
+		6EA0F1C12BD8097D0010865B /* PreferencesController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6EA0F1BF2BD8097D0010865B /* PreferencesController.xib */; };
 		6ED4243E2184E1F7009606AF /* libexpat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED4243B2184E1F6009606AF /* libexpat.a */; };
 		6ED424412184E1F7009606AF /* libiconv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED4243C2184E1F6009606AF /* libiconv.a */; };
 		6ED424442184E1F7009606AF /* libcharset.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED4243D2184E1F7009606AF /* libcharset.a */; };
-		6EF7C39620A0445A00617CB5 /* MessageController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6EF7C39420A0445A00617CB5 /* MessageController.nib */; };
-		6EF7C39B20A044B600617CB5 /* MessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EF7C39920A044B600617CB5 /* MessageController.m */; };
 		6EF863D72BC4251100C32F0E /* Help in Resources */ = {isa = PBXBuildFile; fileRef = 6EF863D52BC4251100C32F0E /* Help */; };
 /* End PBXBuildFile section */
 
@@ -205,7 +204,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				6E26165F2BB7C2FE006406AE /* Sparkle.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,11 +272,12 @@
 		6E208A4607A5FC0A00709DE3 /* StringCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringCategories.m; sourceTree = "<group>"; };
 		6E249D6020958F10005F2943 /* CheckController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckController.h; sourceTree = "<group>"; };
 		6E249D6120958F11005F2943 /* CheckController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckController.m; sourceTree = "<group>"; };
-		6E26165C2BB7C2B4006406AE /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Sparkle/Sparkle.framework; sourceTree = "<group>"; };
 		6E26820C07DBB58F004BA6AD /* ReplaceFontController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplaceFontController.h; sourceTree = "<group>"; };
 		6E26820D07DBB58F004BA6AD /* ReplaceFontController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplaceFontController.m; sourceTree = "<group>"; };
 		6E2D2A70208D3D4F005D5539 /* utime.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = utime.m; sourceTree = "<group>"; };
 		6E2D2A74208D3D70005D5539 /* utime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = utime.h; sourceTree = "<group>"; };
+		6E2E39232BDFF4E3002C379E /* NSAlert+NSAlert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSAlert+NSAlert.h"; sourceTree = "<group>"; };
+		6E2E39242BDFF4E3002C379E /* NSAlert+NSAlert.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSAlert+NSAlert.m"; sourceTree = "<group>"; };
 		6E2FD847247B29ED007D99F4 /* imwriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = imwriter.m; sourceTree = "<group>"; };
 		6E2FD84B247B29F7007D99F4 /* imwriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = imwriter.h; sourceTree = "<group>"; };
 		6E31ED6A2083308E00DD2FD8 /* IRPrintAccessoryController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IRPrintAccessoryController.h; sourceTree = "<group>"; };
@@ -331,11 +330,15 @@
 		6E6B372B07A292C0002DA14B /* IRIndexArchive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRIndexArchive.m; sourceTree = "<group>"; };
 		6E6ED34E07B5443600AC14A6 /* drafttext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = drafttext.m; sourceTree = "<group>"; };
 		6E6ED36807B544A700AC14A6 /* drafttext.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = drafttext.h; sourceTree = "<group>"; };
-		6E6F290923784A66006D191A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/IRIndexRecordWController.strings; sourceTree = "<group>"; };
-		6E6F290B2378712C006D191A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/IRIndexDocWController.strings; sourceTree = "<group>"; };
-		6E6F290D23787382006D191A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MainMenu.strings; sourceTree = "<group>"; };
+		6E6FD1C32BD2BB2500890B40 /* CompareController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompareController.h; sourceTree = "<group>"; };
+		6E6FD1C42BD2BB2500890B40 /* CompareController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompareController.m; sourceTree = "<group>"; };
+		6E6FD2012BD2C8F900890B40 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CompareController.xib; sourceTree = "<group>"; };
+		6E6FD20E2BD2C8FC00890B40 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/IRPrintAccessoryController.xib; sourceTree = "<group>"; };
+		6E6FD21A2BD2C8FF00890B40 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/FlipStringsController.xib; sourceTree = "<group>"; };
 		6E707F520799C82C00875FDC /* index.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = index.h; sourceTree = "<group>"; };
 		6E707F530799C82C00875FDC /* index.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = index.m; sourceTree = "<group>"; };
+		6E7292152BD8570400B07956 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/IRIndexDocWController.xib; sourceTree = "<group>"; };
+		6E7292172BD8570400B07956 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/IRIndexRecordWController.xib; sourceTree = "<group>"; };
 		6E788EC50DFC53F70027CA83 /* indesign.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = indesign.h; sourceTree = "<group>"; };
 		6E788EC60DFC53F70027CA83 /* indesign.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = indesign.m; sourceTree = "<group>"; };
 		6E7AF76D12CFE748001999B1 /* collate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = collate.h; sourceTree = "<group>"; };
@@ -346,49 +349,6 @@
 		6E820140229AF51600323748 /* NSColor+NSColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSColor+NSColor.h"; sourceTree = "<group>"; };
 		6E820141229AF51600323748 /* NSColor+NSColor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSColor+NSColor.m"; sourceTree = "<group>"; };
 		6E82014A229BCE8600323748 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		6E820174229BCEB100323748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/IRIndexDocWController.nib; sourceTree = "<group>"; };
-		6E820175229BCEB100323748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/IRIndexRecordWController.nib; sourceTree = "<group>"; };
-		6E820176229BCEB200323748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/IRIndexTextWController.nib; sourceTree = "<group>"; };
-		6E820177229BCEB300323748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/ExportOptionsController.nib; sourceTree = "<group>"; };
-		6E820178229BCEB300323748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/AlterRefsController.nib; sourceTree = "<group>"; };
-		6E820179229BCEB400323748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/CheckController.nib; sourceTree = "<group>"; };
-		6E82017A229BCEB400323748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/CompressController.nib; sourceTree = "<group>"; };
-		6E82017B229BCEB500323748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/CountController.nib; sourceTree = "<group>"; };
-		6E82017C229BCEB600323748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/FilterController.nib; sourceTree = "<group>"; };
-		6E82017D229BCEB600323748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/GenerateRefsController.nib; sourceTree = "<group>"; };
-		6E82017E229BCEB700323748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/GoToController.nib; sourceTree = "<group>"; };
-		6E82017F229BCEB800323748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/GroupsController.nib; sourceTree = "<group>"; };
-		6E820180229BCEB800323748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/ManageFontController.nib; sourceTree = "<group>"; };
-		6E820181229BCEB900323748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/ReplaceFontController.nib; sourceTree = "<group>"; };
-		6E820182229BCEBA00323748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/ReconcileController.nib; sourceTree = "<group>"; };
-		6E820183229BCEBA00323748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/SplitController.nib; sourceTree = "<group>"; };
-		6E820184229BCEBB00323748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/SaveGroupController.nib; sourceTree = "<group>"; };
-		6E820185229BCEBC00323748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/StatisticsController.nib; sourceTree = "<group>"; };
-		6E820187229BCEBD00323748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/IRPrintAccessoryController.xib; sourceTree = "<group>"; };
-		6E820188229BCEBE00323748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/CrossRefsController.nib; sourceTree = "<group>"; };
-		6E820189229BCEBE00323748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/GroupingController.nib; sourceTree = "<group>"; };
-		6E82018A229BCEBF00323748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/HeadFootController.nib; sourceTree = "<group>"; };
-		6E82018B229BCEC000323748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/HeadingsController.nib; sourceTree = "<group>"; };
-		6E82018C229BCEC100323748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/MarginColumnController.nib; sourceTree = "<group>"; };
-		6E82018D229BCEC200323748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/PageRefsController.nib; sourceTree = "<group>"; };
-		6E82018E229BCEC300323748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/RecordStructureController.nib; sourceTree = "<group>"; };
-		6E82018F229BCEC300323748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/RefSyntaxController.nib; sourceTree = "<group>"; };
-		6E820190229BCEC400323748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/SortController.nib; sourceTree = "<group>"; };
-		6E820191229BCEC500323748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/StyleLayoutController.nib; sourceTree = "<group>"; };
-		6E820192229BCEC500323748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/StyledStringsController.nib; sourceTree = "<group>"; };
-		6E820193229BCEC600323748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/FlipStringsController.xib; sourceTree = "<group>"; };
-		6E820194229BCEC700323748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/TextStyleController.nib; sourceTree = "<group>"; };
-		6E820195229BCEC700323748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/MainMenu.nib; sourceTree = "<group>"; };
-		6E820196229BCEC800323748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/AbbreviationController.nib; sourceTree = "<group>"; };
-		6E820197229BCEC900323748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/FunctionkeyController.nib; sourceTree = "<group>"; };
-		6E820198229BCEC900323748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/MarkupTagsController.nib; sourceTree = "<group>"; };
-		6E820199229BCECA00323748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/PreferencesController.nib; sourceTree = "<group>"; };
-		6E82019A229BCECB00323748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/FindController.nib; sourceTree = "<group>"; };
-		6E82019B229BCECB00323748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/ReplaceController.nib; sourceTree = "<group>"; };
-		6E82019C229BCECC00323748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/SplashWController.nib; sourceTree = "<group>"; };
-		6E82019D229BCECD00323748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/MessageController.nib; sourceTree = "<group>"; };
-		6E82019E229BCECD00323748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/SpellController.nib; sourceTree = "<group>"; };
-		6E82019F229BCECE00323748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/UserIDController.nib; sourceTree = "<group>"; };
 		6E8201A0229C334700323748 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		6E834A820794BCFB008A666C /* refs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = refs.h; sourceTree = "<group>"; };
 		6E834A830794BCFB008A666C /* refs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = refs.m; sourceTree = "<group>"; };
@@ -412,6 +372,41 @@
 		6E889461138C7CBD00436A05 /* index_old.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = index_old.icns; path = icons/index_old.icns; sourceTree = "<group>"; };
 		6E889462138C7CBD00436A05 /* stationery_old.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = stationery_old.icns; path = icons/stationery_old.icns; sourceTree = "<group>"; };
 		6E88946C138C7F5200436A05 /* stylesheet_old.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = stylesheet_old.icns; path = icons/stylesheet_old.icns; sourceTree = "<group>"; };
+		6E8BD3B82BE0357700BC6DEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/FindController.xib; sourceTree = "<group>"; };
+		6E8BD3BA2BE0357700BC6DEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SpellController.xib; sourceTree = "<group>"; };
+		6E8BD3BC2BE0357700BC6DEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ReplaceController.xib; sourceTree = "<group>"; };
+		6E8BD3C12BE0371800BC6DEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/IRIndexTextWController.xib; sourceTree = "<group>"; };
+		6E8BD3C42BE0379100BC6DEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MarkupTagsController.xib; sourceTree = "<group>"; };
+		6E8BD3C62BE0379100BC6DEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AbbreviationController.xib; sourceTree = "<group>"; };
+		6E8BD3C82BE0379100BC6DEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/FunctionkeyController.xib; sourceTree = "<group>"; };
+		6E8BD3CA2BE0379100BC6DEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/GroupsController.xib; sourceTree = "<group>"; };
+		6E8BD3D02BE0390F00BC6DEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SplitController.xib; sourceTree = "<group>"; };
+		6E8BD3D22BE0390F00BC6DEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/GenerateRefsController.xib; sourceTree = "<group>"; };
+		6E8BD3D42BE0390F00BC6DEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ReconcileController.xib; sourceTree = "<group>"; };
+		6E8BD3D62BE0390F00BC6DEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AlterRefsController.xib; sourceTree = "<group>"; };
+		6E8BD3DC2BE039F300BC6DEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/StatisticsController.xib; sourceTree = "<group>"; };
+		6E8BD3DE2BE039F300BC6DEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CountController.xib; sourceTree = "<group>"; };
+		6E8BD3E02BE039F300BC6DEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CompressController.xib; sourceTree = "<group>"; };
+		6E8BD3E52BE03AB600BC6DEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SortController.xib; sourceTree = "<group>"; };
+		6E8BD3E82BE03B7E00BC6DEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/GroupingController.xib; sourceTree = "<group>"; };
+		6E8BD3EA2BE03B7E00BC6DEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/StyleLayoutController.xib; sourceTree = "<group>"; };
+		6E8BD3EC2BE03B7E00BC6DEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/HeadFootController.xib; sourceTree = "<group>"; };
+		6E8BD3EE2BE03B7E00BC6DEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MarginColumnController.xib; sourceTree = "<group>"; };
+		6E8BD3F42BE03C0E00BC6DEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/HeadingsController.xib; sourceTree = "<group>"; };
+		6E8BD3F62BE03C0E00BC6DEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CrossRefsController.xib; sourceTree = "<group>"; };
+		6E8BD3F82BE03C0E00BC6DEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PageRefsController.xib; sourceTree = "<group>"; };
+		6E8BD3FD2BE03D1300BC6DEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/RefSyntaxController.xib; sourceTree = "<group>"; };
+		6E8BD3FF2BE03D1300BC6DEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/StyledStringsController.xib; sourceTree = "<group>"; };
+		6E8BD4032BE03DF200BC6DEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/RecordStructureController.xib; sourceTree = "<group>"; };
+		6E8BD4062BE03E7300BC6DEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TextStyleController.xib; sourceTree = "<group>"; };
+		6E8BD4092BE03F2800BC6DEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SplashWController.xib; sourceTree = "<group>"; };
+		6E8BD40C2BE03F7F00BC6DEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ReplaceFontController.xib; sourceTree = "<group>"; };
+		6E8BD40E2BE03F7F00BC6DEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ManageFontController.xib; sourceTree = "<group>"; };
+		6E8BD4122BE0406500BC6DEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/UserIDController.xib; sourceTree = "<group>"; };
+		6E8BD4142BE0406500BC6DEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/GoToController.xib; sourceTree = "<group>"; };
+		6E8BD4162BE0406500BC6DEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SaveGroupController.xib; sourceTree = "<group>"; };
+		6E8BD4182BE0406500BC6DEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/FilterController.xib; sourceTree = "<group>"; };
+		6E8BD41E2BE041A000BC6DEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ExportOptionsController.xib; sourceTree = "<group>"; };
 		6E8E174807BD8C4700F19402 /* formattedtext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = formattedtext.h; sourceTree = "<group>"; };
 		6E8E174907BD8C4700F19402 /* formattedtext.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = formattedtext.m; sourceTree = "<group>"; };
 		6E8FA41812E61314002E9BA7 /* V3 changes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "V3 changes.txt"; sourceTree = "<group>"; };
@@ -426,6 +421,9 @@
 		6E98E8220799879400E353DA /* search.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = search.m; sourceTree = "<group>"; };
 		6E98E8AB0799933100E353DA /* group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = group.h; sourceTree = "<group>"; };
 		6E98E8AC0799933100E353DA /* group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = group.m; sourceTree = "<group>"; };
+		6E9B09502BD97CD40000A37E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CheckController.xib; sourceTree = "<group>"; };
+		6EA0F1BD2BD8094D0010865B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		6EA0F1C02BD8097D0010865B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PreferencesController.xib; sourceTree = "<group>"; };
 		6EA2E7B5139703850027A5EB /* indexdocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = indexdocument.h; sourceTree = "<group>"; };
 		6EA409D908CA19120039C307 /* IRApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRApp.h; sourceTree = "<group>"; };
 		6EA409DA08CA19120039C307 /* IRApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRApp.m; sourceTree = "<group>"; };
@@ -529,8 +527,6 @@
 		6EF775790795F28A0013E972 /* stringtypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stringtypes.h; sourceTree = "<group>"; };
 		6EF7761E0795FE1A0013E972 /* type.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = type.h; sourceTree = "<group>"; };
 		6EF7761F0795FE1A0013E972 /* type.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = type.m; sourceTree = "<group>"; };
-		6EF7C39920A044B600617CB5 /* MessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageController.m; sourceTree = "<group>"; };
-		6EF7C39A20A044B600617CB5 /* MessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageController.h; sourceTree = "<group>"; };
 		6EF8357612E4F5FE006C7E31 /* v3handler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = v3handler.h; sourceTree = "<group>"; };
 		6EF8357712E4F5FE006C7E31 /* v3handler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = v3handler.m; sourceTree = "<group>"; };
 		6EF863D62BC4251100C32F0E /* en */ = {isa = PBXFileReference; lastKnownFileType = folder; name = en; path = en.lproj/Help; sourceTree = "<group>"; };
@@ -551,7 +547,6 @@
 				6ED424442184E1F7009606AF /* libcharset.a in Frameworks */,
 				6E0904E01ECF7C5E00C094BD /* ExceptionHandling.framework in Frameworks */,
 				6E1DFB922184FD5000A8E0C0 /* libicui18n.a in Frameworks */,
-				6E26165E2BB7C2FE006406AE /* Sparkle.framework in Frameworks */,
 				6ED4243E2184E1F7009606AF /* libexpat.a in Frameworks */,
 				6E1DFB952184FD5000A8E0C0 /* libicuio.a in Frameworks */,
 			);
@@ -664,27 +659,21 @@
 		2A37F4B8FDCFA73011CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				6EF863D52BC4251100C32F0E /* Help */,
-				6E8201A0229C334700323748 /* Media.xcassets */,
-				6E69B5DF1363956400D2B5A7 /* notices.rtf */,
-				6E67A4CA138BC48C001475C0 /* en_US.dic */,
-				6E67A4CB138BC48C001475C0 /* en_US.aff */,
-				6EF1D2312282311A005C5D84 /* Info64.plist */,
-				089C165FFE840EACC02AAC07 /* InfoPlist.strings */,
+				6EA0F1BC2BD8094D0010865B /* MainMenu.xib */,
+				6E8BD3C52BE0379100BC6DEF /* AbbreviationController.xib */,
+				6E8BD3C72BE0379100BC6DEF /* FunctionkeyController.xib */,
+				6E8BD3C32BE0379100BC6DEF /* MarkupTagsController.xib */,
+				6E8BD4112BE0406500BC6DEF /* UserIDController.xib */,
 				6EC0163B0791B472005695DD /* Document nibs */,
 				6EC0164A0791B4CB005695DD /* Dual nibs */,
-				2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */,
-				6E0AC96407F5A0B7001E528D /* AbbreviationController.nib */,
-				6EADF28108FDE5E10032B456 /* FunctionkeyController.nib */,
-				6EC0154E0791A7EC005695DD /* MarkupTagsController.nib */,
-				6EDF446B0791640400F8746D /* PreferencesController.nib */,
-				6E1EBB7A07C8250B00AD208C /* FindController.nib */,
-				6E1EBBA607C82B4700AD208C /* ReplaceController.nib */,
-				6EC121A108E747770060680B /* SplashWController.nib */,
-				6EF7C39420A0445A00617CB5 /* MessageController.nib */,
-				6ECA117107CAE078003F16AC /* SpellController.nib */,
-				6E532F42086DC2AE003A0153 /* UserIDController.nib */,
+				6E67A4CB138BC48C001475C0 /* en_US.aff */,
+				6E67A4CA138BC48C001475C0 /* en_US.dic */,
+				6EF863D52BC4251100C32F0E /* Help */,
 				6E7EF0880823F62600101A16 /* Images */,
+				6EF1D2312282311A005C5D84 /* Info64.plist */,
+				089C165FFE840EACC02AAC07 /* InfoPlist.strings */,
+				6E8201A0229C334700323748 /* Media.xcassets */,
+				6E69B5DF1363956400D2B5A7 /* notices.rtf */,
 				6E85BC4507A45222005D425E /* Tagsets */,
 			);
 			name = Resources;
@@ -693,7 +682,6 @@
 		2A37F4C3FDCFA73011CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				6E26165C2BB7C2B4006406AE /* Sparkle.framework */,
 				1058C7A6FEA54F5311CA2CBB /* Linked Frameworks */,
 				1058C7A8FEA54F5311CA2CBB /* Other Frameworks */,
 			);
@@ -717,6 +705,8 @@
 			children = (
 				6E97B56E07F6F00700452F9A /* AttributedStringCategories.h */,
 				6E97B56F07F6F00700452F9A /* AttributedStringCategories.m */,
+				6E2E39232BDFF4E3002C379E /* NSAlert+NSAlert.h */,
+				6E2E39242BDFF4E3002C379E /* NSAlert+NSAlert.m */,
 				6E4619D52078965200040DC8 /* NSArray+NSArray.h */,
 				6E4619D62078965200040DC8 /* NSArray+NSArray.m */,
 				6E820140229AF51600323748 /* NSColor+NSColor.h */,
@@ -918,25 +908,30 @@
 		6EC0163B0791B472005695DD /* Document nibs */ = {
 			isa = PBXGroup;
 			children = (
-				2A37F4B4FDCFA73011CA2CEA /* IRIndexDocWController.nib */,
-				6E65F0DA07E3785600780E48 /* IRIndexRecordWController.nib */,
-				6EC09C04079C05AD00CC55C4 /* IRIndexTextWController.nib */,
-				6E1DAC3A07A8954E006F8E2E /* ExportOptionsController.nib */,
-				6EC0181D0791C777005695DD /* AlterRefsController.nib */,
-				6E249D5B20958EEE005F2943 /* CheckController.nib */,
-				6EC018100791C66C005695DD /* CompressController.nib */,
-				6EC016140791B2E7005695DD /* CountController.nib */,
-				6E12A85A0DFAD26E006FBB91 /* FilterController.nib */,
-				6EC0181A0791C735005695DD /* GenerateRefsController.nib */,
-				6EC0157D0791AB59005695DD /* GoToController.nib */,
-				6EC018850791CCF3005695DD /* GroupsController.nib */,
-				6ED5355907935E2600519D46 /* ManageFontController.nib */,
-				6E26834507DBBBAF004BA6AD /* ReplaceFontController.nib */,
-				6EC018130791C6CE005695DD /* ReconcileController.nib */,
-				6E125F35207EEE320046222C /* SplitController.nib */,
-				6EC018DF0791CFE4005695DD /* SaveGroupController.nib */,
-				6EC016170791B396005695DD /* StatisticsController.nib */,
+				6E7292142BD8570400B07956 /* IRIndexDocWController.xib */,
+				6E7292162BD8570400B07956 /* IRIndexRecordWController.xib */,
+				6E8BD3C02BE0371800BC6DEF /* IRIndexTextWController.xib */,
+				6E8BD3D52BE0390F00BC6DEF /* AlterRefsController.xib */,
+				6E9B094F2BD97CD40000A37E /* CheckController.xib */,
+				6E6FD1C62BD2BC8B00890B40 /* CompareController.xib */,
+				6E8BD3DF2BE039F300BC6DEF /* CompressController.xib */,
+				6E8BD3DD2BE039F300BC6DEF /* CountController.xib */,
+				6E8BD41D2BE041A000BC6DEF /* ExportOptionsController.xib */,
+				6E8BD4172BE0406500BC6DEF /* FilterController.xib */,
+				6E8BD3B72BE0357700BC6DEF /* FindController.xib */,
+				6E8BD3D12BE0390F00BC6DEF /* GenerateRefsController.xib */,
+				6E8BD4132BE0406500BC6DEF /* GoToController.xib */,
+				6E8BD3C92BE0379100BC6DEF /* GroupsController.xib */,
 				6E31ED732083311C00DD2FD8 /* IRPrintAccessoryController.xib */,
+				6E8BD40D2BE03F7F00BC6DEF /* ManageFontController.xib */,
+				6E8BD3D32BE0390F00BC6DEF /* ReconcileController.xib */,
+				6E8BD3BB2BE0357700BC6DEF /* ReplaceController.xib */,
+				6E8BD40B2BE03F7F00BC6DEF /* ReplaceFontController.xib */,
+				6E8BD4152BE0406500BC6DEF /* SaveGroupController.xib */,
+				6E8BD3B92BE0357700BC6DEF /* SpellController.xib */,
+				6E8BD4082BE03F2800BC6DEF /* SplashWController.xib */,
+				6E8BD3CF2BE0390F00BC6DEF /* SplitController.xib */,
+				6E8BD3DB2BE039F300BC6DEF /* StatisticsController.xib */,
 			);
 			name = "Document nibs";
 			sourceTree = "<group>";
@@ -944,19 +939,20 @@
 		6EC0164A0791B4CB005695DD /* Dual nibs */ = {
 			isa = PBXGroup;
 			children = (
-				6EC0173B0791BBEF005695DD /* CrossRefsController.nib */,
-				6EC017440791BC85005695DD /* GroupingController.nib */,
-				6EC017470791BCB4005695DD /* HeadFootController.nib */,
-				6EC0173E0791BC27005695DD /* HeadingsController.nib */,
-				6EC0174A0791BCDE005695DD /* MarginColumnController.nib */,
-				6EC017380791BBBA005695DD /* PageRefsController.nib */,
-				6EC014C0079197D8005695DD /* RecordStructureController.nib */,
-				6EC0172F0791BB24005695DD /* RefSyntaxController.nib */,
-				6EB2D2C207591B2B00F8EB8A /* SortController.nib */,
-				6EC017410791BC57005695DD /* StyleLayoutController.nib */,
-				6EC017320791BB7A005695DD /* StyledStringsController.nib */,
+				6E8BD3F52BE03C0E00BC6DEF /* CrossRefsController.xib */,
 				6E69C37E13C46AA8002ACBDA /* FlipStringsController.xib */,
-				6EC019F50791F4E3005695DD /* TextStyleController.nib */,
+				6E8BD3E72BE03B7E00BC6DEF /* GroupingController.xib */,
+				6E8BD3EB2BE03B7E00BC6DEF /* HeadFootController.xib */,
+				6E8BD3F32BE03C0E00BC6DEF /* HeadingsController.xib */,
+				6E8BD3ED2BE03B7E00BC6DEF /* MarginColumnController.xib */,
+				6E8BD3F72BE03C0E00BC6DEF /* PageRefsController.xib */,
+				6EA0F1BF2BD8097D0010865B /* PreferencesController.xib */,
+				6E8BD4022BE03DF200BC6DEF /* RecordStructureController.xib */,
+				6E8BD3FC2BE03D1300BC6DEF /* RefSyntaxController.xib */,
+				6E8BD3E42BE03AB600BC6DEF /* SortController.xib */,
+				6E8BD3FE2BE03D1300BC6DEF /* StyledStringsController.xib */,
+				6E8BD3E92BE03B7E00BC6DEF /* StyleLayoutController.xib */,
+				6E8BD4052BE03E7300BC6DEF /* TextStyleController.xib */,
 			);
 			name = "Dual nibs";
 			sourceTree = "<group>";
@@ -994,17 +990,15 @@
 			name = "Dual Interface";
 			sourceTree = "<group>";
 		};
-		6EC1219A08E7377B0060680B /* Splash/Message */ = {
+		6EC1219A08E7377B0060680B /* Splash */ = {
 			isa = PBXGroup;
 			children = (
-				6EF7C39A20A044B600617CB5 /* MessageController.h */,
-				6EF7C39920A044B600617CB5 /* MessageController.m */,
 				6EC1219708E737710060680B /* SplashWindowController.h */,
 				6EC1219808E737710060680B /* SplashWindowController.m */,
 				6EC121AA08E74E780060680B /* SplashWindow.h */,
 				6EC121AB08E74E780060680B /* SplashWindow.m */,
 			);
-			name = Splash/Message;
+			name = Splash;
 			sourceTree = "<group>";
 		};
 		6ED5375907936F3F00519D46 /* Master headers */ = {
@@ -1040,6 +1034,8 @@
 				6EC017B80791C3CD005695DD /* AlterRefsController.m */,
 				6E249D6020958F10005F2943 /* CheckController.h */,
 				6E249D6120958F11005F2943 /* CheckController.m */,
+				6E6FD1C32BD2BB2500890B40 /* CompareController.h */,
+				6E6FD1C42BD2BB2500890B40 /* CompareController.m */,
 				6EC0178F0791C362005695DD /* CompressController.h */,
 				6EC017900791C362005695DD /* CompressController.m */,
 				6EC015DE0791AFC1005695DD /* CountController.h */,
@@ -1083,7 +1079,7 @@
 				6EC015270791A583005695DD /* MarkupTagsController.m */,
 				6EDF44590791639E00F8746D /* PreferencesController.h */,
 				6EDF445A0791639E00F8746D /* PreferencesController.m */,
-				6EC1219A08E7377B0060680B /* Splash/Message */,
+				6EC1219A08E7377B0060680B /* Splash */,
 				6E57F5E3094A814000DDB8F6 /* Spell Controller */,
 				6E532F32086DC062003A0153 /* UserIDController.h */,
 				6E532F33086DC062003A0153 /* UserIDController.m */,
@@ -1191,74 +1187,74 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E09041C1ECF7C5E00C094BD /* MainMenu.nib in Resources */,
-				6E09041D1ECF7C5E00C094BD /* IRIndexDocWController.nib in Resources */,
+				6E8BD41B2BE0406500BC6DEF /* SaveGroupController.xib in Resources */,
 				6E09041E1ECF7C5E00C094BD /* InfoPlist.strings in Resources */,
-				6E09041F1ECF7C5E00C094BD /* SortController.nib in Resources */,
-				6E0904201ECF7C5E00C094BD /* PreferencesController.nib in Resources */,
-				6E0904211ECF7C5E00C094BD /* RecordStructureController.nib in Resources */,
-				6E0904221ECF7C5E00C094BD /* MarkupTagsController.nib in Resources */,
-				6E0904231ECF7C5E00C094BD /* GoToController.nib in Resources */,
-				6E0904241ECF7C5E00C094BD /* CountController.nib in Resources */,
-				6E0904251ECF7C5E00C094BD /* StatisticsController.nib in Resources */,
-				6E0904261ECF7C5E00C094BD /* RefSyntaxController.nib in Resources */,
-				6E0904271ECF7C5E00C094BD /* StyledStringsController.nib in Resources */,
-				6E0904281ECF7C5E00C094BD /* PageRefsController.nib in Resources */,
+				6E8BD3EF2BE03B7F00BC6DEF /* GroupingController.xib in Resources */,
+				6E8BD3DA2BE0390F00BC6DEF /* AlterRefsController.xib in Resources */,
+				6E8BD3BD2BE0357700BC6DEF /* FindController.xib in Resources */,
+				6E8BD3FA2BE03C0E00BC6DEF /* CrossRefsController.xib in Resources */,
+				6E8BD3BE2BE0357700BC6DEF /* SpellController.xib in Resources */,
+				6E7292192BD8570400B07956 /* IRIndexRecordWController.xib in Resources */,
+				6E8BD3D92BE0390F00BC6DEF /* ReconcileController.xib in Resources */,
+				6EA0F1BE2BD8094D0010865B /* MainMenu.xib in Resources */,
+				6E9B09512BD97CD40000A37E /* CheckController.xib in Resources */,
 				6E1F01EE247CA394006AA724 /* macrex_translations.txt in Resources */,
-				6E0904291ECF7C5E00C094BD /* CrossRefsController.nib in Resources */,
-				6E09042A1ECF7C5E00C094BD /* HeadingsController.nib in Resources */,
-				6E09042B1ECF7C5E00C094BD /* StyleLayoutController.nib in Resources */,
-				6EF7C39620A0445A00617CB5 /* MessageController.nib in Resources */,
-				6E09042C1ECF7C5E00C094BD /* GroupingController.nib in Resources */,
+				6EA0F1C12BD8097D0010865B /* PreferencesController.xib in Resources */,
+				6E8BD3CD2BE0379100BC6DEF /* FunctionkeyController.xib in Resources */,
 				6E31ED752083311C00DD2FD8 /* IRPrintAccessoryController.xib in Resources */,
-				6E09042D1ECF7C5E00C094BD /* HeadFootController.nib in Resources */,
-				6E09042E1ECF7C5E00C094BD /* MarginColumnController.nib in Resources */,
-				6E09042F1ECF7C5E00C094BD /* CompressController.nib in Resources */,
-				6E0904301ECF7C5E00C094BD /* ReconcileController.nib in Resources */,
-				6E0904311ECF7C5E00C094BD /* GenerateRefsController.nib in Resources */,
-				6E0904321ECF7C5E00C094BD /* AlterRefsController.nib in Resources */,
-				6E0904341ECF7C5E00C094BD /* GroupsController.nib in Resources */,
-				6E0904351ECF7C5E00C094BD /* SaveGroupController.nib in Resources */,
-				6E0904361ECF7C5E00C094BD /* TextStyleController.nib in Resources */,
-				6E0904371ECF7C5E00C094BD /* ManageFontController.nib in Resources */,
-				6E0904381ECF7C5E00C094BD /* IRIndexTextWController.nib in Resources */,
+				6E8BD41C2BE0406500BC6DEF /* FilterController.xib in Resources */,
+				6E8BD3CB2BE0379100BC6DEF /* MarkupTagsController.xib in Resources */,
+				6E8BD3FB2BE03C0E00BC6DEF /* PageRefsController.xib in Resources */,
+				6E8BD4012BE03D1300BC6DEF /* StyledStringsController.xib in Resources */,
+				6E8BD4002BE03D1300BC6DEF /* RefSyntaxController.xib in Resources */,
+				6E7292182BD8570400B07956 /* IRIndexDocWController.xib in Resources */,
+				6E8BD40A2BE03F2800BC6DEF /* SplashWController.xib in Resources */,
 				6E0904391ECF7C5E00C094BD /* AAP Tagged Text.cstg in Resources */,
+				6E8BD3D72BE0390F00BC6DEF /* SplitController.xib in Resources */,
+				6E8BD3D82BE0390F00BC6DEF /* GenerateRefsController.xib in Resources */,
 				6E09043A1ECF7C5E00C094BD /* HTML Tagged Text.cstg in Resources */,
-				6E09043B1ECF7C5E00C094BD /* ExportOptionsController.nib in Resources */,
-				6E09043C1ECF7C5E00C094BD /* FindController.nib in Resources */,
-				6E09043D1ECF7C5E00C094BD /* ReplaceController.nib in Resources */,
-				6E09043E1ECF7C5E00C094BD /* SpellController.nib in Resources */,
-				6E09043F1ECF7C5E00C094BD /* ReplaceFontController.nib in Resources */,
-				6E0904401ECF7C5E00C094BD /* IRIndexRecordWController.nib in Resources */,
+				6E8BD3C22BE0371800BC6DEF /* IRIndexTextWController.xib in Resources */,
+				6E8BD3E22BE039F300BC6DEF /* CountController.xib in Resources */,
+				6E8BD4102BE03F7F00BC6DEF /* ManageFontController.xib in Resources */,
 				6E0904411ECF7C5E00C094BD /* rightcursor.gif in Resources */,
-				6E0904421ECF7C5E00C094BD /* AbbreviationController.nib in Resources */,
-				6E09044B1ECF7C5E00C094BD /* UserIDController.nib in Resources */,
-				6E09044C1ECF7C5E00C094BD /* SplashWController.nib in Resources */,
+				6E8BD3BF2BE0357700BC6DEF /* ReplaceController.xib in Resources */,
+				6E8BD3CC2BE0379100BC6DEF /* AbbreviationController.xib in Resources */,
 				6E09044D1ECF7C5E00C094BD /* splash.png in Resources */,
-				6E09044F1ECF7C5E00C094BD /* FunctionkeyController.nib in Resources */,
-				6E125F37207EEE320046222C /* SplitController.nib in Resources */,
-				6E0904601ECF7C5E00C094BD /* FilterController.nib in Resources */,
+				6E8BD3E32BE039F300BC6DEF /* CompressController.xib in Resources */,
+				6E8BD3F12BE03B7F00BC6DEF /* HeadFootController.xib in Resources */,
+				6E8BD40F2BE03F7F00BC6DEF /* ReplaceFontController.xib in Resources */,
+				6E6FD1C82BD2BC8B00890B40 /* CompareController.xib in Resources */,
 				6E0904621ECF7C5E00C094BD /* UCP Tagged Text.cstg in Resources */,
+				6E8BD4072BE03E7300BC6DEF /* TextStyleController.xib in Resources */,
 				6E0904631ECF7C5E00C094BD /* notices.rtf in Resources */,
+				6E8BD3E12BE039F300BC6DEF /* StatisticsController.xib in Resources */,
+				6E8BD4192BE0406500BC6DEF /* UserIDController.xib in Resources */,
 				6E0904641ECF7C5E00C094BD /* en_US.dic in Resources */,
 				6E0904651ECF7C5E00C094BD /* en_US.aff in Resources */,
 				6E0904661ECF7C5E00C094BD /* abbreviations.icns in Resources */,
 				6E0904671ECF7C5E00C094BD /* stylesheet.icns in Resources */,
+				6E8BD41A2BE0406500BC6DEF /* GoToController.xib in Resources */,
 				6E0904681ECF7C5E00C094BD /* archive.icns in Resources */,
 				6E0904691ECF7C5E00C094BD /* stationery.icns in Resources */,
 				6E8201A1229C334700323748 /* Media.xcassets in Resources */,
 				6E09046A1ECF7C5E00C094BD /* index.icns in Resources */,
+				6E8BD3F92BE03C0E00BC6DEF /* HeadingsController.xib in Resources */,
 				6E09046B1ECF7C5E00C094BD /* cindex.icns in Resources */,
 				6E09046C1ECF7C5E00C094BD /* userdictionary.icns in Resources */,
 				6E09046D1ECF7C5E00C094BD /* maindictionary.icns in Resources */,
-				6E249D5D20958EEF005F2943 /* CheckController.nib in Resources */,
 				6E09046E1ECF7C5E00C094BD /* xmlrecords.icns in Resources */,
 				6E09046F1ECF7C5E00C094BD /* index_old.icns in Resources */,
 				6E0904701ECF7C5E00C094BD /* stationery_old.icns in Resources */,
 				6E0904711ECF7C5E00C094BD /* stylesheet_old.icns in Resources */,
+				6E8BD3E62BE03AB600BC6DEF /* SortController.xib in Resources */,
+				6E8BD4042BE03DF200BC6DEF /* RecordStructureController.xib in Resources */,
 				6EF863D72BC4251100C32F0E /* Help in Resources */,
+				6E8BD3CE2BE0379100BC6DEF /* GroupsController.xib in Resources */,
 				6E0904721ECF7C5E00C094BD /* Standard Tags.cxtg in Resources */,
+				6E8BD3F02BE03B7F00BC6DEF /* StyleLayoutController.xib in Resources */,
+				6E8BD3F22BE03B7F00BC6DEF /* MarginColumnController.xib in Resources */,
 				6E0904741ECF7C5E00C094BD /* FlipStringsController.xib in Resources */,
+				6E8BD41F2BE041A000BC6DEF /* ExportOptionsController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1283,11 +1279,11 @@
 				6E2FD848247B29ED007D99F4 /* imwriter.m in Sources */,
 				6E0904831ECF7C5E00C094BD /* StatisticsController.m in Sources */,
 				6E0904841ECF7C5E00C094BD /* CountController.m in Sources */,
-				6EF7C39B20A044B600617CB5 /* MessageController.m in Sources */,
 				6E0904851ECF7C5E00C094BD /* MarginColumnController.m in Sources */,
 				6E0904861ECF7C5E00C094BD /* HeadFootController.m in Sources */,
 				6E0904871ECF7C5E00C094BD /* GroupingController.m in Sources */,
 				6E820142229AF51600323748 /* NSColor+NSColor.m in Sources */,
+				6E2E39252BDFF4E3002C379E /* NSAlert+NSAlert.m in Sources */,
 				6E0904881ECF7C5E00C094BD /* StyleLayoutController.m in Sources */,
 				6E0904891ECF7C5E00C094BD /* HeadingsController.m in Sources */,
 				6E09048A1ECF7C5E00C094BD /* CrossRefsController.m in Sources */,
@@ -1298,6 +1294,7 @@
 				6E09048D1ECF7C5E00C094BD /* RefSyntaxController.m in Sources */,
 				6E09048E1ECF7C5E00C094BD /* CompressController.m in Sources */,
 				6E09048F1ECF7C5E00C094BD /* ReconcileController.m in Sources */,
+				6E6FD1C52BD2BB2500890B40 /* CompareController.m in Sources */,
 				6E0904901ECF7C5E00C094BD /* GenerateRefsController.m in Sources */,
 				6E0904911ECF7C5E00C094BD /* AlterRefsController.m in Sources */,
 				6E0904931ECF7C5E00C094BD /* GroupsController.m in Sources */,
@@ -1390,351 +1387,348 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		2A37F4B4FDCFA73011CA2CEA /* IRIndexDocWController.nib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6E820174229BCEB100323748 /* Base */,
-				6E6F290B2378712C006D191A /* en */,
-			);
-			name = IRIndexDocWController.nib;
-			sourceTree = "<group>";
-		};
-		2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6E820195229BCEC700323748 /* Base */,
-				6E6F290D23787382006D191A /* en */,
-			);
-			name = MainMenu.nib;
-			sourceTree = "<group>";
-		};
-		6E0AC96407F5A0B7001E528D /* AbbreviationController.nib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6E820196229BCEC800323748 /* Base */,
-			);
-			name = AbbreviationController.nib;
-			sourceTree = "<group>";
-		};
-		6E125F35207EEE320046222C /* SplitController.nib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6E820183229BCEBA00323748 /* Base */,
-			);
-			name = SplitController.nib;
-			sourceTree = "<group>";
-		};
-		6E12A85A0DFAD26E006FBB91 /* FilterController.nib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6E82017C229BCEB600323748 /* Base */,
-			);
-			name = FilterController.nib;
-			sourceTree = "<group>";
-		};
-		6E1DAC3A07A8954E006F8E2E /* ExportOptionsController.nib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6E820177229BCEB300323748 /* Base */,
-			);
-			name = ExportOptionsController.nib;
-			sourceTree = "<group>";
-		};
-		6E1EBB7A07C8250B00AD208C /* FindController.nib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6E82019A229BCECB00323748 /* Base */,
-			);
-			name = FindController.nib;
-			sourceTree = "<group>";
-		};
-		6E1EBBA607C82B4700AD208C /* ReplaceController.nib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6E82019B229BCECB00323748 /* Base */,
-			);
-			name = ReplaceController.nib;
-			sourceTree = "<group>";
-		};
-		6E249D5B20958EEE005F2943 /* CheckController.nib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6E820179229BCEB400323748 /* Base */,
-			);
-			name = CheckController.nib;
-			sourceTree = "<group>";
-		};
-		6E26834507DBBBAF004BA6AD /* ReplaceFontController.nib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6E820181229BCEB900323748 /* Base */,
-			);
-			name = ReplaceFontController.nib;
-			sourceTree = "<group>";
-		};
 		6E31ED732083311C00DD2FD8 /* IRPrintAccessoryController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				6E820187229BCEBD00323748 /* Base */,
+				6E6FD20E2BD2C8FC00890B40 /* Base */,
 			);
 			name = IRPrintAccessoryController.xib;
-			sourceTree = "<group>";
-		};
-		6E532F42086DC2AE003A0153 /* UserIDController.nib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6E82019F229BCECE00323748 /* Base */,
-			);
-			name = UserIDController.nib;
-			sourceTree = "<group>";
-		};
-		6E65F0DA07E3785600780E48 /* IRIndexRecordWController.nib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6E820175229BCEB100323748 /* Base */,
-				6E6F290923784A66006D191A /* en */,
-			);
-			name = IRIndexRecordWController.nib;
 			sourceTree = "<group>";
 		};
 		6E69C37E13C46AA8002ACBDA /* FlipStringsController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				6E820193229BCEC600323748 /* Base */,
+				6E6FD21A2BD2C8FF00890B40 /* Base */,
 			);
 			name = FlipStringsController.xib;
 			sourceTree = "<group>";
 		};
-		6EADF28108FDE5E10032B456 /* FunctionkeyController.nib */ = {
+		6E6FD1C62BD2BC8B00890B40 /* CompareController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				6E820197229BCEC900323748 /* Base */,
+				6E6FD2012BD2C8F900890B40 /* Base */,
 			);
-			name = FunctionkeyController.nib;
+			name = CompareController.xib;
 			sourceTree = "<group>";
 		};
-		6EB2D2C207591B2B00F8EB8A /* SortController.nib */ = {
+		6E7292142BD8570400B07956 /* IRIndexDocWController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				6E820190229BCEC400323748 /* Base */,
+				6E7292152BD8570400B07956 /* Base */,
 			);
-			name = SortController.nib;
+			name = IRIndexDocWController.xib;
 			sourceTree = "<group>";
 		};
-		6EC014C0079197D8005695DD /* RecordStructureController.nib */ = {
+		6E7292162BD8570400B07956 /* IRIndexRecordWController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				6E82018E229BCEC300323748 /* Base */,
+				6E7292172BD8570400B07956 /* Base */,
 			);
-			name = RecordStructureController.nib;
+			name = IRIndexRecordWController.xib;
 			sourceTree = "<group>";
 		};
-		6EC0154E0791A7EC005695DD /* MarkupTagsController.nib */ = {
+		6E8BD3B72BE0357700BC6DEF /* FindController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				6E820198229BCEC900323748 /* Base */,
+				6E8BD3B82BE0357700BC6DEF /* Base */,
 			);
-			name = MarkupTagsController.nib;
+			name = FindController.xib;
 			sourceTree = "<group>";
 		};
-		6EC0157D0791AB59005695DD /* GoToController.nib */ = {
+		6E8BD3B92BE0357700BC6DEF /* SpellController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				6E82017E229BCEB700323748 /* Base */,
+				6E8BD3BA2BE0357700BC6DEF /* Base */,
 			);
-			name = GoToController.nib;
+			name = SpellController.xib;
 			sourceTree = "<group>";
 		};
-		6EC016140791B2E7005695DD /* CountController.nib */ = {
+		6E8BD3BB2BE0357700BC6DEF /* ReplaceController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				6E82017B229BCEB500323748 /* Base */,
+				6E8BD3BC2BE0357700BC6DEF /* Base */,
 			);
-			name = CountController.nib;
+			name = ReplaceController.xib;
 			sourceTree = "<group>";
 		};
-		6EC016170791B396005695DD /* StatisticsController.nib */ = {
+		6E8BD3C02BE0371800BC6DEF /* IRIndexTextWController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				6E820185229BCEBC00323748 /* Base */,
+				6E8BD3C12BE0371800BC6DEF /* Base */,
 			);
-			name = StatisticsController.nib;
+			name = IRIndexTextWController.xib;
 			sourceTree = "<group>";
 		};
-		6EC0172F0791BB24005695DD /* RefSyntaxController.nib */ = {
+		6E8BD3C32BE0379100BC6DEF /* MarkupTagsController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				6E82018F229BCEC300323748 /* Base */,
+				6E8BD3C42BE0379100BC6DEF /* Base */,
 			);
-			name = RefSyntaxController.nib;
+			name = MarkupTagsController.xib;
 			sourceTree = "<group>";
 		};
-		6EC017320791BB7A005695DD /* StyledStringsController.nib */ = {
+		6E8BD3C52BE0379100BC6DEF /* AbbreviationController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				6E820192229BCEC500323748 /* Base */,
+				6E8BD3C62BE0379100BC6DEF /* Base */,
 			);
-			name = StyledStringsController.nib;
+			name = AbbreviationController.xib;
 			sourceTree = "<group>";
 		};
-		6EC017380791BBBA005695DD /* PageRefsController.nib */ = {
+		6E8BD3C72BE0379100BC6DEF /* FunctionkeyController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				6E82018D229BCEC200323748 /* Base */,
+				6E8BD3C82BE0379100BC6DEF /* Base */,
 			);
-			name = PageRefsController.nib;
+			name = FunctionkeyController.xib;
 			sourceTree = "<group>";
 		};
-		6EC0173B0791BBEF005695DD /* CrossRefsController.nib */ = {
+		6E8BD3C92BE0379100BC6DEF /* GroupsController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				6E820188229BCEBE00323748 /* Base */,
+				6E8BD3CA2BE0379100BC6DEF /* Base */,
 			);
-			name = CrossRefsController.nib;
+			name = GroupsController.xib;
 			sourceTree = "<group>";
 		};
-		6EC0173E0791BC27005695DD /* HeadingsController.nib */ = {
+		6E8BD3CF2BE0390F00BC6DEF /* SplitController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				6E82018B229BCEC000323748 /* Base */,
+				6E8BD3D02BE0390F00BC6DEF /* Base */,
 			);
-			name = HeadingsController.nib;
+			name = SplitController.xib;
 			sourceTree = "<group>";
 		};
-		6EC017410791BC57005695DD /* StyleLayoutController.nib */ = {
+		6E8BD3D12BE0390F00BC6DEF /* GenerateRefsController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				6E820191229BCEC500323748 /* Base */,
+				6E8BD3D22BE0390F00BC6DEF /* Base */,
 			);
-			name = StyleLayoutController.nib;
+			name = GenerateRefsController.xib;
 			sourceTree = "<group>";
 		};
-		6EC017440791BC85005695DD /* GroupingController.nib */ = {
+		6E8BD3D32BE0390F00BC6DEF /* ReconcileController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				6E820189229BCEBE00323748 /* Base */,
+				6E8BD3D42BE0390F00BC6DEF /* Base */,
 			);
-			name = GroupingController.nib;
+			name = ReconcileController.xib;
 			sourceTree = "<group>";
 		};
-		6EC017470791BCB4005695DD /* HeadFootController.nib */ = {
+		6E8BD3D52BE0390F00BC6DEF /* AlterRefsController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				6E82018A229BCEBF00323748 /* Base */,
+				6E8BD3D62BE0390F00BC6DEF /* Base */,
 			);
-			name = HeadFootController.nib;
+			name = AlterRefsController.xib;
 			sourceTree = "<group>";
 		};
-		6EC0174A0791BCDE005695DD /* MarginColumnController.nib */ = {
+		6E8BD3DB2BE039F300BC6DEF /* StatisticsController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				6E82018C229BCEC100323748 /* Base */,
+				6E8BD3DC2BE039F300BC6DEF /* Base */,
 			);
-			name = MarginColumnController.nib;
+			name = StatisticsController.xib;
 			sourceTree = "<group>";
 		};
-		6EC018100791C66C005695DD /* CompressController.nib */ = {
+		6E8BD3DD2BE039F300BC6DEF /* CountController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				6E82017A229BCEB400323748 /* Base */,
+				6E8BD3DE2BE039F300BC6DEF /* Base */,
 			);
-			name = CompressController.nib;
+			name = CountController.xib;
 			sourceTree = "<group>";
 		};
-		6EC018130791C6CE005695DD /* ReconcileController.nib */ = {
+		6E8BD3DF2BE039F300BC6DEF /* CompressController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				6E820182229BCEBA00323748 /* Base */,
+				6E8BD3E02BE039F300BC6DEF /* Base */,
 			);
-			name = ReconcileController.nib;
+			name = CompressController.xib;
 			sourceTree = "<group>";
 		};
-		6EC0181A0791C735005695DD /* GenerateRefsController.nib */ = {
+		6E8BD3E42BE03AB600BC6DEF /* SortController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				6E82017D229BCEB600323748 /* Base */,
+				6E8BD3E52BE03AB600BC6DEF /* Base */,
 			);
-			name = GenerateRefsController.nib;
+			name = SortController.xib;
 			sourceTree = "<group>";
 		};
-		6EC0181D0791C777005695DD /* AlterRefsController.nib */ = {
+		6E8BD3E72BE03B7E00BC6DEF /* GroupingController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				6E820178229BCEB300323748 /* Base */,
+				6E8BD3E82BE03B7E00BC6DEF /* Base */,
 			);
-			name = AlterRefsController.nib;
+			name = GroupingController.xib;
 			sourceTree = "<group>";
 		};
-		6EC018850791CCF3005695DD /* GroupsController.nib */ = {
+		6E8BD3E92BE03B7E00BC6DEF /* StyleLayoutController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				6E82017F229BCEB800323748 /* Base */,
+				6E8BD3EA2BE03B7E00BC6DEF /* Base */,
 			);
-			name = GroupsController.nib;
+			name = StyleLayoutController.xib;
 			sourceTree = "<group>";
 		};
-		6EC018DF0791CFE4005695DD /* SaveGroupController.nib */ = {
+		6E8BD3EB2BE03B7E00BC6DEF /* HeadFootController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				6E820184229BCEBB00323748 /* Base */,
+				6E8BD3EC2BE03B7E00BC6DEF /* Base */,
 			);
-			name = SaveGroupController.nib;
+			name = HeadFootController.xib;
 			sourceTree = "<group>";
 		};
-		6EC019F50791F4E3005695DD /* TextStyleController.nib */ = {
+		6E8BD3ED2BE03B7E00BC6DEF /* MarginColumnController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				6E820194229BCEC700323748 /* Base */,
+				6E8BD3EE2BE03B7E00BC6DEF /* Base */,
 			);
-			name = TextStyleController.nib;
+			name = MarginColumnController.xib;
 			sourceTree = "<group>";
 		};
-		6EC09C04079C05AD00CC55C4 /* IRIndexTextWController.nib */ = {
+		6E8BD3F32BE03C0E00BC6DEF /* HeadingsController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				6E820176229BCEB200323748 /* Base */,
+				6E8BD3F42BE03C0E00BC6DEF /* Base */,
 			);
-			name = IRIndexTextWController.nib;
+			name = HeadingsController.xib;
 			sourceTree = "<group>";
 		};
-		6EC121A108E747770060680B /* SplashWController.nib */ = {
+		6E8BD3F52BE03C0E00BC6DEF /* CrossRefsController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				6E82019C229BCECC00323748 /* Base */,
+				6E8BD3F62BE03C0E00BC6DEF /* Base */,
 			);
-			name = SplashWController.nib;
+			name = CrossRefsController.xib;
 			sourceTree = "<group>";
 		};
-		6ECA117107CAE078003F16AC /* SpellController.nib */ = {
+		6E8BD3F72BE03C0E00BC6DEF /* PageRefsController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				6E82019E229BCECD00323748 /* Base */,
+				6E8BD3F82BE03C0E00BC6DEF /* Base */,
 			);
-			name = SpellController.nib;
+			name = PageRefsController.xib;
 			sourceTree = "<group>";
 		};
-		6ED5355907935E2600519D46 /* ManageFontController.nib */ = {
+		6E8BD3FC2BE03D1300BC6DEF /* RefSyntaxController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				6E820180229BCEB800323748 /* Base */,
+				6E8BD3FD2BE03D1300BC6DEF /* Base */,
 			);
-			name = ManageFontController.nib;
+			name = RefSyntaxController.xib;
 			sourceTree = "<group>";
 		};
-		6EDF446B0791640400F8746D /* PreferencesController.nib */ = {
+		6E8BD3FE2BE03D1300BC6DEF /* StyledStringsController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				6E820199229BCECA00323748 /* Base */,
+				6E8BD3FF2BE03D1300BC6DEF /* Base */,
 			);
-			name = PreferencesController.nib;
+			name = StyledStringsController.xib;
 			sourceTree = "<group>";
 		};
-		6EF7C39420A0445A00617CB5 /* MessageController.nib */ = {
+		6E8BD4022BE03DF200BC6DEF /* RecordStructureController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				6E82019D229BCECD00323748 /* Base */,
+				6E8BD4032BE03DF200BC6DEF /* Base */,
 			);
-			name = MessageController.nib;
+			name = RecordStructureController.xib;
+			sourceTree = "<group>";
+		};
+		6E8BD4052BE03E7300BC6DEF /* TextStyleController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6E8BD4062BE03E7300BC6DEF /* Base */,
+			);
+			name = TextStyleController.xib;
+			sourceTree = "<group>";
+		};
+		6E8BD4082BE03F2800BC6DEF /* SplashWController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6E8BD4092BE03F2800BC6DEF /* Base */,
+			);
+			name = SplashWController.xib;
+			sourceTree = "<group>";
+		};
+		6E8BD40B2BE03F7F00BC6DEF /* ReplaceFontController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6E8BD40C2BE03F7F00BC6DEF /* Base */,
+			);
+			name = ReplaceFontController.xib;
+			sourceTree = "<group>";
+		};
+		6E8BD40D2BE03F7F00BC6DEF /* ManageFontController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6E8BD40E2BE03F7F00BC6DEF /* Base */,
+			);
+			name = ManageFontController.xib;
+			sourceTree = "<group>";
+		};
+		6E8BD4112BE0406500BC6DEF /* UserIDController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6E8BD4122BE0406500BC6DEF /* Base */,
+			);
+			name = UserIDController.xib;
+			sourceTree = "<group>";
+		};
+		6E8BD4132BE0406500BC6DEF /* GoToController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6E8BD4142BE0406500BC6DEF /* Base */,
+			);
+			name = GoToController.xib;
+			sourceTree = "<group>";
+		};
+		6E8BD4152BE0406500BC6DEF /* SaveGroupController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6E8BD4162BE0406500BC6DEF /* Base */,
+			);
+			name = SaveGroupController.xib;
+			sourceTree = "<group>";
+		};
+		6E8BD4172BE0406500BC6DEF /* FilterController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6E8BD4182BE0406500BC6DEF /* Base */,
+			);
+			name = FilterController.xib;
+			sourceTree = "<group>";
+		};
+		6E8BD41D2BE041A000BC6DEF /* ExportOptionsController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6E8BD41E2BE041A000BC6DEF /* Base */,
+			);
+			name = ExportOptionsController.xib;
+			sourceTree = "<group>";
+		};
+		6E9B094F2BD97CD40000A37E /* CheckController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6E9B09502BD97CD40000A37E /* Base */,
+			);
+			name = CheckController.xib;
+			sourceTree = "<group>";
+		};
+		6EA0F1BC2BD8094D0010865B /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6EA0F1BD2BD8094D0010865B /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		6EA0F1BF2BD8097D0010865B /* PreferencesController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6EA0F1C02BD8097D0010865B /* Base */,
+			);
+			name = PreferencesController.xib;
 			sourceTree = "<group>";
 		};
 		6EF863D52BC4251100C32F0E /* Help */ = {
@@ -1755,14 +1749,8 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 4.3.1;
+				CURRENT_PROJECT_VERSION = 4.4.0;
 				DEVELOPMENT_TEAM = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Sparkle",
-					"$(PROJECT_DIR)/Sparkle/Sparkle-1.27.0",
-					"$(PROJECT_DIR)/Sparkle/Sparkle-1.20.0",
-				);
 				GCC_DYNAMIC_NO_PIC = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1781,7 +1769,7 @@
 					"$(PROJECT_DIR)/macports/libiconv/lib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = 4.3;
+				MARKETING_VERSION = 4.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.indexres.cindex64;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1796,14 +1784,8 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 4.3.1;
+				CURRENT_PROJECT_VERSION = 4.4.0;
 				DEVELOPMENT_TEAM = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Sparkle",
-					"$(PROJECT_DIR)/Sparkle/Sparkle-1.27.0",
-					"$(PROJECT_DIR)/Sparkle/Sparkle-1.20.0",
-				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 3;
 				INFOPLIST_FILE = Info64.plist;
@@ -1815,7 +1797,7 @@
 					"$(PROJECT_DIR)/macports/libiconv/lib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = 4.3;
+				MARKETING_VERSION = 4.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.indexres.cindex64;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1832,14 +1814,8 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 4.3.1;
+				CURRENT_PROJECT_VERSION = 4.4.0;
 				DEVELOPMENT_TEAM = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Sparkle",
-					"$(PROJECT_DIR)/Sparkle/Sparkle-1.27.0",
-					"$(PROJECT_DIR)/Sparkle/Sparkle-1.20.0",
-				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				INFOPLIST_FILE = Info64.plist;
 				LIBRARY_SEARCH_PATHS = (
@@ -1850,7 +1826,7 @@
 					"$(PROJECT_DIR)/macports/libiconv/lib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = 4.3;
+				MARKETING_VERSION = 4.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.indexres.cindex64;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1883,7 +1859,6 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = Sparkle;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1936,7 +1911,6 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = Sparkle;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Cindex_prefix.pch;
@@ -1984,7 +1958,6 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = Sparkle;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Cindex_prefix.pch;

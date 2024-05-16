@@ -114,11 +114,6 @@ static char * visibletarget(INDEX * FF, RECORD * recptr, char *sptr);	/* returns
 	[self _cleanup];	// force sort, etc. as necessary
 	offset = mlength = 0;		// force new check of string in any current record
 }
-#if 0
-- (void)windowDidBecomeKey:(NSNotification *)aNotification {
-	_needsSetup = TRUE;	// need to do it thiis way because main window can be nil on reactivate ap
-}
-#endif
 - (void)windowDidUpdate:(NSNotification *)aNotification {
 	if (_currentDocument) {
 		if (_needsSetup) {		// window has just become key
@@ -241,7 +236,7 @@ static char * visibletarget(INDEX * FF, RECORD * recptr, char *sptr);	/* returns
 		[[NSUserDefaults standardUserDefaults] setObject:md forKey:IRMainDic];	// set new default
 	}
 	else
-		senderr(SPELLOPENERR,WARN);
+		errorSheet(self.window,SPELLOPENERR,WARN);
 }
 - (void)_openPersonalDictionary:(NSString *)pd {
 	int ok = FALSE;
@@ -398,7 +393,7 @@ static char * visibletarget(INDEX * FF, RECORD * recptr, char *sptr);	/* returns
 				[[self window] makeFirstResponder:changedword];
 			}
 			else	{/* found something */
-				sendinfo(NOMORERECINFO);		/* done */
+				infoSheet(self.window,NOMORERECINFO);		/* done */
 				[self _setNewSpell];		// reinitialize after finish
 			}
 		}
@@ -462,7 +457,7 @@ static char * visibletarget(INDEX * FF, RECORD * recptr, char *sptr);	/* returns
 	}
 	else if (sender == addbutton)	{	// add word
 		if ([personaldictionary indexOfSelectedItem] < 1)	{	// if don't have active pd
-			if (sendwarning(NODICWARNING))
+			if (showWarning(self.window,NODICWARNING))
 				[self _makeNewDictionary];
 			else
 				return;
@@ -579,7 +574,7 @@ static char * visibletarget(INDEX * FF, RECORD * recptr, char *sptr);	/* returns
 					}
 				}
 				else {
-					senderr(SPELLDICEXISTERR,WARN,[newdic cStringUsingEncoding:NSUTF8StringEncoding]);
+					errorSheet(self.window,SPELLDICEXISTERR,WARN,[newdic cStringUsingEncoding:NSUTF8StringEncoding]);
 					return;
 				}
 			}

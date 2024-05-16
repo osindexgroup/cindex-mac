@@ -69,7 +69,7 @@ struct prefs g_prefs = {		/* preferences info */
 		0,		/* use styles to define format indents */
 		0,		// use main window text size
 		TRUE,	// embed sort info
-		FALSE,	// check for updates
+		TRUE,	// check for updates
 		0,		// utf-8 encoding of plain text
 		PASTEMODE_STYLEONLY		// paste styles but not fonts
 	},

@@ -106,6 +106,7 @@ void grp_installtemp(INDEX * FF, GROUPHANDLE gh)	/* installs temporary group */
 	if (FF->lastfile)
 		grp_dispose(FF->lastfile);
 	FF->lastfile = gh;
+	FF->lastfile->curpos = 0;
 }
 /******************************************************************************/
 BOOL grp_make(INDEX * FF, GROUPHANDLE gh, char *name, short oflag)	// adds group to file
@@ -113,7 +114,7 @@ BOOL grp_make(INDEX * FF, GROUPHANDLE gh, char *name, short oflag)	// adds group
 {
 	int baseoffset;
 	if (gfind(FF, name))	{	/* if can find existing group */
-		if (oflag || sendwarning(DUPGROUPWARNING, name))
+		if (oflag || showWarning(FF->owner.windowForSheet, DUPGROUPWARNING, name))
 			gremove(FF,name);	/* remove it */
 		else
 			return(FALSE);
@@ -138,6 +139,7 @@ BOOL grp_install(INDEX * FF, char *name)	/* opens & installs group  */
 	if (gh = grp_open(FF,name))	{	/* if can open it */
 		grp_closecurrent(FF);		/* discard any active group */
 		FF->curfile = gh;	/* set current file */
+		FF->curfile->curpos = 0;
 		return (FALSE);
 	}
 	return (TRUE);
@@ -148,7 +150,7 @@ void grp_closecurrent(INDEX * FF)		/* closes current group */
 {
 	if (FF->curfile && FF->curfile != FF->lastfile)	/* if using a group */
 		grp_dispose(FF->curfile);	/* get rid of it */
-	FF->curfilepos = 0;			/* make sure we invalidate file pos */
+//	FF->curfilepos = 0;			/* make sure we invalidate file pos */
 	FF->curfile = NULL;
 }
 /******************************************************************************/
@@ -158,24 +160,14 @@ void grp_dispose(GROUPHANDLE gh)		/* discards group  */
 	free(gh);
 }
 /******************************************************************************/
-RECN grp_getstats(INDEX * FF, GROUPHANDLE gh, COUNTPARAMS * csptr)		/* gets stats on group */
+BOOL grp_addrecord(GROUPHANDLE gh, RECORD * recptr)
 
 {
-	GROUPHANDLE oldcfile;
-	RECN oldcfilepos;
-	
-	memset(csptr,0, sizeof(COUNTPARAMS));
-	if (gh->rectot)	{
-		oldcfile = FF->curfile;		/* save any active group */
-		oldcfilepos = FF->curfilepos;	/* and its current position */
-		FF->curfile = gh;			/* set our group in temporarily */
-		FF->curfilepos = 0;			/* and zero index */
-		csptr->firstrec = gh->recbase[0];
-		search_count(FF,csptr,SF_OFF);
-		FF->curfile = oldcfile;		/* restore any old group */
-		FF->curfilepos = oldcfilepos;	/* and its position */
+	if (gh->rectot < gh->limit || gresize(&gh,GROUPMAXSIZE)) {
+		gh->recbase[gh->rectot++] = recptr->num;	/* write record number */
+		return YES;
 	}
-	return gh->rectot;
+	return NO;
 }
 /******************************************************************************/
 RECN grp_buildfromcheck(INDEX * FF, GROUPHANDLE * gh)	// builds group for syntax errors
@@ -196,7 +188,6 @@ RECN grp_buildfromcheck(INDEX * FF, GROUPHANDLE * gh)	// builds group for syntax
 	*gh = gp;
 	return (gp->rectot);
 }
-#if 1
 /******************************************************************************/
 RECN grp_buildfromsearch(INDEX * FF, GROUPHANDLE * gh)	/* adds search hits to group file  */
 
@@ -276,104 +267,10 @@ void grp_revise(INDEX * FF, GROUPHANDLE *gh)	/* rebuilds group  */
 	gp->tstamp = time(NULL);
 	gp->gflags |= GF_REVISED;
 	FF->curfile = gp;
-	sort_sortgroup(FF);		/* sort and save it */
+//	sort_sortgroup(FF, gp->lg.sortmode);	/* sort and save it */
 	FF->curfile = tcfile;	/* restore any active group */
 	*gh = gp;		/* set revised handle */
 }
-#else
-/******************************************************************************/
-RECN grp_buildfromsearch(INDEX * FF, GROUPHANDLE * gh)	/* adds search hits to group file  */
-
-{
-	RECORD * recptr;
-	char *sptr, tsort;
-	short mlength;
-	GROUPHANDLE gp = *gh;
-	LISTGROUP alg;			// properly aligned LISTGROUP; make 64 bit compatible with 32 bit
-//	HCURSOR ocurs;
-	
-	gp->rectot = 0;
-	gp->gflags = GF_SEARCH;
-	tsort = FF->head.sortpars.ison;
-	alg = gp->lg;			// load the aligned working copy
-	FF->head.sortpars.ison = alg.sortmode;		/* set sort mode as appropriate */
-//	ocurs = SetCursor(g_waitcurs);
-	if (recptr = search_findfirst(FF, &alg, TRUE, &sptr, &mlength))	{	/* if any hit */
-		do {		/* add records */
-			gp->recbase[gp->rectot++] = recptr->num;	/* write record number */
-		} while ((recptr = search_findfirst(FF, &alg, FALSE, &sptr, &mlength)) && (gp->rectot < gp->limit || gresize(&gp,GROUPMAXSIZE)));	/* while more to come */
-	}
-//	SetCursor(ocurs);
-	search_clearauxbuff(&alg);		/* free any aux buffers */
-	gp->lg = alg;		// restore LISTGROUP from aligned working copy
-	FF->head.sortpars.ison = tsort;
-	if (FF->curfile)	/* if already in group */
-		gp->gflags |= GF_COMBINE;		/* made from more than 1 group */
-	gresize(&gp,0);		/*truncate */
-	*gh = gp;
-	return (gp->rectot);
-}
-/******************************************************************************/
-RECN grp_buildfromrange(INDEX * FF, GROUPHANDLE *gh, RECN first, RECN last, short stype)	/* makes group from selection or numerical range */
-
-{
-	RECORD * recptr;
-	RECN rnum;
-	GROUPHANDLE gp = *gh;
-	LISTGROUP alg;			// properly aligned LISTGROUP; make 64 bit compatible with 32 bit
-	
-	gp->rectot = 0;
-	gp->gflags = stype&(GF_SELECT|GF_RANGE);
-	alg = gp->lg;			// load the aligned working copy
-	alg.firstr = first;	/* save for any revision */
-	alg.lastr = last;
-	alg.sortmode = FF->head.sortpars.ison;
-	if (stype == GF_SELECT)	{	/* build from current selection (excludes terminal record) */
-		for (recptr = rec_getrec(FF,first); recptr && (gp->rectot < gp->limit || gresize(&gp,GROUPMAXSIZE)) && recptr->num != last; recptr = sort_skip(FF,recptr,1))	/* for all in sel range */
-			gp->recbase[gp->rectot++] = recptr->num;	/* write record number */
-	}
-	else {		/* build from inclusive numerical range */
-		for (rnum = first; rnum <= last && (recptr = rec_getrec(FF,rnum)) && (gp->rectot < gp->limit || gresize(&gp,GROUPMAXSIZE)); rnum++)	/* for all in range */
-			gp->recbase[gp->rectot++] = recptr->num;	/* write record number */
-	}
-	gp->lg = alg;		// restore LISTGROUP from aligned working copy
-	if (FF->curfile)	/* if already in group */
-		gp->gflags |= GF_COMBINE;		/* made from more than 1 group */
-	gresize(&gp,0);		/*truncate */
-	*gh = gp;
-	return (gp->rectot);
-}
-/******************************************************************************/
-void grp_revise(INDEX * FF, GROUPHANDLE *gh)	/* rebuilds group  */
-
-{
-	short field;
-	GROUPHANDLE gp;
-	GROUPHANDLE tcfile;
-	LISTGROUP alg;			// properly aligned LISTGROUP; make 64 bit compatible with 32 bit
-	
-	gp = *gh;
-	tcfile = FF->curfile;		/* hold group if we're using one */
-	if (!(gp->gflags&GF_COMBINE))	/* if original wasn't made from search through a group */
-		FF->curfile = NULL;		/* enable whole index search */
-	alg = gp->lg;			// load the aligned working copy
-	if (gp->gflags & GF_SEARCH)	{	/* if from search */
-		if (!makerange(FF,alg.lflags,alg.range0,alg.range1,&alg.firstr, &alg.lastr))	{	// get revised start and end records
-			if (search_setupfind(FF, &alg, &field))		/* set up search parameters */
-				grp_buildfromsearch(FF,&gp);
-		}
-	}
-	else	/* from selection or range */
-		grp_buildfromrange(FF,&gp,alg.firstr,alg.lastr,gp->gflags);
-	gp->lg = alg;		// restore LISTGROUP from aligned working copy
-	gp->tstamp = time(NULL);
-	gp->gflags |= GF_REVISED;
-	FF->curfile = gp;
-	sort_sortgroup(FF);		/* sort and save it */
-	FF->curfile = tcfile;	/* restore any active group */
-	*gh = gp;		/* set revised handle */
-}
-#endif
 /******************************************************************************/
 GROUPHANDLE grp_open(INDEX * FF, char *name)	/* opens group  */
 

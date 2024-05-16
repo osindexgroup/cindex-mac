@@ -214,7 +214,7 @@ enum {		// among tags
 			errorSheet(self.window,RECNOTFOUNDERR, WARN);
 		}
 		else	/* found something */
-			sendinfo(NOMORERECINFO);		/* done */
+			infoSheet(self.window, NOMORERECINFO);		/* done */
 		[self setNewFind];		// reinitialize after failure
 	}
 }

@@ -202,7 +202,7 @@ static void recoverreplacestyle(NSMatrix * control,REPLACEATTRIBUTES *ra,int ind
 			errorSheet(self.window,RECNOTFOUNDERR, WARN);
 		}
 		else	/* found something */
-			sendinfo(NOMORERECINFO);		/* done */
+			infoSheet(self.window,NOMORERECINFO);		/* done */
 		[self setNewFind];		// reinitialize after failure
 	}
 }
@@ -307,7 +307,7 @@ struct numstruct * repset(INDEX * FF, LISTGROUP * lg, REPLACEGROUP * rg, REPLACE
 							if (c == '&')
 								c = '0';	// capture group 0 is whole string
 							if ((rg->rep[rg->reptot].index = c - '0') > regex_groupcount(lg->lsarray[0].regex))	 { /* put in index; if not that many subexpressions */
-								senderr(BADREPERR, WARN);
+								errorSheet(NSApp.keyWindow, BADREPERR, WARN);
 								return (NULL);
 							}
 							tptr += 2;	/* now points to char beyond string designator */

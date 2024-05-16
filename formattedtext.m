@@ -118,7 +118,7 @@ char * form_buildentry(INDEX * FF, RECORD * recptr, ENTRYINFO *esp)	/* builds en
 	short curcount, hlevel, lastlevel, runlevel, prcount, crcount, stoplevel;
 	short sprlevel, hidelevel,clevel;
 	int requiredlevel, labellevel /*,  reccount */;
-	short puncttype;
+	short puncttype = 0;
 	unichar leadchar;
 	ENTRYFORMAT *efp;
 	FIELDFORMAT *fp;

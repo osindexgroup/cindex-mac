@@ -39,7 +39,8 @@ enum {		/* info message ids */
 	EMPTYRECORDWARNING,
 	CHECKINFO,
 	INFO_READONLY,
-	INFO_NEWFROMIMPORT
+	INFO_NEWFROMIMPORT,
+	INFO_INDEXESMATCH
 };
 
 enum {			
@@ -67,7 +68,7 @@ enum {
 	NEGADJUSTWARNING,
 	CODETRANSLATION,
 	FONTGAPWARNING,
-	RECCHANGED,
+//	RECCHANGED,
 	CONVERTWARNING,
 	MISSINGFONTWARNING,
 	SHORTRECORDWARNING,
@@ -195,13 +196,13 @@ short com_getdates(short scope, NSTextField * first, NSTextField * last, time_c 
 short com_getrecrange(INDEX * FF, short scope, NSTextField *firstfield, NSTextField * lastfield, RECN * first, RECN * last);		/* finds start and stop recs */
 RECN com_findrecord(INDEX * FF, char *arg, short lastmatchflag, int warnmode);		/* finds record by lead or number */
 
+void simpleAlert(NSWindow * parent, NSAlertStyle style, NSString * message);	// simple alert display with two buttons
 void sendinfo(int infonum, ...);		/*  O.K. */
 void infoSheet(NSWindow * parent, int infonum, ...);		/*  O.K. */
 //short sendinfooption(int infonum, ...);		/*  Yes, No */
 short sendwarning(int warnnum, ...);	/* cancel, ok */
-NSAlert * warningAlert(int warnnum, ...);		/* cancel, O.K. */
+short showWarning(NSWindow * parent,int warnnum, ...);		/* cancel, O.K. */
 NSAlert * criticalAlert(int warnnum, ...);		/* cancel, O.K. */
-short savewarning(int warnnum, ...);		/* discard, cancel, o.k. */
 short senderr(int errnum, int level, ...);
 short errorSheet(NSWindow * parent, int errnum, int level, ...);
 short sendwindowerr(int errnum, int level, ...);

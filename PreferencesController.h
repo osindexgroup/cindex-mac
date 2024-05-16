@@ -6,6 +6,7 @@
 //  Copyright 2005 Indexing Research. All rights reserved.
 //
 
+#define kUpdateCheckInterval @"updateInterval"
 
 @interface PreferencesController : NSWindowController {
 	IBOutlet NSTabView * _tabView;
@@ -16,7 +17,8 @@
 	IBOutlet NSTextField * userid;
 	IBOutlet NSPopUpButton * unit;
 	IBOutlet NSButton * checkforupdates;
-	
+	IBOutlet NSPopUpButton * checkInterval;
+
 	IBOutlet NSButton * switchtodraft;
 	IBOutlet NSButton * stripspaces;
 	IBOutlet NSButton * smartflip;

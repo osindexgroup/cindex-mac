@@ -7,6 +7,7 @@
 //
 
 #import "import.h"
+#import "IRIndexDocWController.h"
 #import "ReplaceFontController.h"
 #import "index.h"
 #import "type.h"
@@ -154,7 +155,7 @@ int imp_readrecords(INDEX * FF, IMPORTPARAMS * imp, char * data, unsigned long d
 			if (imp->subtype == KEY_UNKNOWN)	{		/* if old Mac archive */
 				for (index = OLDVOLATILEFONTS; index < FONTLIMIT; index++)	{
 					if (imp->farray[index] && !*FF->head.fm[index].name)	{	// if used font with no name
-						if (!sendwarning(MISSINGARCHIVEFONT,index) || !getreplacementfont(FF->head.fm[index].name))
+						if (!showWarning(FF->owner.windowForSheet,MISSINGARCHIVEFONT,index) || !getreplacementfont(FF->head.fm[index].name))
 							strcpy(FF->head.fm[index].name,FF->head.fm[0].name);	/* set default cause didn't choose */
 						strcpy(FF->head.fm[index].pname,FF->head.fm[index].name);
 					}
@@ -203,24 +204,25 @@ int imp_resolveerrors(INDEX * FF, IMPORTPARAMS *imp)
 		return (0);
 	}
 #endif
-	if (imp->ecount > imp->fielderrcnt + imp->lenerrcnt +imp->fonterrcnt+imp->emptyerrcnt)	{	// if errors that we can't correct or ignore			
-		if (!sendwarning(IMPORTERRORSWARN))		/* if don't want to ignore */
-			return (-1);		
+	NSWindow * sheetWindow = FF->owner.mainWindowController.window;
+	if (imp->ecount > imp->fielderrcnt + imp->lenerrcnt +imp->fonterrcnt+imp->emptyerrcnt)	{	// if errors that we can't correct or ignore
+		if (!showWarning(FF->owner.windowForSheet,IMPORTERRORSWARN))		/* if don't want to ignore */
+			return (-1);
 	}
 	if (imp->fonterrcnt)	{		/* if need font query */
-		if (!sendwarning(MISSINGFONTWARNING, imp->fonterrcnt))
+		if (!showWarning(FF->owner.windowForSheet,MISSINGFONTWARNING, imp->fonterrcnt))
 			return (-1);
 	}
 	if (imp->fielderrcnt && FF->head.rtot)	{		/* if need field query */
-		if (imp->deepest > FIELDLIM || !sendwarning(RECFIELDNUMWARN, imp->deepest))
+		if (imp->deepest > FIELDLIM || !showWarning(FF->owner.windowForSheet,RECFIELDNUMWARN, imp->deepest))
 			return (-1);
 	}
 	if (imp->lenerrcnt && FF->head.rtot)	{		/* if need length query */
-		if (imp->longest > MAXREC || !sendwarning(RECENLARGEWARN,imp->longest-FF->head.indexpars.recsize))
+		if (imp->longest > MAXREC || !showWarning(FF->owner.windowForSheet,RECENLARGEWARN,imp->longest-FF->head.indexpars.recsize))
 			return (-1);
 	}
 	if (imp->conflictingseparators && FF->head.rtot)	{		// if specifying separators for index that has records
-		if (!sendwarning(CONFLICTINGESPARATORSWARN))
+		if (!showWarning(FF->owner.windowForSheet,CONFLICTINGESPARATORSWARN))
 			return (-1);
 	}
 	if (imp->deepest > FF->head.indexpars.maxfields)	{	/* if need to increase # fields */
@@ -238,7 +240,7 @@ int imp_resolveerrors(INDEX * FF, IMPORTPARAMS *imp)
 		FF->head.indexpars.required = TRUE;
 	}
 	if (imp->emptyerrcnt)		// if empty error
-		sendinfo(EMPTYRECORDWARNING, imp->emptyerrcnt);	// just send info
+		infoSheet(FF->owner.windowForSheet,EMPTYRECORDWARNING, imp->emptyerrcnt);	// just send info
 	return (1);
 }
 /***************************************************************************/

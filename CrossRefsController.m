@@ -92,7 +92,7 @@
 			col_init(&FF->head.sortpars,FF);		// initialize collator
 			sort_resort(FF);		/* sort whole index anyway */
 			if (FF->curfile)
-				sort_sortgroup(FF);
+				sort_sortgroup(FF, YES);
 		}
 		[[self document] reformat];
 		[self.window.sheetParent endSheet:self.window returnCode:[sender tag]];

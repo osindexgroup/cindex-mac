@@ -307,34 +307,6 @@ int tr_dosxstring(char * buff,struct ghstruct *ghp, int flags)	/* in-place trans
 	}
 	return (xcode);
 }
-#if 0
-/******************************************************************************/
-BOOL tr_winxstring(char * buff)	/* translates Windows characters in extended string */
-
-{
-	char * sptr;
-	BOOL xcode;
-	int activefont;
-
-	/* NB could ultimately improve this by converting some Win Symbol font to extended char,
-		as per dosextendedtomac() */
-		
-	for (activefont = 0, xcode = FALSE, sptr = buff; *sptr != EOCS; sptr++)	{
-		if (*sptr == CODECHR)	{
-			char codetype = *++sptr;
-
-			if ((codetype&FX_FONT) && !(codetype&FX_COLOR))	// if a font change
-				activefont = codetype&FX_FONTMASK;	// get active font
-		}
-		else if (*sptr < 0 && activefont != 1)	{	/* if extended character && not in symbol font */
-			*sptr = win_to_mac[(unsigned char)(*sptr)-128];
-			if ((unsigned char)*sptr == UNKNOWNCHAR)	
-				xcode = TRUE;
-		}
-	}
-	return (xcode);
-}
-#else
 /******************************************************************************/
 BOOL tr_winxstring(FONTMAP * fm, char * buff)	/* translates Windows characters in extended string */
 
@@ -363,7 +335,6 @@ BOOL tr_winxstring(FONTMAP * fm, char * buff)	/* translates Windows characters i
 	}
 	return (xcode);
 }
-#endif
 /******************************************************************************/
 void tr_movesubcross(INDEX * FF, char * buff)	/* moves any subhead cross-ref to page field */
 
@@ -377,65 +348,6 @@ void tr_movesubcross(INDEX * FF, char * buff)	/* moves any subhead cross-ref to 
 			*sarray[scount-1].str = EOCS;	/* clip off page field */
 	}
 }
-#if 0
-/*******************************************************************************/
-static short moverecords(short fid,HEAD * hp,long base, long shift)	/* moves record positions in file */
-	/* writes new header */
-{
-	RECN rnum, rcount;
-	char buff[MAXREC+1];
-	long size, newfilesize, trecsize;
-	short err;
-
-	err = 0;
-	if (shift != 0)	{	/* if need to move records */
-		trecsize = hp->indexpars.recsize+RECSIZE;
-		newfilesize = HEADSIZE+hp->rtot*trecsize;
-		if (shift > 0 && SetEOF(fid,newfilesize))	/* if can't increase size */
-			return (FALSE);
-		hp->resized = TRUE;
-		rnum = shift > 0 ? hp->rtot-1 : 0;
-		for (rcount = 0; rcount < hp->rtot && !err; rcount++)		{	/* for all records */
-//			showprogress("Converting Index‚Ä¶",hp->rtot,rcount);
-			if (!(err = SetFPos(fid, fsFromStart, base+rnum*trecsize)))	{	/* point to old position */
-				size = trecsize;
-				if (!(err = FSRead(fid,&size,buff)))	{
-					if (!(err = SetFPos(fid, fsFromStart,HEADSIZE+rnum*trecsize)))	{	/* point to new posn */
-						size = trecsize;
-						/* following line to clean up codes from 1.04 and below */
-						str_adjustcodes(((RECORD *)buff)->rtext,CC_TRIM|(g_prefs.gen.remspaces ? CC_ONESPACE : 0));	/* adjust any codes */
-						if (!(err = FSWrite(fid,&size,buff)))	{	/* write it */
-							if (shift > 0)
-								rnum--;
-							else
-								rnum++;							
-							continue;
-						}
-					}
-				}
-			}
-		}
-//		showprogress(g_nullstr,0,0);
-	}
-	if (!err)	{
-		SetFPos(fid,fsFromStart, 0);	/* set to start */
-		size = HEADSIZE;
-		FSWrite(fid,&size,hp);	/* write header */
-	}
-	return (err);
-}
-/*******************************************************************************/
-static void copyhf(HEADERFOOTER * nhf, struct V10_headfoot * ohf, V10_FONTMAP * fm)	/*copies header/footer */
-
-{
-	strcpy(nhf->left,ohf->left);
-	strcpy(nhf->center,ohf->center);
-	strcpy(nhf->right,ohf->right);
-	memcpy(&nhf->hfstyle,&ohf->hfstyle,sizeof(V10_CSTYLE));	/* v11 & v10 are the same */
-	if (ohf->hffont)	/* if had hf font */
-		p2cstrcpy(nhf->hffont,fm[ohf->hffont].name);
-}
-#endif
 /******************************************************************************/
 static char * dosextendedtomac(char * sptr, int flags)     /* translates dos extended char */
 

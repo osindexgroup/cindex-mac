@@ -6,6 +6,8 @@
 //  Copyright 2005 Indexing Research. All rights reserved.
 //
 
+extern char * re_sf;
+extern char * re_fs;
 
 BOOL regex_validexpression(char * string, int flags);		// validates pattern
 URegularExpression * regex_build(char * string, int flags);		// sets up regex from string

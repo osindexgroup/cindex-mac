@@ -33,6 +33,7 @@
 
 #import "globals.h"
 #import "utilities.h"
+#import "cindexmenuitems.h"
 
 #import "NSMutableAttributedString+NSMutableAttributedString.h"
 #import "AttributedStringCategories.h"

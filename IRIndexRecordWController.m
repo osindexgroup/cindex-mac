@@ -82,16 +82,13 @@ static NSString* IRPropagateToolbarID = @"IRPropagateTBIdentifier";
 	}
 	[_parentController enableToolbarItems:NO];	// disable font/size items in main window
 	[self setShouldCascadeWindows:NO];
-	if (@available(macOS 11.0, *)) {
-		[self window].toolbarStyle = NSWindowToolbarStyleExpanded;
-	}
 	if (FF->head.recordviewrect.size.height)
 		[[self window] setFrame:[[self window] frameRectForContentRect:NSRectFromIRRect(FF->head.recordviewrect)] display:NO];
 	_allowFrameSet = YES;
 	origin = [[_parentController window] frame].origin;
 	[[self window] setFrameOrigin:NSMakePoint(FF->head.recordviewrect.origin.x+origin.x, FF->head.recordviewrect.origin.y+origin.y)];
     [[self window] setExcludedFromWindowsMenu:YES];
-	
+
 	[[_recordMenu itemWithTag:MI_BOLD] setTarget:[NSFontManager sharedFontManager]];
 	[[_recordMenu itemWithTag:MI_ITALIC] setTarget:[NSFontManager sharedFontManager]];
 	[_entry setIndex:FF];
@@ -117,8 +114,12 @@ static NSString* IRPropagateToolbarID = @"IRPropagateTBIdentifier";
 //	NSLog([mitem title]);
 	if (itemid == MI_DUPLICATE)
 		return _currentRecord > 0;
-	if (itemid == TB_PROPAGATE)		// not really validating; just quick way to set state
+	
+	// not really validating; just quick way to set state
+	if (itemid == TB_PROPAGATE)
 		[mitem setState:_propagate];
+	if (itemid >= MI_LABEL0 && itemid <= MI_LABEL7)	// set checks on labels
+		[mitem setState:itemid-MI_LABEL0 ==_labeled];
 	return YES;
 }
 - (BOOL)validateToolbarItem: (NSToolbarItem *)toolbarItem {
@@ -127,8 +128,10 @@ static NSString* IRPropagateToolbarID = @"IRPropagateTBIdentifier";
 //	NSLog(@"RWindow %@",[toolbarItem label]);
 	if (![[self window] isMainWindow] || [[self window] toolbar] != [toolbarItem toolbar])
 		return NO;
-	if (tag == TB_REVERT || tag == TB_ENTERRECORD)
+	if (tag == TB_REVERT)
 		return _dirty;
+	if (tag == TB_ENTERRECORD)
+		return _dirty || _currentRecord;	// enabled unless trying to duplicate a duplicate
 	if (tag == TB_PREVRECORD)
 		return _prevRecord ? YES : NO;
 	if (tag == TB_NEXTRECORD)
@@ -146,22 +149,8 @@ static NSString* IRPropagateToolbarID = @"IRPropagateTBIdentifier";
 	nrect.size.height = 150;
 	return nrect;
 }
-- (void)windowDidMove:(NSNotification *)aNotification {
-	if (_allowFrameSet) {
-		NSPoint origin = [[_parentController window] frame].origin;
-		FF->head.recordviewrect = IRRectFromNSRect([[self window] contentRectForFrameRect:[[self window] frame]]);	// remember content
-		FF->head.recordviewrect.origin.x -= origin.x;
-		FF->head.recordviewrect.origin.y -= origin.y;
-	}
-}
 - (void)windowDidResize:(NSNotification *)aNotification {
 	[self _checkPrompt];	// check, redraw prompt view
-	if (_allowFrameSet) {
-		NSPoint origin = [[_parentController window] frame].origin;
-		FF->head.recordviewrect = IRRectFromNSRect([[self window] contentRectForFrameRect:[[self window] frame]]);	// remember content
-		FF->head.recordviewrect.origin.x -= origin.x;
-		FF->head.recordviewrect.origin.y -= origin.y;
-	}
 }
 - (void)windowDidUpdate:(NSNotification *)aNotification {
 	// need this to stop prompt misscroll after release from resize
@@ -169,17 +158,37 @@ static NSString* IRPropagateToolbarID = @"IRPropagateTBIdentifier";
 		[self _scrollPrompt];
 }
 - (void)windowWillClose:(NSNotification *)aNotification {
+	NSPoint origin = [[_parentController window] frame].origin;
+	FF->head.recordviewrect = IRRectFromNSRect([[self window] contentRectForFrameRect:[[self window] frame]]);	// remember content
+	FF->head.recordviewrect.origin.x -= origin.x;
+	FF->head.recordviewrect.origin.y -= origin.y;
 	[[_parentController window] removeChildWindow:[self window]];
 	[_parentController enableToolbarItems:YES];	// re-enable font/size items in main window
 }
 - (BOOL)windowShouldClose:(id)sender {
 	if (![self canAbandonRecord]) {	// if we need to consider changes
-		int action = NSAlertAlternateReturn;	/* default action check is discard */
-		
-		if (!sender || g_prefs.gen.saverule == M_SAVE || g_prefs.gen.saverule == M_ASK && 
-			(action = savewarning(RECCHANGED, _currentRecord ? _currentRecord : FF->head.rtot+1)) == NSAlertDefaultReturn)
+		if (!sender || g_prefs.gen.saverule == M_SAVE)
 			return [self canCompleteRecord];
-		return action == NSAlertOtherReturn;
+		else if (g_prefs.gen.saverule == M_ASK) {
+			NSAlert * alert = [[NSAlert alloc] init];
+			alert.alertStyle = NSAlertStyleWarning;
+			if (_currentRecord)
+				alert.messageText = [NSString stringWithFormat:@"Save changes to record %d",_currentRecord];
+			else
+				alert.messageText = @"Save the new record?";
+			[alert addButtonWithTitle:@"Yes"];
+			[alert addButtonWithTitle:@"Cancel"];
+			[alert addButtonWithTitle:@"Don't Save"];
+			[alert beginSheetModalForWindow:self.window completionHandler:^(NSInteger result) {
+				if (result == NSAlertThirdButtonReturn)		// cancel
+					[[self window] close];
+				else if (result == NSAlertFirstButtonReturn) {	// save
+					if ([self windowShouldClose:nil])
+						[[self window] close];		// abandon
+				}
+			}];
+			return NO;
+		}
 	}
 	return YES;
 }
@@ -243,7 +252,7 @@ static NSString* IRPropagateToolbarID = @"IRPropagateTBIdentifier";
 	[self showStatus];
 }
 - (IBAction)labeled:(id)sender {
-	int newlabel = [sender tag]-MI_LABEL0;
+	int newlabel = (int)[sender tag]-MI_LABEL0;
 	if (sender == _entry)	{	// if want V1 toggle
 		if (_labeled <= 1)	// if can toggle
 			_labeled ^= 1;

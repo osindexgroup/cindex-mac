@@ -51,16 +51,18 @@ void sort_resort(INDEX * FF)        /* completely resort index by current sort r
 	FF->needsresort = FALSE;
 }
 /******************************************************************************/
-void sort_sortgroup(INDEX * FF)		/* sorts group */
+void sort_sortgroup(INDEX * FF, short on)		/* sorts group */
 
 {
 	s_index = FF;			/* index ptr (need static for qsort) */
+	FF->curfile->sg.ison = on;	// on/off state has to be set before sort
 	s_sg = &FF->curfile->sg;	/* need static pointer to sort group */
 	qsort(FF->curfile->recbase, FF->curfile->rectot, sizeof(RECN), gsort);
 	if (FF->curfile != FF->lastfile)	/* if already a group */
 		grp_make(FF,FF->curfile, FF->curfile->gname, TRUE);	/* save changed group */
-	FF->curfilepos = 0;		/* force invalid */
-	FF->curfile->lg.sortmode = TRUE;		/* sorted */
+//	FF->curfilepos = 0;		/* force invalid */
+	FF->curfile->curpos = 0;
+//	FF->curfile->lg.sortmode = TRUE;		/* sorted */
 }
 /******************************************************************************/
 static int gsort(const void * r1, const void * r2)	/* sort compare for group sort */
@@ -71,7 +73,10 @@ static int gsort(const void * r1, const void * r2)	/* sort compare for group sor
 	
 	if (r1ptr = rec_getrec(s_index,*(RECN *)r1))	{
 		if (r2ptr = rec_getrec(s_index, *(RECN *)r2))	{
-			result = match(s_index,s_sg,r1ptr->rtext, r2ptr->rtext);
+			if (s_sg->ison)
+				result = match(s_index,s_sg,r1ptr->rtext, r2ptr->rtext);
+			else
+				result = 0;	// force record number order
 			return (result ? result : (r1ptr->num > r2ptr->num ? 1 : -1));
 		}
 	}
@@ -541,9 +546,10 @@ RECORD * sort_top(INDEX * FF)	/* moves to extreme left end of tree */
 	register RECORD *curptr, *nextptr;
 
 	if (FF->curfile) {			/* if working with group */
-		if (FF->curfile->rectot)			{/* if have any records */
+		if (FF->curfile->rectot)			{	/* if have any records */
 			newrec = FF->curfile->recbase[0];
-			FF->curfilepos = 0;
+//			FF->curfilepos = 0;
+			FF->curfile->curpos = 0;
 			curptr = rec_getrec(FF,newrec);
 		}
 		else
@@ -571,7 +577,8 @@ RECORD * sort_bottom(INDEX * FF)	/* moves to extreme right-hand end of tree */
 	if (FF->curfile) {			/* if working with group */
 		if (FF->curfile->rectot)		{	/* if have any records */
 			newrec = FF->curfile->recbase[FF->curfile->rectot-1];
-			FF->curfilepos = FF->curfile->rectot-1;
+//			FF->curfilepos = FF->curfile->rectot-1;
+			FF->curfile->curpos = FF->curfile->rectot-1;
 			curptr = rec_getrec(FF,newrec);
 		}
 		else
@@ -598,6 +605,7 @@ RECORD *sort_skip(INDEX * FF, register RECORD *curptr, short n)	/* returns point
 	RECN newrec;
 
 	if (FF->curfile) {			/* if working from a file list */
+#if 0
 		if (FF->curfilepos >= FF->curfile->rectot)
 			FF->curfilepos = 0;
 		if (FF->curfilepos >= FF->curfile->rectot || curptr->num != FF->curfile->recbase[FF->curfilepos])	{
@@ -620,6 +628,30 @@ RECORD *sort_skip(INDEX * FF, register RECORD *curptr, short n)	/* returns point
 				FF->curfilepos = 0;
 			}
 		} while (curptr && sort_isignored(FF,curptr));
+#else
+		if (FF->curfile->curpos >= FF->curfile->rectot)
+			FF->curfile->curpos = 0;
+		if (FF->curfile->curpos >= FF->curfile->rectot || curptr->num != FF->curfile->recbase[FF->curfile->curpos])	{
+			/* if bad starting record or it's not the one last delivered */
+			for (FF->curfile->curpos = 0; FF->curfile->curpos < FF->curfile->rectot; FF->curfile->curpos++)
+				if (curptr->num == FF->curfile->recbase[FF->curfile->curpos])	/* if found it */
+					break;
+			if (FF->curfile->curpos == FF->curfile->rectot)	{	/* ERROR! record isn't in group */
+				FF->curfile->curpos = 0;
+				return (NULL);
+			}
+		}
+		do {
+			if ((FF->curfile->curpos += n) < FF->curfile->rectot)	{	/* NB: since it's unsigned, < 0 puts out of range */
+				newrec = FF->curfile->recbase[FF->curfile->curpos];
+				curptr = rec_getrec(FF,newrec);
+			}
+			else	{
+				curptr = NULL;
+				FF->curfile->curpos = 0;
+			}
+		} while (curptr && sort_isignored(FF,curptr));
+#endif
 	}
 	else if (FF->head.sortpars.ison && FF->viewtype != VIEW_NEW) {	  /* if sort is not disabled */
 		if (n > 0)	{
@@ -714,7 +746,7 @@ RECORD * sort_jump(INDEX * FF, float position)		/* moves to record at relative p
 		target = position*FF->curfile->rectot;
 		if (target < FF->curfile->rectot)	{
 			RECN newrec = FF->curfile->recbase[target];
-			FF->curfilepos = target;
+			FF->curfile->curpos = target;
 			curptr = rec_getrec(FF, newrec);
 		}
 		else
@@ -768,7 +800,7 @@ float sort_findpos(INDEX * FF, RECN target)	/* finds ordinal position of target 
 	if (FF->curfile) {	/* if working from a file list */
 		for (curpos = 0; curpos < FF->curfile->rectot; curpos++)	{
 			if (target == FF->curfile->recbase[curpos])	{	/* if found it */
-				FF->curfilepos = curpos;
+				FF->curfile->curpos = curpos;
 				return ((float)curpos/FF->curfile->rectot);
 			}
 		}
@@ -830,6 +862,26 @@ short sort_relpos(INDEX * FF, RECN t1, RECN t2)		/* finds relative positions of 
 		return (t1 > t2 ? 1 : -1);
 	}
 	return (0); 
+}
+/*****************************************************************************/
+RECORD * sort_bestmatch(INDEX * FF, char * target)	/* finds best matching record */
+
+{
+	RECORD * curptr, * bestptr = NULL;
+	long maxmatch = 0;
+	
+	for (curptr = rec_getrec(FF, FF->head.root); curptr;) {       // while records to check
+		long matchlen = str_xspn(target, curptr->rtext);
+		int m;
+		if (matchlen && matchlen >= maxmatch) {
+			maxmatch = matchlen;
+			bestptr = curptr;
+		}
+		if (!(m = match(FF,&FF->head.sortpars,target, curptr->rtext)))	// if a match
+			break;
+		curptr = rec_getrec(FF, m < 0 ? curptr->lchild : curptr->rchild);
+	}
+	return bestptr;
 }
 /*******************************************************************************/
 BOOL sort_isinfieldorder(short * fieldorder, short maxfields)	/* returns TRUE if straight field order for text fields */
